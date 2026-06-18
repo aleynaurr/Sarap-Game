@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://b73brff0nqimc"]
+
+[ext_resource type="PackedScene" uid="uid://vks2ohvyo0fr" path="res://scenes/stations/cutting_board_station.tscn" id="1_madu1"]
+[ext_resource type="PackedScene" uid="uid://doaoa0yfu4u2b" path="res://scenes/player/player.tscn" id="2_o4r6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_madu1"]
+size = Vector2(995.0625, 90.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4r6q"]
+size = Vector2(95, 499)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wsgf"]
+size = Vector2(94.5, 549)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi3jr"]
+size = Vector2(993.75, 44.5)
+
+[node name="Kitchen" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 69.0
+offset_top = 26.0
+offset_right = 1118.0
+offset_bottom = 635.0
+color = Color(0.94359004, 0.88180774, 0.8786413, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_o4r6q")]
+position = Vector2(30, -12)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 990.0
+offset_top = 47.0
+offset_right = 1084.0
+offset_bottom = 538.0
+color = Color(1, 0.63822544, 1, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 94.0
+offset_top = 502.0
+offset_right = 1084.0
+offset_bottom = 594.0
+color = Color(1, 0.62458503, 1, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 97.0
+offset_top = 40.0
+offset_right = 187.0
+offset_bottom = 596.0
+color = Color(1, 0.6636825, 1, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 95.0
+offset_top = 40.0
+offset_right = 1084.0
+offset_bottom = 79.0
+color = Color(1, 0.56757206, 1, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(585.46875, 547.125)
+shape = SubResource("RectangleShape2D_madu1")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1036.5, 286.5)
+shape = SubResource("RectangleShape2D_o4r6q")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(140.75, 318)
+shape = SubResource("RectangleShape2D_7wsgf")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(593.125, 59.75)
+shape = SubResource("RectangleShape2D_yi3jr")
+
+[node name="CuttingBoardStation" parent="." instance=ExtResource("1_madu1")]
+position = Vector2(-20, -217)

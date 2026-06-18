@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://vks2ohvyo0fr"]
+
+[ext_resource type="Script" uid="uid://b4t2b20c7djo5" path="res://scripts/cutting_board_station.gd" id="1_dxirj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojqv0"]
+size = Vector2(123, 118)
+
+[node name="CuttingBoardStation" type="Area2D"]
+script = ExtResource("1_dxirj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1015.0
+offset_top = 528.0
+offset_right = 1098.0
+offset_bottom = 605.0
+color = Color(0.94174063, 0.5330641, 0.5716876, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1054.5, 567)
+shape = SubResource("RectangleShape2D_ojqv0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
