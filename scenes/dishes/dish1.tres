@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DishRecipe" format=3 uid="uid://d1y658snctv5g"]
+
+[ext_resource type="Script" uid="uid://citpgnyk5g7ma" path="res://scripts/dish_recipe.gd" id="1_qln52"]
+[ext_resource type="Script" uid="uid://bdl8acikdlbsq" path="res://scripts/dish_step.gd" id="2_w3a3p"]
+[ext_resource type="PackedScene" uid="uid://j0hm3doy6p7b" path="res://scenes/minigames/dish1Cook1.tscn" id="3_w3a3p"]
+
+[sub_resource type="Resource" id="Resource_nuaw5"]
+script = ExtResource("2_w3a3p")
+station_id = "Work"
+minigame_scene = ExtResource("3_w3a3p")
+metadata/_custom_type_script = "uid://bdl8acikdlbsq"
+
+[resource]
+script = ExtResource("1_qln52")
+steps = Array[ExtResource("2_w3a3p")]([SubResource("Resource_nuaw5"), null, null, null])
+metadata/_custom_type_script = "uid://citpgnyk5g7ma"

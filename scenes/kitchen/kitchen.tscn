@@ -3,18 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://vks2ohvyo0fr" path="res://scenes/stations/cutting_board_station.tscn" id="1_madu1"]
 [ext_resource type="Script" uid="uid://b3v4qax83xror" path="res://scripts/presence_detector.gd" id="2_hwcho"]
 [ext_resource type="PackedScene" uid="uid://doaoa0yfu4u2b" path="res://scenes/player/player.tscn" id="2_o4r6q"]
-[ext_resource type="Texture2D" uid="uid://b4wi1088ixhev" path="res://assets/letter e.png" id="3_8xxd6"]
+[ext_resource type="Texture2D" uid="uid://00fbnb5bi8de" path="res://assets/shiftkey.png" id="3_hwcho"]
 [ext_resource type="Texture2D" uid="uid://dgwonjc42joct" path="res://assets/kitchennew.png" id="3_o4r6q"]
 [ext_resource type="Texture2D" uid="uid://cbaj4uvploj7l" path="res://assets/kitchenwalls.png" id="4_7wsgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yi3jr"]
-size = Vector2(2009.875, 92.25)
+size = Vector2(996.875, 92.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_madu1"]
-size = Vector2(1938.5313, 109.125)
+size = Vector2(992.2656, 109.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wsgf"]
-size = Vector2(110.625, 865.25)
+size = Vector2(102.3125, 865.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4r6q"]
 size = Vector2(95, 779)
@@ -89,10 +89,17 @@ sources/1 = SubResource("TileSetAtlasSource_yi3jr")
 
 [node name="Kitchen" type="Node2D" unique_id=832595442]
 
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=730722458]
+offset_left = -264.0
+offset_top = -314.0
+offset_right = 1488.0
+offset_bottom = 1159.0
+color = Color(0.10615779, 0.030920677, 0.004604428, 1)
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1135004222]
 offset_left = 106.0
 offset_top = -47.0
-offset_right = 2107.0
+offset_right = 1091.0
 offset_bottom = 804.0
 color = Color(0.94359004, 0.88180774, 0.8786413, 1)
 
@@ -107,29 +114,29 @@ scale = Vector2(2, 2)
 [node name="StaticBody2D Top" type="StaticBody2D" parent="." unique_id=416729641]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D Top" unique_id=1575969460]
-position = Vector2(1101.0625, -48.875)
+position = Vector2(594.5625, -48.875)
 shape = SubResource("RectangleShape2D_yi3jr")
 
 [node name="StaticBody2D Bottom" type="StaticBody2D" parent="." unique_id=406833907]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D Bottom" unique_id=1071296554]
-position = Vector2(1070, 757)
+position = Vector2(596.8672, 757)
 shape = SubResource("RectangleShape2D_madu1")
 
-[node name="StaticBody2 P1 Left" type="StaticBody2D" parent="." unique_id=2027313783]
+[node name="StaticBody2 Left" type="StaticBody2D" parent="." unique_id=2027313783]
 z_index = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2 P1 Left" unique_id=598599062]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2 Left" unique_id=598599062]
 position = Vector2(154.3125, 421)
 shape = SubResource("RectangleShape2D_7wsgf")
 
-[node name="StaticBody2 P2 Right" type="StaticBody2D" parent="." unique_id=1514273601]
+[node name="StaticBody2 Right" type="StaticBody2D" parent="." unique_id=1514273601]
 z_index = 1
 position = Vector2(-2, -27)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2 P2 Right" unique_id=1764270998]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2 Right" unique_id=1764270998]
 z_index = 1
-position = Vector2(2056.375, 376.375)
+position = Vector2(1052.8438, 404)
 shape = SubResource("RectangleShape2D_7wsgf")
 
 [node name="StaticBody2D Center" type="StaticBody2D" parent="." unique_id=2090963234]
@@ -157,25 +164,26 @@ shape = SubResource("RectangleShape2D_a4owj")
 
 [node name="PromptIcon" type="Sprite2D" parent="Cooking Station/Presence Detector" unique_id=1432032664]
 z_index = 2
-position = Vector2(-97, -74)
+position = Vector2(-127, -69)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_8xxd6")
+texture = ExtResource("3_hwcho")
 
 [node name="CuttingBoardStation" parent="." unique_id=1286121708 instance=ExtResource("1_madu1")]
 z_index = 1
 position = Vector2(-98, -13)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=165932681]
+position = Vector2(-3, -1)
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_yi3jr")
 format = 2
-layer_0/tile_data = PackedInt32Array(262146, 131072, 65538, 262147, 65536, 0, 262148, 65536, 0, 262149, 65536, 0, 262150, 65536, 0, 262151, 65536, 0, 262152, 65536, 0, 196616, 65536, 0, 196615, 65536, 0, 196614, 65536, 0, 196613, 65536, 0, 196612, 65536, 0, 196611, 65536, 0, 196610, 196608, 65538, 131074, 65536, 0, 131075, 65536, 0, 131076, 65536, 0, 131077, 65536, 0, 131078, 65536, 0, 131079, 65536, 0, 131080, 65536, 0, 65544, 65536, 0, 65543, 65536, 0, 65542, 65536, 0, 65541, 65536, 0, 65540, 65536, 0, 65539, 65536, 0, 65538, 65536, 0, 5, 65536, 0, 6, 65536, 1, 7, 196608, 1, 8, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 327682, 65536, 65538, 393218, 65536, 0, 327683, 65536, 0, 393219, 65536, 0, 327684, 65536, 0, 393220, 65536, 0, 327685, 65536, 0, 393221, 65536, 0, 393222, 65536, 0, 327686, 65536, 0, 327687, 65536, 0, 393223, 65536, 0, 393224, 65536, 0, 327688, 65536, 0, 196617, 65536, 65537, 196618, 65536, 0, 196619, 65536, 0, 196620, 65536, 0, 131084, 65536, 0, 65548, 65536, 0, 12, 65536, 0, 262156, 65536, 0, 327692, 65536, 0, 393228, 65536, 0, 13, 65536, 0, 14, 65536, 0, 15, 65536, 0, 16, 65536, 0, 17, 65536, 0, 18, 65536, 0, 19, 65536, 0, 65549, 65536, 0, 65550, 65536, 0, 65551, 65536, 0, 65552, 65536, 0, 65553, 65536, 0, 65554, 65536, 0, 65555, 65536, 0, 131091, 65536, 0, 131090, 65536, 0, 131089, 65536, 0, 131088, 65536, 0, 131087, 65536, 0, 131086, 65536, 0, 131085, 65536, 0, 196621, 65536, 0, 262157, 65536, 0, 327693, 65536, 0, 393229, 65536, 0, 393230, 65536, 0, 327694, 65536, 0, 262158, 65536, 0, 196622, 65536, 0, 196623, 65536, 0, 262159, 65536, 0, 327695, 65536, 0, 393231, 65536, 0, 393232, 65536, 0, 327696, 65536, 0, 262160, 65536, 0, 196624, 65536, 0, 196625, 65536, 0, 196626, 65536, 0, 196627, 65536, 0, 262163, 65536, 0, 327699, 65536, 0, 393235, 65536, 0, 393234, 65536, 0, 393233, 65536, 0, 327697, 65536, 0, 262161, 65536, 0, 262162, 65536, 0, 327698, 65536, 0, 131082, 65536, 0, 9, 65536, 0, 65545, 65536, 0, 131081, 65536, 0, 11, 65536, 0, 65547, 65536, 0, 131083, 65536, 0, 262153, 196608, 65537, 327689, 65536, 0, 393225, 65536, 0, 262155, 65536, 0, 327691, 65536, 0, 393227, 65536, 0)
+layer_0/tile_data = PackedInt32Array(262146, 131072, 65538, 262147, 65536, 0, 262148, 65536, 0, 262149, 65536, 0, 262150, 65536, 0, 262151, 65536, 0, 262152, 65536, 0, 196616, 65536, 0, 196615, 65536, 0, 196614, 65536, 0, 196613, 65536, 0, 196612, 65536, 0, 196611, 65536, 0, 196610, 196608, 65538, 131074, 65536, 0, 131075, 65536, 0, 131076, 65536, 0, 131077, 65536, 0, 131078, 65536, 0, 131079, 65536, 0, 131080, 65536, 0, 65544, 65536, 0, 65543, 65536, 0, 65542, 65536, 0, 65541, 65536, 0, 65540, 65536, 0, 65539, 65536, 0, 65538, 65536, 0, 5, 65536, 0, 6, 65536, 1, 7, 196608, 1, 8, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 327682, 65536, 65538, 393218, 65536, 0, 327683, 65536, 0, 393219, 65536, 0, 327684, 65536, 0, 393220, 65536, 0, 327685, 65536, 0, 393221, 65536, 0, 393222, 65536, 0, 327686, 65536, 0, 327687, 65536, 0, 393223, 65536, 0, 393224, 65536, 0, 327688, 65536, 0, 196617, 65536, 65537, 196618, 65536, 0, 131082, 65536, 0, 9, 65536, 0, 65545, 65536, 0, 131081, 65536, 0, 262153, 196608, 65537, 327689, 65536, 0, 393225, 65536, 0)
 
 [node name="TileMap2" type="TileMap" parent="." unique_id=556776307]
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_hwcho")
 format = 2
-layer_0/tile_data = PackedInt32Array(458754, 1, 3, 458753, 1, 3, 458755, 1, 3, 458756, 1, 3, 458757, 1, 3, 458758, 1, 3, 458759, 1, 3, 458760, 1, 3, 458763, 1, 3, 458764, 1, 3, 458765, 1, 3, 458766, 1, 3, 458767, 1, 3, 458768, 1, 3, 458769, 1, 3, 458770, 1, 3, 458771, 1, 3, 458772, 1, 3, 393236, 1, 3, 327700, 1, 3, 262164, 1, 3, -65516, 1, 3, -65517, 1, 3, -65518, 1, 3, -65519, 1, 3, -65520, 1, 3, -65521, 1, 3, -65522, 1, 3, -65523, 1, 3, -65524, 1, 3, -65525, 1, 3, -65527, 1, 3, -65528, 1, 3, -65529, 1, 3, -65530, 1, 3, -65531, 1, 3, -65532, 1, 3, -65533, 1, 3, -65534, 1, 3, -65535, 1, 3, 1, 1, 3, 65537, 1, 3, 131073, 1, 3, 196609, 1, 3, 262145, 1, 3, 327681, 1, 3, 393217, 1, 3, 20, 1, 3, 65556, 1, 3, 131092, 1, 3, 196628, 1, 3, 524289, 65537, 3, 524290, 65537, 3, 524291, 65537, 3, 524292, 65537, 3, 524293, 65537, 3, 524294, 65537, 3, 524295, 65537, 3, 524296, 65537, 3, 524299, 65537, 3, 524300, 65537, 3, 524301, 65537, 3, 524302, 65537, 3, 524303, 65537, 3, 524304, 65537, 3, 524305, 65537, 3, 524306, 65537, 3, 524307, 65537, 3, 524308, 65537, 3, 458762, 1, 3, 458761, 1, 3, 393226, 1, 3, 327690, 1, 3, 262154, 1, 3, -65526, 1, 3, 10, 1, 3, 65546, 1, 3, 131082, 1, 3, 196618, 1, 3)
+layer_0/tile_data = PackedInt32Array(458754, 1, 3, 458753, 1, 3, 458755, 1, 3, 458756, 1, 3, 458757, 1, 3, 458758, 1, 3, 458759, 1, 3, 458760, 1, 3, -65527, 1, 3, -65528, 1, 3, -65529, 1, 3, -65530, 1, 3, -65531, 1, 3, -65532, 1, 3, -65533, 1, 3, -65534, 1, 3, -65535, 1, 3, 1, 1, 3, 65537, 1, 3, 131073, 1, 3, 196609, 1, 3, 262145, 1, 3, 327681, 1, 3, 393217, 1, 3, 524289, 65537, 3, 524290, 65537, 3, 524291, 65537, 3, 524292, 65537, 3, 524293, 65537, 3, 524294, 65537, 3, 524295, 65537, 3, 524296, 65537, 3, 458762, 1, 3, 458761, 1, 3, 393226, 1, 3, 327690, 1, 3, 262154, 1, 3, -65526, 1, 3, 10, 1, 3, 65546, 1, 3, 131082, 1, 3, 196618, 1, 3, 524297, 65537, 3, 524298, 65537, 3)
 
 [node name="Sink Station" type="StaticBody2D" parent="." unique_id=658044647]
 position = Vector2(-45, 152.5)
@@ -196,6 +204,6 @@ shape = SubResource("RectangleShape2D_a4owj")
 
 [node name="PromptIcon" type="Sprite2D" parent="Sink Station/Presence Detector" unique_id=1744146204]
 z_index = 2
-position = Vector2(-601, 46.999992)
+position = Vector2(-560, 41.999992)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_8xxd6")
+texture = ExtResource("3_hwcho")

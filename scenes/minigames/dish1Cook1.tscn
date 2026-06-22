@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://j0hm3doy6p7b"]
+
+[ext_resource type="Texture2D" uid="uid://bctbhpm6n7tal" path="res://assets/cookingstationbg.jpg" id="1_37aqp"]
+
+[node name="Dish1Work1" type="Node2D" unique_id=395957632]
+
+[node name="Background" type="TextureRect" parent="." unique_id=756644766]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = 1168.0
+offset_bottom = 667.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_37aqp")

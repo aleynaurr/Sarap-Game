@@ -1,0 +1,414 @@
+[gd_scene load_steps=22 format=3 uid="uid://kitchen"]
+
+[ext_resource type="Script" path="res://scripts/Kitchen.gd" id="1_kitchen"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_player"]
+[ext_resource type="Script" path="res://scripts/stations/KitchenStation.gd" id="3_station"]
+[ext_resource type="Script" path="res://scripts/MinigameHost.gd" id="4_mghost"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/player_sheet.png" id="5_player_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/stations/station_sink.png" id="6_sink"]
+[ext_resource type="Texture2D" path="res://assets/sprites/stations/station_chopping.png" id="7_chop"]
+[ext_resource type="Texture2D" path="res://assets/sprites/stations/station_frying.png" id="8_fry"]
+[ext_resource type="Texture2D" path="res://assets/sprites/stations/station_cooking.png" id="9_cook"]
+[ext_resource type="Texture2D" path="res://assets/sprites/stations/station_working.png" id="10_work"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/key_prompt_e.png" id="11_eprompt"]
+
+[sub_resource type="CapsuleShape2D" id="PlayerShape"]
+radius = 12.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="StationShape"]
+size = Vector2(80, 60)
+
+[sub_resource type="RectangleShape2D" id="StationShape2"]
+size = Vector2(80, 60)
+
+[sub_resource type="RectangleShape2D" id="StationShape3"]
+size = Vector2(80, 60)
+
+[sub_resource type="RectangleShape2D" id="StationShape4"]
+size = Vector2(80, 60)
+
+[sub_resource type="RectangleShape2D" id="StationShape5"]
+size = Vector2(80, 60)
+
+[sub_resource type="RectangleShape2D" id="WallTopShape"]
+size = Vector2(640, 24)
+
+[sub_resource type="RectangleShape2D" id="WallBottomShape"]
+size = Vector2(640, 24)
+
+[sub_resource type="RectangleShape2D" id="WallLeftShape"]
+size = Vector2(24, 480)
+
+[sub_resource type="RectangleShape2D" id="WallRightShape"]
+size = Vector2(24, 480)
+
+[node name="Kitchen" type="Node2D"]
+script = ExtResource("1_kitchen")
+
+[node name="FloorLayer" type="Node2D" parent="."]
+
+[node name="Floor" type="ColorRect" parent="FloorLayer"]
+position = Vector2(0, 0)
+size = Vector2(640, 480)
+color = Color(0.545, 0.333, 0.224, 1)
+
+[node name="FloorTiles" type="Node2D" parent="FloorLayer"]
+position = Vector2(0, 0)
+
+[node name="InnerFloor" type="ColorRect" parent="FloorLayer"]
+position = Vector2(20, 20)
+size = Vector2(600, 440)
+color = Color(0.490, 0.298, 0.196, 1)
+
+[node name="GridLines" type="Node2D" parent="FloorLayer"]
+
+[node name="WallTop" type="ColorRect" parent="FloorLayer"]
+position = Vector2(0, 0)
+size = Vector2(640, 24)
+color = Color(0.361, 0.216, 0.141, 1)
+
+[node name="WallLeft" type="ColorRect" parent="FloorLayer"]
+position = Vector2(0, 0)
+size = Vector2(24, 480)
+color = Color(0.361, 0.216, 0.141, 1)
+
+[node name="WallRight" type="ColorRect" parent="FloorLayer"]
+position = Vector2(616, 0)
+size = Vector2(24, 480)
+color = Color(0.361, 0.216, 0.141, 1)
+
+[node name="WallBottom" type="ColorRect" parent="FloorLayer"]
+position = Vector2(0, 456)
+size = Vector2(640, 24)
+color = Color(0.361, 0.216, 0.141, 1)
+
+[node name="WallDecoTop" type="ColorRect" parent="FloorLayer"]
+position = Vector2(24, 22)
+size = Vector2(592, 6)
+color = Color(0.545, 0.376, 0.220, 1)
+
+[node name="WallDecoLeft" type="ColorRect" parent="FloorLayer"]
+position = Vector2(22, 24)
+size = Vector2(6, 432)
+color = Color(0.545, 0.376, 0.220, 1)
+
+[node name="WallDecoRight" type="ColorRect" parent="FloorLayer"]
+position = Vector2(612, 24)
+size = Vector2(6, 432)
+color = Color(0.545, 0.376, 0.220, 1)
+
+[node name="WallDecoBottom" type="ColorRect" parent="FloorLayer"]
+position = Vector2(24, 450)
+size = Vector2(592, 6)
+color = Color(0.545, 0.376, 0.220, 1)
+
+[node name="CountertopTop" type="ColorRect" parent="FloorLayer"]
+position = Vector2(28, 28)
+size = Vector2(584, 52)
+color = Color(0.341, 0.216, 0.133, 1)
+
+[node name="CountertopTopSurface" type="ColorRect" parent="FloorLayer"]
+position = Vector2(28, 28)
+size = Vector2(584, 46)
+color = Color(0.42, 0.28, 0.18, 1)
+
+[node name="CountertopLeft" type="ColorRect" parent="FloorLayer"]
+position = Vector2(28, 80)
+size = Vector2(52, 320)
+color = Color(0.42, 0.28, 0.18, 1)
+
+[node name="CountertopRight" type="ColorRect" parent="FloorLayer"]
+position = Vector2(560, 80)
+size = Vector2(52, 320)
+color = Color(0.42, 0.28, 0.18, 1)
+
+[node name="CountertopBottom" type="ColorRect" parent="FloorLayer"]
+position = Vector2(28, 400)
+size = Vector2(584, 52)
+color = Color(0.42, 0.28, 0.18, 1)
+
+[node name="RoomLabel" type="Label" parent="FloorLayer"]
+position = Vector2(240, 220)
+text = "Kitchen"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.6, 0.42, 0.28, 0.4)
+
+[node name="Stations" type="Node2D" parent="."]
+
+[node name="SinkStation" type="Area2D" parent="Stations"]
+position = Vector2(90, 48)
+script = ExtResource("3_station")
+station_id = "sink"
+station_label = "Kitchen Sink"
+
+[node name="Sprite" type="Sprite2D" parent="Stations/SinkStation"]
+texture = ExtResource("6_sink")
+offset = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/SinkStation"]
+shape = SubResource("StationShape")
+position = Vector2(0, 8)
+
+[node name="InteractLabel" type="Label" parent="Stations/SinkStation"]
+position = Vector2(-36, -46)
+text = "SINK"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+
+[node name="ChoppingStation" type="Area2D" parent="Stations"]
+position = Vector2(235, 48)
+script = ExtResource("3_station")
+station_id = "chopping"
+station_label = "Chopping Board"
+
+[node name="Sprite" type="Sprite2D" parent="Stations/ChoppingStation"]
+texture = ExtResource("7_chop")
+offset = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/ChoppingStation"]
+shape = SubResource("StationShape2")
+position = Vector2(0, 8)
+
+[node name="InteractLabel" type="Label" parent="Stations/ChoppingStation"]
+position = Vector2(-46, -46)
+text = "CHOPPING"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+
+[node name="FryingStation" type="Area2D" parent="Stations"]
+position = Vector2(548, 48)
+script = ExtResource("3_station")
+station_id = "frying"
+station_label = "Frying Pan"
+
+[node name="Sprite" type="Sprite2D" parent="Stations/FryingStation"]
+texture = ExtResource("8_fry")
+offset = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/FryingStation"]
+shape = SubResource("StationShape3")
+position = Vector2(0, 8)
+
+[node name="InteractLabel" type="Label" parent="Stations/FryingStation"]
+position = Vector2(-36, -46)
+text = "FRYING"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+
+[node name="CookingStation" type="Area2D" parent="Stations"]
+position = Vector2(548, 250)
+script = ExtResource("3_station")
+station_id = "cooking"
+station_label = "Cooking Pot"
+
+[node name="Sprite" type="Sprite2D" parent="Stations/CookingStation"]
+texture = ExtResource("9_cook")
+offset = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/CookingStation"]
+shape = SubResource("StationShape4")
+position = Vector2(0, 8)
+
+[node name="InteractLabel" type="Label" parent="Stations/CookingStation"]
+position = Vector2(-46, -46)
+text = "COOKING"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+
+[node name="WorkingStation" type="Area2D" parent="Stations"]
+position = Vector2(90, 430)
+script = ExtResource("3_station")
+station_id = "working"
+station_label = "Work Table"
+
+[node name="Sprite" type="Sprite2D" parent="Stations/WorkingStation"]
+texture = ExtResource("10_work")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/WorkingStation"]
+shape = SubResource("StationShape5")
+position = Vector2(0, -8)
+
+[node name="InteractLabel" type="Label" parent="Stations/WorkingStation"]
+position = Vector2(-46, -56)
+text = "WORK TABLE"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("5_player_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 28)
+shape = SubResource("PlayerShape")
+
+[node name="InteractPrompt" type="Node2D" parent="Player"]
+position = Vector2(0, -80)
+
+[node name="PromptSprite" type="Sprite2D" parent="Player/InteractPrompt"]
+texture = ExtResource("11_eprompt")
+scale = Vector2(0.6, 0.6)
+
+[node name="WallColliders" type="Node2D" parent="."]
+
+[node name="WallTop_col" type="StaticBody2D" parent="WallColliders"]
+position = Vector2(320, 12)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallTop_col"]
+shape = SubResource("WallTopShape")
+
+[node name="WallBottom_col" type="StaticBody2D" parent="WallColliders"]
+position = Vector2(320, 468)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallBottom_col"]
+shape = SubResource("WallBottomShape")
+
+[node name="WallLeft_col" type="StaticBody2D" parent="WallColliders"]
+position = Vector2(12, 240)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallLeft_col"]
+shape = SubResource("WallLeftShape")
+
+[node name="WallRight_col" type="StaticBody2D" parent="WallColliders"]
+position = Vector2(628, 240)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallRight_col"]
+shape = SubResource("WallRightShape")
+
+[node name="MinigameHost" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+script = ExtResource("4_mghost")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="HUDBackground" type="ColorRect" parent="HUD"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 640.0
+offset_bottom = 32.0
+color = Color(0.098, 0.063, 0.039, 0.88)
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 90.0
+offset_bottom = 28.0
+text = "05:00"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+
+[node name="RecipeLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 6.0
+offset_right = 440.0
+offset_bottom = 28.0
+text = "Recipe"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 6.0
+offset_right = 636.0
+offset_bottom = 28.0
+text = "Score: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+
+[node name="SidePanel" type="ColorRect" parent="HUD"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 32.0
+offset_right = 130.0
+offset_bottom = 480.0
+color = Color(0.082, 0.051, 0.031, 0.78)
+
+[node name="SidePanelLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 36.0
+offset_right = 128.0
+offset_bottom = 56.0
+text = "STEPS:"
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.88, 0.68, 0.32, 1)
+
+[node name="StepList" type="VBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 56.0
+offset_right = 128.0
+offset_bottom = 320.0
+theme_override_constants/separation = 4
+
+[node name="StepLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 330.0
+offset_right = 128.0
+offset_bottom = 390.0
+text = "Next: ..."
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.6, 0.9, 0.6, 1)
+
+[node name="StationHint" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 448.0
+offset_right = 500.0
+offset_bottom = 476.0
+text = ""
+visible = false
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+
+[node name="HintBar" type="ColorRect" parent="HUD"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 444.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.082, 0.051, 0.031, 0.78)
+
+[node name="EscHint" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 452.0
+offset_right = 636.0
+offset_bottom = 474.0
+text = "[ESC] = Quit"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(0.55, 0.48, 0.38, 1)
+
+[node name="StationGuide" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 36.0
+offset_right = 545.0
+offset_bottom = 440.0
+text = "TOP: Sink  |  Chopping  |  Frying\nRIGHT: Cooking Pot\nBOTTOM: Work Table\n\nWalk to a station, then press [E] to cook!"
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.65, 0.62, 0.55, 0.65)
+visible = true

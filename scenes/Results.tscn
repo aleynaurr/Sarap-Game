@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=3 uid="uid://results"]
+
+[ext_resource type="Script" path="res://scripts/ui/Results.gd" id="1_results"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/banner.png" id="2_banner"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/star_full.png" id="3_star_full"]
+
+[node name="Results" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_results")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.10, 0.065, 0.042, 1)
+
+[node name="Banner" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 8.0
+offset_right = 560.0
+offset_bottom = 68.0
+texture = ExtResource("2_banner")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 15.0
+offset_right = 540.0
+offset_bottom = 58.0
+text = "RESULTA!  (Results!)"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+
+[node name="RecipeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 68.0
+offset_right = 540.0
+offset_bottom = 92.0
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.95, 0.82, 0.55, 1)
+
+[node name="GradeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 95.0
+offset_right = 400.0
+offset_bottom = 185.0
+text = "S"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 72
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 190.0
+offset_right = 520.0
+offset_bottom = 225.0
+text = "Total Score: 0 / 500"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+
+[node name="StarsRow" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 228.0
+offset_right = 430.0
+offset_bottom = 278.0
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Star1" type="TextureRect" parent="StarsRow"]
+custom_minimum_size = Vector2(44, 44)
+texture = ExtResource("3_star_full")
+
+[node name="Star2" type="TextureRect" parent="StarsRow"]
+custom_minimum_size = Vector2(44, 44)
+texture = ExtResource("3_star_full")
+
+[node name="Star3" type="TextureRect" parent="StarsRow"]
+custom_minimum_size = Vector2(44, 44)
+texture = ExtResource("3_star_full")
+
+[node name="StepBreakdown" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 285.0
+offset_right = 520.0
+offset_bottom = 380.0
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.88, 0.85, 0.78, 1)
+
+[node name="GradeMessage" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 380.0
+offset_right = 560.0
+offset_bottom = 415.0
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+
+[node name="ButtonRow" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 425.0
+offset_right = 540.0
+offset_bottom = 468.0
+alignment = 1
+theme_override_constants/separation = 24
+
+[node name="BtnPlayAgain" type="Button" parent="ButtonRow"]
+custom_minimum_size = Vector2(180, 38)
+text = "🔄  MULI PANG MAGLUTO (Play Again)"
+theme_override_font_sizes/font_size = 12
+
+[node name="BtnMenu" type="Button" parent="ButtonRow"]
+custom_minimum_size = Vector2(150, 38)
+text = "🏠  MENU"
+theme_override_font_sizes/font_size = 13
