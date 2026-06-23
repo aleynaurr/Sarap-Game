@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c0m7jrqfxk1cw"]
+
+[ext_resource type="Script" uid="uid://b4t2b20c7djo5" path="res://scripts/cutting_board_station.gd" id="1_stove"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stove"]
+size = Vector2(123, 118)
+
+[node name="StoveStation" type="Area2D"]
+script = ExtResource("1_stove")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1015.0
+offset_top = 528.0
+offset_right = 1098.0
+offset_bottom = 605.0
+color = Color(0.5, 0.5, 0.8, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1054.5, 567)
+shape = SubResource("RectangleShape2D_stove")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

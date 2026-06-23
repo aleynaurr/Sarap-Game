@@ -1,0 +1,315 @@
+[gd_scene format=3 uid="uid://b7u3sxqs4feqv"]
+
+[ext_resource type="Script" uid="uid://fysyibj8fu48" path="res://scripts/ui/RecipeSelect.gd" id="1_rs"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="2_it54i"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="3_0umyy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bookbg"]
+bg_color = Color(0.52, 0.33, 0.14, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.35, 0.2, 0.08, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_page"]
+bg_color = Color(0.97, 0.93, 0.82, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.55, 0.3, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="RecipeSelect" type="Control" unique_id=74842510]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rs")
+
+[node name="Background" type="ColorRect" parent="." unique_id=463943548]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13, 0.08, 0.05, 1)
+
+[node name="CornerDot_TL" type="Label" parent="." unique_id=419247125]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
+theme_override_font_sizes/font_size = 16
+text = "✿"
+
+[node name="CornerDot_TR" type="Label" parent="." unique_id=1751286137]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 4.0
+theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
+theme_override_font_sizes/font_size = 16
+text = "✿"
+
+[node name="CornerDot_BL" type="Label" parent="." unique_id=1002056553]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 452.0
+theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
+theme_override_font_sizes/font_size = 16
+text = "✿"
+
+[node name="CornerDot_BR" type="Label" parent="." unique_id=913128729]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 452.0
+theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
+theme_override_font_sizes/font_size = 16
+text = "✿"
+
+[node name="BookBacking" type="Panel" parent="." unique_id=801146097]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 620.0
+offset_bottom = 460.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bookbg")
+
+[node name="LeftPage" type="Panel" parent="." unique_id=1052442614]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 302.0
+offset_bottom = 458.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_page")
+
+[node name="BackButton" type="Button" parent="LeftPage" unique_id=452406244]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 395.0
+offset_right = 86.0
+offset_bottom = 421.0
+theme_override_font_sizes/font_size = 11
+text = "◀ Back"
+
+[node name="MapTitle" type="Label" parent="LeftPage" unique_id=613080042]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 26.0
+offset_right = 278.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.35, 0.2, 0.08, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 18
+text = "CHOOSE YOUR
+REGION"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="LeftPage" unique_id=408080473]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 78.0
+offset_right = 277.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.45, 0.3, 0.14, 1)
+theme_override_fonts/font = ExtResource("3_0umyy")
+theme_override_font_sizes/font_size = 13
+text = "Cook the delicacies of your 
+favorite regions!"
+horizontal_alignment = 1
+
+[node name="MapLine0" type="ColorRect" parent="LeftPage" unique_id=1399828059]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 126.0
+offset_right = 270.0
+offset_bottom = 127.0
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="MapLine1" type="ColorRect" parent="LeftPage" unique_id=1104873455]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 138.0
+offset_right = 270.0
+offset_bottom = 139.0
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="MapLine2" type="ColorRect" parent="LeftPage" unique_id=571314342]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 150.0
+offset_right = 270.0
+offset_bottom = 151.0
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="MapLine3" type="ColorRect" parent="LeftPage" unique_id=455163334]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 162.0
+offset_right = 270.0
+offset_bottom = 163.0
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="BtnLuzon" type="Button" parent="LeftPage" unique_id=2071810831]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 125.0
+offset_right = 271.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 15
+text = "LUZON"
+
+[node name="BtnVisayas" type="Button" parent="LeftPage" unique_id=994160699]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 191.0
+offset_right = 269.0
+offset_bottom = 235.0
+theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 15
+text = "VISAYAS"
+
+[node name="BtnMindanao" type="Button" parent="LeftPage" unique_id=1192009512]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 255.0
+offset_right = 270.0
+offset_bottom = 299.0
+theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 15
+text = "MINDANAO"
+
+[node name="Spine" type="ColorRect" parent="." unique_id=1903053768]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 20.0
+offset_right = 332.0
+offset_bottom = 460.0
+color = Color(0.38, 0.22, 0.09, 1)
+
+[node name="Ring0" type="ColorRect" parent="Spine" unique_id=510661163]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 30.0
+offset_right = 20.0
+offset_bottom = 48.0
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Hole0" type="ColorRect" parent="Spine" unique_id=864821943]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 36.0
+offset_right = 16.0
+offset_bottom = 42.0
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Ring1" type="ColorRect" parent="Spine" unique_id=347224406]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 86.0
+offset_right = 20.0
+offset_bottom = 104.0
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Hole1" type="ColorRect" parent="Spine" unique_id=1193961907]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 92.0
+offset_right = 16.0
+offset_bottom = 98.0
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Ring2" type="ColorRect" parent="Spine" unique_id=964227951]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 142.0
+offset_right = 20.0
+offset_bottom = 160.0
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Hole2" type="ColorRect" parent="Spine" unique_id=1072491945]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 148.0
+offset_right = 16.0
+offset_bottom = 154.0
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Ring3" type="ColorRect" parent="Spine" unique_id=573952871]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 198.0
+offset_right = 20.0
+offset_bottom = 216.0
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Hole3" type="ColorRect" parent="Spine" unique_id=461697493]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 204.0
+offset_right = 16.0
+offset_bottom = 210.0
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Ring4" type="ColorRect" parent="Spine" unique_id=1197763655]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 254.0
+offset_right = 20.0
+offset_bottom = 272.0
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Hole4" type="ColorRect" parent="Spine" unique_id=1740224508]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 260.0
+offset_right = 16.0
+offset_bottom = 266.0
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Ring5" type="ColorRect" parent="Spine" unique_id=445669577]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 310.0
+offset_right = 20.0
+offset_bottom = 328.0
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Hole5" type="ColorRect" parent="Spine" unique_id=779295480]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 316.0
+offset_right = 16.0
+offset_bottom = 322.0
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="RightPage" type="Panel" parent="." unique_id=832816580]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 22.0
+offset_right = 618.0
+offset_bottom = 458.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_page")
+
+[node name="RightContent" type="VBoxContainer" parent="RightPage" unique_id=2139849374]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 266.0
+offset_bottom = 424.0
+theme_override_constants/separation = 10

@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://bepq0vpy3ap5j"]
+
+[ext_resource type="Script" uid="uid://b5hjntte2d753" path="res://scripts/ui/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Texture2D" uid="uid://civ8hln2rg320" path="res://assets/mainmenu.jpg" id="2_l72w3"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_ow34m"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="5_826wr"]
+
+[node name="MainMenu" type="Control" unique_id=1689341939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainmenu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=630823516]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 534.0
+texture = ExtResource("2_l72w3")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2052602665]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.149, 0.098, 0.071, 1)
+
+[node name="BgPattern" type="ColorRect" parent="." unique_id=1723910892]
+visible = false
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.18, 0.12, 0.08, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=960216513]
+layout_mode = 0
+offset_left = -49.0
+offset_top = 70.0
+offset_right = 311.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_826wr")
+theme_override_font_sizes/font_size = 50
+text = "SARAP"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="." unique_id=1899019993]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 136.0
+offset_right = 434.0
+offset_bottom = 166.0
+theme_override_colors/font_color = Color(0.9490196, 1, 0.9607843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.79607844)
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 20
+text = "Reminisce on your forgotten favorites!"
+horizontal_alignment = 1
+
+[node name="DividerLine" type="ColorRect" parent="." unique_id=569892920]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 175.0
+offset_right = 531.0
+offset_bottom = 178.0
+color = Color(0.88, 0.66, 0.22, 1)
+
+[node name="MenuVBox" type="VBoxContainer" parent="." unique_id=689981856]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 213.0
+offset_right = 299.0
+offset_bottom = 433.0
+theme_override_constants/separation = 18
+
+[node name="BtnPlay" type="Button" parent="MenuVBox" unique_id=1793559006]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.97, 0.85, 1)
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 16
+text = "▶  MAGLUTO!  (Play)"
+
+[node name="BtnHowTo" type="Button" parent="MenuVBox" unique_id=1042849943]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 14
+text = "📖  PAANO MAGLARO  (How To Play)"
+
+[node name="BtnQuit" type="Button" parent="MenuVBox" unique_id=32379721]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 14
+text = "✖  UMALIS  (Quit)"
+
+[node name="VersionLabel" type="Label" parent="." unique_id=1062758784]
+layout_mode = 0
+offset_top = 460.0
+offset_right = 640.0
+offset_bottom = 480.0
+theme_override_colors/font_color = Color(0.55, 0.48, 0.38, 1)
+theme_override_font_sizes/font_size = 10
+text = "SARAP! v1.0  •  Filipino Recipe Cooking Game"
+horizontal_alignment = 1
+
+[node name="HowToPanel" type="Panel" parent="." unique_id=541709615]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 80.0
+offset_right = 580.0
+offset_bottom = 420.0
+
+[node name="HowToText" type="Label" parent="HowToPanel" unique_id=482371137]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 500.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 13
+text = "HOW TO PLAY - KUSINA MAMA\n\nMOVEMENT:\n  W / A / S / D  —  Walk around the kitchen\n\nINTERACT:\n  E  —  Enter a cooking station when prompted\n\nIN MINIGAMES:\n  W/A/S/D  —  Direction controls (heat, mixing)\n  SPACE or E  —  Action button (chop, crack, flip)\n  1 / 2 / 3  —  Select zone (plating minigame)\n\nGOAL:\n  Complete all recipe steps before time runs out!\n  Each step is scored on SKILL + SPEED.\n  Earn stars and a grade: S / A / B / C / D\n\nRECIPES:\n  • Tortang Talong   • Lumpiang Shanghai\n  • Sinigang na Baboy   • Kaldereta   • Halo-Halo"
+autowrap_mode = 3
+
+[node name="HowToClose" type="Button" parent="HowToPanel" unique_id=718796539]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 305.0
+offset_right = 330.0
+offset_bottom = 335.0
+text = "CLOSE"
