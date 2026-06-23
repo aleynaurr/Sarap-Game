@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Kusina Mama"
 config/description="A Filipino cooking game inspired by Cooking Mama and Overcooked"
 run/main_scene="res://scenes/MainMenu.tscn"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://assets/sprites/ui/parol.png"
 
 [autoload]
