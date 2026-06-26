@@ -1,0 +1,589 @@
+[gd_scene format=4 uid="uid://kitchen"]
+
+[ext_resource type="Script" uid="uid://bfiy6ouq75218" path="res://scripts/kitchen.gd" id="1_kitchen"]
+[ext_resource type="Script" uid="uid://cxt018v37yi8s" path="res://scripts/player.gd" id="2_player"]
+[ext_resource type="Script" uid="uid://et0vxsp28p26" path="res://scripts/stations/KitchenStation.gd" id="3_station"]
+[ext_resource type="Script" uid="uid://dksqqug6cmy51" path="res://scripts/MinigameHost.gd" id="4_mghost"]
+[ext_resource type="Texture2D" uid="uid://1rik7kgxwnhj" path="res://assets/sprites/player/player_sheet.png" id="5_player_tex"]
+[ext_resource type="Texture2D" uid="uid://ym7hx1ikigw8" path="res://assets/sprites/ui/key_prompt_e.png" id="11_eprompt"]
+[ext_resource type="Texture2D" uid="uid://6da7uk7n570y" path="res://assets/kitchen_tiles/current_kitchen.png" id="12_sgiek"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5n0yj"]
+texture = ExtResource("12_sgiek")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/next_alternative_id = 2
+2:1/0 = 0
+2:1/1 = 1
+2:1/1/flip_h = true
+2:1/1/flip_v = true
+2:1/1/transpose = true
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/next_alternative_id = 2
+2:5/0 = 0
+2:5/1 = 1
+2:5/1/flip_h = true
+3:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+1:6/0 = 0
+3:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/next_alternative_id = 2
+0:7/0 = 0
+0:7/1 = 1
+0:7/1/flip_h = true
+0:7/1/flip_v = true
+0:7/1/transpose = true
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_p2cec"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_5n0yj")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sgiek"]
+texture = ExtResource("12_sgiek")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+1:6/next_alternative_id = 2
+1:6/0 = 0
+1:6/1 = 1
+1:6/1/transpose = true
+3:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8vo35"]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_sgiek")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8vo35"]
+texture = ExtResource("12_sgiek")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/next_alternative_id = 3
+1:3/0 = 0
+1:3/1 = 1
+1:3/1/transpose = true
+2:3/next_alternative_id = 2
+2:3/0 = 0
+2:3/1 = 1
+2:3/1/flip_h = true
+2:3/1/transpose = true
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+1:6/0 = 0
+3:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5n0yj"]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_8vo35")
+
+[sub_resource type="RectangleShape2D" id="StationShape"]
+size = Vector2(100, 126)
+
+[sub_resource type="RectangleShape2D" id="StationShape2"]
+size = Vector2(78, 92)
+
+[sub_resource type="RectangleShape2D" id="StationShape3"]
+size = Vector2(93, 97)
+
+[sub_resource type="RectangleShape2D" id="StationShape4"]
+size = Vector2(106, 108)
+
+[sub_resource type="RectangleShape2D" id="StationShape5"]
+size = Vector2(112, 116)
+
+[sub_resource type="CapsuleShape2D" id="PlayerShape"]
+radius = 12.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="WallTopShape"]
+size = Vector2(1094, 52)
+
+[sub_resource type="RectangleShape2D" id="WallBottomShape"]
+size = Vector2(1087, 153)
+
+[sub_resource type="RectangleShape2D" id="WallLeftShape"]
+size = Vector2(128.5, 582.5)
+
+[sub_resource type="RectangleShape2D" id="WallRightShape"]
+size = Vector2(127, 578)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiogw"]
+size = Vector2(127, 365)
+
+[node name="Kitchen" type="Node2D" unique_id=1620789902]
+position = Vector2(321, 63)
+script = ExtResource("1_kitchen")
+
+[node name="FloorLayer" type="Node2D" parent="." unique_id=1371295310]
+
+[node name="Floor" type="ColorRect" parent="FloorLayer" unique_id=1676007764]
+visible = false
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.545, 0.333, 0.224, 1)
+
+[node name="FloorTiles" type="Node2D" parent="FloorLayer" unique_id=543134816]
+visible = false
+
+[node name="InnerFloor" type="ColorRect" parent="FloorLayer" unique_id=1780593735]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 620.0
+offset_bottom = 460.0
+color = Color(0.49, 0.298, 0.196, 1)
+
+[node name="GridLines" type="Node2D" parent="FloorLayer" unique_id=1780546334]
+
+[node name="RoomLabel" type="Label" parent="FloorLayer" unique_id=373705630]
+offset_left = 240.0
+offset_top = 220.0
+offset_right = 240.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(0.6, 0.42, 0.28, 0.4)
+theme_override_font_sizes/font_size = 28
+text = "Kitchen"
+metadata/_edit_use_anchors_ = true
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="FloorLayer" unique_id=1810107210]
+z_index = 1
+tile_map_data = PackedByteArray("AAD8/wIAAAAAAAUAAAD8/wUAAAAGAAYAAAD9/wgAAAAAAAcAAAAAAAgAAAAAAAQAAAAEAAUAAAACAAUAAAABAAgAAAABAAQAAAA=")
+tile_set = SubResource("TileSet_p2cec")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="FloorLayer" unique_id=334589957]
+tile_map_data = PackedByteArray("AAABAAgAAQAHAAcAAAACAAgAAQAHAAcAAAAIAAgAAQAHAAcAAAAHAAgAAQAHAAcAAAAFAAAAAQAGAAUAAAAGAAAAAQAHAAUAAAAFAP//AQAGAAQAAAAGAP//AQAHAAQAAAADAP//AQACAAAAAAACAP//AQABAAAAAAAAAAAAAQAAAAMAAAAJAAAAAQAAAAMAAAADAAgAAQAHAAcAAAAEAAgAAQAHAAcAAAAFAAgAAQAHAAcAAAAGAAgAAQAHAAcAAAAJAAgAAQAHAAcAAAAKAAgAAQAHAAcAAAALAAgAAQAHAAcAAAAMAAgAAQAEAAcAAAAAAAgAAQAHAAcAAAD//wgAAQAHAAcAAAD+/wgAAQAHAAcAAAD9/wgAAQACAAcAAAD8/wgAAQABAAcAAAANAAgAAQAFAAcAAAANAAcAAQAFAAYAAAANAAYAAQAFAAYAAAANAAQAAQAFAAYAAAANAAMAAQAFAAYAAAANAAIAAQAFAAYAAAANAAEAAQAFAAUAAAD8/wcAAQABAAYAAAD8/wYAAQABAAYAAAD8/wQAAQABAAYAAAD8/wMAAQABAAYAAAD8/wIAAQABAAYAAAD8/wEAAQABAAUAAAAFAAcAAQADAAYAAAAEAAcAAQADAAYAAAAEAAYAAQADAAYAAAAFAAYAAQADAAYAAAAFAAUAAQADAAYAAAAEAAUAAQADAAYAAAAEAAQAAQADAAYAAAAFAAQAAQADAAYAAAAFAAMAAQADAAYAAAAEAAMAAQADAAYAAAAEAAIAAQADAAUAAAAFAAIAAQADAAUAAAD8/wUAAQABAAYAAAANAAUAAQAFAAYAAAA=")
+tile_set = SubResource("TileSet_8vo35")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="FloorLayer" unique_id=1324994190]
+z_index = -1
+tile_map_data = PackedByteArray("AAACAAEAAQAEAAQAAAADAAEAAQAEAAQAAAAEAAEAAQAEAAQAAAAFAAEAAQAEAAQAAAAGAAEAAQAEAAQAAAAGAAIAAQAEAAQAAAAFAAIAAQAEAAQAAAAEAAIAAQAEAAQAAAADAAIAAQAEAAQAAAACAAIAAQAEAAQAAAABAAIAAQAEAAQAAAABAAMAAQAEAAQAAAACAAMAAQAEAAQAAAADAAMAAQAEAAQAAAAEAAMAAQAGAAYAAAAFAAMAAQAEAAQAAAAGAAMAAQAEAAQAAAAGAAQAAQAEAAQAAAAFAAQAAQAEAAQAAAAEAAQAAQAEAAQAAAADAAQAAQAEAAQAAAACAAQAAQAEAAQAAAABAAQAAQAEAAQAAAABAAUAAQAEAAQAAAACAAUAAQAEAAQAAAADAAUAAQAEAAQAAAAEAAUAAQAEAAQAAAAFAAUAAQAEAAQAAAAGAAUAAQAEAAQAAAAGAAYAAQAEAAQAAAAFAAYAAQAEAAQAAAAEAAYAAQAEAAQAAAADAAYAAQAEAAQAAAACAAYAAQAEAAQAAAABAAYAAQAEAAQAAAABAAEAAQAEAAQAAAAEAAcAAQAEAAQAAAADAAcAAQAEAAQAAAACAAcAAQAEAAQAAAABAAcAAQAEAAQAAAAFAAcAAQAEAAQAAAAGAAcAAQAEAAQAAAAHAAEAAQAEAAQAAAAHAAIAAQAEAAQAAAAHAAMAAQAEAAQAAAAHAAQAAQAEAAQAAAAHAAUAAQAEAAQAAAAHAAYAAQAEAAQAAAAHAAcAAQAEAAQAAAABAAgAAQAEAAQAAAACAAgAAQAEAAQAAAADAAgAAQAEAAQAAAAEAAgAAQAEAAQAAAAFAAgAAQAEAAQAAAAGAAgAAQAEAAQAAAAHAAgAAQAEAAQAAAAIAAEAAQAEAAQAAAAIAAIAAQAEAAQAAAAIAAMAAQAEAAQAAAAIAAQAAQAEAAQAAAAIAAUAAQAEAAQAAAAIAAYAAQAEAAQAAAAIAAcAAQAEAAQAAAAIAAgAAQAEAAQAAAABAAAAAQACAAMAAAACAAAAAQACAAMAAAADAAAAAQACAAMAAAAEAAAAAQACAAMAAAAFAAAAAQACAAMAAAAGAAAAAQACAAMAAAAHAAAAAQACAAMAAAAIAAAAAQACAAMAAAAAAAAAAQACAAMAAAAJAAAAAQACAAMAAAAAAAEAAQAEAAQAAAAAAAIAAQAEAAQAAAAAAAMAAQAEAAQAAAAAAAQAAQAEAAQAAAAAAAUAAQAEAAQAAAAAAAYAAQAEAAQAAAAAAAcAAQAEAAQAAAAJAAEAAQAEAAQAAAAJAAIAAQAEAAQAAAAJAAMAAQAEAAQAAAAJAAQAAQAEAAQAAAAJAAUAAQAEAAQAAAAJAAYAAQAEAAQAAAAJAAcAAQAEAAQAAAAAAAkAAQAAAAMAAAABAAkAAQAAAAMAAAACAAkAAQAAAAMAAAADAAkAAQAAAAMAAAAEAAkAAQAAAAMAAAAFAAkAAQAAAAMAAAAGAAkAAQAAAAMAAAAHAAkAAQAAAAMAAAAIAAkAAQAAAAMAAAAJAAkAAQAAAAMAAAAJAAgAAQAEAAQAAAAAAAgAAQAEAAQAAAAAAP//AQAAAAIAAAABAP//AQABAAIAAAACAP//AQACAAIAAAADAP//AQADAAIAAAAEAP//AQAEAAIAAAAFAP//AQAFAAIAAAAGAP//AQAGAAIAAAAHAP//AQAGAAIAAAAIAP//AQAGAAIAAAAJAP//AQAHAAIAAAD7////AQAHAAIAAAD8////AQAHAAIAAAD9////AQAHAAIAAAD+////AQAHAAIAAAD/////AQAHAAIAAAAKAP//AQAHAAIAAAALAP//AQAHAAIAAAAMAP//AQAHAAIAAAANAP//AQAHAAIAAAAOAP//AQAHAAIAAAAOAAAAAQACAAMAAAANAAAAAQACAAMAAAAMAAAAAQACAAMAAAALAAAAAQACAAMAAAAKAAAAAQACAAMAAAD//wAAAQACAAMAAAD+/wAAAQACAAMAAAD9/wAAAQACAAMAAAD8/wAAAQACAAMAAAD7/wAAAQACAAMAAAAOAAEAAQACAAMAAQAOAAIAAQACAAMAAQAOAAMAAQACAAMAAQAOAAQAAQACAAMAAQAOAAUAAQACAAMAAQAOAAYAAQACAAMAAQAOAAcAAQACAAMAAQAOAAgAAQACAAMAAQAOAAkAAQAHAAMAAAANAAkAAQAHAAMAAAAMAAkAAQAHAAMAAAALAAkAAQAHAAMAAAAKAAkAAQAHAAMAAAD//wkAAQAHAAMAAAD+/wkAAQAHAAMAAAD9/wkAAQAHAAMAAAD8/wkAAQAHAAMAAAD7/wkAAQAHAAMAAAD7/wEAAQACAAMAAQD7/wIAAQACAAMAAQD7/wMAAQACAAMAAQD7/wQAAQACAAMAAQD7/wUAAQACAAMAAQD7/wYAAQACAAMAAQD7/wcAAQACAAMAAQD7/wgAAQACAAMAAQD8/wEAAQAEAAQAAAD9/wEAAQAEAAQAAAD+/wEAAQAEAAQAAAD//wEAAQAEAAQAAAD//wIAAQAEAAQAAAD//wMAAQAEAAQAAAD//wQAAQAEAAQAAAD//wUAAQAEAAQAAAD//wYAAQAEAAQAAAD//wcAAQAEAAQAAAD//wgAAQAEAAQAAAD+/wgAAQAEAAQAAAD9/wgAAQAEAAQAAAD8/wgAAQAEAAQAAAD8/wcAAQAEAAQAAAD9/wcAAQAEAAQAAAD+/wcAAQAEAAQAAAD+/wYAAQAEAAQAAAD9/wYAAQAEAAQAAAD8/wYAAQAEAAQAAAD8/wUAAQAEAAQAAAD9/wUAAQAEAAQAAAD+/wUAAQAEAAQAAAD8/wMAAQAEAAQAAAD9/wMAAQAEAAQAAAD+/wIAAQAEAAQAAAD+/wMAAQAEAAQAAAD+/wQAAQAEAAQAAAD9/wQAAQAEAAQAAAD8/wQAAQAEAAQAAAD8/wIAAQAEAAQAAAD9/wIAAQAEAAQAAAALAAgAAQAEAAQAAAAKAAgAAQAEAAQAAAAKAAcAAQAEAAQAAAAKAAYAAQAEAAQAAAAKAAUAAQAEAAQAAAAKAAQAAQAEAAQAAAAKAAMAAQAEAAQAAAAKAAIAAQAEAAQAAAAKAAEAAQAEAAQAAAALAAEAAQAEAAQAAAAMAAEAAQAEAAQAAAANAAEAAQAEAAQAAAANAAIAAQAEAAQAAAANAAMAAQAEAAQAAAANAAQAAQAEAAQAAAANAAUAAQAEAAQAAAANAAYAAQAEAAQAAAANAAcAAQAEAAQAAAANAAgAAQAEAAQAAAAMAAgAAQAEAAQAAAAMAAIAAQAEAAQAAAAMAAMAAQAEAAQAAAALAAMAAQAEAAQAAAALAAIAAQAEAAQAAAALAAQAAQAEAAQAAAALAAUAAQAEAAQAAAALAAYAAQAEAAQAAAALAAcAAQAEAAQAAAAMAAcAAQAEAAQAAAAMAAYAAQAEAAQAAAAMAAUAAQAEAAQAAAAMAAQAAQAEAAQAAAA=")
+tile_set = SubResource("TileSet_5n0yj")
+
+[node name="Stations" type="Node2D" parent="." unique_id=659295365]
+
+[node name="SinkStation" type="Area2D" parent="Stations" unique_id=2024567541]
+position = Vector2(90, 48)
+script = ExtResource("3_station")
+station_id = "sink"
+station_label = "Kitchen Sink"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/SinkStation" unique_id=847042105]
+position = Vector2(-251, 462)
+shape = SubResource("StationShape")
+
+[node name="InteractLabel" type="Label" parent="Stations/SinkStation" unique_id=468821356]
+offset_left = -258.0
+offset_top = 498.0
+offset_right = -235.0
+offset_bottom = 512.0
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "SINK"
+metadata/_edit_use_anchors_ = true
+
+[node name="ChoppingStation" type="Area2D" parent="Stations" unique_id=1248225929]
+position = Vector2(235, 48)
+script = ExtResource("3_station")
+station_id = "chopping"
+station_label = "Chopping Board"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/ChoppingStation" unique_id=144582907]
+position = Vector2(-436, 297)
+shape = SubResource("StationShape2")
+
+[node name="InteractLabel" type="Label" parent="Stations/ChoppingStation" unique_id=1850448341]
+offset_left = -483.0
+offset_top = 344.0
+offset_right = -430.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "CHOPPING"
+metadata/_edit_use_anchors_ = true
+
+[node name="FryingStation" type="Area2D" parent="Stations" unique_id=1236292098]
+position = Vector2(548, 48)
+script = ExtResource("3_station")
+station_id = "frying"
+station_label = "Frying Pan"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/FryingStation" unique_id=1508210352]
+position = Vector2(-757.5, 124.5)
+shape = SubResource("StationShape3")
+
+[node name="InteractLabel" type="Label" parent="Stations/FryingStation" unique_id=355422409]
+offset_left = -36.0
+offset_top = -46.0
+offset_right = -36.0
+offset_bottom = -46.0
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "FRYING"
+metadata/_edit_use_anchors_ = true
+
+[node name="CookingStation" type="Area2D" parent="Stations" unique_id=1681748336]
+position = Vector2(548, 250)
+script = ExtResource("3_station")
+station_id = "cooking"
+station_label = "Cooking Pot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/CookingStation" unique_id=618173805]
+position = Vector2(-287, 108)
+shape = SubResource("StationShape4")
+
+[node name="InteractLabel" type="Label" parent="Stations/CookingStation" unique_id=1179447239]
+offset_left = -46.0
+offset_top = -46.0
+offset_right = -46.0
+offset_bottom = -46.0
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "COOKING"
+metadata/_edit_use_anchors_ = true
+
+[node name="WorkingStation" type="Area2D" parent="Stations" unique_id=446032284]
+position = Vector2(90, 430)
+script = ExtResource("3_station")
+station_id = "working"
+station_label = "Work Table"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/WorkingStation" unique_id=736180900]
+position = Vector2(-37, 78)
+shape = SubResource("StationShape5")
+
+[node name="InteractLabel" type="Label" parent="Stations/WorkingStation" unique_id=857737456]
+offset_left = -46.0
+offset_top = -56.0
+offset_right = -46.0
+offset_bottom = -56.0
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "WORK TABLE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1636471097 groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("2_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1411164132]
+position = Vector2(-327, 16)
+texture = ExtResource("5_player_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1771591183]
+position = Vector2(-327, 40)
+shape = SubResource("PlayerShape")
+
+[node name="InteractPrompt" type="Node2D" parent="Player" unique_id=704782759]
+position = Vector2(0, -80)
+
+[node name="PromptSprite" type="Sprite2D" parent="Player/InteractPrompt" unique_id=205616285]
+position = Vector2(-326, 13)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_eprompt")
+
+[node name="WallColliders" type="Node2D" parent="." unique_id=89611329]
+visible = false
+
+[node name="WallTop_col" type="StaticBody2D" parent="WallColliders" unique_id=1925206352]
+position = Vector2(320, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallTop_col" unique_id=299550365]
+position = Vector2(12, 30)
+shape = SubResource("WallTopShape")
+
+[node name="WallBottom_col" type="StaticBody2D" parent="WallColliders" unique_id=1082722673]
+position = Vector2(320, 468)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallBottom_col" unique_id=353001571]
+position = Vector2(1.5, 128)
+shape = SubResource("WallBottomShape")
+
+[node name="WallLeft_col" type="StaticBody2D" parent="WallColliders" unique_id=1067473806]
+position = Vector2(12, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallLeft_col" unique_id=296211928]
+position = Vector2(-269, 65)
+shape = SubResource("WallLeftShape")
+
+[node name="WallRight_col" type="StaticBody2D" parent="WallColliders" unique_id=1284128119]
+position = Vector2(628, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/WallRight_col" unique_id=1976034790]
+position = Vector2(265, 45)
+shape = SubResource("WallRightShape")
+
+[node name="Counter_col" type="StaticBody2D" parent="WallColliders" unique_id=1362599768]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallColliders/Counter_col" unique_id=1683300583]
+position = Vector2(320.5, 347.5)
+shape = SubResource("RectangleShape2D_kiogw")
+
+[node name="MinigameHost" type="CanvasLayer" parent="." unique_id=684830270]
+layer = 10
+script = ExtResource("4_mghost")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1155934345]
+layer = 5
+visible = false
+
+[node name="HUDBackground" type="ColorRect" parent="HUD" unique_id=774359807]
+offset_left = 321.0
+offset_top = 63.0
+offset_right = 961.0
+offset_bottom = 95.0
+color = Color(0.098, 0.063, 0.039, 0.88)
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerLabel" type="Label" parent="HUD" unique_id=1611519898]
+offset_left = 325.0
+offset_top = 67.0
+offset_right = 411.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "05:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="RecipeLabel" type="Label" parent="HUD" unique_id=477704871]
+offset_left = 521.0
+offset_top = 69.0
+offset_right = 761.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+theme_override_font_sizes/font_size = 15
+text = "Recipe"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=1565796594]
+offset_left = 871.0
+offset_top = 69.0
+offset_right = 957.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "Score: 0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SidePanel" type="ColorRect" parent="HUD" unique_id=1682894090]
+visible = false
+offset_left = 321.0
+offset_top = 95.0
+offset_right = 451.0
+offset_bottom = 543.0
+color = Color(0.082, 0.051, 0.031, 0.78)
+metadata/_edit_use_anchors_ = true
+
+[node name="SidePanelLabel" type="Label" parent="HUD" unique_id=562390750]
+offset_left = 325.0
+offset_top = 99.0
+offset_right = 449.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.88, 0.68, 0.32, 1)
+theme_override_font_sizes/font_size = 11
+text = "STEPS:"
+metadata/_edit_use_anchors_ = true
+
+[node name="StepList" type="VBoxContainer" parent="HUD" unique_id=1204616397]
+offset_left = 325.0
+offset_top = 119.0
+offset_right = 449.0
+offset_bottom = 383.0
+theme_override_constants/separation = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="StepLabel" type="Label" parent="HUD" unique_id=1606478695]
+offset_left = 325.0
+offset_top = 393.0
+offset_right = 449.0
+offset_bottom = 453.0
+theme_override_colors/font_color = Color(0.6, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "Next: ..."
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="StationHint" type="Label" parent="HUD" unique_id=513611149]
+visible = false
+offset_left = 140.0
+offset_top = 448.0
+offset_right = 500.0
+offset_bottom = 476.0
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+
+[node name="HintBar" type="ColorRect" parent="HUD" unique_id=1696157800]
+offset_left = 321.0
+offset_top = 507.0
+offset_right = 961.0
+offset_bottom = 543.0
+color = Color(0.082, 0.051, 0.031, 0.78)
+metadata/_edit_use_anchors_ = true
+
+[node name="EscHint" type="Label" parent="HUD" unique_id=1779645063]
+offset_left = 821.0
+offset_top = 515.0
+offset_right = 957.0
+offset_bottom = 537.0
+theme_override_colors/font_color = Color(0.55, 0.48, 0.38, 1)
+theme_override_font_sizes/font_size = 10
+text = "[ESC] = Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="StationGuide" type="Label" parent="HUD" unique_id=547097178]
+offset_left = 787.0
+offset_top = -126.0
+offset_right = 1198.0
+offset_bottom = 278.0
+theme_override_colors/font_color = Color(0.65, 0.62, 0.55, 0.65)
+theme_override_font_sizes/font_size = 12
+text = "TOP: Sink  |  Chopping  |  Frying
+RIGHT: Cooking Pot
+BOTTOM: Work Table
+
+Walk to a station, then press [E] to cook!"
+metadata/_edit_use_anchors_ = true

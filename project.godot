@@ -10,15 +10,42 @@ config_version=5
 
 [application]
 
+<<<<<<< Updated upstream
 config/name="SARAP!!"
 run/main_scene="uid://b73brff0nqimc"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+=======
+config/name="Kusina Mama"
+config/description="A Filipino cooking game inspired by Cooking Mama and Overcooked"
+run/main_scene="res://scenes/MainMenu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://assets/sprites/ui/parol.png"
+>>>>>>> Stashed changes
 
 [input]
 
+<<<<<<< Updated upstream
 interact={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+=======
+InputSetup="*res://scripts/autoload/InputSetup.gd"
+GameManager="*res://scripts/autoload/GameManager.gd"
+RecipeData="*res://scripts/autoload/RecipeData.gd"
+AudioManager="*res://scripts/autoload/AudioManager.gd"
+ScoreManager="*res://scripts/autoload/ScoreManager.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+>>>>>>> Stashed changes
