@@ -15,9 +15,16 @@ grow_vertical = 2
 script = ExtResource("1_mainmenu")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=630823516]
+<<<<<<< HEAD
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 534.0
+=======
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1281.0
+offset_bottom = 720.0
+>>>>>>> krysta
 texture = ExtResource("2_l72w3")
 
 [node name="Background" type="ColorRect" parent="." unique_id=2052602665]
@@ -39,6 +46,7 @@ color = Color(0.18, 0.12, 0.08, 1)
 
 [node name="TitleLabel" type="Label" parent="." unique_id=960216513]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = -49.0
 offset_top = 70.0
 offset_right = 311.0
@@ -47,15 +55,32 @@ theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_826wr")
 theme_override_font_sizes/font_size = 50
+=======
+offset_left = 54.0
+offset_top = 136.0
+offset_right = 414.0
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_826wr")
+theme_override_font_sizes/font_size = 100
+>>>>>>> krysta
 text = "SARAP"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="." unique_id=1899019993]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 34.0
 offset_top = 136.0
 offset_right = 434.0
 offset_bottom = 166.0
+=======
+offset_left = 52.0
+offset_top = 265.0
+offset_right = 452.0
+offset_bottom = 295.0
+>>>>>>> krysta
 theme_override_colors/font_color = Color(0.9490196, 1, 0.9607843, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.79607844)
 theme_override_fonts/font = ExtResource("4_ow34m")
@@ -65,14 +90,22 @@ horizontal_alignment = 1
 
 [node name="DividerLine" type="ColorRect" parent="." unique_id=569892920]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 51.0
 offset_top = 175.0
 offset_right = 531.0
 offset_bottom = 178.0
+=======
+offset_left = 57.0
+offset_top = 314.0
+offset_right = 641.0
+offset_bottom = 317.0
+>>>>>>> krysta
 color = Color(0.88, 0.66, 0.22, 1)
 
 [node name="MenuVBox" type="VBoxContainer" parent="." unique_id=689981856]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 44.0
 offset_top = 213.0
 offset_right = 299.0
@@ -99,13 +132,48 @@ custom_minimum_size = Vector2(240, 44)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_ow34m")
 theme_override_font_sizes/font_size = 14
+=======
+offset_left = 59.0
+offset_top = 357.0
+offset_right = 641.0
+offset_bottom = 618.0
+theme_override_constants/separation = 18
+
+[node name="BtnPlay" type="Button" parent="MenuVBox" unique_id=1793559006]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.97, 0.85, 1)
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 20
+text = "▶  MAGLUTO!  (Play)"
+
+[node name="BtnHowTo" type="Button" parent="MenuVBox" unique_id=1042849943]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 20
+text = "📖  PAANO MAGLARO  (How To Play)"
+
+[node name="BtnQuit" type="Button" parent="MenuVBox" unique_id=32379721]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ow34m")
+theme_override_font_sizes/font_size = 20
+>>>>>>> krysta
 text = "✖  UMALIS  (Quit)"
 
 [node name="VersionLabel" type="Label" parent="." unique_id=1062758784]
 layout_mode = 0
+<<<<<<< HEAD
 offset_top = 460.0
 offset_right = 640.0
 offset_bottom = 480.0
+=======
+offset_left = 330.0
+offset_top = 680.0
+offset_right = 970.0
+offset_bottom = 700.0
+>>>>>>> krysta
 theme_override_colors/font_color = Color(0.55, 0.48, 0.38, 1)
 theme_override_font_sizes/font_size = 10
 text = "SARAP! v1.0  •  Filipino Recipe Cooking Game"
@@ -126,7 +194,31 @@ offset_top = 20.0
 offset_right = 500.0
 offset_bottom = 300.0
 theme_override_font_sizes/font_size = 13
+<<<<<<< HEAD
 text = "HOW TO PLAY - KUSINA MAMA\n\nMOVEMENT:\n  W / A / S / D  —  Walk around the kitchen\n\nINTERACT:\n  E  —  Enter a cooking station when prompted\n\nIN MINIGAMES:\n  W/A/S/D  —  Direction controls (heat, mixing)\n  SPACE or E  —  Action button (chop, crack, flip)\n  1 / 2 / 3  —  Select zone (plating minigame)\n\nGOAL:\n  Complete all recipe steps before time runs out!\n  Each step is scored on SKILL + SPEED.\n  Earn stars and a grade: S / A / B / C / D\n\nRECIPES:\n  • Tortang Talong   • Lumpiang Shanghai\n  • Sinigang na Baboy   • Kaldereta   • Halo-Halo"
+=======
+text = "HOW TO PLAY - KUSINA MAMA
+
+MOVEMENT:
+  W / A / S / D  —  Walk around the kitchen
+
+INTERACT:
+  E  —  Enter a cooking station when prompted
+
+IN MINIGAMES:
+  W/A/S/D  —  Direction controls (heat, mixing)
+  SPACE or E  —  Action button (chop, crack, flip)
+  1 / 2 / 3  —  Select zone (plating minigame)
+
+GOAL:
+  Complete all recipe steps before time runs out!
+  Each step is scored on SKILL + SPEED.
+  Earn stars and a grade: S / A / B / C / D
+
+RECIPES:
+  • Tortang Talong   • Lumpiang Shanghai
+  • Sinigang na Baboy   • Kaldereta   • Halo-Halo"
+>>>>>>> krysta
 autowrap_mode = 3
 
 [node name="HowToClose" type="Button" parent="HowToPanel" unique_id=718796539]

@@ -47,7 +47,11 @@ grow_vertical = 2
 color = Color(0.13, 0.08, 0.05, 1)
 
 [node name="CornerDot_TL" type="Label" parent="." unique_id=419247125]
+<<<<<<< HEAD
 layout_mode = 0
+=======
+layout_mode = 1
+>>>>>>> krysta
 offset_left = 4.0
 offset_top = 4.0
 theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
@@ -55,56 +59,124 @@ theme_override_font_sizes/font_size = 16
 text = "✿"
 
 [node name="CornerDot_TR" type="Label" parent="." unique_id=1751286137]
+<<<<<<< HEAD
 layout_mode = 0
 offset_left = 612.0
 offset_top = 4.0
+=======
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 27.0
+grow_horizontal = 0
+>>>>>>> krysta
 theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
 theme_override_font_sizes/font_size = 16
 text = "✿"
 
 [node name="CornerDot_BL" type="Label" parent="." unique_id=1002056553]
+<<<<<<< HEAD
 layout_mode = 0
 offset_left = 4.0
 offset_top = 452.0
+=======
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = -3.0
+grow_vertical = 0
+>>>>>>> krysta
 theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
 theme_override_font_sizes/font_size = 16
 text = "✿"
 
 [node name="CornerDot_BR" type="Label" parent="." unique_id=913128729]
+<<<<<<< HEAD
 layout_mode = 0
 offset_left = 612.0
 offset_top = 452.0
+=======
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -25.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+>>>>>>> krysta
 theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
 theme_override_font_sizes/font_size = 16
 text = "✿"
 
 [node name="BookBacking" type="Panel" parent="." unique_id=801146097]
+<<<<<<< HEAD
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 620.0
 offset_bottom = 460.0
+=======
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -619.0
+offset_top = -339.0
+offset_right = 622.0
+offset_bottom = 342.0
+grow_horizontal = 2
+grow_vertical = 2
+>>>>>>> krysta
 theme_override_styles/panel = SubResource("StyleBoxFlat_bookbg")
 
 [node name="LeftPage" type="Panel" parent="." unique_id=1052442614]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 22.0
 offset_top = 22.0
 offset_right = 302.0
 offset_bottom = 458.0
+=======
+offset_left = 73.0
+offset_top = 41.0
+offset_right = 596.0
+offset_bottom = 673.0
+>>>>>>> krysta
 theme_override_styles/panel = SubResource("StyleBoxFlat_page")
 
 [node name="BackButton" type="Button" parent="LeftPage" unique_id=452406244]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 14.0
 offset_top = 395.0
 offset_right = 86.0
 offset_bottom = 421.0
 theme_override_font_sizes/font_size = 11
+=======
+offset_left = 18.0
+offset_top = 574.0
+offset_right = 106.0
+offset_bottom = 621.0
+theme_override_font_sizes/font_size = 15
+>>>>>>> krysta
 text = "◀ Back"
 
 [node name="MapTitle" type="Label" parent="LeftPage" unique_id=613080042]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 10.0
 offset_top = 26.0
 offset_right = 278.0
@@ -114,10 +186,21 @@ theme_override_fonts/font = ExtResource("2_it54i")
 theme_override_font_sizes/font_size = 18
 text = "CHOOSE YOUR
 REGION"
+=======
+offset_left = 14.0
+offset_top = 50.0
+offset_right = 515.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0.35, 0.2, 0.08, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 45
+text = "CHOOSE YOUR REGION"
+>>>>>>> krysta
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="LeftPage" unique_id=408080473]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 9.0
 offset_top = 78.0
 offset_right = 277.0
@@ -296,20 +379,180 @@ offset_left = 8.0
 offset_top = 316.0
 offset_right = 16.0
 offset_bottom = 322.0
+=======
+offset_left = 54.0
+offset_top = 124.0
+offset_right = 490.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.45, 0.3, 0.14, 1)
+theme_override_fonts/font = ExtResource("3_0umyy")
+theme_override_font_sizes/font_size = 20
+text = "Cook the delicacies of your  favorite regions!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPage" unique_id=1153976272]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 168.0
+offset_right = 451.0
+offset_bottom = 189.0
+
+[node name="MapLine0" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=1399828059]
+custom_minimum_size = Vector2(200, 1)
+layout_mode = 2
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="MapLine1" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=1104873455]
+custom_minimum_size = Vector2(200, 1)
+layout_mode = 2
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="MapLine2" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=571314342]
+custom_minimum_size = Vector2(200, 1)
+layout_mode = 2
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="MapLine3" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=455163334]
+custom_minimum_size = Vector2(200, 1)
+layout_mode = 2
+color = Color(0.72, 0.58, 0.32, 0.25)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="LeftPage" unique_id=1296981088]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 200.0
+offset_right = 451.0
+offset_bottom = 346.0
+theme_override_constants/separation = 50
+
+[node name="BtnLuzon" type="Button" parent="LeftPage/VBoxContainer2" unique_id=2071810831]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 50
+text = "LUZON"
+
+[node name="BtnVisayas" type="Button" parent="LeftPage/VBoxContainer2" unique_id=994160699]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 50
+text = "VISAYAS"
+
+[node name="BtnMindanao" type="Button" parent="LeftPage/VBoxContainer2" unique_id=1192009512]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 50
+text = "MINDANAO"
+
+[node name="Spine" type="ColorRect" parent="LeftPage" unique_id=1903053768]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 287.0
+offset_top = -316.0
+offset_right = 338.5
+offset_bottom = 322.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.38, 0.22, 0.09, 1)
+
+[node name="ring" type="VBoxContainer" parent="." unique_id=2080547312]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 55.0
+offset_right = 664.0
+offset_bottom = 605.0
+theme_override_constants/separation = 100
+
+[node name="Ring0" type="ColorRect" parent="ring" unique_id=510661163]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Ring1" type="ColorRect" parent="ring" unique_id=1295635705]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Ring2" type="ColorRect" parent="ring" unique_id=1137503339]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Ring3" type="ColorRect" parent="ring" unique_id=901615091]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="Ring4" type="ColorRect" parent="ring" unique_id=986430625]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.65, 0.48, 0.22, 1)
+
+[node name="hole" type="VBoxContainer" parent="." unique_id=605036528]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 0
+offset_left = 634.0
+offset_top = 66.0
+offset_right = 659.0
+offset_bottom = 645.0
+theme_override_constants/separation = 126
+
+[node name="Hole0" type="ColorRect" parent="hole" unique_id=864821943]
+custom_minimum_size = Vector2(5, 15)
+layout_mode = 2
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Hole1" type="ColorRect" parent="hole" unique_id=898390386]
+custom_minimum_size = Vector2(5, 15)
+layout_mode = 2
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Hole2" type="ColorRect" parent="hole" unique_id=1315124445]
+custom_minimum_size = Vector2(5, 15)
+layout_mode = 2
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Hole3" type="ColorRect" parent="hole" unique_id=86239411]
+custom_minimum_size = Vector2(5, 15)
+layout_mode = 2
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="Hole4" type="ColorRect" parent="hole" unique_id=466891101]
+custom_minimum_size = Vector2(5, 15)
+layout_mode = 2
+>>>>>>> krysta
 color = Color(0.2, 0.12, 0.06, 1)
 
 [node name="RightPage" type="Panel" parent="." unique_id=832816580]
 layout_mode = 0
+<<<<<<< HEAD
 offset_left = 340.0
 offset_top = 22.0
 offset_right = 618.0
 offset_bottom = 458.0
+=======
+offset_left = 706.0
+offset_top = 42.0
+offset_right = 1229.0
+offset_bottom = 674.0
+>>>>>>> krysta
 theme_override_styles/panel = SubResource("StyleBoxFlat_page")
 
 [node name="RightContent" type="VBoxContainer" parent="RightPage" unique_id=2139849374]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 12.0
+<<<<<<< HEAD
 offset_right = 266.0
 offset_bottom = 424.0
+=======
+offset_right = 513.0
+offset_bottom = 624.0
+>>>>>>> krysta
 theme_override_constants/separation = 10

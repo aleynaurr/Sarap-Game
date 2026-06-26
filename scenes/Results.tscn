@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=3 format=3 uid="uid://results"]
+=======
+[gd_scene format=3 uid="uid://results"]
+>>>>>>> krysta
 
 [ext_resource type="Script" path="res://scripts/ui/Results.gd" id="1_results"]
 [ext_resource type="Texture2D" path="res://assets/sprites/ui/banner.png" id="2_banner"]
