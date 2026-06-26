@@ -22,15 +22,10 @@ const RECIPE_EMOJIS = {
 }
 
 # Static nodes (set via @onready from the .tscn)
-<<<<<<< HEAD
-@onready var btn_luzon:    Button       = $LeftPage/BtnLuzon
-@onready var btn_visayas:  Button       = $LeftPage/BtnVisayas
-@onready var btn_mindanao: Button       = $LeftPage/BtnMindanao
-=======
 @onready var btn_luzon:    Button       = $LeftPage/VBoxContainer2/BtnLuzon
 @onready var btn_visayas:  Button       = $LeftPage/VBoxContainer2/BtnVisayas
 @onready var btn_mindanao: Button       = $LeftPage/VBoxContainer2/BtnMindanao
->>>>>>> krysta
+
 @onready var back_button:  Button       = $LeftPage/BackButton
 @onready var right_content: VBoxContainer = $RightPage/RightContent
 
