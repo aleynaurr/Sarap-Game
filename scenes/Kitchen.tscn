@@ -1,10 +1,14 @@
 [gd_scene format=4 uid="uid://kitchen"]
 
-[ext_resource type="Script" uid="uid://bfiy6ouq75218" path="res://scripts/Kitchen.gd" id="1_kitchen"]
-[ext_resource type="Script" uid="uid://cxt018v37yi8s" path="res://scripts/Player.gd" id="2_player"]
+[ext_resource type="Script" uid="uid://bfiy6ouq75218" path="res://scripts/kitchen.gd" id="1_kitchen"]
+[ext_resource type="Script" uid="uid://cxt018v37yi8s" path="res://scripts/player.gd" id="2_player"]
 [ext_resource type="Script" uid="uid://et0vxsp28p26" path="res://scripts/stations/KitchenStation.gd" id="3_station"]
 [ext_resource type="Script" uid="uid://dksqqug6cmy51" path="res://scripts/MinigameHost.gd" id="4_mghost"]
 [ext_resource type="Texture2D" uid="uid://1rik7kgxwnhj" path="res://assets/sprites/player/player_sheet.png" id="5_player_tex"]
+[ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="8_jmce5"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="9_20l34"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="10_4fgkg"]
+[ext_resource type="Texture2D" uid="uid://cviwytu3na6ml" path="res://assets/HUD/sideHUD.png" id="11_4fgkg"]
 [ext_resource type="Texture2D" uid="uid://ym7hx1ikigw8" path="res://assets/sprites/ui/key_prompt_e.png" id="11_eprompt"]
 [ext_resource type="Texture2D" uid="uid://6da7uk7n570y" path="res://assets/kitchen_tiles/current_kitchen.png" id="12_sgiek"]
 
@@ -457,62 +461,71 @@ offset_right = 640.0
 offset_bottom = 32.0
 color = Color(0.098, 0.063, 0.039, 0.88)
 
+[node name="TextureRect" type="TextureRect" parent="HUD" unique_id=1724023035]
+offset_right = 643.0
+offset_bottom = 404.0
+texture = ExtResource("8_jmce5")
+
 [node name="TimerLabel" type="Label" parent="HUD" unique_id=1611519898]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 90.0
-offset_bottom = 28.0
+offset_left = 57.0
+offset_top = 14.0
+offset_right = 129.0
+offset_bottom = 30.0
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("9_20l34")
+theme_override_font_sizes/font_size = 16
 text = "05:00"
 
 [node name="RecipeLabel" type="Label" parent="HUD" unique_id=477704871]
 offset_left = 200.0
-offset_top = 6.0
+offset_top = 12.0
 offset_right = 440.0
-offset_bottom = 28.0
+offset_bottom = 31.0
 theme_override_colors/font_color = Color(1, 0.96, 0.85, 1)
+theme_override_fonts/font = ExtResource("10_4fgkg")
 theme_override_font_sizes/font_size = 15
 text = "Recipe"
 horizontal_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="HUD" unique_id=1565796594]
-offset_left = 550.0
-offset_top = 6.0
-offset_right = 636.0
-offset_bottom = 28.0
+offset_left = 494.0
+offset_top = 14.0
+offset_right = 580.0
+offset_bottom = 39.0
 theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_fonts/font = ExtResource("9_20l34")
+theme_override_font_sizes/font_size = 16
 text = "Score: 0"
 horizontal_alignment = 1
 
-[node name="SidePanel" type="ColorRect" parent="HUD" unique_id=1682894090]
-offset_top = 32.0
-offset_right = 130.0
-offset_bottom = 480.0
-color = Color(0.082, 0.051, 0.031, 0.78)
+[node name="SidePanel" type="TextureRect" parent="HUD" unique_id=87174202]
+offset_left = -33.0
+offset_top = 29.0
+offset_right = 273.0
+offset_bottom = 455.0
+texture = ExtResource("11_4fgkg")
 
 [node name="SidePanelLabel" type="Label" parent="HUD" unique_id=562390750]
-offset_left = 4.0
-offset_top = 36.0
-offset_right = 128.0
-offset_bottom = 56.0
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 129.0
+offset_bottom = 88.0
 theme_override_colors/font_color = Color(0.88, 0.68, 0.32, 1)
 theme_override_font_sizes/font_size = 11
 text = "STEPS:"
 
 [node name="StepList" type="VBoxContainer" parent="HUD" unique_id=1204616397]
 offset_left = 4.0
-offset_top = 56.0
-offset_right = 128.0
-offset_bottom = 320.0
+offset_top = 89.0
+offset_right = 119.0
+offset_bottom = 330.0
 theme_override_constants/separation = 4
 
 [node name="StepLabel" type="Label" parent="HUD" unique_id=1606478695]
-offset_left = 4.0
-offset_top = 330.0
-offset_right = 128.0
-offset_bottom = 390.0
+offset_left = 3.0
+offset_top = 389.0
+offset_right = 127.0
+offset_bottom = 449.0
 theme_override_colors/font_color = Color(0.6, 0.9, 0.6, 1)
 theme_override_font_sizes/font_size = 11
 text = "Next: ..."
@@ -543,10 +556,10 @@ theme_override_font_sizes/font_size = 10
 text = "[ESC] = Quit"
 
 [node name="StationGuide" type="Label" parent="HUD" unique_id=547097178]
-offset_left = 134.0
-offset_top = 36.0
-offset_right = 545.0
-offset_bottom = 440.0
+offset_left = 148.0
+offset_top = 39.0
+offset_right = 559.0
+offset_bottom = 443.0
 theme_override_colors/font_color = Color(0.65, 0.62, 0.55, 0.65)
 theme_override_font_sizes/font_size = 12
 text = "TOP: Sink  |  Chopping  |  Frying
