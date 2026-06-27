@@ -27,7 +27,7 @@ func _on_init() -> void:
 	_last_dir = 0
 
 	# Background
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	# Title banner
@@ -52,36 +52,36 @@ func _on_init() -> void:
 	var soap_bg = ColorRect.new()
 	soap_bg.color = Color(0.55, 0.75, 0.92, 0.5)
 	soap_bg.size = Vector2(260, 180)
-	soap_bg.position = Vector2(190, 130)
+	soap_bg.position = Vector2(190, 200)
 	add_child(soap_bg)
 
 	_dirt_overlay = ColorRect.new()
 	_dirt_overlay.color = Color(0.48, 0.34, 0.22, 0.75)
 	_dirt_overlay.size = Vector2(256, 176)
-	_dirt_overlay.position = Vector2(192, 132)
+	_dirt_overlay.position = Vector2(192, 202)
 	add_child(_dirt_overlay)
 
 	var soap_lbl = make_label("🧼", 48, Color(1, 1, 1))
-	soap_lbl.position = Vector2(280, 170)
+	soap_lbl.position = Vector2(280, 240)
 	add_child(soap_lbl)
 
 	# Arrow prompt
 	_lbl_prompt = make_label("← Press →", 28, Color(1, 0.9, 0.1))
-	_lbl_prompt.position = Vector2(220, 330)
+	_lbl_prompt.position = Vector2(220, 460)
 	add_child(_lbl_prompt)
 
 	# Progress
 	var pb_lbl = make_label("Cleanliness:", 13, Color(0.9, 0.9, 0.9))
-	pb_lbl.position = Vector2(20, 370)
+	pb_lbl.position = Vector2(20, 530)
 	add_child(pb_lbl)
 
 	_progress_bar = make_progress_bar(float(SCRUB_NEEDED), Color(0.35, 0.72, 0.35))
-	_progress_bar.position = Vector2(20, 390)
+	_progress_bar.position = Vector2(20, 555)
 	_progress_bar.custom_minimum_size = Vector2(300, 20)
 	add_child(_progress_bar)
 
 	_lbl_scrubs = make_label("0 / %d scrubs" % SCRUB_NEEDED, 12, Color(0.8, 0.8, 0.8))
-	_lbl_scrubs.position = Vector2(330, 393)
+	_lbl_scrubs.position = Vector2(330, 558)
 	add_child(_lbl_scrubs)
 
 	# Timer
@@ -90,13 +90,13 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 430)
+	_result_label.position = Vector2(200, 630)
 	_result_label.visible = false
 	add_child(_result_label)
 
 	# Controls hint
 	var hint = make_label("Alternate  A / D  or  ← →  keys to scrub!", 11, Color(0.65, 0.65, 0.65))
-	hint.position = Vector2(20, 455)
+	hint.position = Vector2(20, 690)
 	add_child(hint)
 
 func _on_update(_delta: float, _remaining: float) -> void:

@@ -27,7 +27,7 @@ func _on_init() -> void:
 	_wrong_placements = 0
 	_generate_zones()
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🍽️  IHAIN!  (Plate!)", 22, Color(1.0, 0.87, 0.3))
@@ -44,25 +44,25 @@ func _on_init() -> void:
 	var plate_bg = ColorRect.new()
 	plate_bg.color = Color(0.92, 0.90, 0.88)
 	plate_bg.size = Vector2(160, 90)
-	plate_bg.position = Vector2(240, 115)
+	plate_bg.position = Vector2(240, 155)
 	add_child(plate_bg)
 
 	var plate_lbl = make_label("🍽️", 52, Color(1, 1, 1))
-	plate_lbl.position = Vector2(286, 110)
+	plate_lbl.position = Vector2(286, 155)
 	add_child(plate_lbl)
 
 	# Current ingredient display
 	var cur_lbl = make_label("Place this ingredient:", 15, Color(0.9, 0.9, 0.9))
-	cur_lbl.position = Vector2(20, 225)
+	cur_lbl.position = Vector2(20, 310)
 	add_child(cur_lbl)
 
 	_current_ingr_lbl = make_label("", 22, Color(1, 0.87, 0.3))
-	_current_ingr_lbl.position = Vector2(20, 248)
+	_current_ingr_lbl.position = Vector2(20, 338)
 	add_child(_current_ingr_lbl)
 
 	# Zone buttons (3 zones, press 1/2/3)
 	var zone_colors = [Color(0.25, 0.5, 0.85), Color(0.75, 0.3, 0.3), Color(0.3, 0.65, 0.3)]
-	var zone_positions = [Vector2(60, 310), Vector2(240, 310), Vector2(420, 310)]
+	var zone_positions = [Vector2(60, 420), Vector2(240, 420), Vector2(420, 420)]
 	for i in range(3):
 		var zb = ColorRect.new()
 		zb.color = zone_colors[i]
@@ -82,11 +82,11 @@ func _on_init() -> void:
 		_zone_labels.append(zlbl)
 
 	_lbl_status = make_label("", 18, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(180, 405)
+	_lbl_status.position = Vector2(180, 540)
 	add_child(_lbl_status)
 
 	var hint = make_label("Press  1 / 2 / 3  to place ingredient in that zone", 13, Color(0.65, 0.65, 0.65))
-	hint.position = Vector2(120, 430)
+	hint.position = Vector2(120, 580)
 	add_child(hint)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -94,7 +94,7 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(180, 452)
+	_result_label.position = Vector2(180, 640)
 	_result_label.visible = false
 	add_child(_result_label)
 

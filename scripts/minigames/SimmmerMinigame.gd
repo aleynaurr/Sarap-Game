@@ -31,7 +31,7 @@ func _on_init() -> void:
 	_overflow = 0.0
 	_elapsed = 0.0
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🍲  PAKULUAN!  (Simmer!)", 22, Color(1.0, 0.87, 0.3))
@@ -48,24 +48,24 @@ func _on_init() -> void:
 	var pot_bg = ColorRect.new()
 	pot_bg.color = Color(0.28, 0.26, 0.30)
 	pot_bg.size = Vector2(160, 130)
-	pot_bg.position = Vector2(240, 110)
+	pot_bg.position = Vector2(240, 155)
 	add_child(pot_bg)
 
 	_steam_label = make_label("", 28, Color(0.9, 0.9, 0.95, 0.8))
-	_steam_label.position = Vector2(278, 82)
+	_steam_label.position = Vector2(278, 120)
 	add_child(_steam_label)
 
 	var pot_lbl = make_label("🍲", 60, Color(1, 1, 1))
-	pot_lbl.position = Vector2(269, 120)
+	pot_lbl.position = Vector2(269, 165)
 	add_child(pot_lbl)
 
 	# Heat bar
 	var hlbl = make_label("HEAT  (↑ UP / ↓ DOWN):", 13, Color(0.9, 0.9, 0.9))
-	hlbl.position = Vector2(20, 265)
+	hlbl.position = Vector2(20, 360)
 	add_child(hlbl)
 
 	_heat_bar = make_progress_bar(100.0, Color(0.9, 0.4, 0.1))
-	_heat_bar.position = Vector2(20, 285)
+	_heat_bar.position = Vector2(20, 385)
 	_heat_bar.custom_minimum_size = Vector2(420, 20)
 	add_child(_heat_bar)
 
@@ -73,39 +73,39 @@ func _on_init() -> void:
 	var ss = ColorRect.new()
 	ss.color = Color(0.2, 1.0, 0.3, 0.35)
 	ss.size = Vector2(int(420 * (TARGET_HEAT_MAX - TARGET_HEAT_MIN)), 20)
-	ss.position = Vector2(20 + int(420 * TARGET_HEAT_MIN), 285)
+	ss.position = Vector2(20 + int(420 * TARGET_HEAT_MIN), 385)
 	add_child(ss)
 
 	var ss_lbl = make_label("SIMMER ZONE", 9, Color(0.2, 1.0, 0.3))
-	ss_lbl.position = Vector2(ss.position.x, 307)
+	ss_lbl.position = Vector2(ss.position.x, 407)
 	add_child(ss_lbl)
 
 	# Good-heat progress
 	var slbl = make_label("SIMMER PROGRESS:", 13, Color(0.9, 0.9, 0.9))
-	slbl.position = Vector2(20, 325)
+	slbl.position = Vector2(20, 435)
 	add_child(slbl)
 
 	_simmer_bar = make_progress_bar(TARGET_SIMMER_TIME, Color(0.3, 0.6, 0.9))
-	_simmer_bar.position = Vector2(20, 345)
+	_simmer_bar.position = Vector2(20, 460)
 	_simmer_bar.custom_minimum_size = Vector2(420, 20)
 	add_child(_simmer_bar)
 
 	# Overflow
 	var olbl = make_label("OVERFLOW:", 13, Color(0.9, 0.3, 0.1))
-	olbl.position = Vector2(20, 375)
+	olbl.position = Vector2(20, 510)
 	add_child(olbl)
 
 	_overflow_bar = make_progress_bar(100.0, Color(0.95, 0.2, 0.1))
-	_overflow_bar.position = Vector2(20, 395)
+	_overflow_bar.position = Vector2(20, 535)
 	_overflow_bar.custom_minimum_size = Vector2(420, 14)
 	add_child(_overflow_bar)
 
 	_lbl_status = make_label("Keep heat in the green zone!", 16, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(20, 420)
+	_lbl_status.position = Vector2(20, 575)
 	add_child(_lbl_status)
 
 	var prompt = make_label("↑ increase heat   ↓ decrease heat", 13, Color(0.7, 0.7, 0.7))
-	prompt.position = Vector2(20, 445)
+	prompt.position = Vector2(20, 615)
 	add_child(prompt)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -113,7 +113,7 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 455)
+	_result_label.position = Vector2(200, 670)
 	_result_label.visible = false
 	add_child(_result_label)
 

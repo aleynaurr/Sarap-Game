@@ -334,64 +334,97 @@ const RECIPES: Dictionary = {
 },
 
 # ─────────────────────────────────────────────────────────────────────────────
-# KULAWONG TALONG — Luzon
-# Steps follow the original minigame-file groupings exactly:
-#   Dish1Step1  -> poke skin (Work)
-#   Dish1Step2  -> grill + turn over (Cook)
-#   Dish1Step3  -> coconut / charcoal / vinegar into bowl (Work, 3 actions)
-#   Dish1Step4  -> fan and mix (Work)
-#   Dish1Step5  -> strain & transfer (Work)
-#   Dish1Step6  -> peel skin (Work)
-#   Dish1Step7  -> mash with fork (Work)
-#   (mince garlic, slice onion, slice chili) -> (Cutting)
-#   Dish1Step9  -> pepper/sugar/garlic/onion/chili into bowl (Work, 5 actions)
-#   Dish1Step10 -> mix well (Work)
-#   Dish1Step11 -> pour over eggplant (Work)
+# KULAWONG TALONG
 "kulawong_talong": {
 	"id": "kulawong_talong",
 	"display_name": "Kulawong Talong",
 	"tagalog_name": "Kulawong Talong",
-	"description": "A smoky grilled eggplant salad from Luzon!\nCharred talong mashed with toasted coconut, garlic, and chili.",
+	"description": "A smoky grilled eggplant salad from Luzon!
+Charred talong mashed with toasted coconut, garlic, and chili.",
 	"icon": "icon_eggplant",
 	"color": "5a7a32",
 	"region": "luzon",
 	"steps": [
 		{
-			"id": "poke_eggplant",
-			"name": "Poke Skin of Eggplant",
-			"station": "working",
-			"minigame": "add_to_bowl",
-			"ingredients": ["icon_eggplant"],
-			"actions": [
-				{"label": "Poke the eggplant skin with a fork", "emoji": "🍆"}
-			],
-			"instruction": "Poke holes all over the eggplant skin\nso it grills evenly!",
-			"time_limit": 12.0,
+			"id": "cook_rice",
+			"name": "Cook Rice",
+			"station": "rice",
+			"minigame": "cook_rice",
+			"ingredients": [],
+			"instruction": "Pour water into the rice cooker and simmer!
+Keep the heat steady until the rice is fluffy.",
+			"time_limit": 35.0,
 			"required": true
 		},
 		{
-			"id": "grill_eggplant",
-			"name": "Grill Eggplants (Turn Over)",
-			"station": "cooking",
-			"minigame": "simmer",
-			"ingredients": ["icon_eggplant"],
-			"instruction": "Grill the eggplants over charcoal!\nKeep the heat steady, then turn them over to char both sides.",
+			"id": "wash_ingredients",
+			"name": "Wash Ingredients",
+			"station": "sink",
+			"minigame": "wash",
+			"ingredients": ["icon_eggplant", "icon_garlic", "icon_onion", "icon_chili"],
+			"instruction": "Rinse the eggplant, garlic, onion, and chili!
+Scrub each one clean under the tap.",
+			"time_limit": 20.0,
+			"required": true
+		},
+		{
+			"id": "chop_ingredients",
+			"name": "Chop Ingredients",
+			"station": "chopping",
+			"minigame": "chop",
+			"ingredients": ["icon_garlic", "icon_onion", "icon_chili"],
+			"instruction": "Chop the garlic, onion, and chili!
+Time your knife strikes on the beat.",
 			"time_limit": 25.0,
 			"required": true
 		},
 		{
-			"id": "bowl_coconut_charcoal_vinegar",
-			"name": "Coconut, Charcoal & Vinegar",
+			"id": "prick_season_eggplant",
+			"name": "Prick and Season Eggplant",
+			"station": "working",
+			"minigame": "prick_season",
+			"ingredients": ["icon_eggplant"],
+			"instruction": "Prick holes all over the eggplant skin,
+then rub with salt, pepper, and oil.",
+			"time_limit": 22.0,
+			"required": true
+		},
+		{
+			"id": "grill_eggplant",
+			"name": "Grill Eggplant",
+			"station": "cooking",
+			"minigame": "simmer",
+			"ingredients": ["icon_eggplant"],
+			"instruction": "Grill the eggplants over charcoal!
+Keep the heat steady and turn them to char both sides.",
+			"time_limit": 30.0,
+			"required": true
+		},
+		{
+			"id": "smoky_coconut",
+			"name": "Make Smoky Grated Coconut",
 			"station": "working",
 			"minigame": "add_to_bowl",
-			"ingredients": ["icon_coconut", "icon_charcoal", "icon_vinegar"],
+			"ingredients": [],
 			"actions": [
 				{"label": "Put grated coconut in bowl", "emoji": "🥥"},
 				{"label": "Put live charcoal in bowl", "emoji": "🔥"},
-				{"label": "Pour vinegar", "emoji": "🍶"}
+				{"label": "Pour vinegar over it", "emoji": "🍶"}
 			],
-			"instruction": "Add grated coconut, a piece of live charcoal,\nthen pour vinegar — this gives kulawo its smoky flavor!",
+			"instruction": "Add grated coconut, a live charcoal, then vinegar.
+This gives the kulawo its signature smoky flavor!",
 			"time_limit": 22.0,
+			"required": true
+		},
+		{
+			"id": "mix_ingredients",
+			"name": "Mix Ingredients",
+			"station": "working",
+			"minigame": "mix",
+			"ingredients": [],
+			"instruction": "Mix the coconut mixture together!
+Rotate clockwise until well combined.",
+			"time_limit": 20.0,
 			"required": true
 		},
 		{
@@ -399,108 +432,50 @@ const RECIPES: Dictionary = {
 			"name": "Fan and Mix",
 			"station": "working",
 			"minigame": "mix",
-			"ingredients": ["icon_coconut"],
-			"instruction": "Fan the charcoal and mix!\nRotate clockwise to stir the smoky coconut mixture.",
-			"time_limit": 20.0,
-			"required": true
-		},
-		{
-			"id": "strain_transfer",
-			"name": "Strain and Transfer to Bowl",
-			"station": "working",
-			"minigame": "add_to_bowl",
-			"ingredients": ["icon_coconut"],
-			"actions": [
-				{"label": "Strain the mixture and transfer to a clean bowl", "emoji": "🥣"}
-			],
-			"instruction": "Strain out the charcoal, then transfer\nthe smoky coconut to a clean bowl.",
-			"time_limit": 14.0,
-			"required": true
-		},
-		{
-			"id": "peel_eggplant",
-			"name": "Peel Skin of Eggplants",
-			"station": "working",
-			"minigame": "add_to_bowl",
-			"ingredients": ["icon_eggplant"],
-			"actions": [
-				{"label": "Peel the charred skin off the eggplant", "emoji": "🍆"}
-			],
-			"instruction": "Peel away the charred skin\nto reveal the soft grilled flesh.",
-			"time_limit": 14.0,
-			"required": true
-		},
-		{
-			"id": "mash_eggplant",
-			"name": "Mash Eggplants with Fork",
-			"station": "working",
-			"minigame": "add_to_bowl",
-			"ingredients": ["icon_eggplant"],
-			"actions": [
-				{"label": "Mash the peeled eggplant with a fork", "emoji": "🍆"}
-			],
-			"instruction": "Mash the grilled eggplant with a fork\nuntil soft and well broken up.",
-			"time_limit": 14.0,
-			"required": true
-		},
-		{
-			"id": "mince_garlic",
-			"name": "Mince Garlic",
-			"station": "chopping",
-			"minigame": "mince",
-			"ingredients": ["icon_garlic"],
-			"instruction": "Mince the garlic finely!\nMash rapidly for the best result.",
-			"time_limit": 20.0,
-			"required": true
-		},
-		{
-			"id": "slice_onion_chili",
-			"name": "Slice Onion & Green Chili",
-			"station": "chopping",
-			"minigame": "chop",
-			"ingredients": ["icon_onion", "icon_chili"],
-			"instruction": "Slice the onion and green chili!\nTime your knife strikes on the beat.",
-			"time_limit": 22.0,
-			"required": true
-		},
-		{
-			"id": "bowl_seasonings",
-			"name": "Add Seasonings to Bowl",
-			"station": "working",
-			"minigame": "add_to_bowl",
-			"ingredients": ["icon_chili", "icon_cheese", "icon_garlic", "icon_onion", "icon_chili"],
-			"actions": [
-				{"label": "Add black pepper", "emoji": "🧂"},
-				{"label": "Add white sugar", "emoji": "🍚"},
-				{"label": "Add minced garlic", "emoji": "🧄"},
-				{"label": "Add sliced onions", "emoji": "🧅"},
-				{"label": "Add sliced green chilis", "emoji": "🌶️"}
-			],
-			"instruction": "Add pepper, sugar, minced garlic,\nsliced onions, and sliced chilis to the bowl!",
-			"time_limit": 28.0,
-			"required": true
-		},
-		{
-			"id": "mix_well",
-			"name": "Mix Well",
-			"station": "working",
-			"minigame": "mix",
-			"ingredients": ["icon_garlic"],
-			"instruction": "Mix everything well!\nRotate clockwise until evenly combined.",
+			"ingredients": [],
+			"instruction": "Fan the charcoal and mix again!
+Keep stirring the smoky coconut mixture.",
 			"time_limit": 18.0,
 			"required": true
 		},
 		{
-			"id": "pour_over_eggplant",
-			"name": "Pour Over Peeled Eggplant",
+			"id": "strain_to_bowl",
+			"name": "Strain and Put to Bowl",
+			"station": "working",
+			"minigame": "add_to_bowl",
+			"ingredients": [],
+			"actions": [
+				{"label": "Strain the mixture into a clean bowl", "emoji": "🥣"}
+			],
+			"instruction": "Strain out the charcoal and transfer
+the smoky coconut liquid to a clean bowl.",
+			"time_limit": 15.0,
+			"required": true
+		},
+		{
+			"id": "peel_mash_eggplant",
+			"name": "Peel and Mash Eggplant",
 			"station": "working",
 			"minigame": "add_to_bowl",
 			"ingredients": ["icon_eggplant"],
 			"actions": [
-				{"label": "Pour the mixture over the mashed eggplant", "emoji": "🍆"}
+				{"label": "Peel the charred skin off the eggplant", "emoji": "🍆"},
+				{"label": "Mash the eggplant with a fork", "emoji": "🍴"}
 			],
-			"instruction": "Pour the smoky coconut mixture over\nthe mashed eggplant. Kulawo is ready!",
-			"time_limit": 14.0,
+			"instruction": "Peel away the charred skin,
+then mash the soft flesh with a fork.",
+			"time_limit": 20.0,
+			"required": true
+		},
+		{
+			"id": "plate_together",
+			"name": "Put the Food Together",
+			"station": "working",
+			"minigame": "plate",
+			"ingredients": ["icon_eggplant", "icon_garlic", "icon_onion", "icon_chili"],
+			"instruction": "Pour the smoky coconut over the mashed eggplant
+and arrange everything on the plate with rice!",
+			"time_limit": 18.0,
 			"required": true
 		}
 	]

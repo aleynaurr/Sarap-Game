@@ -1,19 +1,18 @@
 extends CanvasLayer
-# MinigameHost sits on top of the Kitchen scene.
-# It creates the right MinigameBase subclass, shows it, captures input, then
-# reports back to Kitchen when done.
 
-const MINIGAME_SCRIPTS = {
-	"wash":     preload("res://scripts/minigames/WashMinigame.gd"),
-	"chop":     preload("res://scripts/minigames/ChopMinigame.gd"),
-	"mince":    preload("res://scripts/minigames/MinceMinigame.gd"),
-	"fry":      preload("res://scripts/minigames/FryMinigame.gd"),
-	"simmer":   preload("res://scripts/minigames/SimmmerMinigame.gd"),
-	"crack_egg":preload("res://scripts/minigames/CrackEggMinigame.gd"),
-	"mix":      preload("res://scripts/minigames/MixMinigame.gd"),
-	"roll":     preload("res://scripts/minigames/RollMinigame.gd"),
-	"plate":    preload("res://scripts/minigames/PlateMinigame.gd"),
-	"add_to_bowl": preload("res://scripts/minigames/AddToBowlMinigame.gd"),
+const MINIGAME_SCENES = {
+	"wash":           preload("res://scenes/minigames/WashMinigame.tscn"),
+	"chop":           preload("res://scenes/minigames/ChopMinigame.tscn"),
+	"mince":          preload("res://scenes/minigames/MinceMinigame.tscn"),
+	"fry":            preload("res://scenes/minigames/FryMinigame.tscn"),
+	"simmer":         preload("res://scenes/minigames/SimmmerMinigame.tscn"),
+	"crack_egg":      preload("res://scenes/minigames/CrackEggMinigame.tscn"),
+	"mix":            preload("res://scenes/minigames/MixMinigame.tscn"),
+	"roll":           preload("res://scenes/minigames/RollMinigame.tscn"),
+	"plate":          preload("res://scenes/minigames/PlateMinigame.tscn"),
+	"add_to_bowl":    preload("res://scenes/minigames/AddToBowlMinigame.tscn"),
+	"cook_rice":      preload("res://scenes/minigames/CookRiceMinigame.tscn"),
+	"prick_season":   preload("res://scenes/minigames/PrickSeasonMinigame.tscn"),
 }
 
 var _active_minigame: MinigameBase = null
@@ -27,11 +26,9 @@ func launch(step: Dictionary, step_index: int) -> void:
 		_active_minigame = null
 
 	var mg_id: String = step.get("minigame", "plate")
-	var mg_script = MINIGAME_SCRIPTS.get(mg_id, MINIGAME_SCRIPTS["plate"])
+	var mg_scene = MINIGAME_SCENES.get(mg_id, MINIGAME_SCENES["plate"])
 
-	var mg = Control.new()
-	mg.set_script(mg_script)
-	mg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var mg = mg_scene.instantiate()
 	add_child(mg)
 	_active_minigame = mg
 	_step_index = step_index
