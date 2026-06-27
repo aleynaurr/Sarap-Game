@@ -55,7 +55,7 @@ func _on_init() -> void:
 	_total_skill = 0.0
 	_per_action_done = 0
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🥣  IDAGDAG SA MANGKOK!  (Add to Bowl!)", 19, Color(1.0, 0.87, 0.3))
@@ -72,62 +72,62 @@ func _on_init() -> void:
 	var bowl_bg = ColorRect.new()
 	bowl_bg.color = Color(0.30, 0.24, 0.18)
 	bowl_bg.size = Vector2(220, 130)
-	bowl_bg.position = Vector2(210, 110)
+	bowl_bg.position = Vector2(210, 145)
 	add_child(bowl_bg)
 
 	_bowl_fill = ColorRect.new()
 	_bowl_fill.color = Color(0.55, 0.42, 0.22, 0.85)
 	_bowl_fill.size = Vector2(212, 0)
-	_bowl_fill.position = Vector2(214, 236)
+	_bowl_fill.position = Vector2(214, 275)
 	add_child(_bowl_fill)
 
 	_bowl_label = make_label("🥣", 64, Color(1, 1, 1))
-	_bowl_label.position = Vector2(278, 110)
+	_bowl_label.position = Vector2(278, 145)
 	add_child(_bowl_label)
 
 	# Current ingredient flying toward the bowl
 	_ingredient_label = make_label("", 30, Color(1, 1, 1))
-	_ingredient_label.position = Vector2(290, 60)
+	_ingredient_label.position = Vector2(290, 90)
 	add_child(_ingredient_label)
 
 	_lbl_action_name = make_label("", 18, Color(1, 0.9, 0.5))
-	_lbl_action_name.position = Vector2(20, 250)
+	_lbl_action_name.position = Vector2(20, 340)
 	add_child(_lbl_action_name)
 
 	# Sweep timing bar
 	_sweep_track_bg = ColorRect.new()
 	_sweep_track_bg.color = Color(0.18, 0.15, 0.14)
 	_sweep_track_bg.size = Vector2(440, 26)
-	_sweep_track_bg.position = Vector2(20, 285)
+	_sweep_track_bg.position = Vector2(20, 385)
 	add_child(_sweep_track_bg)
 
 	_drop_zone_visual = ColorRect.new()
 	_drop_zone_visual.color = Color(0.2, 1.0, 0.3, 0.4)
 	_drop_zone_visual.size = Vector2(440 * (DROP_ZONE_MAX - DROP_ZONE_MIN), 26)
-	_drop_zone_visual.position = Vector2(20 + 440 * DROP_ZONE_MIN, 285)
+	_drop_zone_visual.position = Vector2(20 + 440 * DROP_ZONE_MIN, 385)
 	add_child(_drop_zone_visual)
 
 	_sweep_marker = ColorRect.new()
 	_sweep_marker.color = Color(1.0, 0.9, 0.2)
 	_sweep_marker.size = Vector2(8, 26)
-	_sweep_marker.position = Vector2(20, 285)
+	_sweep_marker.position = Vector2(20, 385)
 	add_child(_sweep_marker)
 
 	var zone_lbl = make_label("DROP ZONE", 10, Color(0.2, 1.0, 0.3))
-	zone_lbl.position = Vector2(20 + 440 * DROP_ZONE_MIN, 312)
+	zone_lbl.position = Vector2(20 + 440 * DROP_ZONE_MIN, 412)
 	add_child(zone_lbl)
 
 	_lbl_status = make_label("Press  SPACE / E  when in the zone!", 18, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(80, 335)
+	_lbl_status.position = Vector2(80, 435)
 	add_child(_lbl_status)
 
 	# Progress dots — one per action
 	var dots_lbl = make_label("Steps:", 12, Color(0.85, 0.85, 0.85))
-	dots_lbl.position = Vector2(20, 375)
+	dots_lbl.position = Vector2(20, 510)
 	add_child(dots_lbl)
 
 	var dots_row = HBoxContainer.new()
-	dots_row.position = Vector2(80, 372)
+	dots_row.position = Vector2(80, 507)
 	dots_row.add_theme_constant_override("separation", 6)
 	add_child(dots_row)
 	for i in _actions.size():
@@ -136,7 +136,7 @@ func _on_init() -> void:
 		_action_dots.append(dot)
 
 	_lbl_progress = make_label("", 13, Color(0.85, 0.85, 0.85))
-	_lbl_progress.position = Vector2(20, 400)
+	_lbl_progress.position = Vector2(20, 545)
 	add_child(_lbl_progress)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -144,12 +144,12 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(170, 430)
+	_result_label.position = Vector2(170, 620)
 	_result_label.visible = false
 	add_child(_result_label)
 
 	var hint = make_label("Keyboard only — SPACE or E to drop the ingredient in!", 11, Color(0.6, 0.6, 0.6))
-	hint.position = Vector2(20, 458)
+	hint.position = Vector2(20, 695)
 	add_child(hint)
 
 	_load_current_action()
@@ -215,7 +215,7 @@ func _attempt_drop() -> void:
 	# Fill the bowl proportionally
 	var fill_ratio = float(_action_idx) / float(_actions.size())
 	_bowl_fill.size.y = 110 * fill_ratio
-	_bowl_fill.position.y = 240 - (110 * fill_ratio)
+	_bowl_fill.position.y = 275 - (110 * fill_ratio)
 
 	if _action_idx >= _actions.size():
 		var avg_skill = _total_skill / float(_actions.size())

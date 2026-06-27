@@ -29,7 +29,7 @@ func start_recipe(recipe_id: String) -> void:
 	completed_ingredients = {}
 	time_remaining = TOTAL_RECIPE_TIME
 	game_active = true
-	get_tree().change_scene_to_file("res://scenes/Kitchen.tscn")
+	get_tree().change_scene_to_file("res://scenes/SplitScreen.tscn")
 
 func go_to_main_menu() -> void:
 	game_active = false
