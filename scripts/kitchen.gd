@@ -30,11 +30,11 @@ var _tab_hint_lbl: Label = null
 # These positions can be tweaked here to match where each station visually sits.
 # They are the world-space coordinates where the exclamation will appear.
 @export var indicator_positions: Dictionary = {
-	"sink":     Vector2(152, 440),
-	"chopping": Vector2(96,  279),
-	"frying":   Vector2(103, 102),
-	"cooking":  Vector2(525, 416),
-	"working":  Vector2(316, 438),
+	"sink":     Vector2(152, 510),
+	"chopping": Vector2(96,  349),
+	"frying":   Vector2(103, 172),
+	"cooking":  Vector2(525, 486),
+	"working":  Vector2(316, 508),
 }
 
 var _indicator: Sprite2D = null

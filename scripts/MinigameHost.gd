@@ -1,18 +1,17 @@
 extends CanvasLayer
-# MinigameHost sits on top of the Kitchen scene.
-# It creates the right MinigameBase subclass, shows it, captures input, then
-# reports back to Kitchen when done.
+# MinigameHost — CanvasLayer so it stays fixed to the SubViewport,
+# not affected by the Camera2D following the player.
 
 const MINIGAME_SCRIPTS = {
-	"wash":     preload("res://scripts/minigames/WashMinigame.gd"),
-	"chop":     preload("res://scripts/minigames/ChopMinigame.gd"),
-	"mince":    preload("res://scripts/minigames/MinceMinigame.gd"),
-	"fry":      preload("res://scripts/minigames/FryMinigame.gd"),
-	"simmer":   preload("res://scripts/minigames/SimmmerMinigame.gd"),
-	"crack_egg":preload("res://scripts/minigames/CrackEggMinigame.gd"),
-	"mix":      preload("res://scripts/minigames/MixMinigame.gd"),
-	"roll":     preload("res://scripts/minigames/RollMinigame.gd"),
-	"plate":    preload("res://scripts/minigames/PlateMinigame.gd"),
+	"wash":        preload("res://scripts/minigames/WashMinigame.gd"),
+	"chop":        preload("res://scripts/minigames/ChopMinigame.gd"),
+	"mince":       preload("res://scripts/minigames/MinceMinigame.gd"),
+	"fry":         preload("res://scripts/minigames/FryMinigame.gd"),
+	"simmer":      preload("res://scripts/minigames/SimmmerMinigame.gd"),
+	"crack_egg":   preload("res://scripts/minigames/CrackEggMinigame.gd"),
+	"mix":         preload("res://scripts/minigames/MixMinigame.gd"),
+	"roll":        preload("res://scripts/minigames/RollMinigame.gd"),
+	"plate":       preload("res://scripts/minigames/PlateMinigame.gd"),
 	"add_to_bowl": preload("res://scripts/minigames/AddToBowlMinigame.gd"),
 }
 

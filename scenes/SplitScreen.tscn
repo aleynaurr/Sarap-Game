@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bsplitscreen01"]
+
+[ext_resource type="PackedScene" path="res://scenes/Kitchen.tscn" id="1_kitchen"]
+
+[node name="SplitScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P1ViewportContainer" type="SubViewportContainer" parent="."]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 640.0
+offset_bottom = 720.0
+stretch = true
+
+[node name="P1Viewport" type="SubViewport" parent="P1ViewportContainer"]
+size = Vector2i(640, 720)
+render_target_update_mode = 4
+
+[node name="Kitchen" parent="P1ViewportContainer/P1Viewport" instance=ExtResource("1_kitchen")]
