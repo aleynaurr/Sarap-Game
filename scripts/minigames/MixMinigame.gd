@@ -26,7 +26,7 @@ func _on_init() -> void:
 	_total_smoothness = 0.0
 	_holding = -1
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🥣  HALUIN!  (Mix!)", 22, Color(1.0, 0.87, 0.3))
@@ -43,21 +43,21 @@ func _on_init() -> void:
 	var bowl_bg = ColorRect.new()
 	bowl_bg.color = Color(0.84, 0.80, 0.70)
 	bowl_bg.size = Vector2(180, 120)
-	bowl_bg.position = Vector2(230, 130)
+	bowl_bg.position = Vector2(230, 160)
 	add_child(bowl_bg)
 
 	var bowl_emoji = make_label("🥣", 55, Color(1, 1, 1))
-	bowl_emoji.position = Vector2(280, 130)
+	bowl_emoji.position = Vector2(280, 160)
 	add_child(bowl_emoji)
 
 	# Circular arrow guide
 	var guide_lbl = make_label("Rotate clockwise with WASD:", 15, Color(0.9, 0.9, 0.9))
-	guide_lbl.position = Vector2(20, 275)
+	guide_lbl.position = Vector2(20, 360)
 	add_child(guide_lbl)
 
 	# Direction indicators: Up Right Down Left
 	var dirs = ["↑ (W)", "→ (D)", "↓ (S)", "← (A)"]
-	var positions = [Vector2(300, 295), Vector2(380, 325), Vector2(300, 355), Vector2(200, 325)]
+	var positions = [Vector2(300, 380), Vector2(380, 415), Vector2(300, 445), Vector2(200, 415)]
 	for i in range(4):
 		var lbl = make_label(dirs[i], 18, Color(0.55, 0.55, 0.55))
 		lbl.position = positions[i]
@@ -65,11 +65,11 @@ func _on_init() -> void:
 		_arrow_labels.append(lbl)
 
 	_lbl_status = make_label("Start with  ↑ W  !", 20, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(200, 400)
+	_lbl_status.position = Vector2(200, 530)
 	add_child(_lbl_status)
 
 	_lbl_circles = make_label("Circles: 0 / %d" % CIRCLES_NEEDED, 16, Color(0.9, 0.9, 0.9))
-	_lbl_circles.position = Vector2(20, 430)
+	_lbl_circles.position = Vector2(20, 590)
 	add_child(_lbl_circles)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -77,12 +77,12 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 455)
+	_result_label.position = Vector2(200, 660)
 	_result_label.visible = false
 	add_child(_result_label)
 
 	var hint = make_label("Hold each direction in order: W → D → S → A → repeat", 12, Color(0.6, 0.6, 0.6))
-	hint.position = Vector2(20, 456)
+	hint.position = Vector2(20, 695)
 	add_child(hint)
 
 	_highlight_step()

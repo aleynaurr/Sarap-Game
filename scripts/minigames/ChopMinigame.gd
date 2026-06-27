@@ -26,7 +26,7 @@ func _on_init() -> void:
 	_beat_timer = 0.0
 	_total_accuracy = 0.0
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🔪  TADTARIN!  (Chop!)", 22, Color(1.0, 0.87, 0.3))
@@ -43,27 +43,27 @@ func _on_init() -> void:
 	var board = ColorRect.new()
 	board.color = Color(0.71, 0.51, 0.31)
 	board.size = Vector2(300, 180)
-	board.position = Vector2(170, 120)
+	board.position = Vector2(170, 160)
 	add_child(board)
 
 	# Chop flash overlay (flashes on hit)
 	_chop_flash = ColorRect.new()
 	_chop_flash.color = Color(1, 1, 1, 0.0)
 	_chop_flash.size = Vector2(300, 180)
-	_chop_flash.position = Vector2(170, 120)
+	_chop_flash.position = Vector2(170, 160)
 	add_child(_chop_flash)
 
 	var knife_lbl = make_label("🔪", 60, Color(0.8, 0.85, 0.9))
-	knife_lbl.position = Vector2(280, 140)
+	knife_lbl.position = Vector2(280, 180)
 	add_child(knife_lbl)
 
 	# Beat bar
 	var beat_lbl = make_label("BEAT →", 13, Color(0.8, 0.8, 0.8))
-	beat_lbl.position = Vector2(20, 320)
+	beat_lbl.position = Vector2(20, 440)
 	add_child(beat_lbl)
 
 	_beat_bar = make_progress_bar(100.0, Color(0.9, 0.7, 0.1))
-	_beat_bar.position = Vector2(20, 340)
+	_beat_bar.position = Vector2(20, 465)
 	_beat_bar.custom_minimum_size = Vector2(400, 22)
 	add_child(_beat_bar)
 
@@ -71,19 +71,19 @@ func _on_init() -> void:
 	var ss = ColorRect.new()
 	ss.color = Color(0.2, 1.0, 0.3, 0.6)
 	ss.size = Vector2(int(400 * PEAK_WINDOW * 2 / BEAT_PERIOD), 22)
-	ss.position = Vector2(20 + int(400 * (0.5 - PEAK_WINDOW / BEAT_PERIOD)), 340)
+	ss.position = Vector2(20 + int(400 * (0.5 - PEAK_WINDOW / BEAT_PERIOD)), 465)
 	add_child(ss)
 
 	var ss_lbl = make_label("SWEET SPOT", 9, Color(0.2, 1.0, 0.3))
-	ss_lbl.position = Vector2(ss.position.x, 364)
+	ss_lbl.position = Vector2(ss.position.x, 489)
 	add_child(ss_lbl)
 
 	_lbl_prompt = make_label("SPACE / E  to CHOP!", 26, Color(1, 0.9, 0.2))
-	_lbl_prompt.position = Vector2(200, 380)
+	_lbl_prompt.position = Vector2(200, 530)
 	add_child(_lbl_prompt)
 
 	_lbl_chops = make_label("0 / %d chops" % CHOPS_NEEDED, 15, Color(0.9, 0.9, 0.9))
-	_lbl_chops.position = Vector2(20, 415)
+	_lbl_chops.position = Vector2(20, 590)
 	add_child(_lbl_chops)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -91,12 +91,12 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(210, 445)
+	_result_label.position = Vector2(210, 640)
 	_result_label.visible = false
 	add_child(_result_label)
 
 	var hint = make_label("Press SPACE or E on the beat for bonus accuracy!", 11, Color(0.6, 0.6, 0.6))
-	hint.position = Vector2(20, 458)
+	hint.position = Vector2(20, 695)
 	add_child(hint)
 
 func _on_update(delta: float, _remaining: float) -> void:

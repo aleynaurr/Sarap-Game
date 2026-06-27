@@ -41,7 +41,7 @@ func _on_init() -> void:
 	_total_good_heat_time = 0.0
 	_elapsed = 0.0
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🍳  IPRITO!  (Fry!)", 22, Color(1.0, 0.87, 0.3))
@@ -58,24 +58,24 @@ func _on_init() -> void:
 	var pan_bg = ColorRect.new()
 	pan_bg.color = Color(0.22, 0.20, 0.22)
 	pan_bg.size = Vector2(220, 120)
-	pan_bg.position = Vector2(210, 120)
+	pan_bg.position = Vector2(210, 160)
 	add_child(pan_bg)
 
 	_flame_label = make_label("🔥", 36, Color(1, 0.6, 0.1))
-	_flame_label.position = Vector2(280, 225)
+	_flame_label.position = Vector2(280, 265)
 	add_child(_flame_label)
 
 	_food_label = make_label("🥩", 42, Color(1, 1, 1))
-	_food_label.position = Vector2(278, 140)
+	_food_label.position = Vector2(278, 180)
 	add_child(_food_label)
 
 	# Heat bar
 	var hlbl = make_label("HEAT  (↑ UP / ↓ DOWN):", 13, Color(0.9, 0.9, 0.9))
-	hlbl.position = Vector2(20, 265)
+	hlbl.position = Vector2(20, 360)
 	add_child(hlbl)
 
 	_heat_bar = make_progress_bar(100.0, Color(0.9, 0.4, 0.1))
-	_heat_bar.position = Vector2(20, 285)
+	_heat_bar.position = Vector2(20, 385)
 	_heat_bar.custom_minimum_size = Vector2(420, 20)
 	add_child(_heat_bar)
 
@@ -83,20 +83,20 @@ func _on_init() -> void:
 	var ss = ColorRect.new()
 	ss.color = Color(0.2, 1.0, 0.3, 0.35)
 	ss.size = Vector2(int(420 * (TARGET_HEAT_MAX - TARGET_HEAT_MIN)), 20)
-	ss.position = Vector2(20 + int(420 * TARGET_HEAT_MIN), 285)
+	ss.position = Vector2(20 + int(420 * TARGET_HEAT_MIN), 385)
 	add_child(ss)
 
 	var ss_lbl = make_label("IDEAL HEAT ZONE", 9, Color(0.2, 1.0, 0.3))
-	ss_lbl.position = Vector2(ss.position.x, 307)
+	ss_lbl.position = Vector2(ss.position.x, 407)
 	add_child(ss_lbl)
 
 	# Doneness bar
 	var dlbl = make_label("DONENESS:", 13, Color(0.9, 0.9, 0.9))
-	dlbl.position = Vector2(20, 325)
+	dlbl.position = Vector2(20, 430)
 	add_child(dlbl)
 
 	_done_bar = make_progress_bar(100.0, Color(0.8, 0.55, 0.1))
-	_done_bar.position = Vector2(20, 345)
+	_done_bar.position = Vector2(20, 455)
 	_done_bar.custom_minimum_size = Vector2(420, 20)
 	add_child(_done_bar)
 
@@ -104,29 +104,29 @@ func _on_init() -> void:
 	var fw = ColorRect.new()
 	fw.color = Color(0.3, 0.8, 1.0, 0.35)
 	fw.size = Vector2(int(420 * (FLIP_WINDOW_MAX - FLIP_WINDOW_MIN)), 20)
-	fw.position = Vector2(20 + int(420 * FLIP_WINDOW_MIN), 345)
+	fw.position = Vector2(20 + int(420 * FLIP_WINDOW_MIN), 455)
 	add_child(fw)
 
 	var fw_lbl = make_label("FLIP ZONE", 9, Color(0.3, 0.8, 1.0))
-	fw_lbl.position = Vector2(fw.position.x, 367)
+	fw_lbl.position = Vector2(fw.position.x, 477)
 	add_child(fw_lbl)
 
 	# Burn bar
 	var blbl = make_label("BURN:", 13, Color(0.9, 0.4, 0.1))
-	blbl.position = Vector2(20, 382)
+	blbl.position = Vector2(20, 500)
 	add_child(blbl)
 
 	_burn_bar = make_progress_bar(100.0, Color(0.9, 0.15, 0.1))
-	_burn_bar.position = Vector2(20, 400)
+	_burn_bar.position = Vector2(20, 520)
 	_burn_bar.custom_minimum_size = Vector2(420, 14)
 	add_child(_burn_bar)
 
 	_lbl_status = make_label("Keep heat in the green zone!", 16, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(20, 420)
+	_lbl_status.position = Vector2(20, 560)
 	add_child(_lbl_status)
 
 	var prompt = make_label("↑/↓ Heat   SPACE/E = Flip", 14, Color(0.75, 0.75, 0.75))
-	prompt.position = Vector2(20, 445)
+	prompt.position = Vector2(20, 600)
 	add_child(prompt)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -134,7 +134,7 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 455)
+	_result_label.position = Vector2(200, 660)
 	_result_label.visible = false
 	add_child(_result_label)
 

@@ -18,7 +18,7 @@ var _flash_t: float = 0.0
 func _on_init() -> void:
 	_taps = 0
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🔪🔪  DURUGIN!  (Mince!)", 22, Color(1.0, 0.87, 0.3))
@@ -35,39 +35,39 @@ func _on_init() -> void:
 	var board = ColorRect.new()
 	board.color = Color(0.68, 0.48, 0.28)
 	board.size = Vector2(320, 160)
-	board.position = Vector2(160, 120)
+	board.position = Vector2(160, 170)
 	add_child(board)
 
 	_flash = ColorRect.new()
 	_flash.color = Color(1, 1, 0.5, 0.0)
 	_flash.size = Vector2(320, 160)
-	_flash.position = Vector2(160, 120)
+	_flash.position = Vector2(160, 170)
 	add_child(_flash)
 
 	_frenzy_label = make_label("TAP FASTER!", 34, Color(1, 0.3, 0.1))
-	_frenzy_label.position = Vector2(195, 160)
+	_frenzy_label.position = Vector2(195, 210)
 	_frenzy_label.visible = false
 	add_child(_frenzy_label)
 
 	var mince_emoji = make_label("🔪", 50, Color(0.8, 0.85, 0.9))
-	mince_emoji.position = Vector2(290, 130)
+	mince_emoji.position = Vector2(290, 180)
 	add_child(mince_emoji)
 
 	var pb_lbl = make_label("Progress:", 13, Color(0.9, 0.9, 0.9))
-	pb_lbl.position = Vector2(20, 305)
+	pb_lbl.position = Vector2(20, 420)
 	add_child(pb_lbl)
 
 	_progress_bar = make_progress_bar(float(MAX_TAPS), Color(0.9, 0.55, 0.1))
-	_progress_bar.position = Vector2(20, 325)
+	_progress_bar.position = Vector2(20, 445)
 	_progress_bar.custom_minimum_size = Vector2(400, 22)
 	add_child(_progress_bar)
 
 	_lbl_taps = make_label("0 taps", 18, Color(1, 0.9, 0.5))
-	_lbl_taps.position = Vector2(430, 325)
+	_lbl_taps.position = Vector2(430, 445)
 	add_child(_lbl_taps)
 
 	var prompt = make_label("Mash  SPACE / E  as fast as you can!", 20, Color(1, 0.9, 0.2))
-	prompt.position = Vector2(120, 370)
+	prompt.position = Vector2(120, 520)
 	add_child(prompt)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -75,7 +75,7 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 430)
+	_result_label.position = Vector2(200, 610)
 	_result_label.visible = false
 	add_child(_result_label)
 

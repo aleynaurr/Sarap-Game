@@ -35,6 +35,7 @@ var _tab_hint_lbl: Label = null
 	"frying":   Vector2(103, 172),
 	"cooking":  Vector2(525, 486),
 	"working":  Vector2(316, 508),
+	"rice":     Vector2(96, 172),
 }
 
 var _indicator: Sprite2D = null

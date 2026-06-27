@@ -230,14 +230,14 @@ size = Vector2(100, 126)
 [sub_resource type="RectangleShape2D" id="StationShape2"]
 size = Vector2(115, 96)
 
-[sub_resource type="RectangleShape2D" id="StationShape3"]
-size = Vector2(113, 97)
-
 [sub_resource type="RectangleShape2D" id="StationShape4"]
 size = Vector2(106, 108)
 
 [sub_resource type="RectangleShape2D" id="StationShape5"]
 size = Vector2(112, 116)
+
+[sub_resource type="RectangleShape2D" id="StationShape3"]
+size = Vector2(113, 97)
 
 [sub_resource type="CapsuleShape2D" id="PlayerShape"]
 radius = 12.0
@@ -333,25 +333,6 @@ theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
 theme_override_font_sizes/font_size = 10
 text = "CHOPPING"
 
-[node name="FryingStation" type="Area2D" parent="Stations" unique_id=1236292098]
-position = Vector2(548, 48)
-script = ExtResource("3_station")
-station_id = "frying"
-station_label = "Frying Pan"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/FryingStation" unique_id=1508210352]
-position = Vector2(-444.5, 124.5)
-shape = SubResource("StationShape3")
-
-[node name="InteractLabel" type="Label" parent="Stations/FryingStation" unique_id=355422409]
-offset_left = -36.0
-offset_top = -46.0
-offset_right = -36.0
-offset_bottom = -46.0
-theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-text = "FRYING"
-
 [node name="CookingStation" type="Area2D" parent="Stations" unique_id=1681748336]
 position = Vector2(548, 250)
 script = ExtResource("3_station")
@@ -389,6 +370,25 @@ offset_bottom = -56.0
 theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
 theme_override_font_sizes/font_size = 10
 text = "WORK TABLE"
+
+[node name="RiceStation" type="Area2D" parent="Stations" unique_id=2099001234]
+position = Vector2(430, 48)
+script = ExtResource("3_station")
+station_id = "rice"
+station_label = "Rice Cooker"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/RiceStation" unique_id=2099001235]
+position = Vector2(-331, 124)
+shape = SubResource("StationShape3")
+
+[node name="InteractLabel" type="Label" parent="Stations/RiceStation" unique_id=2099001236]
+offset_left = -36.0
+offset_top = -46.0
+offset_right = -36.0
+offset_bottom = -46.0
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "RICE"
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1636471097 groups=["player"]]
 z_index = 4

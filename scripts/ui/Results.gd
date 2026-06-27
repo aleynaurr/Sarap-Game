@@ -1,13 +1,13 @@
 extends Control
 
-@onready var recipe_label: Label     = $RecipeLabel
-@onready var grade_label: Label      = $GradeLabel
-@onready var score_label: Label      = $ScoreLabel
-@onready var step_breakdown: Label   = $StepBreakdown
-@onready var grade_message: Label    = $GradeMessage
-@onready var stars_row: HBoxContainer = $StarsRow
-@onready var btn_again: Button       = $ButtonRow/BtnPlayAgain
-@onready var btn_menu: Button        = $ButtonRow/BtnMenu
+@onready var recipe_label: Label      = $VBoxContainer/RecipeLabel
+@onready var grade_label: Label       = $VBoxContainer/GradeLabel
+@onready var score_label: Label       = $VBoxContainer/ScoreLabel
+@onready var step_breakdown: Label    = $StepBreakdown
+@onready var grade_message: Label     = $GradeMessage
+@onready var stars_row: HBoxContainer = $VBoxContainer/StarsRow
+@onready var btn_again: Button        = $ButtonRow/BtnPlayAgain
+@onready var btn_menu: Button         = $ButtonRow/BtnMenu
 
 const GRADE_MESSAGES = {
 	"S": "🌟 KAHANGA-HANGA! (Outstanding!) 🌟\nYou cook like a true Filipino Mama!",
@@ -17,7 +17,7 @@ const GRADE_MESSAGES = {
 	"D": "😅 SUBUKAN MULI! (Try again!)\nEvery great cook starts somewhere!",
 }
 
-const STAR_THRESHOLDS = [0.35, 0.60, 0.85]   # % needed for 1st, 2nd, 3rd star
+const STAR_THRESHOLDS = [0.35, 0.60, 0.85]
 
 func _ready() -> void:
 	var recipe  = RecipeData.get_recipe(GameManager.current_recipe_id)
@@ -34,11 +34,11 @@ func _ready() -> void:
 
 	# Stars
 	var pct = float(total) / float(max(1, max_sc))
-	var star_textures = stars_row.get_children()
+	var star_children = stars_row.get_children()
 	var star_full  = load("res://assets/sprites/ui/star_full.png")
 	var star_empty = load("res://assets/sprites/ui/star_empty.png")
-	for i in range(star_textures.size()):
-		star_textures[i].texture = star_full if pct >= STAR_THRESHOLDS[i] else star_empty
+	for i in range(star_children.size()):
+		star_children[i].texture = star_full if pct >= STAR_THRESHOLDS[i] else star_empty
 
 	# Step breakdown
 	var lines = []

@@ -33,7 +33,7 @@ func _on_init() -> void:
 	_roll_width = 0.0
 	_generate_sequence()
 
-	var bg = make_panel_bg(Vector2(640, 480))
+	var bg = make_panel_bg(Vector2(640, 720))
 	add_child(bg)
 
 	var title = make_label("🌯  IROLYO!  (Roll!)", 22, Color(1.0, 0.87, 0.3))
@@ -50,46 +50,46 @@ func _on_init() -> void:
 	var roll_bg = ColorRect.new()
 	roll_bg.color = Color(0.82, 0.75, 0.60)
 	roll_bg.size = Vector2(380, 50)
-	roll_bg.position = Vector2(130, 130)
+	roll_bg.position = Vector2(130, 165)
 	add_child(roll_bg)
 
 	_roll_visual = ColorRect.new()
 	_roll_visual.color = Color(0.78, 0.55, 0.28)
 	_roll_visual.size = Vector2(0, 50)
-	_roll_visual.position = Vector2(130, 130)
+	_roll_visual.position = Vector2(130, 165)
 	add_child(_roll_visual)
 
 	var roll_lbl = make_label("🌯 ROLLING...", 18, Color(0.85, 0.65, 0.35))
-	roll_lbl.position = Vector2(230, 190)
+	roll_lbl.position = Vector2(230, 225)
 	add_child(roll_lbl)
 
 	# Arrow display — show next 4 arrows
 	var row_lbl = make_label("PRESS:", 16, Color(0.9, 0.9, 0.9))
-	row_lbl.position = Vector2(20, 255)
+	row_lbl.position = Vector2(20, 345)
 	add_child(row_lbl)
 
 	for i in range(4):
 		var al = make_label("?", 32, Color(0.45, 0.45, 0.45))
-		al.position = Vector2(80 + i * 80, 245)
+		al.position = Vector2(80 + i * 80, 335)
 		add_child(al)
 		_arrow_displays.append(al)
 
 	# Timing bar for current key
 	var tb_lbl = make_label("Time per key:", 12, Color(0.8, 0.8, 0.8))
-	tb_lbl.position = Vector2(20, 295)
+	tb_lbl.position = Vector2(20, 410)
 	add_child(tb_lbl)
 
 	_step_bar = make_progress_bar(INPUT_TIMEOUT, Color(0.9, 0.7, 0.1))
-	_step_bar.position = Vector2(20, 313)
+	_step_bar.position = Vector2(20, 430)
 	_step_bar.custom_minimum_size = Vector2(350, 16)
 	add_child(_step_bar)
 
 	_lbl_status = make_label("Follow the arrows!", 20, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(200, 345)
+	_lbl_status.position = Vector2(200, 480)
 	add_child(_lbl_status)
 
 	_lbl_progress = make_label("0 / %d" % SEQUENCE_LENGTH, 16, Color(0.9, 0.9, 0.9))
-	_lbl_progress.position = Vector2(20, 380)
+	_lbl_progress.position = Vector2(20, 540)
 	add_child(_lbl_progress)
 
 	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
@@ -97,7 +97,7 @@ func _on_init() -> void:
 	add_child(_lbl_timer)
 
 	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 415)
+	_result_label.position = Vector2(200, 600)
 	_result_label.visible = false
 	add_child(_result_label)
 
