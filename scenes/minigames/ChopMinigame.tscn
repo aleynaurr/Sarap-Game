@@ -1,8 +1,24 @@
 [gd_scene format=3 uid="uid://bmgchop01"]
 
-[ext_resource type="Script" path="res://scripts/minigames/ChopMinigame.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://ck7sinwx1pjj2" path="res://scripts/minigames/ChopMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://davfo8g0pfoxn" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_chili_uncut.png" id="2_icon_chili"]
+[ext_resource type="Texture2D" uid="uid://q2qoa6uleml8" path="res://assets/sprites/minigames/Dish1ChopMinigame/countertop.png" id="2_onopw"]
+[ext_resource type="Texture2D" uid="uid://dlguxeaqd4fvq" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_ginger_uncut.png" id="3_icon_ginger"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/assets/fonts/PIXELYA Trial.otf" id="3_wyp5v"]
+[ext_resource type="Texture2D" uid="uid://cg875cyagmq2o" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_onion_uncut.png" id="4_icon_onion"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/assets/fonts/Pixelon.ttf" id="4_kcujr"]
+[ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="5_8pk3b"]
+[ext_resource type="Texture2D" uid="uid://j0wl4rg2eu1n" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_garlic_uncut.png" id="5_icon_garlic"]
+[ext_resource type="Texture2D" uid="uid://dgmdg86w5rm84" path="res://assets/sprites/minigames/Dish1ChopMinigame/cuttingboard.png" id="6_h14s2"]
+[ext_resource type="Texture2D" uid="uid://b30p2pe51ru22" path="res://assets/sprites/minigames/Dish1ChopMinigame/board_onion_00.png" id="8_board_onion"]
+[ext_resource type="Texture2D" uid="uid://wyv5voo3lxxy" path="res://assets/sprites/minigames/Dish1ChopMinigame/bowl_chili_empty.png" id="10_bowl_chili_e"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="10_kcujr"]
+[ext_resource type="Texture2D" uid="uid://bx6mkfs4aml6o" path="res://assets/sprites/minigames/Dish1ChopMinigame/bowl_ginger_empty.png" id="12_bowl_ginger_e"]
+[ext_resource type="Texture2D" uid="uid://dp3n7a3mhpfom" path="res://assets/sprites/minigames/Dish1ChopMinigame/mat.png" id="13_rba22"]
+[ext_resource type="Texture2D" uid="uid://cye7lw03rssfd" path="res://assets/sprites/minigames/Dish1ChopMinigame/bowl_onion_empty.png" id="14_bowl_onion_e"]
+[ext_resource type="Texture2D" uid="uid://b6sb3hljplm0e" path="res://assets/sprites/minigames/Dish1ChopMinigame/bowl_garlic_empty.png" id="16_bowl_garlic_e"]
 
-[node name="ChopMinigame" type="Control"]
+[node name="ChopMinigame" type="Control" unique_id=1152465699]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +26,250 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=136070598]
+layout_mode = 0
+offset_left = -815.82227
+offset_top = 2.0
+offset_right = 640.17773
+offset_bottom = 730.0
+texture = ExtResource("2_onopw")
+stretch_mode = 1
+
+[node name="Background" type="ColorRect" parent="." unique_id=1981698156]
+visible = false
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 720.0
+color = Color(0.85, 0.65, 0.25, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1526984464]
+z_index = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 21.0
+offset_right = 275.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_wyp5v")
+theme_override_font_sizes/font_size = 24
+text = "Chop Ingredients"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1364730779]
+z_index = 1
+layout_mode = 0
+offset_left = 370.0
+offset_top = 28.0
+offset_right = 482.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 0.7058824, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("4_kcujr")
+theme_override_font_sizes/font_size = 21
+text = "Time: 25.0"
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=768254585]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 533.0
+offset_bottom = 725.0
+texture = ExtResource("5_8pk3b")
+
+[node name="TopRow" type="HBoxContainer" parent="." unique_id=1053676979]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 116.0
+offset_right = 508.0
+offset_bottom = 188.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="IconChili" type="TextureRect" parent="TopRow" unique_id=1847244353]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_icon_chili")
+stretch_mode = 5
+
+[node name="IconGinger" type="TextureRect" parent="TopRow" unique_id=687745828]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_icon_ginger")
+stretch_mode = 5
+
+[node name="IconOnion" type="TextureRect" parent="TopRow" unique_id=1285799746]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("4_icon_onion")
+stretch_mode = 5
+
+[node name="IconGarlic" type="TextureRect" parent="TopRow" unique_id=1676810765]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_icon_garlic")
+stretch_mode = 5
+
+[node name="VegNameLabel" type="Label" parent="." unique_id=1246598286]
+z_index = 1
+layout_mode = 0
+offset_left = 365.0
+offset_top = 554.0
+offset_right = 586.0
+offset_bottom = 578.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_kcujr")
+theme_override_font_sizes/font_size = 24
+text = "Chili"
+horizontal_alignment = 2
+
+[node name="CuttingBoard" type="ColorRect" parent="." unique_id=424131071]
+z_index = 2
+layout_mode = 0
+offset_left = 42.0
+offset_top = 204.0
+offset_right = 590.0
+offset_bottom = 542.0
+color = Color(0.25882354, 0.16078432, 0.07058824, 0)
+
+[node name="PromptLabel" type="Label" parent="CuttingBoard" unique_id=616893481]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 23.0
+offset_right = 439.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.9019608, 1, 0.9843137, 1)
+theme_override_fonts/font = ExtResource("10_kcujr")
+theme_override_font_sizes/font_size = 19
+text = "press 'S' or ↓ to chop/mince"
+horizontal_alignment = 1
+
+[node name="BoardImage" type="TextureRect" parent="CuttingBoard" unique_id=1396124793]
+z_index = 2
+layout_mode = 0
+offset_left = 111.0
+offset_top = 95.0
+offset_right = 422.0
+offset_bottom = 209.0
+texture = ExtResource("8_board_onion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CuttingBoardGraphic" type="TextureRect" parent="CuttingBoard" unique_id=588122087]
+z_index = 1
+layout_mode = 0
+offset_left = -25.95935
+offset_top = 17.0
+offset_right = 560.27374
+offset_bottom = 337.0
+texture = ExtResource("6_h14s2")
+expand_mode = 1
+
+[node name="ChopFlash" type="ColorRect" parent="CuttingBoard" unique_id=36594881]
+z_index = 4
+layout_mode = 0
+offset_right = 546.0
+offset_bottom = 338.0
+color = Color(1, 1, 1, 0)
+
+[node name="ProgressBarBg" type="ColorRect" parent="CuttingBoard" unique_id=1455341529]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 33.0
+offset_right = 69.0
+offset_bottom = 305.0
+color = Color(0.3, 0.2, 0.1, 1)
+
+[node name="ProgressFill" type="ColorRect" parent="CuttingBoard" unique_id=1931082399]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 303.0
+offset_right = 67.0
+offset_bottom = 305.0
+color = Color(0.95, 0.85, 0.3, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=531498786]
+z_index = 1
+layout_mode = 0
+offset_left = 44.0
+offset_top = 219.0
+offset_right = 592.0
+offset_bottom = 542.0
+texture = ExtResource("13_rba22")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=639784145]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 213.0
+offset_right = 599.0
+offset_bottom = 585.0
+color = Color(0.08235294, 0.015686275, 0.015686275, 1)
+
+[node name="CutCountLabel" type="Label" parent="." unique_id=206168448]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 553.0
+offset_right = 529.0
+offset_bottom = 580.0
+theme_override_colors/font_color = Color(4.1724997, 2.7639198, 1.637231, 1)
+theme_override_colors/font_shadow_color = Color(0.008786929, 0, 0, 0.6784314)
+theme_override_fonts/font = ExtResource("4_kcujr")
+theme_override_font_sizes/font_size = 23
+text = "Cut Count: 0 / 5"
+
+[node name="BowlRow" type="HBoxContainer" parent="." unique_id=1010060537]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 602.0
+offset_right = 542.0
+offset_bottom = 686.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BowlChili" type="TextureRect" parent="BowlRow" unique_id=287932471]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("10_bowl_chili_e")
+stretch_mode = 5
+
+[node name="BowlGinger" type="TextureRect" parent="BowlRow" unique_id=1169430313]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("12_bowl_ginger_e")
+stretch_mode = 5
+
+[node name="BowlOnion" type="TextureRect" parent="BowlRow" unique_id=146598718]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("14_bowl_onion_e")
+stretch_mode = 5
+
+[node name="BowlGarlic" type="TextureRect" parent="BowlRow" unique_id=582462620]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("16_bowl_garlic_e")
+stretch_mode = 5
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1897862761]
+visible = false
+layout_mode = 0
+offset_left = 80.0
+offset_top = 620.0
+offset_right = 560.0
+offset_bottom = 655.0
+theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="." unique_id=1189184848]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 690.0
+offset_right = 620.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(0.17111877, 0.094006605, 0.020435367, 0.7019608)
+theme_override_colors/font_shadow_color = Color(0.99999946, 0.9082962, 0.87417877, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_kcujr")
+theme_override_font_sizes/font_size = 22
+text = "Keep pressing S or ↓ to chop each ingredient!"
+horizontal_alignment = 1
