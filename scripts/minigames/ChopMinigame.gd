@@ -1,139 +1,143 @@
 extends MinigameBase
 
-# Chop minigame: press SPACE (or interact key) to chop.
-# A rhythm bar pulses; hitting at peak gives bonus points.
+const VEGGIES = [
+	["chili",  "Chili",  6],
+	["ginger", "Ginger", 12],
+	["onion",  "Onion",  6],
+	["garlic", "Garlic", 9],
+]
 
-const CHOPS_NEEDED   := 15
-const BEAT_PERIOD    := 0.7     # seconds per beat
-const PEAK_WINDOW    := 0.15    # seconds around peak for bonus
-
-var _chops_done: int = 0
-var _beat_timer: float = 0.0
-var _beat_ratio: float = 0.0     # 0..1 within current beat
-var _total_accuracy: float = 0.0
-
-var _lbl_timer: Label
-var _lbl_chops: Label
-var _lbl_prompt: Label
-var _beat_bar: ProgressBar
-var _chop_flash: ColorRect
+var _veg_idx: int = 0
+var _frame: int   = 0
+var _total_cuts: int = 0
+var _max_cuts: int   = 0
 var _flash_timer: float = 0.0
-var _result_label: Label
-var _lbl_instruction: Label
+var _done: bool = false
+var _finish_timer: float = 0.0
+var _board_frames: Array = []
+var _bowl_tex: Array = []
+
+# Progress bar constants — matches the scene node positions
+const PROG_TOP    := 38.0   # top of ProgressBarBg (offset_top)
+const PROG_BOTTOM := 310.0  # bottom of ProgressBarBg (offset_bottom)
+const PROG_LEFT   := 20.0
+const PROG_RIGHT  := 50.0
+
+@onready var _lbl_timer:    Label       = $TimerLabel
+@onready var _lbl_veg_name: Label       = $VegNameLabel
+@onready var _lbl_cut_count:Label       = $CutCountLabel
+@onready var _board_img:    TextureRect = $CuttingBoard/BoardImage
+@onready var _chop_flash:   ColorRect   = $CuttingBoard/ChopFlash
+@onready var _prog_fill:    ColorRect   = $CuttingBoard/ProgressFill
+@onready var _result_label: Label       = $ResultLabel
+
+@onready var _bowls: Array[TextureRect] = [
+	$BowlRow/BowlChili,
+	$BowlRow/BowlGinger,
+	$BowlRow/BowlOnion,
+	$BowlRow/BowlGarlic,
+]
+@onready var _icons: Array[TextureRect] = [
+	$TopRow/IconChili,
+	$TopRow/IconGinger,
+	$TopRow/IconOnion,
+	$TopRow/IconGarlic,
+]
 
 func _on_init() -> void:
-	_chops_done = 0
-	_beat_timer = 0.0
-	_total_accuracy = 0.0
-
-	var bg = make_panel_bg(Vector2(640, 720))
-	add_child(bg)
-
-	var title = make_label("🔪  TADTARIN!  (Chop!)", 22, Color(1.0, 0.87, 0.3))
-	title.position = Vector2(20, 14)
-	add_child(title)
-
-	_lbl_instruction = make_label(step_data.get("instruction", ""), 13, Color(0.95, 0.92, 0.82))
-	_lbl_instruction.position = Vector2(20, 50)
-	_lbl_instruction.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_lbl_instruction.custom_minimum_size.x = 600
-	add_child(_lbl_instruction)
-
-	# Cutting board visual
-	var board = ColorRect.new()
-	board.color = Color(0.71, 0.51, 0.31)
-	board.size = Vector2(300, 180)
-	board.position = Vector2(170, 160)
-	add_child(board)
-
-	# Chop flash overlay (flashes on hit)
-	_chop_flash = ColorRect.new()
-	_chop_flash.color = Color(1, 1, 1, 0.0)
-	_chop_flash.size = Vector2(300, 180)
-	_chop_flash.position = Vector2(170, 160)
-	add_child(_chop_flash)
-
-	var knife_lbl = make_label("🔪", 60, Color(0.8, 0.85, 0.9))
-	knife_lbl.position = Vector2(280, 180)
-	add_child(knife_lbl)
-
-	# Beat bar
-	var beat_lbl = make_label("BEAT →", 13, Color(0.8, 0.8, 0.8))
-	beat_lbl.position = Vector2(20, 440)
-	add_child(beat_lbl)
-
-	_beat_bar = make_progress_bar(100.0, Color(0.9, 0.7, 0.1))
-	_beat_bar.position = Vector2(20, 465)
-	_beat_bar.custom_minimum_size = Vector2(400, 22)
-	add_child(_beat_bar)
-
-	# Sweet spot indicator
-	var ss = ColorRect.new()
-	ss.color = Color(0.2, 1.0, 0.3, 0.6)
-	ss.size = Vector2(int(400 * PEAK_WINDOW * 2 / BEAT_PERIOD), 22)
-	ss.position = Vector2(20 + int(400 * (0.5 - PEAK_WINDOW / BEAT_PERIOD)), 465)
-	add_child(ss)
-
-	var ss_lbl = make_label("SWEET SPOT", 9, Color(0.2, 1.0, 0.3))
-	ss_lbl.position = Vector2(ss.position.x, 489)
-	add_child(ss_lbl)
-
-	_lbl_prompt = make_label("SPACE / E  to CHOP!", 26, Color(1, 0.9, 0.2))
-	_lbl_prompt.position = Vector2(200, 530)
-	add_child(_lbl_prompt)
-
-	_lbl_chops = make_label("0 / %d chops" % CHOPS_NEEDED, 15, Color(0.9, 0.9, 0.9))
-	_lbl_chops.position = Vector2(20, 590)
-	add_child(_lbl_chops)
-
-	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
-	_lbl_timer.position = Vector2(500, 14)
-	add_child(_lbl_timer)
-
-	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(210, 640)
+	_veg_idx = 0
+	_frame   = 0
+	_total_cuts = 0
+	_flash_timer = 0.0
+	_done = false
+	_finish_timer = 0.0
 	_result_label.visible = false
-	add_child(_result_label)
+	_chop_flash.color.a = 0.0
+	_lbl_timer.text = "Time: %.1f" % _time_limit
 
-	var hint = make_label("Press SPACE or E on the beat for bonus accuracy!", 11, Color(0.6, 0.6, 0.6))
-	hint.position = Vector2(20, 695)
-	add_child(hint)
+	_board_frames.clear()
+	_bowl_tex.clear()
+	_max_cuts = 0
+
+	for veg in VEGGIES:
+		var vid: String = veg[0]
+		var frames: int = veg[2]
+		_max_cuts += frames - 1
+
+		var veg_frames: Array = []
+		for f in range(frames):
+			veg_frames.append(load("res://assets/sprites/minigames/Dish1ChopMinigame/board_%s_%02d.png" % [vid, f]))
+		_board_frames.append(veg_frames)
+
+		_bowl_tex.append([
+			load("res://assets/sprites/minigames/Dish1ChopMinigame/bowl_%s_empty.png" % vid),
+			load("res://assets/sprites/minigames/Dish1ChopMinigame/bowl_%s_filled.png" % vid),
+		])
+
+	_refresh_board()
 
 func _on_update(delta: float, _remaining: float) -> void:
-	_beat_timer += delta
-	if _beat_timer >= BEAT_PERIOD:
-		_beat_timer -= BEAT_PERIOD
-	_beat_ratio = _beat_timer / BEAT_PERIOD
-	_beat_bar.value = _beat_ratio * 100.0
+	if _done:
+		_finish_timer -= delta
+		if _finish_timer <= 0.0:
+			var skill = float(_total_cuts) / float(max(1, _max_cuts))
+			complete_minigame(clampf(skill, 0.0, 1.0))
+		return
 
-	# Flash decay
 	if _flash_timer > 0.0:
 		_flash_timer -= delta
-		_chop_flash.color.a = _flash_timer * 3.0
+		_chop_flash.color.a = _flash_timer * 4.0
 
-	# Check chop input
-	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("ui_down"):
 		_do_chop()
 
 func _do_chop() -> void:
-	_chops_done += 1
+	if _done: return
+	var cuts_needed: int = VEGGIES[_veg_idx][2] - 1
+
+	_frame += 1
+	_total_cuts += 1
+	_chop_flash.color.a = 0.55
+	_flash_timer = 0.18
 	AudioManager.play_sfx(AudioManager.SFX_CHOP)
+	_refresh_board()
 
-	# Accuracy based on distance from beat peak (0.5)
-	var dist_from_peak = abs(_beat_ratio - 0.5)
-	var accuracy = 1.0 - clampf(dist_from_peak / (BEAT_PERIOD * 0.5), 0.0, 1.0)
-	_total_accuracy += accuracy
+	if _frame >= cuts_needed:
+		_bowls[_veg_idx].texture = _bowl_tex[_veg_idx][1]
+		_icons[_veg_idx].modulate = Color(0.5, 0.5, 0.5, 0.5)
+		_veg_idx += 1
+		_frame = 0
 
-	_chop_flash.color.a = 0.6
-	_flash_timer = 0.2
+		if _veg_idx >= VEGGIES.size():
+			_done = true
+			_finish_timer = 1.5
+			_result_label.text = "✨ Tadtad na lahat! (All chopped!) ✨"
+			_result_label.visible = true
+			return
+		else:
+			_refresh_board()
 
-	_lbl_chops.text = "%d / %d chops" % [_chops_done, CHOPS_NEEDED]
+func _refresh_board() -> void:
+	if _veg_idx >= VEGGIES.size(): return
 
-	if _chops_done >= CHOPS_NEEDED:
-		var skill = _total_accuracy / float(CHOPS_NEEDED)
-		_result_label.text = "✨ Tadtad na! (Chopped!) ✨"
-		_result_label.visible = true
-		complete_minigame(skill)
+	# Swap board image
+	_board_img.texture = _board_frames[_veg_idx][_frame]
+
+	# Update veg name label
+	_lbl_veg_name.text = VEGGIES[_veg_idx][1]
+
+	# Update cut count label
+	var cuts_needed: int = VEGGIES[_veg_idx][2] - 1
+	_lbl_cut_count.text = "Cut Count: %d / %d" % [_frame, cuts_needed]
+
+	# Progress bar: grows UPWARD from bottom
+	# When ratio=0 → fill height=0 (top == bottom), ratio=1 → fill covers full bar
+	var ratio: float = float(_frame) / float(max(1, cuts_needed))
+	var bar_height: float = (PROG_BOTTOM - PROG_TOP) * ratio
+	_prog_fill.offset_top    = PROG_BOTTOM - bar_height
+	_prog_fill.offset_bottom = PROG_BOTTOM
+	_prog_fill.offset_left   = PROG_LEFT
+	_prog_fill.offset_right  = PROG_RIGHT
 
 func _update_timer_display(remaining: float) -> void:
 	if _lbl_timer:
@@ -142,5 +146,5 @@ func _update_timer_display(remaining: float) -> void:
 			_lbl_timer.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
 
 func _force_finish() -> void:
-	var skill = _total_accuracy / float(max(1, _chops_done)) if _chops_done > 0 else 0.0
-	complete_minigame(skill * (_chops_done / float(CHOPS_NEEDED)))
+	var skill = float(_total_cuts) / float(max(1, _max_cuts))
+	complete_minigame(clampf(skill, 0.0, 1.0))
