@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://davfo8g0pfoxn" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_chili_uncut.png" id="2_icon_chili"]
 [ext_resource type="Texture2D" uid="uid://q2qoa6uleml8" path="res://assets/sprites/minigames/Dish1ChopMinigame/countertop.png" id="2_onopw"]
 [ext_resource type="Texture2D" uid="uid://dlguxeaqd4fvq" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_ginger_uncut.png" id="3_icon_ginger"]
-[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/assets/fonts/PIXELYA Trial.otf" id="3_wyp5v"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="3_wyp5v"]
 [ext_resource type="Texture2D" uid="uid://cg875cyagmq2o" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_onion_uncut.png" id="4_icon_onion"]
-[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/assets/fonts/Pixelon.ttf" id="4_kcujr"]
 [ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="5_8pk3b"]
 [ext_resource type="Texture2D" uid="uid://j0wl4rg2eu1n" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_garlic_uncut.png" id="5_icon_garlic"]
 [ext_resource type="Texture2D" uid="uid://dgmdg86w5rm84" path="res://assets/sprites/minigames/Dish1ChopMinigame/cuttingboard.png" id="6_h14s2"]
@@ -63,7 +62,7 @@ offset_top = 28.0
 offset_right = 482.0
 offset_bottom = 54.0
 theme_override_colors/font_color = Color(1, 0.7058824, 0.2784314, 1)
-theme_override_fonts/font = ExtResource("4_kcujr")
+theme_override_fonts/font = ExtResource("10_kcujr")
 theme_override_font_sizes/font_size = 21
 text = "Time: 25.0"
 
@@ -116,7 +115,7 @@ offset_top = 554.0
 offset_right = 586.0
 offset_bottom = 578.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_kcujr")
+theme_override_fonts/font = ExtResource("10_kcujr")
 theme_override_font_sizes/font_size = 24
 text = "Chili"
 horizontal_alignment = 2
@@ -166,8 +165,10 @@ expand_mode = 1
 [node name="ChopFlash" type="ColorRect" parent="CuttingBoard" unique_id=36594881]
 z_index = 4
 layout_mode = 0
-offset_right = 546.0
-offset_bottom = 338.0
+offset_left = -4.0
+offset_top = 9.0
+offset_right = 557.0
+offset_bottom = 382.0
 color = Color(1, 1, 1, 0)
 
 [node name="ProgressBarBg" type="ColorRect" parent="CuttingBoard" unique_id=1455341529]
@@ -212,7 +213,7 @@ offset_right = 529.0
 offset_bottom = 580.0
 theme_override_colors/font_color = Color(4.1724997, 2.7639198, 1.637231, 1)
 theme_override_colors/font_shadow_color = Color(0.008786929, 0, 0, 0.6784314)
-theme_override_fonts/font = ExtResource("4_kcujr")
+theme_override_fonts/font = ExtResource("10_kcujr")
 theme_override_font_sizes/font_size = 23
 text = "Cut Count: 0 / 5"
 

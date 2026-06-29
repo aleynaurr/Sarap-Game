@@ -1,8 +1,20 @@
 [gd_scene format=3 uid="uid://bmgwash01"]
 
-[ext_resource type="Script" path="res://scripts/minigames/WashMinigame.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://xehb1sj13w7b" path="res://scripts/minigames/WashMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://qtjhr0ry174r" path="res://assets/sprites/minigames/Dish1WashMinigame/sink station.png" id="2_fwfv7"]
+[ext_resource type="Texture2D" uid="uid://b4bbd81dp0ksy" path="res://assets/sprites/minigames/Dish1WashMinigame/sink_basin.png" id="2_sink"]
+[ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="2_wg8w6"]
+[ext_resource type="Texture2D" uid="uid://edfq3rvihqyy" path="res://assets/sprites/minigames/Dish1WashMinigame/faucet_off.png" id="3_faucet_off"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="4_gsd70"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="5_p5b04"]
+[ext_resource type="Texture2D" uid="uid://dyhlljj8sw084" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_chili_small.png" id="7_qs_chili"]
+[ext_resource type="Texture2D" uid="uid://ysriefc8hgo0" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_ginger_small.png" id="8_qs_ginger"]
+[ext_resource type="Texture2D" uid="uid://ftna6u8yq61o" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_onion_small.png" id="9_qs_onion"]
+[ext_resource type="Texture2D" uid="uid://bxbks36rxroc4" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_garlic_small.png" id="10_qs_garlic"]
+[ext_resource type="Texture2D" uid="uid://bhivx7ark0mxp" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_chili_large.png" id="11_vl_chili"]
+[ext_resource type="Texture2D" uid="uid://c33jneaaew4m8" path="res://assets/sprites/minigames/Dish1WashMinigame/bowl_00.png" id="15_bowl0"]
 
-[node name="WashMinigame" type="Control"]
+[node name="WashMinigame" type="Control" unique_id=1481078982]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +22,280 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1988140451]
+z_index = 1
+layout_mode = 0
+offset_top = -3.0
+offset_right = 613.0
+offset_bottom = 636.0
+texture = ExtResource("2_wg8w6")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1591097015]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 640.0
+offset_bottom = 720.0
+color = Color(0.42352942, 0.28627452, 0.21176471, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=613058172]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 640.22144
+offset_bottom = 721.0
+texture = ExtResource("2_fwfv7")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1009650283]
+z_index = 2
+layout_mode = 0
+offset_left = 53.0
+offset_top = 16.0
+offset_right = 523.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_gsd70")
+theme_override_font_sizes/font_size = 24
+text = "Wash Ingredients"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1263052181]
+z_index = 2
+layout_mode = 0
+offset_left = 410.0
+offset_top = 23.0
+offset_right = 545.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.7, 0.62976664, 0.09799999, 1)
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 19
+text = "Time: 20.0"
+horizontal_alignment = 2
+
+[node name="WaterSupplyBg" type="ColorRect" parent="." unique_id=1752308490]
+z_index = 2
+layout_mode = 0
+offset_left = 289.0
+offset_top = 83.0
+offset_right = 629.0
+offset_bottom = 103.0
+color = Color(0.25, 0.18, 0.1, 1)
+
+[node name="WaterSupplyFill" type="ColorRect" parent="." unique_id=1163537315]
+z_index = 2
+layout_mode = 0
+offset_left = 291.0
+offset_top = 85.0
+offset_right = 627.0
+offset_bottom = 101.0
+color = Color(0.25, 0.6, 0.95, 1)
+
+[node name="WaterSupplyLabel" type="Label" parent="." unique_id=546993176]
+z_index = 2
+layout_mode = 0
+offset_left = 528.0
+offset_top = 86.0
+offset_right = 619.0
+offset_bottom = 101.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 13
+text = "WATER SUPPLY"
+horizontal_alignment = 2
+
+[node name="CleanlinessBg" type="ColorRect" parent="." unique_id=939247131]
+z_index = 2
+layout_mode = 0
+offset_left = 289.0
+offset_top = 116.0
+offset_right = 629.0
+offset_bottom = 136.0
+color = Color(0.25, 0.18, 0.1, 1)
+
+[node name="CleanlinessFill" type="ColorRect" parent="." unique_id=852479767]
+z_index = 2
+layout_mode = 0
+offset_left = 291.0
+offset_top = 118.0
+offset_right = 291.0
+offset_bottom = 134.0
+color = Color(0.3, 0.85, 0.4, 1)
+
+[node name="CleanlinessLabel" type="Label" parent="." unique_id=1008218441]
+z_index = 2
+layout_mode = 0
+offset_left = 277.0
+offset_top = 117.0
+offset_right = 617.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 15
+text = "Cleanliness: 0%"
+horizontal_alignment = 2
+
+[node name="PerfectCleanLabel" type="Label" parent="." unique_id=1264517229]
+z_index = 2
+layout_mode = 0
+offset_left = 300.0
+offset_top = 120.0
+offset_right = 445.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(0.1, 0.85, 0.3, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 14
+text = "✨ PERFECTLY CLEAN!"
+horizontal_alignment = 1
+
+[node name="SinkArea" type="Control" parent="." unique_id=1106899893]
+anchors_preset = 0
+offset_left = 55.0
+offset_top = 130.0
+offset_right = 395.0
+offset_bottom = 530.0
+
+[node name="SinkBasin" type="TextureRect" parent="SinkArea" unique_id=373618921]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 150.0
+offset_right = 512.0
+offset_bottom = 513.0
+texture = ExtResource("2_sink")
+expand_mode = 1
+
+[node name="VeggieOnSink" type="TextureRect" parent="SinkArea" unique_id=384459541]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = 256.0
+offset_right = 206.0
+offset_bottom = 380.0
+texture = ExtResource("11_vl_chili")
+stretch_mode = 5
+
+[node name="FaucetSprite" type="TextureRect" parent="SinkArea" unique_id=2011248281]
+z_index = 2
+layout_mode = 0
+offset_left = 30.0
+offset_top = -147.0
+offset_right = 249.0
+offset_bottom = 527.0
+texture = ExtResource("3_faucet_off")
+expand_mode = 1
+
+[node name="FaucetOnLabel" type="Label" parent="SinkArea" unique_id=1633932890]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 17.0
+offset_right = 614.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.3, 0.65, 1, 1)
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 18
+text = "Q / ÷  →  faucet OFF"
+horizontal_alignment = 1
+
+[node name="QueueArea" type="GridContainer" parent="." unique_id=1281037918]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 289.0
+offset_right = 517.0
+offset_bottom = 440.0
+scale = Vector2(1.3, 1.3)
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="QueueChili" type="TextureRect" parent="QueueArea" unique_id=1350281684]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("7_qs_chili")
+stretch_mode = 5
+
+[node name="QueueGinger" type="TextureRect" parent="QueueArea" unique_id=1589412875]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_qs_ginger")
+stretch_mode = 5
+
+[node name="QueueOnion" type="TextureRect" parent="QueueArea" unique_id=480808512]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("9_qs_onion")
+stretch_mode = 5
+
+[node name="QueueGarlic" type="TextureRect" parent="QueueArea" unique_id=344481380]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("10_qs_garlic")
+stretch_mode = 5
+
+[node name="CurrentVegLabel" type="Label" parent="." unique_id=1777154927]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 201.0
+offset_right = 625.0
+offset_bottom = 223.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 17
+text = "Press E/Shift to start!"
+horizontal_alignment = 2
+
+[node name="NextVegPrompt" type="Label" parent="." unique_id=1442463788]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 171.0
+offset_right = 626.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 17
+text = "E / Shift → next vegetable"
+horizontal_alignment = 1
+
+[node name="BowlTexture" type="TextureRect" parent="." unique_id=758718298]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 439.0
+offset_right = 594.0
+offset_bottom = 610.0
+texture = ExtResource("15_bowl0")
+stretch_mode = 5
+
+[node name="ResultLabel" type="Label" parent="." unique_id=210362929]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = 55.0
+offset_top = 620.0
+offset_right = 590.0
+offset_bottom = 660.0
+theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HintLabel" type="Label" parent="." unique_id=520007106]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 685.0
+offset_right = 619.0
+offset_bottom = 705.0
+theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
+theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("5_p5b04")
+theme_override_font_sizes/font_size = 17
+text = "WASD/Arrows move veggie  |  Q/÷ toggle faucet  |  E/Shift next veggie"
+horizontal_alignment = 1
