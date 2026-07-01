@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://bmgmix01"]
 
-[ext_resource type="Script" path="res://scripts/minigames/MixMinigame.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cksrathifkgb7" path="res://scripts/minigames/MixMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dj57iqpuitbys" path="res://assets/assets/working station.png" id="2_v8riw"]
+[ext_resource type="Texture2D" uid="uid://ctfr8yo0m0i8" path="res://assets/assets/mix/up mix.png" id="3_b151s"]
+[ext_resource type="Texture2D" uid="uid://xosh7h20waof" path="res://assets/assets/mix/down mix.png" id="4_roiaw"]
+[ext_resource type="Texture2D" uid="uid://dvkt3eiyvl1vt" path="res://assets/assets/mix/left mix.png" id="5_6iytk"]
+[ext_resource type="Texture2D" uid="uid://chfx1rkvlyg72" path="res://assets/assets/mix/right mix.png" id="6_waxs7"]
 
-[node name="MixMinigame" type="Control"]
+[node name="MixMinigame" type="Control" unique_id=220373830]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +15,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+
+[node name="WorkingStation" type="TextureRect" parent="." unique_id=427919501]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 720.0
+texture = ExtResource("2_v8riw")
+
+[node name="upmix" type="TextureRect" parent="." unique_id=83251564]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 227.0
+offset_right = 458.0
+offset_bottom = 477.0
+texture = ExtResource("3_b151s")
+
+[node name="downmix" type="TextureRect" parent="." unique_id=833930869]
+visible = false
+layout_mode = 0
+offset_left = 182.0
+offset_top = 227.0
+offset_right = 458.0
+offset_bottom = 477.0
+texture = ExtResource("4_roiaw")
+
+[node name="leftmix" type="TextureRect" parent="." unique_id=1940964006]
+visible = false
+layout_mode = 0
+offset_left = 182.0
+offset_top = 227.0
+offset_right = 458.0
+offset_bottom = 477.0
+texture = ExtResource("5_6iytk")
+
+[node name="rightmix" type="TextureRect" parent="." unique_id=1493734402]
+visible = false
+layout_mode = 0
+offset_left = 182.0
+offset_top = 227.0
+offset_right = 458.0
+offset_bottom = 477.0
+texture = ExtResource("6_waxs7")

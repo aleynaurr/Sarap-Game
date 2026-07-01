@@ -3,21 +3,13 @@
 [ext_resource type="Script" uid="uid://c8nepvarlxwhu" path="res://scripts/minigames/PrickSeasonMinigame.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dj57iqpuitbys" path="res://assets/assets/working station.png" id="2_c7hpa"]
 [ext_resource type="Texture2D" uid="uid://dlaanyvxl7xn3" path="res://assets/assets/sprites/PrickandSeason/full eggplant.png" id="3_f4yun"]
-[ext_resource type="Texture2D" uid="uid://dchbu0cxp4re2" path="res://assets/assets/sprites/PrickandSeason/poked eggplant.png" id="4_8eo7q"]
-[ext_resource type="Texture2D" uid="uid://df8rwibeow0kg" path="res://assets/assets/eggplant/final.png" id="4_t34la"]
 [ext_resource type="Texture2D" uid="uid://bfdg0m3b83dx1" path="res://assets/assets/sprites/PrickandSeason/fork.png" id="4_y5w6b"]
-[ext_resource type="Texture2D" uid="uid://6fdyxgdmown5" path="res://assets/assets/eggplant/four_pokes.png" id="5_8eo7q"]
 [ext_resource type="Texture2D" uid="uid://cd6lyktyyf4wu" path="res://assets/assets/sprites/PrickandSeason/salt.png" id="5_c7hpa"]
 [ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="6_acbtd"]
 [ext_resource type="Texture2D" uid="uid://caxla4bebymh2" path="res://assets/assets/sprites/PrickandSeason/salted sprite.png" id="6_xo2qt"]
-[ext_resource type="Texture2D" uid="uid://c86gxx02c83jd" path="res://assets/assets/eggplant/one_salt.png" id="6_yvaam"]
 [ext_resource type="Texture2D" uid="uid://bi8ydyfcaxm5c" path="res://assets/assets/sprites/ui/banner.png" id="7_3xkho"]
-[ext_resource type="Texture2D" uid="uid://bygkub6s5vo1a" path="res://assets/assets/eggplant/three_pokes.png" id="7_6ox8g"]
-[ext_resource type="Texture2D" uid="uid://c4cy7x0ss3qtc" path="res://assets/assets/eggplant/three_salt.png" id="8_1kteu"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="8_at2a4"]
-[ext_resource type="Texture2D" uid="uid://d7c2j3ori5xu" path="res://assets/assets/eggplant/two_pokes.png" id="9_jln2u"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="9_xo2qt"]
-[ext_resource type="Texture2D" uid="uid://dxoq4wbni3oc7" path="res://assets/assets/eggplant/two_salt.png" id="10_1mmn2"]
 [ext_resource type="Texture2D" uid="uid://cf7niimfavo1i" path="res://assets/sprites/ui/progress_frame.png" id="10_at2a4"]
 [ext_resource type="Texture2D" uid="uid://vy8yysq05g10" path="res://assets/assets/sprites/PrickandSeason/fully poked eggplant look.png" id="12_xo2qt"]
 
@@ -46,70 +38,6 @@ offset_right = 296.00003
 offset_bottom = 378.0
 scale = Vector2(2.53125, 2.25)
 texture = ExtResource("3_f4yun")
-
-[node name="1poke" type="TextureRect" parent="FullEggplant" unique_id=388070401]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("4_8eo7q")
-
-[node name="2pokes" type="TextureRect" parent="FullEggplant" unique_id=248445467]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("9_jln2u")
-
-[node name="3pokes" type="TextureRect" parent="FullEggplant" unique_id=2106524607]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("7_6ox8g")
-
-[node name="4pokes" type="TextureRect" parent="FullEggplant" unique_id=1996061526]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("5_8eo7q")
-
-[node name="1salt" type="TextureRect" parent="FullEggplant" unique_id=34884930]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("6_yvaam")
-
-[node name="2salts" type="TextureRect" parent="FullEggplant" unique_id=553738773]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("10_1mmn2")
-
-[node name="3salts" type="TextureRect" parent="FullEggplant" unique_id=591219850]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("8_1kteu")
-
-[node name="final" type="TextureRect" parent="FullEggplant" unique_id=1920182918]
-visible = false
-layout_mode = 0
-offset_top = 0.8888855
-offset_right = 128.0
-offset_bottom = 128.88889
-texture = ExtResource("4_t34la")
 
 [node name="Fork" type="TextureRect" parent="." unique_id=1010008745]
 layout_mode = 0
@@ -144,6 +72,7 @@ initial_velocity_min = 50.0
 initial_velocity_max = 100.0
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1683610152]
+visible = false
 layout_mode = 0
 offset_left = -4.0
 offset_top = 34.0
