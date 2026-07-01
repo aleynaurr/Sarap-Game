@@ -1,202 +1,294 @@
+
 extends MinigameBase
-# Fry: maintain heat in a sweet spot, then press SPACE to flip at the right moment.
-# Heat drifts; press UP to increase heat, DOWN to decrease.
-# A "doneness" meter fills; flip when in the golden zone for best result.
 
-const TARGET_HEAT_MIN := 0.38
-const TARGET_HEAT_MAX := 0.65
-const HEAT_DRIFT      := 0.035  # how fast heat drifts down per second
-const HEAT_UP_RATE    := 0.08
-const HEAT_DOWN_RATE  := 0.06
-const DONENESS_RATE   := 0.028  # doneness fills per second at good heat
-const BURN_RATE       := 0.055  # burn fills at high heat
-const FLIP_WINDOW_MIN := 0.38
-const FLIP_WINDOW_MAX := 0.72
+const MOVE_SPEED := 300.0
+const FLASH_SPEED := 2.0  # Flashes per second
+const CARRY_SCALE := 1.15  # 15% bigger when carrying
+const SMOKE_ANIM_SPEED := 5.0  # Smoke frames per second
 
-var _heat: float = 0.25
-var _doneness: float = 0.0
-var _burn: float = 0.0
-var _flipped: bool = false
-var _flip_count: int = 0
-var _total_good_heat_time: float = 0.0
-var _elapsed: float = 0.0
-var _flip_skill: float = 0.0
+# Cooking state durations (each state lasts 7 seconds, total 28 seconds to burnt)
+const STATE_DURATION := 7.0
 
-var _heat_bar: ProgressBar
-var _done_bar: ProgressBar
-var _burn_bar: ProgressBar
-var _lbl_timer: Label
-var _lbl_status: Label
-var _lbl_instruction: Label
-var _result_label: Label
-var _flame_label: Label
-var _food_label: Label
+# States: 0 = raw, 1 = rare, 2 = medium, 3 = cooked, 4 = burnt
+enum COOK_STATES { RAW, RARE, MEDIUM, COOKED, BURNT }
+
+# State points: raw=0, rare=20, medium=40, cooked=100, burnt=0
+const STATE_POINTS = [0, 20, 40, 100, 0]
+
+# Bounds (left half 640x720)
+const EGGPLANT_W := 150.0
+const EGGPLANT_H := 200.0
+const BOUNDS_LEFT := 0.0
+const BOUNDS_RIGHT := 640.0 - EGGPLANT_W
+const BOUNDS_TOP := 0.0
+const BOUNDS_BOTTOM := 720.0 - EGGPLANT_H
+
+# Stove position and size (updated from the scene file!
+const STOVE_X := 28.0
+const STOVE_Y := 266.0
+const STOVE_W := 379.78848
+const STOVE_H := 227.0
+
+# Plate position and size
+const PLATE_X := 490.0
+const PLATE_Y := 250.0
+const PLATE_W := 141.0
+const PLATE_H := 200.0
+
+# Progress bar positions
+const BAR_LEFT := 40.0
+const BAR_RIGHT := 600.0
+const BAR_A_TOP := 80.0
+const BAR_A_BOTTOM := 100.0
+const BAR_B_TOP := 110.0
+const BAR_B_BOTTOM := 130.0
+
+# Game states
+enum GAME_STATES { EGGPLANT_ON_PLATE, EGGPLANT_CARRYING, EGGPLANT_ON_STOVE }
+
+var _game_state: int = GAME_STATES.EGGPLANT_ON_PLATE
+var _eggplant_pos: Vector2 = Vector2.ZERO
+var _current_side: int = 0  # 0 = Side A, 1 = Side B
+var _side_progress: Array[float] = [0.0, 0.0]  # [Side A progress, Side B progress] (0.0 to 4.0)
+var _done: bool = false
+var _finish_timer: float = 0.0
+var _flash_timer: float = 0.0  # Timer for flashing effect
+var _smoke_timer: float = 0.0  # Timer for smoke animation
+
+var _eggplant_tex_sideA: Array = []
+var _eggplant_tex_sideB: Array = []
+var _stove_tex_normal: Texture2D
+var _stove_tex_hover: Texture2D
+var _stove_tex_red: Texture2D
+var _smoke_tex: Array = []
+
+@onready var _lbl_timer: Label = $TimerLabel
+@onready var _result_label: Label = $ResultLabel
+@onready var _eggplant_img: TextureRect = $Eggplant
+@onready var _stove_img: TextureRect = $Stove
+@onready var _stove_red_img: TextureRect = $StoveRed
+@onready var _smoke_img: TextureRect = $Smoke
+@onready var _barA_fill: ColorRect = $SideABarFill
+@onready var _barB_fill: ColorRect = $SideBBarFill
+@onready var _barA_bg: ColorRect = $SideABarBg
+@onready var _barB_bg: ColorRect = $SideBBarBg
+@onready var _marker1_A: ColorRect = $Marker1A
+@onready var _marker2_A: ColorRect = $Marker2A
+@onready var _marker3_A: ColorRect = $Marker3A
+@onready var _marker4_A: ColorRect = $Marker4A
+@onready var _marker1_B: ColorRect = $Marker1B
+@onready var _marker2_B: ColorRect = $Marker2B
+@onready var _marker3_B: ColorRect = $Marker3B
+@onready var _marker4_B: ColorRect = $Marker4B
 
 func _on_init() -> void:
-	_heat = 0.25
-	_doneness = 0.0
-	_burn = 0.0
-	_flipped = false
-	_flip_count = 0
-	_total_good_heat_time = 0.0
-	_elapsed = 0.0
-
-	var bg = make_panel_bg(Vector2(640, 720))
-	add_child(bg)
-
-	var title = make_label("🍳  IPRITO!  (Fry!)", 22, Color(1.0, 0.87, 0.3))
-	title.position = Vector2(20, 14)
-	add_child(title)
-
-	_lbl_instruction = make_label(step_data.get("instruction", ""), 13, Color(0.95, 0.92, 0.82))
-	_lbl_instruction.position = Vector2(20, 50)
-	_lbl_instruction.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_lbl_instruction.custom_minimum_size.x = 600
-	add_child(_lbl_instruction)
-
-	# Pan visual area
-	var pan_bg = ColorRect.new()
-	pan_bg.color = Color(0.22, 0.20, 0.22)
-	pan_bg.size = Vector2(220, 120)
-	pan_bg.position = Vector2(210, 160)
-	add_child(pan_bg)
-
-	_flame_label = make_label("🔥", 36, Color(1, 0.6, 0.1))
-	_flame_label.position = Vector2(280, 265)
-	add_child(_flame_label)
-
-	_food_label = make_label("🥩", 42, Color(1, 1, 1))
-	_food_label.position = Vector2(278, 180)
-	add_child(_food_label)
-
-	# Heat bar
-	var hlbl = make_label("HEAT  (↑ UP / ↓ DOWN):", 13, Color(0.9, 0.9, 0.9))
-	hlbl.position = Vector2(20, 360)
-	add_child(hlbl)
-
-	_heat_bar = make_progress_bar(100.0, Color(0.9, 0.4, 0.1))
-	_heat_bar.position = Vector2(20, 385)
-	_heat_bar.custom_minimum_size = Vector2(420, 20)
-	add_child(_heat_bar)
-
-	# Sweet spot overlay on heat bar
-	var ss = ColorRect.new()
-	ss.color = Color(0.2, 1.0, 0.3, 0.35)
-	ss.size = Vector2(int(420 * (TARGET_HEAT_MAX - TARGET_HEAT_MIN)), 20)
-	ss.position = Vector2(20 + int(420 * TARGET_HEAT_MIN), 385)
-	add_child(ss)
-
-	var ss_lbl = make_label("IDEAL HEAT ZONE", 9, Color(0.2, 1.0, 0.3))
-	ss_lbl.position = Vector2(ss.position.x, 407)
-	add_child(ss_lbl)
-
-	# Doneness bar
-	var dlbl = make_label("DONENESS:", 13, Color(0.9, 0.9, 0.9))
-	dlbl.position = Vector2(20, 430)
-	add_child(dlbl)
-
-	_done_bar = make_progress_bar(100.0, Color(0.8, 0.55, 0.1))
-	_done_bar.position = Vector2(20, 455)
-	_done_bar.custom_minimum_size = Vector2(420, 20)
-	add_child(_done_bar)
-
-	# Flip window markers on doneness bar
-	var fw = ColorRect.new()
-	fw.color = Color(0.3, 0.8, 1.0, 0.35)
-	fw.size = Vector2(int(420 * (FLIP_WINDOW_MAX - FLIP_WINDOW_MIN)), 20)
-	fw.position = Vector2(20 + int(420 * FLIP_WINDOW_MIN), 455)
-	add_child(fw)
-
-	var fw_lbl = make_label("FLIP ZONE", 9, Color(0.3, 0.8, 1.0))
-	fw_lbl.position = Vector2(fw.position.x, 477)
-	add_child(fw_lbl)
-
-	# Burn bar
-	var blbl = make_label("BURN:", 13, Color(0.9, 0.4, 0.1))
-	blbl.position = Vector2(20, 500)
-	add_child(blbl)
-
-	_burn_bar = make_progress_bar(100.0, Color(0.9, 0.15, 0.1))
-	_burn_bar.position = Vector2(20, 520)
-	_burn_bar.custom_minimum_size = Vector2(420, 14)
-	add_child(_burn_bar)
-
-	_lbl_status = make_label("Keep heat in the green zone!", 16, Color(1, 0.9, 0.2))
-	_lbl_status.position = Vector2(20, 560)
-	add_child(_lbl_status)
-
-	var prompt = make_label("↑/↓ Heat   SPACE/E = Flip", 14, Color(0.75, 0.75, 0.75))
-	prompt.position = Vector2(20, 600)
-	add_child(prompt)
-
-	_lbl_timer = make_label("Time: %.1f" % _time_limit, 15, Color(1.0, 0.6, 0.3))
-	_lbl_timer.position = Vector2(500, 14)
-	add_child(_lbl_timer)
-
-	_result_label = make_label("", 22, Color(1, 0.85, 0.1))
-	_result_label.position = Vector2(200, 660)
+	_game_state = GAME_STATES.EGGPLANT_ON_PLATE
+	_eggplant_pos = Vector2(PLATE_X + (PLATE_W - EGGPLANT_W) / 2, PLATE_Y + (PLATE_H - EGGPLANT_H) / 2)
+	_current_side = 0
+	_side_progress = [0.0, 0.0]
+	_done = false
+	_finish_timer = 0.0
+	_flash_timer = 0.0
+	_smoke_timer = 0.0
+	
 	_result_label.visible = false
-	add_child(_result_label)
+	
+	# Load textures
+	_eggplant_tex_sideA.clear()
+	_eggplant_tex_sideA.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideA_raw.png"))
+	_eggplant_tex_sideA.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideA_rare.png"))
+	_eggplant_tex_sideA.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideA_medium.png"))
+	_eggplant_tex_sideA.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideA_cooked.png"))
+	_eggplant_tex_sideA.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideA_burnt.png"))
+	
+	_eggplant_tex_sideB.clear()
+	_eggplant_tex_sideB.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideB_raw.png"))
+	_eggplant_tex_sideB.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideB_rare.png"))
+	_eggplant_tex_sideB.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideB_medium.png"))
+	_eggplant_tex_sideB.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideB_cooked.png"))
+	_eggplant_tex_sideB.append(load("res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideB_burnt.png"))
+	
+	_stove_tex_normal = load("res://assets/sprites/minigames/Dish1FryMinigame/stove_normal.png")
+	_stove_tex_hover = load("res://assets/sprites/minigames/Dish1FryMinigame/stove_hover.png")
+	_stove_tex_red = load("res://assets/sprites/minigames/Dish1FryMinigame/stove_red.png")
+	
+	_smoke_tex.clear()
+	_smoke_tex.append(load("res://assets/sprites/minigames/Dish1FryMinigame/smoke_1.png"))
+	_smoke_tex.append(load("res://assets/sprites/minigames/Dish1FryMinigame/smoke_2.png"))
+	
+	_stove_img.texture = _stove_tex_normal
+	_stove_red_img.texture = _stove_tex_red
+	_stove_red_img.modulate.a = 0.0
+	_smoke_img.visible = false
+	_update_eggplant_texture()
+	_apply_eggplant_pos()
+	_update_progress_bars()
+	
+	_time_limit = 60.0
+	_lbl_timer.text = "Time: %.1f" % _time_limit
 
 func _on_update(delta: float, _remaining: float) -> void:
-	_elapsed += delta
-
-	# Heat control
-	if Input.is_action_pressed("move_up"):
-		_heat = minf(1.0, _heat + HEAT_UP_RATE * delta)
-	if Input.is_action_pressed("move_down"):
-		_heat = maxf(0.0, _heat - HEAT_DOWN_RATE * delta)
-
-	# Natural heat drift down
-	_heat = maxf(0.0, _heat - HEAT_DRIFT * delta)
-
-	# Doneness / burn
-	if _heat >= TARGET_HEAT_MIN and _heat <= TARGET_HEAT_MAX:
-		_doneness = minf(1.0, _doneness + DONENESS_RATE * delta)
-		_total_good_heat_time += delta
-	elif _heat > TARGET_HEAT_MAX:
-		_doneness = minf(1.0, _doneness + DONENESS_RATE * 0.5 * delta)
-		_burn = minf(1.0, _burn + BURN_RATE * delta)
-
-	_heat_bar.value = _heat * 100.0
-	_done_bar.value = _doneness * 100.0
-	_burn_bar.value = _burn * 100.0
-
-	# Flame feedback
-	if _heat > TARGET_HEAT_MAX:
-		_lbl_status.text = "🔥 Too hot! Lower the heat!"
-		_lbl_status.add_theme_color_override("font_color", Color(1, 0.2, 0.1))
-		_flame_label.text = "🔥🔥"
-	elif _heat < TARGET_HEAT_MIN:
-		_lbl_status.text = "❄️ Too cold! Raise the heat!"
-		_lbl_status.add_theme_color_override("font_color", Color(0.5, 0.8, 1.0))
-		_flame_label.text = ""
-	else:
-		_lbl_status.text = "✅ Perfect heat – keep it there!"
-		_lbl_status.add_theme_color_override("font_color", Color(0.3, 1.0, 0.4))
-		_flame_label.text = "🔥"
-
-	if _burn >= 1.0:
-		_result_label.text = "💀 Nasunog! (Burned!)"
-		_result_label.visible = true
-		complete_minigame(0.05)
+	if _done:
+		_finish_timer -= delta
+		if _finish_timer <= 0.0:
+			_finish_with_score()
 		return
+	
+	# Update flash timer
+	_flash_timer += delta
+	
+	# Check for pick/place (E / Shift)
+	if Input.is_action_just_pressed("wash_faucet"):
+		_handle_pick_place()
+	
+	# Check for flip (Q / ÷)
+	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("wash_next"):
+		_handle_flip()
+	
+	# Handle movement if carrying
+	if _game_state == GAME_STATES.EGGPLANT_CARRYING:
+		_handle_movement(delta)
+		_check_stove_hover()
+	
+	# Handle cooking if on stove
+	var is_cooking := false
+	if _game_state == GAME_STATES.EGGPLANT_ON_STOVE:
+		_side_progress[_current_side] = minf(4.0, _side_progress[_current_side] + delta / STATE_DURATION)
+		_update_progress_bars()
+		_update_eggplant_texture()
+		is_cooking = true
+	
+	# Update visual state of eggplant
+	_update_eggplant_visuals()
+	
+	# Update stove red intensity
+	var total_progress := (_side_progress[0] + _side_progress[1]) / 8.0
+	_stove_red_img.modulate.a = total_progress
+	
+	# Update smoke animation
+	if is_cooking:
+		_smoke_timer += delta
+		_smoke_img.visible = true
+		var smoke_idx := int(floor(_smoke_timer * SMOKE_ANIM_SPEED)) % 2
+		_smoke_img.texture = _smoke_tex[smoke_idx]
+	else:
+		_smoke_img.visible = false
 
-	# Flip
-	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
-		if not _flipped and _doneness >= FLIP_WINDOW_MIN:
-			_flipped = true
-			_flip_count += 1
-			_flip_skill = 1.0 - absf(_doneness - 0.55) * 2.0
-			_food_label.text = "🥩✨"
-			_lbl_status.text = "🎉 Great flip! Keep cooking!"
-		elif _flipped and _doneness >= 0.85:
-			# Done after second side
-			var heat_skill = _total_good_heat_time / _elapsed
-			var skill = (_flip_skill * 0.5 + heat_skill * 0.4 + (1.0 - _burn) * 0.1)
-			_result_label.text = "✨ Luto na! (Done!) ✨"
-			_result_label.visible = true
-			complete_minigame(clampf(skill, 0.0, 1.0))
+func _handle_pick_place() -> void:
+	match _game_state:
+		GAME_STATES.EGGPLANT_ON_PLATE:
+			_game_state = GAME_STATES.EGGPLANT_CARRYING
+		GAME_STATES.EGGPLANT_CARRYING:
+			if _is_on_stove():
+				_game_state = GAME_STATES.EGGPLANT_ON_STOVE
+				_eggplant_pos = Vector2(STOVE_X + (STOVE_W - EGGPLANT_W) / 2, STOVE_Y + (STOVE_H - EGGPLANT_H) / 2)
+				_apply_eggplant_pos()
+			elif _is_on_plate():
+				_game_state = GAME_STATES.EGGPLANT_ON_PLATE
+				_eggplant_pos = Vector2(PLATE_X + (PLATE_W - EGGPLANT_W) / 2, PLATE_Y + (PLATE_H - EGGPLANT_H) / 2)
+				_apply_eggplant_pos()
+				_finish_game()
+			else:
+				pass  # Do nothing if not on stove or plate
+		GAME_STATES.EGGPLANT_ON_STOVE:
+			_game_state = GAME_STATES.EGGPLANT_CARRYING
+
+func _handle_flip() -> void:
+	_current_side = 1 - _current_side
+	_update_eggplant_texture()
+
+func _handle_movement(delta: float) -> void:
+	var dir = Vector2.ZERO
+	if Input.is_action_pressed("move_up"):    dir.y -= 1
+	if Input.is_action_pressed("move_down"):  dir.y += 1
+	if Input.is_action_pressed("move_left"):  dir.x -= 1
+	if Input.is_action_pressed("move_right"): dir.x += 1
+	if dir == Vector2.ZERO: return
+	_eggplant_pos += dir.normalized() * MOVE_SPEED * delta
+	_eggplant_pos.x = clampf(_eggplant_pos.x, BOUNDS_LEFT, BOUNDS_RIGHT)
+	_eggplant_pos.y = clampf(_eggplant_pos.y, BOUNDS_TOP, BOUNDS_BOTTOM)
+	_apply_eggplant_pos()
+
+func _is_on_stove() -> bool:
+	var cx = _eggplant_pos.x + EGGPLANT_W / 2
+	var cy = _eggplant_pos.y + EGGPLANT_H / 2
+	return cx >= STOVE_X and cx <= STOVE_X + STOVE_W and cy >= STOVE_Y and cy <= STOVE_Y + STOVE_H
+
+func _is_on_plate() -> bool:
+	var cx = _eggplant_pos.x + EGGPLANT_W / 2
+	var cy = _eggplant_pos.y + EGGPLANT_H / 2
+	return cx >= PLATE_X and cx <= PLATE_X + PLATE_W and cy >= PLATE_Y and cy <= PLATE_Y + PLATE_H
+
+func _check_stove_hover() -> void:
+	if _is_on_stove():
+		_stove_img.texture = _stove_tex_hover
+	else:
+		_stove_img.texture = _stove_tex_normal
+
+func _update_eggplant_visuals() -> void:
+	if _game_state == GAME_STATES.EGGPLANT_CARRYING:
+		# Flash and scale up when carrying
+		var flash_t = (_flash_timer * FLASH_SPEED)
+		var alpha = 0.5 + 0.5 * sin(flash_t * PI * 2.0)
+		_eggplant_img.modulate.a = alpha
+		_eggplant_img.scale = Vector2(CARRY_SCALE, CARRY_SCALE)
+	else:
+		# Normal state
+		_eggplant_img.modulate.a = 1.0
+		_eggplant_img.scale = Vector2(1.0, 1.0)
+
+func _apply_eggplant_pos() -> void:
+	_eggplant_img.offset_left = _eggplant_pos.x
+	_eggplant_img.offset_top = _eggplant_pos.y
+	_eggplant_img.offset_right = _eggplant_pos.x + EGGPLANT_W
+	_eggplant_img.offset_bottom = _eggplant_pos.y + EGGPLANT_H
+
+func _update_eggplant_texture() -> void:
+	var state_idx = int(floor(_side_progress[_current_side]))
+	state_idx = clamp(state_idx, 0, 4)
+	if _current_side == 0:
+		_eggplant_img.texture = _eggplant_tex_sideA[state_idx]
+	else:
+		_eggplant_img.texture = _eggplant_tex_sideB[state_idx]
+
+func _update_progress_bars() -> void:
+	# Side A bar
+	var progressA = clampf(_side_progress[0] / 4.0, 0.0, 1.0)
+	var bar_wA = (BAR_RIGHT - BAR_LEFT) * progressA
+	_barA_fill.offset_left = BAR_LEFT
+	_barA_fill.offset_top = BAR_A_TOP
+	_barA_fill.offset_right = BAR_LEFT + bar_wA
+	_barA_fill.offset_bottom = BAR_A_BOTTOM
+	
+	# Side B bar
+	var progressB = clampf(_side_progress[1] / 4.0, 0.0, 1.0)
+	var bar_wB = (BAR_RIGHT - BAR_LEFT) * progressB
+	_barB_fill.offset_left = BAR_LEFT
+	_barB_fill.offset_top = BAR_B_TOP
+	_barB_fill.offset_right = BAR_LEFT + bar_wB
+	_barB_fill.offset_bottom = BAR_B_BOTTOM
+
+func _finish_game() -> void:
+	_done = true
+	_finish_timer = 1.5
+	_result_label.visible = true
+	var stateA = int(floor(_side_progress[0]))
+	stateA = clamp(stateA, 0, 4)
+	var stateB = int(floor(_side_progress[1]))
+	stateB = clamp(stateB, 0, 4)
+	var scoreA = STATE_POINTS[stateA]
+	var scoreB = STATE_POINTS[stateB]
+	_result_label.text = "Cooking done!\nSide A: %d pts | Side B: %d pts" % [scoreA, scoreB]
+
+func _finish_with_score() -> void:
+	var stateA = int(floor(_side_progress[0]))
+	stateA = clamp(stateA, 0, 4)
+	var stateB = int(floor(_side_progress[1]))
+	stateB = clamp(stateB, 0, 4)
+	var scoreA = STATE_POINTS[stateA]
+	var scoreB = STATE_POINTS[stateB]
+	var total = (scoreA + scoreB) / 200.0  # Normalize to 0-1
+	complete_minigame(clampf(total, 0.0, 1.0))
 
 func _update_timer_display(remaining: float) -> void:
 	if _lbl_timer:
@@ -205,6 +297,4 @@ func _update_timer_display(remaining: float) -> void:
 			_lbl_timer.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
 
 func _force_finish() -> void:
-	var heat_skill = _total_good_heat_time / maxf(1.0, _elapsed)
-	var skill = heat_skill * 0.7 + (_flip_skill * 0.3 if _flipped else 0.0)
-	complete_minigame(clampf(skill * (_doneness), 0.0, 1.0))
+	_finish_with_score()

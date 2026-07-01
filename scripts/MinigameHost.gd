@@ -13,9 +13,12 @@ const MINIGAME_SCENES = {
 	"add_to_bowl":    preload("res://scenes/minigames/AddToBowlMinigame.tscn"),
 	"cook_rice":      preload("res://scenes/minigames/CookRiceMinigame.tscn"),
 	"prick_season":   preload("res://scenes/minigames/PrickSeasonMinigame.tscn"),
+	"peel":           preload("res://scenes/minigames/PeelMinigame.tscn"),
+	"mash":           preload("res://scenes/minigames/MashMinigame.tscn"),
 }
 
 var _active_minigame: MinigameBase = null
+var _minigame_container: Control = null
 var _step_index: int = -1
 
 signal minigame_done(step_index: int, skill_ratio: float, time_ratio: float)
@@ -24,12 +27,24 @@ func launch(step: Dictionary, step_index: int) -> void:
 	if _active_minigame:
 		_active_minigame.queue_free()
 		_active_minigame = null
+	if _minigame_container:
+		_minigame_container.queue_free()
+		_minigame_container = null
 
 	var mg_id: String = step.get("minigame", "plate")
 	var mg_scene = MINIGAME_SCENES.get(mg_id, MINIGAME_SCENES["plate"])
 
+	_minigame_container = Control.new()
+	_minigame_container.name = "MinigameContainer"
+	_minigame_container.custom_minimum_size = Vector2(640, 720)
+	_minigame_container.offset_left = 0
+	_minigame_container.offset_top = 0
+	_minigame_container.offset_right = 640
+	_minigame_container.offset_bottom = 720
+	add_child(_minigame_container)
+
 	var mg = mg_scene.instantiate()
-	add_child(mg)
+	_minigame_container.add_child(mg)
 	_active_minigame = mg
 	_step_index = step_index
 

@@ -1,8 +1,23 @@
-[gd_scene format=3 uid="uid://bmgcookrice01"]
+[gd_scene format=3 uid="uid://c3f1432mx7mk3"]
 
-[ext_resource type="Script" path="res://scripts/minigames/CookRiceMinigame.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bajs1tkflsk2x" path="res://scripts/minigames/CookRiceMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/assets/HUD/topHUD.png" id="2_s2d2d"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="2_title"]
+[ext_resource type="Texture2D" uid="uid://clbi1djoxscps" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookricebg.png" id="2_x4612"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="3_body"]
+[ext_resource type="Texture2D" uid="uid://wde6sk1j6ypu" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_start.png" id="4_popup_start"]
+[ext_resource type="Texture2D" uid="uid://gft4bguxtnpm" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/sack_rice.png" id="12_sack_rice"]
+[ext_resource type="Texture2D" uid="uid://ct20xbfjij5rp" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/pail_water.png" id="13_pail_water"]
+[ext_resource type="Texture2D" uid="uid://6ueankpyxgl" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/ricecooker_closed.png" id="14_ricecooker_closed"]
+[ext_resource type="Texture2D" uid="uid://swf8wpekmkhb" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/arrow_up.png" id="15_arrow_up"]
+[ext_resource type="Texture2D" uid="uid://b2she6407ekud" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cup_empty.png" id="16_cup_empty"]
+[ext_resource type="Texture2D" uid="uid://d0kdk1pg72rng" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/hand_point.png" id="17_hand_point"]
+[ext_resource type="Texture2D" uid="uid://vmett4cmfdo1" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png" id="18_popup_bg"]
+[ext_resource type="Texture2D" uid="uid://bi81lednwatup" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_awesome.png" id="20_cookfeedback_awesome"]
+[ext_resource type="Texture2D" uid="uid://bwwn0vw5kc7c2" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_great.png" id="21_cookfeedback_great"]
+[ext_resource type="Texture2D" uid="uid://bcahx0i4kyq5s" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_timebetter.png" id="22_cookfeedback_timebetter"]
 
-[node name="CookRiceMinigame" type="Control"]
+[node name="CookRiceMinigame" type="Control" unique_id=1866351124]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +25,372 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+
+[node name="TopHUD" type="TextureRect" parent="." unique_id=1048147589]
+z_index = 1
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 736.0
+texture = ExtResource("2_s2d2d")
+
+[node name="BackgroundTop" type="ColorRect" parent="." unique_id=1847633677]
+visible = false
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 400.0
+color = Color(0.42352942, 0.28627452, 0.21176471, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1655935148]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 720.0
+texture = ExtResource("2_x4612")
+
+[node name="BackgroundBottom" type="ColorRect" parent="." unique_id=1841866042]
+visible = false
+layout_mode = 0
+offset_top = 400.0
+offset_right = 640.0
+offset_bottom = 720.0
+color = Color(0.7921569, 0.654902, 0.16862746, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=2112691151]
+z_index = 2
+layout_mode = 0
+offset_left = 61.0
+offset_top = 19.0
+offset_right = 391.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_title")
+theme_override_font_sizes/font_size = 29
+text = "Cook the Rice"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=2031094059]
+z_index = 2
+layout_mode = 0
+offset_left = 417.0
+offset_top = 27.0
+offset_right = 572.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.7, 0.62976664, 0.09799999, 1)
+theme_override_fonts/font = ExtResource("3_body")
+theme_override_font_sizes/font_size = 25
+text = "Time: 60.0"
+horizontal_alignment = 2
+
+[node name="SackRice" type="TextureRect" parent="." unique_id=907683238]
+z_index = 1
+layout_mode = 0
+offset_left = 399.0
+offset_top = 101.0
+offset_right = 539.0
+offset_bottom = 241.0
+scale = Vector2(2, 2)
+texture = ExtResource("12_sack_rice")
+stretch_mode = 5
+
+[node name="PailWater" type="TextureRect" parent="." unique_id=970449877]
+z_index = 1
+layout_mode = 0
+offset_left = 399.0
+offset_top = 331.0
+offset_right = 539.0
+offset_bottom = 471.0
+scale = Vector2(2, 2)
+texture = ExtResource("13_pail_water")
+stretch_mode = 5
+
+[node name="RiceCookerSprite" type="TextureRect" parent="." unique_id=465660912]
+z_index = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 108.0
+offset_right = 391.0
+offset_bottom = 537.41455
+texture = ExtResource("14_ricecooker_closed")
+stretch_mode = 5
+
+[node name="ArrowSprite" type="TextureRect" parent="." unique_id=1166365981]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = 159.0
+offset_top = 166.0
+offset_right = 239.0
+offset_bottom = 266.0
+texture = ExtResource("15_arrow_up")
+stretch_mode = 5
+
+[node name="CupSprite" type="TextureRect" parent="." unique_id=1160384837]
+z_index = 2
+layout_mode = 0
+offset_left = 341.0
+offset_top = 482.0
+offset_right = 401.0
+offset_bottom = 572.0
+texture = ExtResource("16_cup_empty")
+stretch_mode = 5
+
+[node name="HandSprite" type="TextureRect" parent="." unique_id=1198603888]
+z_index = 4
+layout_mode = 0
+offset_left = 300.0
+offset_top = 470.0
+offset_right = 356.0
+offset_bottom = 526.0
+texture = ExtResource("17_hand_point")
+stretch_mode = 5
+
+[node name="PopupBox" type="Control" parent="." unique_id=2108466759]
+visible = false
+z_index = 5
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 400.0
+offset_right = 580.0
+offset_bottom = 500.0
+pivot_offset = Vector2(260, 50)
+
+[node name="PopupBg" type="TextureRect" parent="PopupBox" unique_id=260066846]
+layout_mode = 0
+offset_right = 520.0
+offset_bottom = 100.0
+texture = ExtResource("18_popup_bg")
+stretch_mode = 5
+
+[node name="PopupLabel" type="Label" parent="PopupBox" unique_id=1694687675]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 504.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.25, 0.16, 0.06, 1)
+theme_override_fonts/font = ExtResource("3_body")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartPopup" type="Control" parent="." unique_id=738291047]
+visible = false
+z_index = 6
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -60.0
+offset_right = 260.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartPopupBg" type="TextureRect" parent="StartPopup" unique_id=829103746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_popup_start")
+
+[node name="StartPopupLabel" type="Label" parent="StartPopup" unique_id=392018472]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_body")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CookingMeter" type="Control" parent="." unique_id=1606696996]
+z_index = 2
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 720.0
+
+[node name="MeterBg" type="ColorRect" parent="CookingMeter" unique_id=520637559]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 585.0
+offset_right = 405.0
+offset_bottom = 617.0
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="MeterCaption" type="Label" parent="CookingMeter" unique_id=1710179820]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 620.0
+offset_right = 400.0
+offset_bottom = 642.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_body")
+theme_override_font_sizes/font_size = 21
+text = "COOKING METER"
+horizontal_alignment = 2
+
+[node name="Track" type="ColorRect" parent="CookingMeter" unique_id=501373699]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 590.0
+offset_right = 400.0
+offset_bottom = 612.0
+color = Color(0.22, 0.15, 0.08, 1)
+
+[node name="ZoneYellow" type="ColorRect" parent="CookingMeter" unique_id=2011499668]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 590.0
+offset_right = 225.0
+offset_bottom = 612.0
+color = Color(0.95, 0.82, 0.2, 1)
+
+[node name="ZoneGreen" type="ColorRect" parent="CookingMeter" unique_id=1120794680]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 590.0
+offset_right = 210.0
+offset_bottom = 612.0
+color = Color(0.25, 0.8, 0.3, 1)
+
+[node name="ZoneWhiteLeft" type="ColorRect" parent="CookingMeter" unique_id=1277284562]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 590.0
+offset_right = 175.0
+offset_bottom = 612.0
+
+[node name="ZoneWhiteRight" type="ColorRect" parent="CookingMeter" unique_id=1969014317]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 590.0
+offset_right = 400.0
+offset_bottom = 612.0
+
+[node name="MarkerCircle" type="ColorRect" parent="CookingMeter" unique_id=1212771134]
+z_index = 1
+layout_mode = 0
+offset_left = 29.0
+offset_top = 590.0
+offset_right = 51.0
+offset_bottom = 612.0
+color = Color(0, 0, 0, 1)
+
+[node name="MarkerInner" type="ColorRect" parent="CookingMeter" unique_id=2100846531]
+z_index = 2
+layout_mode = 0
+offset_left = 31.0
+offset_top = 592.0
+offset_right = 49.0
+offset_bottom = 610.0
+color = Color(0.85, 0.15, 0.1, 1)
+
+[node name="CookTimerBg" type="ColorRect" parent="CookingMeter" unique_id=250779171]
+z_index = -1
+layout_mode = 0
+offset_left = 25.0
+offset_top = 579.0
+offset_right = 415.0
+offset_bottom = 652.0
+color = Color(0.16127142, 0.042006046, 0, 1)
+
+[node name="CookTimerLabel" type="Label" parent="." unique_id=1258903697]
+z_index = 2
+layout_mode = 0
+offset_left = 40.0
+offset_top = 613.0
+offset_right = 141.0
+offset_bottom = 651.0
+theme_override_colors/font_color = Color(0.85, 0.15, 0.1, 1)
+theme_override_fonts/font = ExtResource("2_title")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="CookFeedback" type="Control" parent="." unique_id=987654321]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = 410.0
+offset_top = 585.0
+offset_right = 540.0
+offset_bottom = 620.0
+
+[node name="CookFeedbackAwesome" type="TextureRect" parent="CookFeedback" unique_id=987654322]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.142853
+offset_top = 3.0
+offset_right = 96.57141
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_cookfeedback_awesome")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CookFeedbackGreat" type="TextureRect" parent="CookFeedback" unique_id=987654323]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.857132
+offset_top = 4.0
+offset_right = 96.57141
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_cookfeedback_great")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CookFeedbackTimeBetter" type="TextureRect" parent="CookFeedback" unique_id=987654324]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.140839
+offset_top = -35.0
+offset_right = 93.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_cookfeedback_timebetter")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HintLabel" type="Label" parent="." unique_id=793470659]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 662.0
+offset_right = 617.0
+offset_bottom = 711.0
+theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
+theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("3_body")
+theme_override_font_sizes/font_size = 22
+text = "WASD/Arrows move hand  |  Hold Q/÷ to grab / open
+A/D or Left/Right to steer the cooking marker!"
+horizontal_alignment = 1
+vertical_alignment = 1

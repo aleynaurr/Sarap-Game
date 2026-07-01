@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://citpgnyk5g7ma" path="res://scripts/dish_recipe.gd" id="1_qln52"]
 [ext_resource type="Script" uid="uid://bdl8acikdlbsq" path="res://scripts/dish_step.gd" id="2_w3a3p"]
-[ext_resource type="PackedScene" uid="uid://j0hm3doy6p7b" path="res://scenes/minigames/dish1Cook1.tscn" id="3_w3a3p"]
+[ext_resource type="PackedScene" uid="uid://bmgfry01" path="res://scenes/minigames/FryMinigame.tscn" id="3_w3a3p"]
 
 [sub_resource type="Resource" id="Resource_nuaw5"]
 script = ExtResource("2_w3a3p")

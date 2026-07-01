@@ -32,7 +32,7 @@ const RECIPES: Dictionary = {
 			"id": "grill_talong",
 			"name": "Grill & Peel Eggplant",
 			"station": "cooking",
-			"minigame": "simmer",
+			"minigame": "fry",
 			"ingredients": ["icon_eggplant"],
 			"instruction": "Hold the eggplant over the flame!\nKeep the bar in the sweet spot to char it evenly.",
 			"time_limit": 25.0,
@@ -393,7 +393,7 @@ then rub with salt, pepper, and oil.",
 			"id": "grill_eggplant",
 			"name": "Grill Eggplant",
 			"station": "cooking",
-			"minigame": "simmer",
+			"minigame": "fry",
 			"ingredients": ["icon_eggplant"],
 			"instruction": "Grill the eggplants over charcoal!
 Keep the heat steady and turn them to char both sides.",
@@ -453,18 +453,23 @@ the smoky coconut liquid to a clean bowl.",
 			"required": true
 		},
 		{
-			"id": "peel_mash_eggplant",
-			"name": "Peel and Mash Eggplant",
-			"station": "working",
-			"minigame": "add_to_bowl",
+			"id": "peel_eggplant",
+			"name": "Peel Eggplant",
+			"station": "chopping",
+			"minigame": "peel",
 			"ingredients": ["icon_eggplant"],
-			"actions": [
-				{"label": "Peel the charred skin off the eggplant", "emoji": "🍆"},
-				{"label": "Mash the eggplant with a fork", "emoji": "🍴"}
-			],
-			"instruction": "Peel away the charred skin,
-then mash the soft flesh with a fork.",
-			"time_limit": 20.0,
+			"instruction": "Peel away the charred skin from the grilled eggplant.",
+			"time_limit": 15.0,
+			"required": true
+		},
+		{
+			"id": "mash_eggplant",
+			"name": "Mash Eggplant",
+			"station": "working",
+			"minigame": "mash",
+			"ingredients": ["icon_eggplant"],
+			"instruction": "Mash the soft eggplant flesh into a smooth texture.",
+			"time_limit": 15.0,
 			"required": true
 		},
 		{

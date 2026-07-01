@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://bmgpeel01"]
+
+[ext_resource type="Script" uid="uid://bei1ljkgi6vc1" path="res://scripts/minigames/PeelMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://wfccklxjb1u6" path="res://assets/sprites/minigames/Dish1PeelMinigame/workingbg.png" id="2_o0jdy"]
+[ext_resource type="Script" uid="uid://cboubvx7mcndx" path="res://scripts/minigames/PathDraw.gd" id="2_pathdraw"]
+[ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="3_hud"]
+[ext_resource type="Texture2D" uid="uid://cux0wb43phdar" path="res://assets/sprites/minigames/Dish1PeelMinigame/plate.png" id="3_v6ikw"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="4_titlefont"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="5_uifont"]
+[ext_resource type="Texture2D" uid="uid://deqxb3x68svbl" path="res://assets/sprites/minigames/Dish1PeelMinigame/eggplantpeel_00.png" id="6_egg0"]
+[ext_resource type="Texture2D" uid="uid://crdyg3r788ix6" path="res://assets/sprites/minigames/Dish1PeelMinigame/hand_open.png" id="7_handopen"]
+
+[node name="PeelMinigame" type="Control" unique_id=224457882]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1900433359]
+z_index = 1
+layout_mode = 0
+offset_top = -3.0
+offset_right = 613.0
+offset_bottom = 636.0
+texture = ExtResource("3_hud")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1510639359]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 639.0
+offset_bottom = 720.0
+texture = ExtResource("2_o0jdy")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1616379244]
+z_index = 1
+layout_mode = 0
+offset_left = 113.0
+offset_top = 272.0
+offset_right = 513.0
+offset_bottom = 562.0
+texture = ExtResource("3_v6ikw")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1503382280]
+visible = false
+layout_mode = 0
+offset_top = -3.0
+offset_right = 640.0
+offset_bottom = 720.0
+color = Color(0.46, 0.32, 0.13, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=952781320]
+z_index = 2
+layout_mode = 0
+offset_left = 53.0
+offset_top = 16.0
+offset_right = 523.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_titlefont")
+theme_override_font_sizes/font_size = 24
+text = "Peel the Eggplant"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=656664343]
+z_index = 2
+layout_mode = 0
+offset_left = 410.0
+offset_top = 23.0
+offset_right = 545.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.7, 0.62976664, 0.09799999, 1)
+theme_override_fonts/font = ExtResource("5_uifont")
+theme_override_font_sizes/font_size = 19
+text = "Time: 45.0"
+horizontal_alignment = 2
+
+[node name="ProgressBg" type="ColorRect" parent="." unique_id=1347481296]
+z_index = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 88.0
+offset_right = 72.0
+offset_bottom = 492.0
+color = Color(0.15, 0.1, 0.06, 1)
+
+[node name="ProgressBg2" type="ColorRect" parent="." unique_id=1868718252]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 82.0
+offset_right = 78.0
+offset_bottom = 517.0
+color = Color(0.06100273, 0.034361083, 0.015836582, 1)
+
+[node name="ProgressFill" type="ColorRect" parent="." unique_id=1729726427]
+z_index = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 490.0
+offset_right = 70.0
+offset_bottom = 490.0
+color = Color(0.3, 0.85, 0.4, 1)
+
+[node name="ProgressLabel" type="Label" parent="." unique_id=646225526]
+z_index = 2
+layout_mode = 0
+offset_left = 4.0
+offset_top = 498.0
+offset_right = 84.0
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_uifont")
+theme_override_font_sizes/font_size = 16
+text = "PEELED"
+horizontal_alignment = 1
+
+[node name="EggplantArea" type="Control" parent="." unique_id=1101023085]
+anchors_preset = 0
+offset_left = 130.0
+offset_top = 100.0
+offset_right = 570.0
+offset_bottom = 520.0
+
+[node name="EggplantSprite" type="TextureRect" parent="EggplantArea" unique_id=1778504510]
+z_index = 1
+layout_mode = 0
+offset_left = 54.0
+offset_top = -51.0
+offset_right = 274.0
+offset_bottom = 369.0
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_egg0")
+stretch_mode = 5
+
+[node name="PathDraw" type="Control" parent="EggplantArea" unique_id=399535118]
+z_index = 3
+anchors_preset = 0
+offset_left = 120.0
+offset_top = 58.0
+offset_right = 253.0
+offset_bottom = 341.0
+mouse_filter = 2
+script = ExtResource("2_pathdraw")
+
+[node name="HandSprite" type="TextureRect" parent="EggplantArea" unique_id=402112531]
+z_index = 4
+layout_mode = 0
+offset_left = 150.0
+offset_top = -60.0
+offset_right = 311.0
+offset_bottom = 101.0
+texture = ExtResource("7_handopen")
+stretch_mode = 5
+
+[node name="PopupSprite" type="TextureRect" parent="." unique_id=1392948805]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = 160.0
+offset_top = 260.0
+offset_right = 480.0
+offset_bottom = 400.0
+scale = Vector2(2, 2)
+stretch_mode = 5
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1944656486]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = 55.0
+offset_top = 620.0
+offset_right = 590.0
+offset_bottom = 660.0
+theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HintLabel" type="Label" parent="." unique_id=483483096]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 646.0
+offset_right = 620.0
+offset_bottom = 701.0
+theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
+theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("5_uifont")
+theme_override_font_sizes/font_size = 25
+text = "WASD/Arrows move hand
+ Hold Q/÷ to pinch & peel along the line"
+horizontal_alignment = 1
