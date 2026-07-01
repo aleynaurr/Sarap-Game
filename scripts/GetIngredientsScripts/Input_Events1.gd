@@ -1,0 +1,27 @@
+class_name GI_Input_Events1
+
+static var direction: Vector2
+static var last_direction: Vector2 = Vector2.DOWN
+
+static func movement_input() -> Vector2:
+	if Input.is_action_pressed("p1_up"):
+		direction = Vector2.UP
+	elif Input.is_action_pressed("p1_down"):
+		direction = Vector2.DOWN
+	elif Input.is_action_pressed("p1_left"):
+		direction = Vector2.LEFT
+	elif Input.is_action_pressed("p1_right"):
+		direction = Vector2.RIGHT
+	else:
+		direction = Vector2.ZERO
+
+	if direction != Vector2.ZERO:
+		last_direction = direction
+
+	return direction
+	
+static func is_movement_input() -> bool:
+	if direction == Vector2.ZERO:
+		return false
+	else:
+		return true
