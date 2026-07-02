@@ -62,8 +62,21 @@ var _stove_tex_hover: Texture2D
 var _stove_tex_red: Texture2D
 var _smoke_tex: Array = []
 
+# Popup images (start / done / fail)
+@export var popup_start_tex: Texture2D = preload("res://assets/sprites/minigames/Dish1FryMinigame/popup_start.png")
+@export var popup_done_tex:  Texture2D = preload("res://assets/sprites/minigames/Dish1FryMinigame/popup_done.png")
+@export var popup_fail_tex:  Texture2D = preload("res://assets/sprites/minigames/Dish1FryMinigame/popup_fail.png")
+
+# Adjust this value to change popup size (1.0 = original, 1.8 = previous big, 1.4 = middle ground)
+@export var popup_scale: float = 1.4
+
+var _end_popup_shown: bool = false
+
 @onready var _lbl_timer: Label = $TimerLabel
 @onready var _result_label: Label = $ResultLabel
+@onready var _start_popup:  Control     = $StartPopup
+@onready var _end_popup:    Control     = $EndPopup
+@onready var _end_popup_bg: TextureRect = $EndPopup/EndPopupBg
 @onready var _eggplant_img: TextureRect = $Eggplant
 @onready var _stove_img: TextureRect = $Stove
 @onready var _stove_red_img: TextureRect = $StoveRed
@@ -90,8 +103,11 @@ func _on_init() -> void:
 	_finish_timer = 0.0
 	_flash_timer = 0.0
 	_smoke_timer = 0.0
+	_end_popup_shown = false
 	
 	_result_label.visible = false
+	_start_popup.visible = false
+	_end_popup.visible = false
 	
 	# Load textures
 	_eggplant_tex_sideA.clear()
@@ -126,6 +142,34 @@ func _on_init() -> void:
 	
 	_time_limit = 60.0
 	_lbl_timer.text = "Time: %.1f" % _time_limit
+
+	_show_start_popup()
+
+# ─── Popups (start / done / fail) ────────────────────────────────────────────
+func _show_start_popup() -> void:
+	_start_popup.visible = true
+	_start_popup.scale   = Vector2(0.1, 0.1)
+
+	var tw := create_tween()
+	tw.tween_property(_start_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_start_popup, "scale", Vector2(popup_scale, popup_scale), 0.1)
+
+	var hide_tw := create_tween()
+	hide_tw.tween_interval(3.0)
+	hide_tw.tween_property(_start_popup, "scale", Vector2(0.1, 0.1), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	hide_tw.tween_callback(func(): _start_popup.visible = false)
+
+func _show_end_popup(success: bool) -> void:
+	if _end_popup_shown:
+		return
+	_end_popup_shown = true
+	_end_popup_bg.texture = popup_done_tex if success else popup_fail_tex
+	_end_popup.visible = true
+	_end_popup.scale   = Vector2(0.1, 0.1)
+
+	var tw := create_tween()
+	tw.tween_property(_end_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_end_popup, "scale", Vector2(popup_scale, popup_scale), 0.1)
 
 func _on_update(delta: float, _remaining: float) -> void:
 	if _done:
@@ -167,6 +211,7 @@ func _on_update(delta: float, _remaining: float) -> void:
 	
 	# Update smoke animation
 	if is_cooking:
+		_stove_img.texture = _stove_tex_normal
 		_smoke_timer += delta
 		_smoke_img.visible = true
 		var smoke_idx := int(floor(_smoke_timer * SMOKE_ANIM_SPEED)) % 2
@@ -279,6 +324,7 @@ func _finish_game() -> void:
 	var scoreA = STATE_POINTS[stateA]
 	var scoreB = STATE_POINTS[stateB]
 	_result_label.text = "Cooking done!\nSide A: %d pts | Side B: %d pts" % [scoreA, scoreB]
+	_show_end_popup(true)
 
 func _finish_with_score() -> void:
 	var stateA = int(floor(_side_progress[0]))
@@ -297,4 +343,11 @@ func _update_timer_display(remaining: float) -> void:
 			_lbl_timer.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
 
 func _force_finish() -> void:
-	_finish_with_score()
+	if _done:
+		return
+	# Time ran out before the eggplant was plated — show fail popup, then finish.
+	_result_label.text    = "⏰ Naubusan ng oras!\n(Time's up!)"
+	_result_label.visible = true
+	_done          = true
+	_finish_timer  = 1.6
+	_show_end_popup(false)

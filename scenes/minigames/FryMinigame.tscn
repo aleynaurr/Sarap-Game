@@ -10,6 +10,8 @@
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="6_pixelon"]
 [ext_resource type="Texture2D" uid="uid://c4om8ayvxe4r7" path="res://assets/sprites/minigames/Dish1FryMinigame/stove_red.png" id="7_stove_red"]
 [ext_resource type="Texture2D" uid="uid://d0cdi6ljyv87b" path="res://assets/sprites/minigames/Dish1FryMinigame/smoke_1.png" id="8_smoke1"]
+[ext_resource type="Texture2D" uid="uid://daq6klhk4qou6" path="res://assets/sprites/minigames/Dish1FryMinigame/popup_start.png" id="9_popup_start"]
+[ext_resource type="Texture2D" uid="uid://cbu4cfpwnlvrq" path="res://assets/sprites/minigames/Dish1FryMinigame/popup_done.png" id="10_popupdone"]
 
 [node name="FryMinigame" type="Control" unique_id=1481078983]
 layout_mode = 3
@@ -298,3 +300,59 @@ theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="StartPopup" type="Control" parent="." unique_id=1711271740]
+visible = false
+z_index = 6
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -70.0
+offset_right = 160.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 70)
+
+[node name="StartPopupBg" type="TextureRect" parent="StartPopup" unique_id=253704923]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_popup_start")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EndPopup" type="Control" parent="." unique_id=1647533020]
+visible = false
+z_index = 6
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -70.0
+offset_right = 160.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 70)
+
+[node name="EndPopupBg" type="TextureRect" parent="EndPopup" unique_id=1974624800]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_popupdone")
+expand_mode = 1
+stretch_mode = 5

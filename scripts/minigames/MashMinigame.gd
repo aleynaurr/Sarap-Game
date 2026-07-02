@@ -27,7 +27,12 @@ const POPUP_IMAGE_PATHS := {
 	"yellow": "res://assets/sprites/minigames/Dish1MashMinigame/popup_yellow.png",
 	"green":  "res://assets/sprites/minigames/Dish1MashMinigame/popup_green.png",
 }
-const POPUP_DONE_IMAGE_PATH := "res://assets/sprites/minigames/Dish1MashMinigame/popup_done.png"
+const POPUP_DONE_IMAGE_PATH  := "res://assets/sprites/minigames/Dish1MashMinigame/popup_done.png"
+const POPUP_START_IMAGE_PATH := "res://assets/sprites/minigames/Dish1MashMinigame/popup_start.png"
+const POPUP_FAIL_IMAGE_PATH  := "res://assets/sprites/minigames/Dish1MashMinigame/popup_fail.png"
+
+# Adjust this value to change popup size (1.0 = original, 1.8 = previous big, 1.4 = middle ground)
+@export var popup_scale: float = 1.4
 
 # ── Marker speed ramps up each line (gets harder) ────────────────────────
 const MARKER_BASE_SPEED := 0.55   # fraction of bar per second, line 0
@@ -69,6 +74,9 @@ const GAUGE_RIGHT  := 60.0
 const GAUGE_TOP    := 90.0
 const GAUGE_BOTTOM := 430.0
 
+const NOMINAL_TIME_LIMIT := 30.0
+const TIME_LIMIT_BUFFER  := 2.0   # extra hidden seconds so the fail popup has time to play before MinigameBase's hard cutoff
+
 var _circle_centers: Array = []
 
 var _fork_picked_up := false
@@ -90,6 +98,7 @@ var _total_points := 0
 var _last_remaining := 30.0
 var _game_done := false
 var _finish_timer := 0.0
+var _failed := false
 
 var _eggplant_tex: Array = []
 
@@ -113,8 +122,12 @@ var _eggplant_tex: Array = []
 @onready var _popup:      Control = $Popup
 @onready var _popup_img:  TextureRect = $Popup/PopupImage
 
+@onready var _start_popup: Control = $StartPopup
+
 var _popup_tex: Dictionary = {}
 var _popup_done_tex: Texture2D = null
+var _popup_start_tex: Texture2D = null
+var _popup_fail_tex: Texture2D = null
 
 
 func _on_init() -> void:
@@ -130,9 +143,10 @@ func _on_init() -> void:
 	_total_points    = 0
 	_game_done       = false
 	_finish_timer    = 0.0
+	_failed          = false
 
-	_time_limit = 30.0
-	_lbl_timer.text = "Time: %.1f" % _time_limit
+	_time_limit = NOMINAL_TIME_LIMIT + TIME_LIMIT_BUFFER
+	_lbl_timer.text = "Time: %.1f" % NOMINAL_TIME_LIMIT
 
 	_eggplant_tex = [
 		load("res://assets/sprites/minigames/Dish1MashMinigame/eggplant_00_unmashed.png"),
@@ -186,10 +200,14 @@ func _on_init() -> void:
 		"yellow": load(POPUP_IMAGE_PATHS["yellow"]),
 		"green":  load(POPUP_IMAGE_PATHS["green"]),
 	}
-	_popup_done_tex = load(POPUP_DONE_IMAGE_PATH)
+	_popup_done_tex  = load(POPUP_DONE_IMAGE_PATH)
+	_popup_start_tex = load(POPUP_START_IMAGE_PATH)
+	_popup_fail_tex  = load(POPUP_FAIL_IMAGE_PATH)
 
 	_popup.visible = false
 	_popup.scale = Vector2(0.1, 0.1)
+
+	_show_start_popup()
 
 
 func _on_update(delta: float, remaining: float) -> void:
@@ -199,6 +217,10 @@ func _on_update(delta: float, remaining: float) -> void:
 		_finish_timer -= delta
 		if _finish_timer <= 0.0:
 			_finish_with_score()
+		return
+
+	if not _failed and remaining <= TIME_LIMIT_BUFFER:
+		_fail_out_of_time()
 		return
 
 	if _busy:
@@ -238,6 +260,7 @@ func _on_update(delta: float, remaining: float) -> void:
 # ════════════════════════════ FORK / MOVEMENT ════════════════════════════
 
 func _pickup_fork() -> void:
+	_hide_start_popup_now()
 	_fork_picked_up = true
 	# Centre computed from the vertical fork's logical (unrotated) box —
 	# this is the same box math used for movement/hover, so the horizontal
@@ -450,12 +473,10 @@ func _show_popup(tex: Texture2D) -> void:
 	_popup.scale = Vector2(0.1, 0.1)
 
 	var t := create_tween()
-	t.tween_property(_popup, "scale", Vector2(1.12, 1.12), 0.16) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	t.tween_property(_popup, "scale", Vector2(1.0, 1.0), 0.10)
+	t.tween_property(_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(_popup, "scale", Vector2(popup_scale, popup_scale), 0.10)
 	t.tween_interval(1.0)
-	t.tween_property(_popup, "scale", Vector2(0.1, 0.1), 0.16) \
-		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	t.tween_property(_popup, "scale", Vector2(0.1, 0.1), 0.16).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	t.tween_callback(Callable(self, "_on_popup_closed"))
 
 
@@ -464,6 +485,66 @@ func _on_popup_closed() -> void:
 	_popup_showing = false
 	_busy = false
 	_advance_line()
+
+
+# ════════════════════════════ START POPUP ═════════════════════════════════
+
+func _show_start_popup() -> void:
+	_start_popup.visible = true
+	_start_popup.scale = Vector2(0.1, 0.1)
+
+	var tw := create_tween()
+	tw.tween_property(_start_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.18) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_start_popup, "scale", Vector2(popup_scale, popup_scale), 0.10)
+
+	# Auto pop back out after a few seconds so it never blocks play.
+	var hide_tw := create_tween()
+	hide_tw.tween_interval(3.0)
+	hide_tw.tween_property(_start_popup, "scale", Vector2(0.1, 0.1), 0.16) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	hide_tw.tween_callback(func(): _start_popup.visible = false)
+
+
+func _hide_start_popup_now() -> void:
+	if not _start_popup.visible:
+		return
+	var tw := create_tween()
+	tw.tween_property(_start_popup, "scale", Vector2(0.1, 0.1), 0.12) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tw.tween_callback(func(): _start_popup.visible = false)
+
+
+# ════════════════════════════ FAIL / TIMEOUT ══════════════════════════════
+
+func _fail_out_of_time() -> void:
+	_failed = true
+	_busy = true
+	_hide_start_popup_now()
+	_mash_power_area.visible = false
+	_bar_marker.visible = false
+	if _mashing:
+		_cancel_mashing()
+		_mashing = false
+
+	_popup_showing = true
+	_popup_img.texture = _popup_fail_tex
+	_popup.visible = true
+	_popup.scale = Vector2(0.1, 0.1)
+
+	var t := create_tween()
+	t.tween_property(_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(_popup, "scale", Vector2(popup_scale, popup_scale), 0.10)
+	t.tween_interval(1.4)
+	t.tween_callback(Callable(self, "_on_fail_popup_closed"))
+
+
+func _on_fail_popup_closed() -> void:
+	_popup.visible = false
+	_popup_showing = false
+	_busy = false
+	_game_done = true
+	_finish_timer = 0.05
 
 
 func _advance_line() -> void:
@@ -489,9 +570,8 @@ func _show_popup_final() -> void:
 	_popup.scale = Vector2(0.1, 0.1)
 
 	var t := create_tween()
-	t.tween_property(_popup, "scale", Vector2(1.12, 1.12), 0.18) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	t.tween_property(_popup, "scale", Vector2(1.0, 1.0), 0.10)
+	t.tween_property(_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(_popup, "scale", Vector2(popup_scale, popup_scale), 0.10)
 	t.tween_interval(1.4)
 	t.tween_callback(Callable(self, "_on_final_popup_closed"))
 
@@ -521,8 +601,9 @@ func _refresh_gauge(fraction: float, instant: bool) -> void:
 
 func _update_timer_display(remaining: float) -> void:
 	if _lbl_timer:
-		_lbl_timer.text = "Time: %.1f" % maxf(0.0, remaining)
-		if remaining < 5.0:
+		var shown := minf(remaining, NOMINAL_TIME_LIMIT)
+		_lbl_timer.text = "Time: %.1f" % maxf(0.0, shown)
+		if shown < 5.0:
 			_lbl_timer.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
 
 
@@ -533,5 +614,5 @@ func _force_finish() -> void:
 func _finish_with_score() -> void:
 	var max_points := float(LINE_COUNT) * 50.0
 	var skill: float = float(_total_points) / max_points
-	var time_bonus: float = (_last_remaining / _time_limit) * 0.1
+	var time_bonus: float = (maxf(0.0, _last_remaining - TIME_LIMIT_BUFFER) / NOMINAL_TIME_LIMIT) * 0.1
 	complete_minigame(clampf(skill + time_bonus, 0.0, 1.0))

@@ -19,6 +19,11 @@ const POPUP_BAD_PATH     := "res://assets/sprites/minigames/Dish1PeelMinigame/po
 const POPUP_GOOD_PATH    := "res://assets/sprites/minigames/Dish1PeelMinigame/popup_good.png"
 const POPUP_AWESOME_PATH := "res://assets/sprites/minigames/Dish1PeelMinigame/popup_awesome.png"
 const POPUP_DONE_PATH    := "res://assets/sprites/minigames/Dish1PeelMinigame/popup_done.png"
+const POPUP_START_PATH   := "res://assets/sprites/minigames/Dish1PeelMinigame/popup_start.png"
+const POPUP_FAIL_PATH    := "res://assets/sprites/minigames/Dish1PeelMinigame/popup_fail.png"
+
+# Adjust this value to change popup size (1.0 = original, 1.8 = previous big, 1.4 = middle ground)
+@export var popup_scale: float = 1.4
 
 # 7 peel actions take the eggplant from stage 0 -> stage 7 (4 right + 3 left)
 const NUM_PEELS := 7
@@ -40,6 +45,9 @@ const THRESHOLD_AWESOME := 0.80
 
 const POPUP_DURATION := 1.5
 const POPUP_POP_TIME := 0.18  # scale-in pop animation duration
+
+const NOMINAL_TIME_LIMIT := 45.0
+const TIME_LIMIT_BUFFER  := 2.0   # extra hidden seconds so the fail popup has time to play before MinigameBase's hard cutoff
 
 # Eggplant display rect (EggplantArea local coords) — where the eggplant texture sits
 const EGG_LEFT   := 110.0
@@ -85,7 +93,9 @@ var _popup_kind: String   = ""    # "bad" / "good" / "awesome" / "done"
 @onready var _eggplant_img: TextureRect = $EggplantArea/EggplantSprite
 @onready var _path_draw:    Control     = $EggplantArea/PathDraw
 @onready var _hand_img:     TextureRect = $EggplantArea/HandSprite
-@onready var _popup_img:    TextureRect = $PopupSprite
+@onready var _popup: Control = $Popup
+@onready var _popup_img: TextureRect = $Popup/PopupImage
+@onready var _start_popup:  Control     = $StartPopup
 
 
 # Progress bar bounds (root coords) — mirrors the vertical bar style from the wash minigame
@@ -95,6 +105,7 @@ const BAR_TOP    := 90.0
 const BAR_BOTTOM := 490.0
 
 var _peel_scores: Array = []
+var _failed: bool = false
 
 func _on_init() -> void:
 	_hand_pos      = Vector2(EGG_LEFT + EGG_WIDTH * 0.5 - 50, EGG_TOP - 60)
@@ -107,9 +118,10 @@ func _on_init() -> void:
 	_was_pinching_last_frame = false
 	_has_started_this_peel   = false
 	_peel_scores   = []
+	_failed        = false
 
-	_time_limit = 45.0
-	_lbl_timer.text = "Time: %.1f" % _time_limit
+	_time_limit = NOMINAL_TIME_LIMIT + TIME_LIMIT_BUFFER
+	_lbl_timer.text = "Time: %.1f" % NOMINAL_TIME_LIMIT
 
 	_hand_tex_open  = load(HAND_OPEN_PATH)
 	_hand_tex_pinch = load(HAND_PINCH_PATH)
@@ -123,11 +135,13 @@ func _on_init() -> void:
 		"good": load(POPUP_GOOD_PATH),
 		"awesome": load(POPUP_AWESOME_PATH),
 		"done": load(POPUP_DONE_PATH),
+		"fail": load(POPUP_FAIL_PATH),
 	}
 
 
-	_popup_img.visible    = false
-	_popup_img.pivot_offset = _popup_img.size * 0.5
+	_popup.visible    = false
+
+	_show_start_popup()
 
 	_eggplant_img.texture = _eggplant_tex[0]
 	_hand_img.texture     = _hand_tex_open
@@ -138,7 +152,7 @@ func _on_init() -> void:
 	_lbl_hint.text = "WASD/Arrows move hand | Hold Q/÷ to pinch & peel"
 
 
-func _on_update(delta: float, _remaining: float) -> void:
+func _on_update(delta: float, remaining: float) -> void:
 	if _done:
 		_finish_timer -= delta
 		if _finish_timer <= 0.0:
@@ -147,6 +161,12 @@ func _on_update(delta: float, _remaining: float) -> void:
 
 	if _popup_active:
 		_update_popup(delta)
+		return
+
+	if not _failed and remaining <= TIME_LIMIT_BUFFER:
+		_failed = true
+		_hide_start_popup_now()
+		_show_popup("fail")
 		return
 
 	_handle_movement(delta)
@@ -171,6 +191,7 @@ func _handle_pinch_and_trace(_delta: float) -> void:
 
 	if pinching and not _was_pinching_last_frame:
 		_has_started_this_peel = true
+		_hide_start_popup_now()
 	_is_pinching = pinching
 	_hand_img.texture = _hand_tex_pinch if pinching else _hand_tex_open
 
@@ -231,9 +252,8 @@ func _show_popup(kind: String) -> void:
 	_popup_active = true
 	_popup_timer  = 0.0
 	_popup_img.texture = _popup_tex[kind]
-	_popup_img.visible = true
-	_popup_img.scale   = Vector2(0.2, 0.2)
-	_popup_img.pivot_offset = _popup_img.size * 0.5
+	_popup.visible = true
+	_popup.scale   = Vector2(0.1, 0.1)
 
 
 func _update_popup(delta: float) -> void:
@@ -241,20 +261,19 @@ func _update_popup(delta: float) -> void:
 	if _popup_timer <= POPUP_POP_TIME:
 		# pop-in: ease-out overshoot
 		var t = _popup_timer / POPUP_POP_TIME
-		var s = 2.0 + sin(t * PI) * 0.5
-		_popup_img.scale = Vector2.ONE * lerpf(0.2, s, t)
+		_popup.scale = Vector2.ONE * lerpf(0.1, popup_scale * 1.1, t)
 	elif _popup_timer >= POPUP_DURATION - POPUP_POP_TIME:
 		# pop-out
 		var t = clampf((_popup_timer - (POPUP_DURATION - POPUP_POP_TIME)) / POPUP_POP_TIME, 0.0, 1.0)
-		_popup_img.scale = Vector2.ONE * lerpf(2.0, 0.2, t)
+		_popup.scale = Vector2.ONE * lerpf(popup_scale * 1.1, 0.1, t)
 	else:
-		_popup_img.scale = Vector2(2.0, 2.0)
+		_popup.scale = Vector2(popup_scale, popup_scale)
 
 	if _popup_timer >= POPUP_DURATION:
-		_popup_img.visible = false
+		_popup.visible = false
 		_popup_active = false
 
-		if _popup_kind == "done":
+		if _popup_kind == "done" or _popup_kind == "fail":
 			_done = true
 			_finish_timer = 1.5
 			return
@@ -268,6 +287,34 @@ func _update_popup(delta: float) -> void:
 func _show_done_popup() -> void:
 	
 	_show_popup("done")
+
+
+# ════════════════════════════ START POPUP ═════════════════════════════════
+
+func _show_start_popup() -> void:
+	_start_popup.visible = true
+	_start_popup.scale = Vector2(0.1, 0.1)
+
+	var tw := create_tween()
+	tw.tween_property(_start_popup, "scale", Vector2(popup_scale * 1.1, popup_scale * 1.1), 0.18) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_start_popup, "scale", Vector2(popup_scale, popup_scale), 0.10)
+
+	# Auto pop back out after a few seconds so it never blocks play.
+	var hide_tw := create_tween()
+	hide_tw.tween_interval(3.0)
+	hide_tw.tween_property(_start_popup, "scale", Vector2(0.1, 0.1), 0.16) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	hide_tw.tween_callback(func(): _start_popup.visible = false)
+
+
+func _hide_start_popup_now() -> void:
+	if not _start_popup.visible:
+		return
+	var tw := create_tween()
+	tw.tween_property(_start_popup, "scale", Vector2(0.1, 0.1), 0.12) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tw.tween_callback(func(): _start_popup.visible = false)
 
 
 # ── Broken-line path generation ───────────────────────────────────────────
@@ -370,8 +417,9 @@ func _finish_with_score() -> void:
 
 func _update_timer_display(remaining: float) -> void:
 	if _lbl_timer:
-		_lbl_timer.text = "Time: %.1f" % maxf(0.0, remaining)
-		if remaining < 5.0:
+		var shown := minf(remaining, NOMINAL_TIME_LIMIT)
+		_lbl_timer.text = "Time: %.1f" % maxf(0.0, shown)
+		if shown < 5.0:
 			_lbl_timer.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
 
 

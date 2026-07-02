@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c3f1432mx7mk3"]
 
 [ext_resource type="Script" uid="uid://bajs1tkflsk2x" path="res://scripts/minigames/CookRiceMinigame.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/assets/HUD/topHUD.png" id="2_s2d2d"]
+[ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="2_s2d2d"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="2_title"]
 [ext_resource type="Texture2D" uid="uid://clbi1djoxscps" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookricebg.png" id="2_x4612"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="3_body"]
@@ -173,7 +173,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="StartPopup" type="Control" parent="." unique_id=738291047]
-visible = false
 z_index = 6
 anchors_preset = 0
 anchor_left = 0.5

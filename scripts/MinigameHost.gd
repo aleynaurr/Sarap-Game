@@ -59,10 +59,16 @@ func _on_minigame_completed(skill_ratio: float, time_ratio: float) -> void:
 	if _active_minigame:
 		_active_minigame.queue_free()
 		_active_minigame = null
+	if _minigame_container:
+		_minigame_container.queue_free()
+		_minigame_container = null
 	minigame_done.emit(_step_index, skill_ratio, time_ratio)
 
 func close_active() -> void:
 	if _active_minigame:
 		_active_minigame.queue_free()
 		_active_minigame = null
+	if _minigame_container:
+		_minigame_container.queue_free()
+		_minigame_container = null
 	visible = false

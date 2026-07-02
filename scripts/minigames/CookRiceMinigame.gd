@@ -7,11 +7,11 @@ const ASSET_DIR := "res://assets/sprites/minigames/Dish1CookRiceMinigame/"
 # --- Exported Inspector Properties ---
 @export var move_speed: float = 220.0
 
-# Timer settings (added 30s each)
-@export var time_1_cup: float = 80.0
-@export var time_2_cups: float = 100.0
-@export var time_3_cups: float = 115.0
-@export var time_4_cups: float = 120.0
+# Timer settings
+@export var time_1_cup: float = 70.0
+@export var time_2_cups: float = 85.0
+@export var time_3_cups: float = 100.0
+@export var time_4_cups: float = 115.0
 @export var cook_time: float = 25.0
 
 # Rice cooker
@@ -466,6 +466,7 @@ func _update_arrow_down_qte(delta: float) -> void:
 
 func _start_cooking() -> void:
 	_state = State.PRE_COOK
+	_hide_arrow()
 	_hand_img.visible = false
 	_meter_group.visible = true
 	_cook_feedback.visible = true
@@ -530,7 +531,9 @@ func _update_cooking(delta: float) -> void:
 		_state = State.DONE
 		_meter_group.visible = false
 		_cook_feedback.visible = false
+		_lbl_cook_timer.visible = false
 		_queue_popup("done", popup_done)
+		
 		_done = true
 		_finish_timer = 1.6
 
