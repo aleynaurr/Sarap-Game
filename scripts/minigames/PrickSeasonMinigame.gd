@@ -132,7 +132,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_update_salt_shaker_position()
 		get_viewport().set_input_as_handled() 
 		
-	elif event.is_action_pressed("player1interact2"):
+	elif event.is_action_pressed("player1interact2") or event.is_action_pressed("ui_left"):
 		_pour_salt_in_area()
 		get_viewport().set_input_as_handled()
 
@@ -159,7 +159,7 @@ func _start_season_phase() -> void:
 		_update_salt_shaker_position()
 		
 	if _lbl_status:
-		_lbl_status.text = "Press 'A' to season salt"
+		_lbl_status.text = "Press 'A' or '←' to season salt"
 		_lbl_status.visible = true
 		
 	if _lbl_progress: _lbl_progress.visible = true

@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _on_init() -> void:
+	print("I AM THE REAL MIX SCRIPT")
+
 const MINIGAME_SCENES = {
 	"wash":           preload("res://scenes/minigames/WashMinigame.tscn"),
 	"chop":           preload("res://scenes/minigames/ChopMinigame.tscn"),
@@ -9,10 +12,13 @@ const MINIGAME_SCENES = {
 	"crack_egg":      preload("res://scenes/minigames/CrackEggMinigame.tscn"),
 	"mix":            preload("res://scenes/minigames/MixMinigame.tscn"),
 	"roll":           preload("res://scenes/minigames/RollMinigame.tscn"),
-	"plate":          preload("res://scenes/minigames/PlateMinigame.tscn"),
+	"plate":          preload("res://scenes/minigames/PlatingMinigame.tscn"),
 	"add_to_bowl":    preload("res://scenes/minigames/AddToBowlMinigame.tscn"),
 	"cook_rice":      preload("res://scenes/minigames/CookRiceMinigame.tscn"),
 	"prick_season":   preload("res://scenes/minigames/PrickSeasonMinigame.tscn"),
+	"fan":            preload("res://scenes/minigames/FanMinigame.tscn"),
+	"strain":         preload("res://scenes/minigames/StrainMinigame.tscn"),
+	"add_ingredients": preload("res://scenes/minigames/AddIngredientsMinigame.tscn"),
 }
 
 var _active_minigame: MinigameBase = null

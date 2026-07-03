@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://lfc7aafe2dx6"]
+
+[ext_resource type="Texture2D" uid="uid://dj57iqpuitbys" path="res://assets/assets/working station.png" id="1_jq23p"]
+[ext_resource type="Script" uid="uid://rjwtglxxw0uh" path="res://scripts/minigames/strain_minigame.gd" id="1_voeag"]
+[ext_resource type="Texture2D" uid="uid://c8kybdrn1axw8" path="res://assets/assets/sprites/strain/coconut mixture strained alrdy.png" id="2_543ey"]
+[ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="2_iuu5h"]
+[ext_resource type="Texture2D" uid="uid://crpop5134sv55" path="res://assets/assets/sprites/addToBowl/big mixer  bowl.png" id="3_6qive"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="3_voeag"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_n85eq"]
+[ext_resource type="Texture2D" uid="uid://bp7hwtklv5bge" path="res://assets/assets/sprites/strain/strainer w mix3.png" id="4_qd4vu"]
+[ext_resource type="Texture2D" uid="uid://m2g68e6ub4pk" path="res://assets/assets/sprites/strain/strainer.png" id="5_iuu5h"]
+[ext_resource type="Texture2D" uid="uid://lf7axdxkwv64" path="res://assets/assets/mix/fanning1.png" id="6_voeag"]
+[ext_resource type="Texture2D" uid="uid://cu10awp7osiar" path="res://assets/assets/mix/fanning2-welldone.png" id="7_n85eq"]
+[ext_resource type="Texture2D" uid="uid://u4lexrntnod8" path="res://assets/assets/mix/fanning3.png" id="8_bya5p"]
+[ext_resource type="Texture2D" uid="uid://k2t3bggn04xi" path="res://assets/assets/mix/fanning4-fannedtoomuch.png" id="9_dm0cu"]
+[ext_resource type="Texture2D" uid="uid://dyp4rw8spmrms" path="res://assets/assets/sprites/strain/strainer w mix.png" id="10_smovo"]
+[ext_resource type="Texture2D" uid="uid://cdnacpjlr7rh" path="res://assets/assets/sprites/strain/strainer w mix1.png" id="11_tclta"]
+[ext_resource type="Texture2D" uid="uid://6juu14clbv0v" path="res://assets/assets/sprites/strain/strainer w mix2.png" id="12_3wvex"]
+[ext_resource type="Texture2D" uid="uid://elsut52alu50" path="res://assets/assets/sprites/strain/strainer w mix4.png" id="13_a5t23"]
+[ext_resource type="Texture2D" uid="uid://dcumv7y6shvj3" path="res://assets/assets/sprites/strain/strained mixture.png" id="14_h5rf1"]
+[ext_resource type="Texture2D" uid="uid://bdi3bnp65qrkv" path="res://assets/assets/sprites/strain/strained mixture2.png" id="15_d6w47"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bya5p"]
+load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
+
+[node name="StrainMinigame" type="Control" unique_id=979816633]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_voeag")
+
+[node name="WorkingStation" type="TextureRect" parent="." unique_id=688307247]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 641.0
+offset_bottom = 721.0
+texture = ExtResource("1_jq23p")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1870415030]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 28.0
+offset_right = 622.0
+offset_bottom = 718.0
+texture = ExtResource("2_iuu5h")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1744128663]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 52.0
+offset_right = 418.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("3_voeag")
+theme_override_font_sizes/font_size = 24
+text = "Strain"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1550588745]
+z_index = 1
+layout_mode = 0
+offset_left = 461.0
+offset_top = 59.0
+offset_right = 573.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(1, 0.7058824, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("4_n85eq")
+theme_override_font_sizes/font_size = 21
+text = "Time: 15.0"
+
+[node name="Banner" type="TextureRect" parent="." unique_id=1393263442]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 121.0
+offset_right = 544.0
+offset_bottom = 190.0
+texture = SubResource("CompressedTexture2D_bya5p")
+expand_mode = 1
+
+[node name="StatusLabel" type="Label" parent="." unique_id=438625504]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 145.0
+offset_right = 532.0
+offset_bottom = 171.0
+rotation = -0.00066909706
+theme_override_fonts/font = ExtResource("4_n85eq")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="BigMixerBowl2" type="TextureRect" parent="." unique_id=1700068621]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 291.0
+offset_right = 528.0
+offset_bottom = 419.0
+scale = Vector2(1.844, 1.625)
+texture = ExtResource("3_6qive")
+
+[node name="finish" type="TextureRect" parent="." unique_id=225726588]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 345.0
+offset_right = 346.0
+offset_bottom = 572.0
+texture = ExtResource("2_543ey")
+
+[node name="BigMixerBowl" type="TextureRect" parent="." unique_id=1287653672]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 345.0
+offset_right = 205.0
+offset_bottom = 473.0
+scale = Vector2(2.09375, 1.7578125)
+texture = ExtResource("3_6qive")
+
+[node name="StrainedMixtureFlow" type="TextureRect" parent="." unique_id=2061031864]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 324.0
+offset_right = 266.0
+offset_bottom = 452.0
+scale = Vector2(1.09375, 1.1640625)
+texture = ExtResource("14_h5rf1")
+
+[node name="StrainedMixtureFlow2" type="TextureRect" parent="." unique_id=1378144150]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 324.0
+offset_right = 266.0
+offset_bottom = 452.0
+scale = Vector2(1.094, 1.164)
+texture = ExtResource("15_d6w47")
+
+[node name="Strainer" type="TextureRect" parent="." unique_id=1849615606]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 180.00002
+offset_right = 231.0
+offset_bottom = 308.0
+scale = Vector2(1.609375, 1.515625)
+texture = ExtResource("5_iuu5h")
+
+[node name="StrainerWMixNotFan" type="TextureRect" parent="." unique_id=1542309670]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 180.0
+offset_right = 231.0
+offset_bottom = 308.0
+scale = Vector2(1.609, 1.516)
+texture = ExtResource("10_smovo")
+
+[node name="StrainerWMix1MoreFan" type="TextureRect" parent="." unique_id=1461250454]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 180.0
+offset_right = 231.0
+offset_bottom = 308.0
+scale = Vector2(1.609, 1.516)
+texture = ExtResource("11_tclta")
+
+[node name="StrainerWMix2Perfect" type="TextureRect" parent="." unique_id=499601204]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 180.0
+offset_right = 231.0
+offset_bottom = 308.0
+scale = Vector2(1.609, 1.516)
+texture = ExtResource("12_3wvex")
+
+[node name="StrainerWMix3TooMuch" type="TextureRect" parent="." unique_id=1907027183]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 180.0
+offset_right = 231.0
+offset_bottom = 308.0
+scale = Vector2(1.609, 1.516)
+texture = ExtResource("4_qd4vu")
+
+[node name="StrainerWMix4Burnt" type="TextureRect" parent="." unique_id=939137671]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 180.0
+offset_right = 231.0
+offset_bottom = 308.0
+scale = Vector2(1.609, 1.516)
+texture = ExtResource("13_a5t23")
+
+[node name="Fanning1" type="TextureRect" parent="." unique_id=240265688]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 291.0
+offset_right = 528.0
+offset_bottom = 419.0
+scale = Vector2(1.84375, 1.625)
+texture = ExtResource("6_voeag")
+
+[node name="Fanning2Welldone" type="TextureRect" parent="." unique_id=553597811]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 292.0
+offset_right = 527.0
+offset_bottom = 420.0
+scale = Vector2(1.84375, 1.625)
+texture = ExtResource("7_n85eq")
+
+[node name="Fanning3" type="TextureRect" parent="." unique_id=198279783]
+layout_mode = 0
+offset_left = 399.5
+offset_top = 294.25
+offset_right = 527.5
+offset_bottom = 422.25
+scale = Vector2(1.7890625, 1.605469)
+texture = ExtResource("8_bya5p")
+
+[node name="Fanning4Fannedtoomuch" type="TextureRect" parent="." unique_id=806876197]
+layout_mode = 0
+offset_left = 399.5
+offset_top = 292.0
+offset_right = 527.5
+offset_bottom = 420.0
+scale = Vector2(1.8828126, 1.609375)
+texture = ExtResource("9_dm0cu")

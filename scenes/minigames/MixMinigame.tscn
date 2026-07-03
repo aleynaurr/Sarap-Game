@@ -6,6 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://xosh7h20waof" path="res://assets/assets/mix/down mix.png" id="4_roiaw"]
 [ext_resource type="Texture2D" uid="uid://dvkt3eiyvl1vt" path="res://assets/assets/mix/left mix.png" id="5_6iytk"]
 [ext_resource type="Texture2D" uid="uid://chfx1rkvlyg72" path="res://assets/assets/mix/right mix.png" id="6_waxs7"]
+[ext_resource type="Texture2D" uid="uid://dx0yuho2ihhxq" path="res://assets/assets/mix/fanning0.png" id="7_b151s"]
+[ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="8_7ny6r"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="9_2qebu"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="10_vumms"]
+[ext_resource type="Texture2D" uid="uid://ctjwjdheaey4h" path="res://assets/assets/sprites/wasd/d_glow.png" id="11_31prf"]
+[ext_resource type="Texture2D" uid="uid://brcy0kjbxblqy" path="res://assets/assets/sprites/wasd/a_glow.png" id="12_ew1q5"]
+[ext_resource type="Texture2D" uid="uid://duyoao8h875be" path="res://assets/assets/sprites/wasd/w_glow.png" id="13_tpoe5"]
+[ext_resource type="Texture2D" uid="uid://8m438hk6iv5n" path="res://assets/assets/sprites/wasd/s_glow.png" id="14_fuyru"]
+[ext_resource type="Texture2D" uid="uid://be1427r1vvnfn" path="res://assets/assets/sprites/wasd/down_glow.png" id="15_53sa1"]
+[ext_resource type="Texture2D" uid="uid://c3v5pny22eo4a" path="res://assets/assets/sprites/wasd/right_glow.png" id="16_njqwe"]
+[ext_resource type="Texture2D" uid="uid://bb0wn5c15pesq" path="res://assets/assets/sprites/wasd/up_glow.png" id="17_5jaut"]
+[ext_resource type="Texture2D" uid="uid://be374fprud3x8" path="res://assets/assets/sprites/wasd/left_glow.png" id="18_rixu6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7ny6r"]
+load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
 
 [node name="MixMinigame" type="Control" unique_id=220373830]
 layout_mode = 3
@@ -56,3 +71,153 @@ offset_top = 227.0
 offset_right = 458.0
 offset_bottom = 477.0
 texture = ExtResource("6_waxs7")
+
+[node name="finish" type="TextureRect" parent="." unique_id=2001599046]
+visible = false
+layout_mode = 0
+offset_left = 182.0
+offset_top = 227.0
+offset_right = 458.0
+offset_bottom = 477.0
+texture = ExtResource("7_b151s")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=407656544]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 28.0
+offset_right = 618.0
+offset_bottom = 745.0
+texture = ExtResource("8_7ny6r")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=788064612]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 52.0
+offset_right = 404.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("9_2qebu")
+theme_override_font_sizes/font_size = 24
+text = "Press WASD or ↑→↓← in order"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=403937933]
+z_index = 1
+layout_mode = 0
+offset_left = 460.0
+offset_top = 57.0
+offset_right = 572.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(1, 0.7058824, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("10_vumms")
+theme_override_font_sizes/font_size = 21
+text = "Time: 15.0"
+
+[node name="dGlow" type="TextureRect" parent="." unique_id=85739735]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 549.0
+offset_right = 280.0
+offset_bottom = 783.0
+texture = ExtResource("11_31prf")
+expand_mode = 1
+
+[node name="wGlow" type="TextureRect" parent="." unique_id=179790742]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 549.0
+offset_right = 279.0
+offset_bottom = 783.0
+texture = ExtResource("13_tpoe5")
+expand_mode = 1
+
+[node name="sGlow" type="TextureRect" parent="." unique_id=438566222]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 549.0
+offset_right = 279.0
+offset_bottom = 783.0
+texture = ExtResource("14_fuyru")
+expand_mode = 1
+
+[node name="aGlow" type="TextureRect" parent="." unique_id=1947800073]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 549.0
+offset_right = 279.0
+offset_bottom = 783.0
+texture = ExtResource("12_ew1q5")
+expand_mode = 1
+
+[node name="downGlow" type="TextureRect" parent="." unique_id=2123211245]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 557.0
+offset_right = 594.0
+offset_bottom = 791.0
+texture = ExtResource("15_53sa1")
+expand_mode = 1
+
+[node name="upGlow" type="TextureRect" parent="." unique_id=558278397]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 557.0
+offset_right = 594.0
+offset_bottom = 791.0
+texture = ExtResource("17_5jaut")
+expand_mode = 1
+
+[node name="leftGlow" type="TextureRect" parent="." unique_id=968186409]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 557.0
+offset_right = 594.0
+offset_bottom = 791.0
+texture = ExtResource("18_rixu6")
+expand_mode = 1
+
+[node name="rightGlow" type="TextureRect" parent="." unique_id=1122430620]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 557.0
+offset_right = 594.0
+offset_bottom = 791.0
+texture = ExtResource("16_njqwe")
+expand_mode = 1
+
+[node name="Banner" type="TextureRect" parent="." unique_id=368968241]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 121.0
+offset_right = 475.0
+offset_bottom = 190.0
+texture = SubResource("CompressedTexture2D_7ny6r")
+expand_mode = 1
+
+[node name="CirclesLabel" type="Label" parent="." unique_id=1828672472]
+layout_mode = 0
+offset_left = 194.97028
+offset_top = 145.03816
+offset_right = 449.9416
+offset_bottom = 171.03816
+rotation = -0.00066909706
+theme_override_fonts/font = ExtResource("10_vumms")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1087442823]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 148.0
+offset_right = 426.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("10_vumms")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="." unique_id=228266763]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 186.0
+offset_right = 425.0
+offset_bottom = 209.0
+theme_override_fonts/font = ExtResource("10_vumms")
+theme_override_font_sizes/font_size = 20
