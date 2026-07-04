@@ -386,7 +386,7 @@ Time your knife strikes on the beat.",
 			"ingredients": ["icon_eggplant"],
 			"instruction": "Prick holes all over the eggplant skin,
 then rub with salt, pepper, and oil.",
-			"time_limit": 22.0,
+			"time_limit": 15.0,
 			"required": true
 		},
 		{
@@ -401,19 +401,23 @@ Keep the heat steady and turn them to char both sides.",
 			"required": true
 		},
 		{
-			"id": "smoky_coconut",
-			"name": "Make Smoky Grated Coconut",
+			"id": "add_to_bowl",
+			"name": "Add to Bowl",
 			"station": "working",
 			"minigame": "add_to_bowl",
 			"ingredients": [],
-			"actions": [
-				{"label": "Put grated coconut in bowl", "emoji": "🥥"},
-				{"label": "Put live charcoal in bowl", "emoji": "🔥"},
-				{"label": "Pour vinegar over it", "emoji": "🍶"}
-			],
-			"instruction": "Add grated coconut, a live charcoal, then vinegar.
-This gives the kulawo its signature smoky flavor!",
-			"time_limit": 22.0,
+			"instruction": "Add ingredients to the bowl in order.",
+			"time_limit": 15.0,
+			"required": true
+		},
+		{
+			"id": "fan",
+			"name": "Fan",
+			"station": "working",
+			"minigame": "fan",
+			"ingredients": [],
+			"instruction": "Fan",
+			"time_limit": 10.0,
 			"required": true
 		},
 		{
@@ -428,21 +432,10 @@ Rotate clockwise until well combined.",
 			"required": true
 		},
 		{
-			"id": "fan_and_mix",
-			"name": "Fan and Mix",
+			"id": "strain",
+			"name": "Strain",
 			"station": "working",
-			"minigame": "mix",
-			"ingredients": [],
-			"instruction": "Fan the charcoal and mix again!
-Keep stirring the smoky coconut mixture.",
-			"time_limit": 18.0,
-			"required": true
-		},
-		{
-			"id": "strain_to_bowl",
-			"name": "Strain and Put to Bowl",
-			"station": "working",
-			"minigame": "add_to_bowl",
+			"minigame": "strain",
 			"ingredients": [],
 			"actions": [
 				{"label": "Strain the mixture into a clean bowl", "emoji": "🥣"}
@@ -469,6 +462,16 @@ the smoky coconut liquid to a clean bowl.",
 			"minigame": "mash",
 			"ingredients": ["icon_eggplant"],
 			"instruction": "Mash the soft eggplant flesh into a smooth texture.",
+			"time_limit": 15.0,
+			"required": true
+		},
+		{
+			"id": "add_ingredients",
+			"name": "Add Ingredients",
+			"station": "working",
+			"minigame": "add_ingredients",
+			"ingredients": [],
+			"instruction": "Add ingredients to the bowl in order.",
 			"time_limit": 15.0,
 			"required": true
 		},
