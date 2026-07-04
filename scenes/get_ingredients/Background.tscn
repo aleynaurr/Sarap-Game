@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://fl1ik7va04jo" path="res://scenes/gi_items/shallots_crop.tscn" id="7_0amts"]
 [ext_resource type="PackedScene" uid="uid://cmxvdlu0qef3r" path="res://scenes/gi_items/springonions_crop.tscn" id="8_xdmu2"]
 [ext_resource type="PackedScene" uid="uid://b0hnfk8okssok" path="res://scenes/gi_items/garlic_crop.tscn" id="9_u44wp"]
+[ext_resource type="PackedScene" uid="uid://kihcy46v8vgk" path="res://scenes/gi_items/desiccatedcoconut.tscn" id="10_u44wp"]
+[ext_resource type="PackedScene" uid="uid://cyiht0tpgl5ri" path="res://scenes/gi_items/coconutmilk.tscn" id="11_gojsm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_430f3"]
 texture = ExtResource("1_pdswc")
@@ -769,4 +771,115 @@ position = Vector2(401, 121)
 [node name="eggplant_crop4" parent="crops" unique_id=999975785 instance=ExtResource("6_rrhs8")]
 position = Vector2(402, 90)
 
+[node name="crops2" type="Node2D" parent="." unique_id=664339563]
+position = Vector2(1, 385)
+
+[node name="chili_crop1" parent="crops2" unique_id=640753919 instance=ExtResource("6_0amts")]
+position = Vector2(337, 183)
+
+[node name="chili_crop2" parent="crops2" unique_id=609304518 instance=ExtResource("6_0amts")]
+position = Vector2(336, 153)
+
+[node name="chili_crop3" parent="crops2" unique_id=360286457 instance=ExtResource("6_0amts")]
+position = Vector2(336, 121)
+
+[node name="chili_crop4" parent="crops2" unique_id=1941352324 instance=ExtResource("6_0amts")]
+position = Vector2(338, 89)
+
+[node name="shallots_crop1" parent="crops2" unique_id=1941440831 instance=ExtResource("7_0amts")]
+position = Vector2(273, 184)
+
+[node name="shallots_crop2" parent="crops2" unique_id=1183958674 instance=ExtResource("7_0amts")]
+position = Vector2(274, 150)
+
+[node name="shallots_crop3" parent="crops2" unique_id=1017691203 instance=ExtResource("7_0amts")]
+position = Vector2(274, 120)
+
+[node name="shallots_crop4" parent="crops2" unique_id=361031904 instance=ExtResource("7_0amts")]
+position = Vector2(274, 89)
+
+[node name="springonions_crop1" parent="crops2" unique_id=808296229 instance=ExtResource("8_xdmu2")]
+position = Vector2(210, 186)
+
+[node name="springonions_crop2" parent="crops2" unique_id=559775532 instance=ExtResource("8_xdmu2")]
+position = Vector2(210, 151)
+
+[node name="springonions_crop3" parent="crops2" unique_id=1273236944 instance=ExtResource("8_xdmu2")]
+position = Vector2(210, 118)
+
+[node name="springonions_crop4" parent="crops2" unique_id=1738773581 instance=ExtResource("8_xdmu2")]
+position = Vector2(210, 86)
+
+[node name="garlic_crop1" parent="crops2" unique_id=1785203240 instance=ExtResource("9_u44wp")]
+position = Vector2(144, 182)
+
+[node name="garlic_crop2" parent="crops2" unique_id=972883089 instance=ExtResource("9_u44wp")]
+position = Vector2(145, 151)
+
+[node name="garlic_crop3" parent="crops2" unique_id=918959970 instance=ExtResource("9_u44wp")]
+position = Vector2(145, 119)
+
+[node name="garlic_crop4" parent="crops2" unique_id=2062735239 instance=ExtResource("9_u44wp")]
+position = Vector2(145, 89)
+
+[node name="eggplant_crop1" parent="crops2" unique_id=1343424660 instance=ExtResource("6_rrhs8")]
+position = Vector2(400, 186)
+
+[node name="eggplant_crop2" parent="crops2" unique_id=1224115108 instance=ExtResource("6_rrhs8")]
+position = Vector2(400, 154)
+
+[node name="eggplant_crop3" parent="crops2" unique_id=1192863897 instance=ExtResource("6_rrhs8")]
+position = Vector2(401, 121)
+
+[node name="eggplant_crop4" parent="crops2" unique_id=1939375757 instance=ExtResource("6_rrhs8")]
+position = Vector2(402, 90)
+
 [node name="market" type="Node2D" parent="." unique_id=1803488847]
+
+[node name="desiccatedcoconut" parent="market" unique_id=257463220 instance=ExtResource("10_u44wp")]
+position = Vector2(1886, 142)
+scale = Vector2(0.46943718, 0.46192786)
+
+[node name="desiccatedcoconut2" parent="market" unique_id=2002748839 instance=ExtResource("10_u44wp")]
+position = Vector2(1904.9999, 142)
+scale = Vector2(0.4687631, 0.46301177)
+
+[node name="desiccatedcoconut3" parent="market" unique_id=866866539 instance=ExtResource("10_u44wp")]
+position = Vector2(1925, 142)
+scale = Vector2(0.47863606, 0.45488787)
+
+[node name="desiccatedcoconut4" parent="market" unique_id=1299560773 instance=ExtResource("10_u44wp")]
+position = Vector2(1946, 142)
+scale = Vector2(0.5039103, 0.47009972)
+
+[node name="desiccatedcoconut5" parent="market" unique_id=1059524707 instance=ExtResource("10_u44wp")]
+position = Vector2(1967, 142.00002)
+scale = Vector2(0.48977798, 0.482072)
+
+[node name="desiccatedcoconut6" parent="market" unique_id=1192925289 instance=ExtResource("10_u44wp")]
+position = Vector2(1989, 142)
+scale = Vector2(0.46652734, 0.48158935)
+
+[node name="coconutmilk" parent="market" unique_id=1158631960 instance=ExtResource("11_gojsm")]
+position = Vector2(1880.0001, 240)
+scale = Vector2(0.3528857, 0.3160674)
+
+[node name="coconutmilk2" parent="market" unique_id=712823189 instance=ExtResource("11_gojsm")]
+position = Vector2(1894, 240)
+scale = Vector2(0.35549426, 0.313775)
+
+[node name="coconutmilk3" parent="market" unique_id=1330512048 instance=ExtResource("11_gojsm")]
+position = Vector2(1910, 240.00002)
+scale = Vector2(0.35142165, 0.3185135)
+
+[node name="coconutmilk4" parent="market" unique_id=2041956531 instance=ExtResource("11_gojsm")]
+position = Vector2(1927.0001, 240.00002)
+scale = Vector2(0.3508347, 0.31619853)
+
+[node name="coconutmilk5" parent="market" unique_id=443515814 instance=ExtResource("11_gojsm")]
+position = Vector2(1945, 239.99998)
+scale = Vector2(0.35129884, 0.31732953)
+
+[node name="coconutmilk6" parent="market" unique_id=839106088 instance=ExtResource("11_gojsm")]
+position = Vector2(1961.9999, 240.00002)
+scale = Vector2(0.35502547, 0.3061416)
