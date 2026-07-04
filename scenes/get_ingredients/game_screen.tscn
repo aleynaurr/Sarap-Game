@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dqrblofd7dvgb"]
+
+[ext_resource type="PackedScene" uid="uid://cbsdkm2ueynsk" path="res://scenes/get_ingredients/IngredientsList.tscn" id="1_yjc8d"]
+[ext_resource type="Script" uid="uid://cqtykdc67osh4" path="res://scenes/get_ingredients/ingredients_list.gd" id="2_c3vjw"]
+
+[node name="GameScreen" type="CanvasLayer" unique_id=245156146]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=4482907]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="p1" parent="MarginContainer" unique_id=103354895 instance=ExtResource("1_yjc8d")]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_c3vjw")
+
+[node name="p2" parent="MarginContainer" unique_id=88784736 instance=ExtResource("1_yjc8d")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+script = ExtResource("2_c3vjw")
+player_id = 2

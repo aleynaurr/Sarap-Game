@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://bghiqosh6u67q"]
+
+[ext_resource type="Script" uid="uid://dxrqy0wliwjlm" path="res://scenes/gi_items/ingredients.gd" id="1_oaag2"]
+[ext_resource type="Texture2D" uid="uid://crwtcitfud7hq" path="res://assets/classets/32px crops.png" id="2_eukiy"]
+[ext_resource type="PackedScene" uid="uid://bkmtox2whvmwm" path="res://scenes/gi_items/Interactable.tscn" id="3_ejab0"]
+[ext_resource type="PackedScene" uid="uid://cfxjmm4yyrus4" path="res://scenes/gi_items/InteractButton.tscn" id="4_x1xby"]
+[ext_resource type="PackedScene" uid="uid://cbhp07jedg7ff" path="res://scenes/gi_items/Collectable.tscn" id="5_3pnwk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaag2"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eukiy"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejab0"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1xby"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pnwk"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j1j3"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slkv5"]
+atlas = ExtResource("2_eukiy")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnsv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaag2")
+}],
+"loop": true,
+"name": &"dropped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eukiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejab0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1xby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pnwk")
+}],
+"loop": false,
+"name": &"growing",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j1j3")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slkv5")
+}],
+"loop": false,
+"name": &"interact",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ba26k"]
+radius = 22.090721
+
+[sub_resource type="GDScript" id="GDScript_blh6e"]
+script/source = "extends Control
+
+func _on_gui_input(event: InputEvent) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_blh6e"]
+radius = 10.198039
+
+[node name="chili_crop" type="Node2D" unique_id=90497118]
+script = ExtResource("1_oaag2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1320775730]
+position = Vector2(0, -10)
+scale = Vector2(1.34375, 1.40625)
+sprite_frames = SubResource("SpriteFrames_hnsv2")
+animation = &"interact"
+autoplay = "growing"
+
+[node name="Interactable" parent="." unique_id=578706608 instance=ExtResource("3_ejab0")]
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2026886204]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_ba26k")
+
+[node name="PressE" parent="Interactable" unique_id=1572369525 instance=ExtResource("4_x1xby")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -25.0
+offset_top = -13.0
+offset_right = -24.99997
+offset_bottom = -13.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.1323824, 0.13872533)
+script = SubResource("GDScript_blh6e")
+
+[node name="Collect" parent="." unique_id=725571798 instance=ExtResource("5_3pnwk")]
+item_name = "chili"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collect" unique_id=489675670]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_blh6e")
+
+[connection signal="body_entered" from="Collect" to="." method="_on_collect_body_entered"]

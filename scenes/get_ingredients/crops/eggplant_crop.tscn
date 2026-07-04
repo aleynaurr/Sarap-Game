@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bbk6q08qbo1kd"]
+
+[ext_resource type="Texture2D" uid="uid://dbslmr1psmyjm" path="res://assets/classets2/crops.png" id="1_lo245"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsfvi"]
+atlas = ExtResource("1_lo245")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6occ"]
+radius = 6.0
+
+[node name="EggplantCrop" type="Sprite2D" unique_id=849180750]
+texture = SubResource("AtlasTexture_gsfvi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=71751053]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=783590983]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_w6occ")
