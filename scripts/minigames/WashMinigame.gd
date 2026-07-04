@@ -66,6 +66,14 @@ var _faucet_tex: Array   = []
 var _veggie_large: Array = []
 var _bowl_tex: Array     = []
 
+# Popup images (start / done / fail) — placeholders, replace in
+# res://assets/sprites/minigames/Dish1WashMinigame/
+@export var popup_start_tex: Texture2D = preload("res://assets/sprites/minigames/Dish1WashMinigame/popup_start.png")
+@export var popup_done_tex:  Texture2D = preload("res://assets/sprites/minigames/Dish1WashMinigame/popup_done.png")
+@export var popup_fail_tex:  Texture2D = preload("res://assets/sprites/minigames/Dish1WashMinigame/popup_fail.png")
+
+var _end_popup_shown: bool = false
+
 @onready var _lbl_timer:       Label       = $TimerLabel
 @onready var _lbl_current:     Label       = $CurrentVegLabel
 @onready var _lbl_cleanliness: Label       = $CleanlinessLabel
@@ -77,6 +85,10 @@ var _bowl_tex: Array     = []
 @onready var _water_fill:      ColorRect   = $WaterSupplyFill
 @onready var _clean_fill:      ColorRect   = $CleanlinessFill
 @onready var _bowl_img:        TextureRect = $BowlTexture
+
+@onready var _start_popup:    Control     = $StartPopup
+@onready var _end_popup:      Control     = $EndPopup
+@onready var _end_popup_bg:   TextureRect = $EndPopup/EndPopupBg
 
 @onready var _queue_icons: Array[TextureRect] = [
 	$QueueArea/QueueChili,
@@ -98,11 +110,15 @@ func _on_init() -> void:
 	_finish_timer  = 0.0
 	_flash_time    = 0.0
 	_clean_scores  = [0.0, 0.0, 0.0, 0.0]
+	_end_popup_shown = false
 
 	_result_label.visible = false
 	_lbl_perfect.visible  = false
 	_veggie_img.visible   = false
 	_veggie_img.modulate.a = 1.0
+
+	_end_popup.visible = false
+	_end_popup.scale   = Vector2(0, 0)
 
 	# Override time limit to 30 seconds
 	_time_limit = 30.0
@@ -131,6 +147,34 @@ func _on_init() -> void:
 	_bowl_img.texture   = _bowl_tex[0]
 	_refresh_water_bar()
 	_refresh_clean_bar()
+
+	_show_start_popup()
+
+# ─── Popups (start / done / fail) ────────────────────────────────────────────
+func _show_start_popup() -> void:
+	_start_popup.visible = true
+	_start_popup.scale   = Vector2(0, 0)
+
+	var tw := create_tween()
+	tw.tween_property(_start_popup, "scale", Vector2(1.2, 1.2), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_start_popup, "scale", Vector2(1.0, 1.0), 0.1)
+
+	var hide_tw := create_tween()
+	hide_tw.tween_interval(3.0)
+	hide_tw.tween_property(_start_popup, "scale", Vector2(0, 0), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	hide_tw.tween_callback(func(): _start_popup.visible = false)
+
+func _show_end_popup(success: bool) -> void:
+	if _end_popup_shown:
+		return
+	_end_popup_shown = true
+	_end_popup_bg.texture = popup_done_tex if success else popup_fail_tex
+	_end_popup.visible = true
+	_end_popup.scale   = Vector2(0, 0)
+
+	var tw := create_tween()
+	tw.tween_property(_end_popup, "scale", Vector2(1.2, 1.2), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_end_popup, "scale", Vector2(1.0, 1.0), 0.1)
 
 func _on_update(delta: float, _remaining: float) -> void:
 	if _done:
@@ -170,6 +214,7 @@ func _on_update(delta: float, _remaining: float) -> void:
 		_faucet_img.texture   = _faucet_tex[0]
 		_done                 = true
 		_finish_timer         = 2.0
+		_show_end_popup(false)
 
 func _handle_movement(delta: float) -> void:
 	var dir = Vector2.ZERO
@@ -215,10 +260,9 @@ func _advance_veggie() -> void:
 
 	if _veg_idx >= VEGGIES.size():
 		_veggie_img.visible   = false
-		_result_label.text    = "✨ Nalinis lahat! (All washed!) ✨"
-		_result_label.visible = true
 		_done                 = true
 		_finish_timer         = 1.5
+		_show_end_popup(true)
 		return
 
 	# Hide queue icon for the veggie now becoming active
@@ -294,4 +338,11 @@ func _update_timer_display(remaining: float) -> void:
 			_lbl_timer.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
 
 func _force_finish() -> void:
-	_finish_with_score()
+	if _done:
+		return
+	# Time ran out before all veggies were washed — show fail popup, then finish.
+	_faucet_on             = false
+	_faucet_img.texture    = _faucet_tex[0]
+	_done                  = true
+	_finish_timer          = 1.6
+	_show_end_popup(false)

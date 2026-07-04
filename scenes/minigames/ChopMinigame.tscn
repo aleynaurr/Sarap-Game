@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ck7sinwx1pjj2" path="res://scripts/minigames/ChopMinigame.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://davfo8g0pfoxn" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_chili_uncut.png" id="2_icon_chili"]
 [ext_resource type="Texture2D" uid="uid://q2qoa6uleml8" path="res://assets/sprites/minigames/Dish1ChopMinigame/countertop.png" id="2_onopw"]
+[ext_resource type="Texture2D" uid="uid://bqar7syaj21w2" path="res://assets/sprites/minigames/Dish1ChopMinigame/plate.png" id="3_hwmud"]
 [ext_resource type="Texture2D" uid="uid://dlguxeaqd4fvq" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_ginger_uncut.png" id="3_icon_ginger"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="3_wyp5v"]
 [ext_resource type="Texture2D" uid="uid://cg875cyagmq2o" path="res://assets/sprites/minigames/Dish1ChopMinigame/icon_onion_uncut.png" id="4_icon_onion"]
@@ -16,6 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://dp3n7a3mhpfom" path="res://assets/sprites/minigames/Dish1ChopMinigame/mat.png" id="13_rba22"]
 [ext_resource type="Texture2D" uid="uid://cye7lw03rssfd" path="res://assets/sprites/minigames/Dish1ChopMinigame/bowl_onion_empty.png" id="14_bowl_onion_e"]
 [ext_resource type="Texture2D" uid="uid://b6sb3hljplm0e" path="res://assets/sprites/minigames/Dish1ChopMinigame/bowl_garlic_empty.png" id="16_bowl_garlic_e"]
+[ext_resource type="Texture2D" uid="uid://bqb00cqohhxpn" path="res://assets/sprites/minigames/Dish1ChopMinigame/popup_start.png" id="17_popupstart"]
+[ext_resource type="Texture2D" uid="uid://dufqb3uqgrjq3" path="res://assets/sprites/minigames/Dish1ChopMinigame/popup_done.png" id="18_popupdone"]
+[ext_resource type="Texture2D" uid="uid://c2eh3b5i1lfa3" path="res://assets/sprites/minigames/Dish1ChopMinigame/hand_open.png" id="19_handopen"]
+[ext_resource type="Texture2D" uid="uid://ctbkc4kbp6v3x" path="res://assets/sprites/minigames/Dish1ChopMinigame/arrow_north.png" id="21_arrow_n"]
 
 [node name="ChopMinigame" type="Control" unique_id=1152465699]
 layout_mode = 3
@@ -28,10 +33,10 @@ script = ExtResource("1_script")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=136070598]
 layout_mode = 0
-offset_left = -815.82227
+offset_left = 4.0
 offset_top = 2.0
 offset_right = 640.17773
-offset_bottom = 730.0
+offset_bottom = 716.0
 texture = ExtResource("2_onopw")
 stretch_mode = 1
 
@@ -41,6 +46,42 @@ layout_mode = 0
 offset_right = 640.0
 offset_bottom = 720.0
 color = Color(0.85, 0.65, 0.25, 1)
+
+[node name="Plates" type="TextureRect" parent="." unique_id=1884923282]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 94.0
+offset_right = 205.05714
+offset_bottom = 181.0
+texture = ExtResource("3_hwmud")
+expand_mode = 1
+
+[node name="Plates2" type="TextureRect" parent="." unique_id=2073250071]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 95.0
+offset_right = 311.05713
+offset_bottom = 182.0
+texture = ExtResource("3_hwmud")
+expand_mode = 1
+
+[node name="Plates3" type="TextureRect" parent="." unique_id=1139903722]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 96.0
+offset_right = 422.05713
+offset_bottom = 183.0
+texture = ExtResource("3_hwmud")
+expand_mode = 1
+
+[node name="Plates4" type="TextureRect" parent="." unique_id=902501854]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 97.0
+offset_right = 528.0571
+offset_bottom = 184.0
+texture = ExtResource("3_hwmud")
+expand_mode = 1
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1526984464]
 z_index = 1
@@ -76,10 +117,11 @@ texture = ExtResource("5_8pk3b")
 
 [node name="TopRow" type="HBoxContainer" parent="." unique_id=1053676979]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 116.0
-offset_right = 508.0
-offset_bottom = 188.0
+offset_left = 87.0
+offset_top = 79.0
+offset_right = 467.0
+offset_bottom = 151.0
+scale = Vector2(1.2, 1.2)
 theme_override_constants/separation = 20
 alignment = 1
 
@@ -123,23 +165,11 @@ horizontal_alignment = 2
 [node name="CuttingBoard" type="ColorRect" parent="." unique_id=424131071]
 z_index = 2
 layout_mode = 0
-offset_left = 42.0
-offset_top = 204.0
-offset_right = 590.0
-offset_bottom = 542.0
+offset_left = 41.0
+offset_top = 213.0
+offset_right = 589.0
+offset_bottom = 551.0
 color = Color(0.25882354, 0.16078432, 0.07058824, 0)
-
-[node name="PromptLabel" type="Label" parent="CuttingBoard" unique_id=616893481]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 23.0
-offset_right = 439.0
-offset_bottom = 55.0
-theme_override_colors/font_color = Color(0.9019608, 1, 0.9843137, 1)
-theme_override_fonts/font = ExtResource("10_kcujr")
-theme_override_font_sizes/font_size = 19
-text = "press 'S' or ↓ to chop/mince"
-horizontal_alignment = 1
 
 [node name="BoardImage" type="TextureRect" parent="CuttingBoard" unique_id=1396124793]
 z_index = 2
@@ -152,13 +182,55 @@ texture = ExtResource("8_board_onion")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="TotalCutCount" type="Label" parent="CuttingBoard" unique_id=219193233]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 255.0
+offset_right = 203.0
+offset_bottom = 278.0
+rotation = -1.5707964
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.045790814, 0.008366842, 3.008172e-09, 1)
+theme_override_colors/font_outline_color = Color(0.12778658, 0.03282586, 6.016344e-09, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 3
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 6
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("10_kcujr")
+theme_override_font_sizes/font_size = 22
+text = "TOTAL  CUT  COUNT"
+
+[node name="CutForEach" type="Label" parent="CuttingBoard" unique_id=935129560]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 71.0
+offset_right = 711.0
+offset_bottom = 94.0
+rotation = 1.5707964
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.045790814, 0.008366842, 3.008172e-09, 1)
+theme_override_colors/font_outline_color = Color(0.12778658, 0.03282586, 6.016344e-09, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 3
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 6
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("10_kcujr")
+theme_override_font_sizes/font_size = 22
+text = "CUT  %  FOR  EACH"
+
 [node name="CuttingBoardGraphic" type="TextureRect" parent="CuttingBoard" unique_id=588122087]
 z_index = 1
 layout_mode = 0
-offset_left = -25.95935
-offset_top = 17.0
-offset_right = 560.27374
-offset_bottom = 337.0
+offset_left = 127.0
+offset_top = 456.99997
+offset_right = 713.2331
+offset_bottom = 777.0
+rotation = -1.5707964
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("6_h14s2")
 expand_mode = 1
 
@@ -166,28 +238,96 @@ expand_mode = 1
 z_index = 4
 layout_mode = 0
 offset_left = -4.0
-offset_top = 9.0
+offset_top = 1.0
 offset_right = 557.0
-offset_bottom = 382.0
+offset_bottom = 373.0
 color = Color(1, 1, 1, 0)
 
-[node name="ProgressBarBg" type="ColorRect" parent="CuttingBoard" unique_id=1455341529]
+[node name="ProgressFill" type="ColorRect" parent="CuttingBoard" unique_id=1931082399]
+z_index = 2
 layout_mode = 0
-offset_left = 35.0
+offset_left = 63.0
+offset_top = 306.0
+offset_right = 93.0
+offset_bottom = 308.0
+color = Color(0.95, 0.85, 0.3, 1)
+
+[node name="ProgressBarBg" type="ColorRect" parent="CuttingBoard" unique_id=1455341529]
+z_index = 1
+layout_mode = 0
+offset_left = 61.0
+offset_top = 36.0
+offset_right = 95.0
+offset_bottom = 308.0
+color = Color(0.3, 0.2, 0.1, 1)
+
+[node name="ProgressBarBg2" type="ColorRect" parent="CuttingBoard" unique_id=1588600916]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 31.0
+offset_right = 101.0
+offset_bottom = 314.0
+color = Color(0.09365951, 0.05122091, 0.014231475, 1)
+
+[node name="HoldBarBg" type="ColorRect" parent="CuttingBoard" unique_id=1455341530]
+z_index = 1
+layout_mode = 0
+offset_left = 458.0
 offset_top = 33.0
-offset_right = 69.0
+offset_right = 492.0
 offset_bottom = 305.0
 color = Color(0.3, 0.2, 0.1, 1)
 
-[node name="ProgressFill" type="ColorRect" parent="CuttingBoard" unique_id=1931082399]
+[node name="HoldBarFill" type="ColorRect" parent="CuttingBoard" unique_id=1931082400]
+z_index = 2
 layout_mode = 0
-offset_left = 37.0
+offset_left = 460.0
 offset_top = 303.0
-offset_right = 67.0
+offset_right = 490.0
 offset_bottom = 305.0
-color = Color(0.95, 0.85, 0.3, 1)
+color = Color(0.3, 0.9, 0.35, 1)
+
+[node name="ProgressBarBg3" type="ColorRect" parent="CuttingBoard" unique_id=122675355]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 26.0
+offset_right = 498.0
+offset_bottom = 314.0
+color = Color(0.09365951, 0.05122091, 0.014231475, 1)
+
+[node name="ArrowContainer" type="Control" parent="CuttingBoard" unique_id=123456789]
+visible = false
+z_index = 5
+anchors_preset = 0
+offset_left = 202.5
+offset_top = 88.0
+offset_right = 330.5
+offset_bottom = 216.0
+pivot_offset = Vector2(64, 64)
+
+[node name="ArrowImage" type="TextureRect" parent="CuttingBoard/ArrowContainer" unique_id=123456790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_arrow_n")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArrowFlash" type="ColorRect" parent="CuttingBoard/ArrowContainer" unique_id=123456792]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=531498786]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 44.0
@@ -203,7 +343,7 @@ offset_left = 37.0
 offset_top = 213.0
 offset_right = 599.0
 offset_bottom = 585.0
-color = Color(0.08235294, 0.015686275, 0.015686275, 1)
+color = Color(0.19571076, 0.110913925, 0.043233663, 1)
 
 [node name="CutCountLabel" type="Label" parent="." unique_id=206168448]
 layout_mode = 0
@@ -219,10 +359,10 @@ text = "Cut Count: 0 / 5"
 
 [node name="BowlRow" type="HBoxContainer" parent="." unique_id=1010060537]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 602.0
-offset_right = 542.0
-offset_bottom = 686.0
+offset_left = 66.0
+offset_top = 588.0
+offset_right = 546.0
+offset_bottom = 672.0
 theme_override_constants/separation = 20
 alignment = 1
 
@@ -261,16 +401,82 @@ theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
+[node name="StartPopup" type="Control" parent="." unique_id=489240298]
+visible = false
+z_index = 20
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -70.0
+offset_right = 240.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(240, 70)
+
+[node name="StartPopupImage" type="TextureRect" parent="StartPopup" unique_id=1852877238]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_popupstart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EndPopup" type="Control" parent="." unique_id=1071513588]
+visible = false
+z_index = 20
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -70.0
+offset_right = 240.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(240, 70)
+
+[node name="EndPopupImage" type="TextureRect" parent="EndPopup" unique_id=1693692227]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_popupdone")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="HintLabel" type="Label" parent="." unique_id=1189184848]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 690.0
-offset_right = 620.0
-offset_bottom = 710.0
-theme_override_colors/font_color = Color(0.17111877, 0.094006605, 0.020435367, 0.7019608)
-theme_override_colors/font_shadow_color = Color(0.99999946, 0.9082962, 0.87417877, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+offset_left = 22.0
+offset_top = 686.0
+offset_right = 622.0
+offset_bottom = 716.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.7019608)
+theme_override_colors/font_shadow_color = Color(0.17957321, 0.04380376, 7.400103e-07, 1)
+theme_override_colors/font_outline_color = Color(0.15746897, 0.015956376, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("10_kcujr")
-theme_override_font_sizes/font_size = 22
-text = "Keep pressing S or ↓ to chop each ingredient!"
+theme_override_font_sizes/font_size = 21
+text = "Hold Q or '/' while navigating to the direction of the arrow!"
 horizontal_alignment = 1
+
+[node name="Hand" type="TextureRect" parent="." unique_id=987654321]
+z_index = 10
+layout_mode = 0
+offset_left = 280.0
+offset_top = 300.0
+offset_right = 360.0
+offset_bottom = 380.0
+texture = ExtResource("19_handopen")
+stretch_mode = 5
