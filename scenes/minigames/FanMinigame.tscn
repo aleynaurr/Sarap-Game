@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="2_1qiki"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="3_8m4cl"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_56ims"]
+[ext_resource type="Texture2D" uid="uid://b7fuuxutvcqdn" path="res://assets/assets/sprites/ui/banner2.png" id="6_jvjrx"]
 [ext_resource type="Texture2D" uid="uid://dx0yuho2ihhxq" path="res://assets/assets/mix/fanning0.png" id="6_om144"]
 [ext_resource type="Texture2D" uid="uid://lf7axdxkwv64" path="res://assets/assets/mix/fanning1.png" id="7_026lu"]
 [ext_resource type="Texture2D" uid="uid://cu10awp7osiar" path="res://assets/assets/mix/fanning2-welldone.png" id="8_kmqoa"]
@@ -18,9 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bb0wn5c15pesq" path="res://assets/assets/sprites/wasd/up_glow.png" id="16_2hsa8"]
 [ext_resource type="Texture2D" uid="uid://bpmif4mlxxwux" path="res://assets/assets/mix/smoke 1.png" id="17_gghdk"]
 [ext_resource type="Texture2D" uid="uid://bxxncxsl5d4xb" path="res://assets/assets/mix/smoke 2.png" id="18_jvjrx"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gkv4a"]
-load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
 
 [node name="FanMinigame" type="Control" unique_id=418201941]
 layout_mode = 3
@@ -69,14 +67,26 @@ text = "Time: 15.0"
 
 [node name="Banner" type="TextureRect" parent="." unique_id=123847942]
 layout_mode = 0
-offset_left = 87.0
-offset_top = 121.0
-offset_right = 544.0
-offset_bottom = 190.0
-texture = SubResource("CompressedTexture2D_gkv4a")
+offset_left = 30.0
+offset_top = 112.0
+offset_right = 605.0
+offset_bottom = 212.0
+texture = ExtResource("6_jvjrx")
 expand_mode = 1
 
 [node name="StatusLabel" type="Label" parent="." unique_id=85724733]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 149.0
+offset_right = 504.0
+offset_bottom = 175.0
+rotation = -0.00066909706
+theme_override_fonts/font = ExtResource("4_56ims")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1504631328]
+visible = false
 layout_mode = 0
 offset_left = 133.0
 offset_top = 145.0
@@ -99,7 +109,6 @@ texture = ExtResource("6_om144")
 expand_mode = 1
 
 [node name="Fanning1" type="TextureRect" parent="." unique_id=1165957270]
-visible = false
 layout_mode = 0
 offset_left = 49.0
 offset_top = 271.0
@@ -109,7 +118,6 @@ scale = Vector2(2.336, 1.984)
 texture = ExtResource("7_026lu")
 
 [node name="Fanning2" type="TextureRect" parent="." unique_id=293988038]
-visible = false
 layout_mode = 0
 offset_left = 45.0
 offset_top = 271.0
@@ -119,7 +127,6 @@ scale = Vector2(2.336, 1.984)
 texture = ExtResource("8_kmqoa")
 
 [node name="Fanning3" type="TextureRect" parent="." unique_id=714376805]
-visible = false
 layout_mode = 0
 offset_left = 45.0
 offset_top = 271.0
@@ -129,7 +136,6 @@ scale = Vector2(2.336, 1.984)
 texture = ExtResource("9_aikgs")
 
 [node name="Fanning4" type="TextureRect" parent="." unique_id=1395719304]
-visible = false
 layout_mode = 0
 offset_left = 45.0
 offset_top = 271.0

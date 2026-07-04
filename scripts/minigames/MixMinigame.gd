@@ -51,7 +51,7 @@ func _on_init() -> void:
 	_holding = -1
 	
 	# Reset visual elements
-	mix_up_sprite.visible = false
+	mix_up_sprite.visible = true
 	mix_right_sprite.visible = false
 	mix_down_sprite.visible = false
 	mix_left_sprite.visible = false
@@ -60,7 +60,7 @@ func _on_init() -> void:
 	_clear_all_glows()
 	
 	if _lbl_title:
-		_lbl_title.text = "🥣  HALUIN!  (Mix!)"
+		_lbl_title.text = "🥣  HALUIN"
 
 	if _lbl_circles:
 		_lbl_circles.visible = true

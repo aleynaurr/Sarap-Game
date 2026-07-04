@@ -3,7 +3,7 @@ extends MinigameBase
 @onready var tex_full = $FullEggplant
 @onready var tex_one_poke = $"FullEggplant/1poke"
 @onready var tex_two_pokes = $"FullEggplant/2pokes"
-@onready var tex_three_pokes =  $"FullEggplant/3pokes"
+@onready var tex_three_pokes = $"FullEggplant/3pokes"
 @onready var tex_fully_poked = $"FullEggplant/4pokes"
 
 @onready var tex_one_salt = $"FullEggplant/1salt"
@@ -20,7 +20,7 @@ extends MinigameBase
 @onready var _lbl_phase: Label         = $TitleLabel     
 @onready var _result_label: Label      = $ResultLabel
 @onready var _lbl_progress: Label      = $ProgressLabel
-@onready var _lbl_label: Label         = $Phase2Label
+@onready var _lbl_label: RichTextLabel = $Phase2Label
 @onready var _salt_particles: CPUParticles2D = $Salt/SaltedSprite
 
 enum Phase { PRICK, SEASON }
@@ -33,6 +33,7 @@ var _fork_start_pos: Vector2 = Vector2(308, 286)
 var _fork_area: int = 0
 var _has_finished: bool = false
 
+# Phase 2 Config
 var _current_area: int = 0
 const AREA_Y_POSITIONS := [238, 288, 336, 368] 
 var _area_salt_counts := [0, 0, 0, 0]
@@ -59,9 +60,6 @@ func _on_init() -> void:
 	
 	if _eggplant_sprite:
 		_eggplant_sprite.visible = true
-		#_eggplant_sprite.modulate.a = 1.0 
-		#if tex_full and tex_full is TextureRect:
-			#_eggplant_sprite.texture = tex_full.texture
 
 	if _result_label:
 		_result_label.visible = false
@@ -84,7 +82,6 @@ func _on_update(delta: float, remaining: float) -> void:
 	if _phase == Phase.PRICK:
 		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
 			_pricks += 1
-			#audio
 			_shake_eggplant_effect()
 			
 			if _fork_sprite:
@@ -139,8 +136,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _shake_eggplant_effect() -> void:
 	if not _eggplant_sprite: return
 	var tween = create_tween()
-	#tween.tween_property(_eggplant_sprite, "scale", Vector2(128, 128), 0.04)
-	#tween.tween_property(_eggplant_sprite, "scale", Vector2(130, 130), 0.04)
 
 func _start_season_phase() -> void:
 	randomize()
@@ -174,7 +169,6 @@ func _update_salt_shaker_position() -> void:
 
 func _pour_salt_in_area() -> void:
 	_area_salt_counts[_current_area] += 1
-	#audio
 	
 	if _salt_particles:
 		_salt_particles.emitting = true
@@ -199,33 +193,54 @@ func _pour_salt_in_area() -> void:
 
 	_refresh_seasoning_ui_labels()
 
+	# Finish if NO areas are left un-salted (meaning all are Perfect or Too Salty)
+	var can_continue_salting := false
+	for i in range(4):
+		if _area_salt_counts[i] < _secret_targets[i]:
+			can_continue_salting = true
+			break
+			
+	if not can_continue_salting:
+		_finish_minigame()
+
 func _refresh_seasoning_ui_labels() -> void:
 	var dashboard_text = ""
 
 	for i in range(4):
 		var taps = _area_salt_counts[i]
 		var target = _secret_targets[i]
-		var status_text = "Bland 😮"
+		var status_text = "Bland"
+		var color_hex = "#90e0ef"
 
 		if taps > 0:
 			if taps == target:
-				status_text = "Perfect! ✨"
+				status_text = "Perfect!"
+				color_hex = "#08f26e"
 			elif taps < target:
 				status_text = "Salt More!"
+				color_hex = "#ffeb3b"
 			else:
-				status_text = "Too Salty! 💨"
+				status_text = "Too Salty!"
+				color_hex = "#ff2400"
 
+		var colored_status = "[color=" + color_hex + "]" + status_text + "[/color]"
+		
 		if i == _current_area:
-			dashboard_text += "👉 [Area %d]: %s\n " % [i + 1, status_text]
+			dashboard_text += "👉 [Area %d]: %s\n" % [i + 1, colored_status]
 		else:
-			dashboard_text += "      [Area %d]: %s\n" % [i + 1, status_text]
+			dashboard_text += "      [Area %d]: %s\n" % [i + 1, colored_status]
 
 	if _lbl_label:
 		_lbl_label.text = dashboard_text
 		_lbl_label.visible = true
 
 func _finish_minigame() -> void:
+	if _has_finished:
+		return
+		
 	_has_finished = true
+	set_process(false)
+	
 	if _salt_sprite: _salt_sprite.visible = false
 	if _lbl_progress: _lbl_progress.visible = false
 	if _lbl_status: _lbl_status.visible = false

@@ -386,7 +386,7 @@ Time your knife strikes on the beat.",
 			"ingredients": ["icon_eggplant"],
 			"instruction": "Prick holes all over the eggplant skin,
 then rub with salt, pepper, and oil.",
-			"time_limit": 15.0,
+			"time_limit": 25,
 			"required": true
 		},
 		{
