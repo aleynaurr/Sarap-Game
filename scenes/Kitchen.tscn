@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxt018v37yi8s" path="res://scripts/player.gd" id="2_player"]
 [ext_resource type="Script" uid="uid://et0vxsp28p26" path="res://scripts/stations/KitchenStation.gd" id="3_station"]
 [ext_resource type="Script" uid="uid://dksqqug6cmy51" path="res://scripts/MinigameHost.gd" id="4_mghost"]
-[ext_resource type="Texture2D" uid="uid://1rik7kgxwnhj" path="res://assets/sprites/player/player_sheet.png" id="5_player_tex"]
+[ext_resource type="Texture2D" uid="uid://cvxpvc0b37meo" path="res://assets/player_sheet.png" id="5_4fgkg"]
 [ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="8_jmce5"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="9_20l34"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="10_4fgkg"]
@@ -293,6 +293,13 @@ offset_right = -2.0
 offset_bottom = 720.0
 color = Color(0.06469653, 0.06469653, 0.06469653, 1)
 
+[node name="ColorRect3" type="ColorRect" parent="WallsLayer" unique_id=73138040]
+offset_left = 640.0
+offset_top = -981.0
+offset_right = 1514.0
+offset_bottom = 718.0
+color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+
 [node name="Stations" type="Node2D" parent="." unique_id=659295365]
 
 [node name="SinkStation" type="Area2D" parent="Stations" unique_id=2024567541]
@@ -399,7 +406,7 @@ script = ExtResource("2_player")
 zoom = Vector2(1.15, 1.15)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1411164132]
-texture = ExtResource("5_player_tex")
+texture = ExtResource("5_4fgkg")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 128)
 
@@ -472,7 +479,7 @@ offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
 theme_override_fonts/font = ExtResource("9_20l34")
 theme_override_font_sizes/font_size = 22
-text = "05:00"
+text = "10:00"
 
 [node name="RecipeLabel" type="Label" parent="HUD" unique_id=477704871]
 offset_left = 90.0
@@ -522,10 +529,11 @@ theme_override_constants/separation = 4
 
 [node name="StepLabel" type="Label" parent="HUD" unique_id=1606478695]
 offset_left = 7.0
-offset_top = 450.0
-offset_right = 194.0
-offset_bottom = 564.0
+offset_top = 550.0
+offset_right = 155.0
+offset_bottom = 600.0
 theme_override_colors/font_color = Color(0.6, 0.9, 0.6, 1)
+theme_override_fonts/font = ExtResource("9_20l34")
 theme_override_font_sizes/font_size = 15
 text = "Next: ..."
 autowrap_mode = 3
@@ -551,5 +559,6 @@ offset_top = 679.0
 offset_right = 595.0
 offset_bottom = 713.0
 theme_override_colors/font_color = Color(0.55, 0.48, 0.38, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("9_20l34")
+theme_override_font_sizes/font_size = 24
 text = "[ESC] = Quit"

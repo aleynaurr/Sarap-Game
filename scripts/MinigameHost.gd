@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var player_number: int = 1
+
 func _on_init() -> void:
 	print("I AM THE REAL MIX SCRIPT")
 
@@ -50,6 +52,8 @@ func launch(step: Dictionary, step_index: int) -> void:
 	add_child(_minigame_container)
 
 	var mg = mg_scene.instantiate()
+	if mg.has_method("set_player_number"):
+		mg.set_player_number(player_number)
 	_minigame_container.add_child(mg)
 	_active_minigame = mg
 	_step_index = step_index

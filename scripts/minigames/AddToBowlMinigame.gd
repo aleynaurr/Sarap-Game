@@ -49,7 +49,11 @@ func _on_init() -> void:
 	randomize()
 	_actions = _base_ingredients.duplicate()
 
-	var key_pool = ["KEY_W", "KEY_A", "KEY_D"]
+	var key_pool = []
+	if player_number == 1:
+		key_pool = ["KEY_W", "KEY_A", "KEY_D"]
+	else:
+		key_pool = ["KEY_UP", "KEY_LEFT", "KEY_RIGHT"]
 	key_pool.shuffle()
 	_action_keys = key_pool
 	
@@ -85,14 +89,20 @@ func _on_update(delta: float, _remaining: float) -> void:
 	if _action_idx >= _actions.size():
 		return
 
-	if Input.is_action_just_pressed("ui_up"):
-		_check_input_match("KEY_W")
-
-	elif Input.is_action_just_pressed("ui_left"):
-		_check_input_match("KEY_A")
-
-	elif Input.is_action_just_pressed("ui_right"):
-		_check_input_match("KEY_D")
+	if player_number == 1:
+		if Input.is_action_just_pressed("move_up_p1"):
+			_check_input_match("KEY_W")
+		elif Input.is_action_just_pressed("move_left_p1"):
+			_check_input_match("KEY_A")
+		elif Input.is_action_just_pressed("move_right_p1"):
+			_check_input_match("KEY_D")
+	else:
+		if Input.is_action_just_pressed("move_up_p2"):
+			_check_input_match("KEY_UP")
+		elif Input.is_action_just_pressed("move_left_p2"):
+			_check_input_match("KEY_LEFT")
+		elif Input.is_action_just_pressed("move_right_p2"):
+			_check_input_match("KEY_RIGHT")
 
 func _check_input_match(pressed_key: String) -> void:
 	var target_key = _action_keys[_action_idx]

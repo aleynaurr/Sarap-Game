@@ -1,17 +1,15 @@
-[gd_scene format=3 uid="uid://cha652eh1ra53"]
+[gd_scene format=3 uid="uid://splitresults"]
 
-[ext_resource type="Script" uid="uid://splitscreen" path="res://scripts/SplitScreen.gd" id="0_script"]
-[ext_resource type="PackedScene" uid="uid://kitchen" path="res://scenes/Kitchen.tscn" id="1_kitchen"]
+[ext_resource type="PackedScene" uid="uid://d2xi837sw278t" path="res://scenes/Results.tscn" id="1_results"]
 [ext_resource type="Texture2D" uid="uid://drr15des4dnic" path="res://assets/sprites/ui/splitscreenBORDER.png" id="2_ojifk"]
 
-[node name="SplitScreen" type="Control" unique_id=39062799]
+[node name="SplitScreenResults" type="Control" unique_id=39062799]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("0_script")
 
 [node name="P1ViewportContainer" type="SubViewportContainer" parent="." unique_id=422146074]
 layout_mode = 1
@@ -29,7 +27,8 @@ handle_input_locally = false
 size = Vector2i(645, 721)
 render_target_update_mode = 4
 
-[node name="Kitchen" parent="P1ViewportContainer/P1Viewport" unique_id=1366910230 instance=ExtResource("1_kitchen")]
+[node name="Results" parent="P1ViewportContainer/P1Viewport" unique_id=1366910230 instance=ExtResource("1_results")]
+player_number = 1
 
 [node name="P2ViewportContainer" type="SubViewportContainer" parent="." unique_id=500000000]
 layout_mode = 1
@@ -49,7 +48,7 @@ handle_input_locally = false
 size = Vector2i(647, 722)
 render_target_update_mode = 4
 
-[node name="Kitchen" parent="P2ViewportContainer/P2Viewport" unique_id=500000002 instance=ExtResource("1_kitchen")]
+[node name="Results" parent="P2ViewportContainer/P2Viewport" unique_id=500000002 instance=ExtResource("1_results")]
 player_number = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1312310537]

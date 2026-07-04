@@ -8,6 +8,7 @@ extends Control
 
 @onready var video_player: VideoStreamPlayer = $VideoPlayer
 @onready var menu_button: TextureButton    = $MenuButton
+@export var player_number: int = 1
 
 # ---- Config ----------------------------------------------------------
 
@@ -93,7 +94,7 @@ func _calculate_stars() -> int:
 	var recipe := RecipeData.get_recipe(GameManager.current_recipe_id)
 	var steps: Array = recipe.get("steps", [])
 	var max_sc: int = steps.size() * 100
-	var total: int = GameManager.total_score
+	var total: int = GameManager.get_total_score(player_number)
 	var pct: float = float(total) / float(max(1, max_sc))
 
 	var stars := 0

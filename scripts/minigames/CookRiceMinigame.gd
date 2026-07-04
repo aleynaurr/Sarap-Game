@@ -158,7 +158,7 @@ func _load_tex() -> void:
 	_tex["popup_bg"] = load(ASSET_DIR + "popup_bg.png")
 
 func _is_grab_pressed() -> bool:
-	return Input.is_key_pressed(KEY_Q) or Input.is_key_pressed(KEY_SLASH)
+	return Input.is_action_pressed("grab_p%d" % player_number)
 
 func _on_init() -> void:
 	_load_tex()
@@ -311,10 +311,16 @@ func _on_update(delta: float, _remaining: float) -> void:
 
 func _update_hand(delta: float) -> void:
 	var dir := Vector2.ZERO
-	if Input.is_action_pressed("move_up"): dir.y -= 1
-	if Input.is_action_pressed("move_down"): dir.y += 1
-	if Input.is_action_pressed("move_left"): dir.x -= 1
-	if Input.is_action_pressed("move_right"): dir.x += 1
+	if player_number == 1:
+		if Input.is_action_pressed("move_up_p1"): dir.y -= 1
+		if Input.is_action_pressed("move_down_p1"): dir.y += 1
+		if Input.is_action_pressed("move_left_p1"): dir.x -= 1
+		if Input.is_action_pressed("move_right_p1"): dir.x += 1
+	else:
+		if Input.is_action_pressed("move_up_p2"): dir.y -= 1
+		if Input.is_action_pressed("move_down_p2"): dir.y += 1
+		if Input.is_action_pressed("move_left_p2"): dir.x -= 1
+		if Input.is_action_pressed("move_right_p2"): dir.x += 1
 	if dir != Vector2.ZERO:
 		_hand_pos += dir.normalized() * move_speed * delta
 		_hand_pos.x = clampf(_hand_pos.x, hand_move_min.x, hand_move_max.x)
@@ -502,8 +508,12 @@ func _update_cooking(delta: float) -> void:
 		_zone_dir = -1.0
 
 	var mdir := 0.0
-	if Input.is_action_pressed("move_left"): mdir -= 1.0
-	if Input.is_action_pressed("move_right"): mdir += 1.0
+	if player_number == 1:
+		if Input.is_action_pressed("move_left_p1"): mdir -= 1.0
+		if Input.is_action_pressed("move_right_p1"): mdir += 1.0
+	else:
+		if Input.is_action_pressed("move_left_p2"): mdir -= 1.0
+		if Input.is_action_pressed("move_right_p2"): mdir += 1.0
 	_marker_pos = clampf(_marker_pos + mdir * move_speed * delta, 0.0, track_w)
 
 	_cook_score_max += green_rate * delta

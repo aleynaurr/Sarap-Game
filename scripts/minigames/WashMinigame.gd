@@ -184,7 +184,7 @@ func _on_update(delta: float, _remaining: float) -> void:
 		return
 
 	# Always check for next-veggie press first
-	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("wash_next"):
+	if Input.is_action_just_pressed("interact_p%d" % player_number):
 		_advance_veggie()
 		return
 
@@ -218,10 +218,16 @@ func _on_update(delta: float, _remaining: float) -> void:
 
 func _handle_movement(delta: float) -> void:
 	var dir = Vector2.ZERO
-	if Input.is_action_pressed("move_up"):    dir.y -= 1
-	if Input.is_action_pressed("move_down"):  dir.y += 1
-	if Input.is_action_pressed("move_left"):  dir.x -= 1
-	if Input.is_action_pressed("move_right"): dir.x += 1
+	if player_number == 1:
+		if Input.is_action_pressed("move_up_p1"):    dir.y -= 1
+		if Input.is_action_pressed("move_down_p1"):  dir.y += 1
+		if Input.is_action_pressed("move_left_p1"):  dir.x -= 1
+		if Input.is_action_pressed("move_right_p1"): dir.x += 1
+	else:
+		if Input.is_action_pressed("move_up_p2"):    dir.y -= 1
+		if Input.is_action_pressed("move_down_p2"):  dir.y += 1
+		if Input.is_action_pressed("move_left_p2"):  dir.x -= 1
+		if Input.is_action_pressed("move_right_p2"): dir.x += 1
 	if dir == Vector2.ZERO: return
 	_veggie_pos += dir.normalized() * MOVE_SPEED * delta
 	_veggie_pos.x = clampf(_veggie_pos.x, SINK_X_MIN, SINK_X_MAX)
@@ -229,13 +235,15 @@ func _handle_movement(delta: float) -> void:
 	_apply_veggie_pos()
 
 func _handle_faucet_toggle() -> void:
-	if Input.is_action_just_pressed("wash_faucet"):
+	if Input.is_action_just_pressed("grab_p%d" % player_number):
 		_faucet_on = not _faucet_on
 		if not _faucet_on:
 			_faucet_img.texture = _faucet_tex[0]
 			_faucet_frame       = 0
 			_faucet_timer       = 0.0
-		_faucet_label.text = "Q / ÷  →  faucet %s" % ("OFF" if _faucet_on else "ON")
+		var btn_text = "Q" if player_number == 1 else "÷"
+		var faucet_state = "OFF" if _faucet_on else "ON"
+		_faucet_label.text = "%s  →  faucet %s" % [btn_text, faucet_state]
 
 func _handle_faucet_anim(delta: float) -> void:
 	if not _faucet_on: return

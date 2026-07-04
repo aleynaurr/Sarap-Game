@@ -71,7 +71,7 @@ func _on_update(_delta: float, remaining: float) -> void:
 		_calculate_and_complete()
 		return
 
-	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("interact_p%d" % player_number):
 		_taps_done += 1
 		_update_straining_progression()
 		

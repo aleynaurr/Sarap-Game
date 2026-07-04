@@ -5,12 +5,17 @@ class_name MinigameBase
 var minigame_id: String = "base"
 var step_data: Dictionary = {}
 
+var player_number: int = 1
+
 var _skill_score: float = 0.0   # 0..1
 var _start_time: float = 0.0
 var _time_limit: float = 20.0
 var _finished: bool = false
 
 signal minigame_completed(skill_ratio: float, time_ratio: float)
+
+func set_player_number(num: int) -> void:
+	player_number = num
 
 func init_step(step: Dictionary) -> void:
 	step_data = step

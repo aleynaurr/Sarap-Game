@@ -184,14 +184,24 @@ func _on_update(delta: float, remaining: float) -> void:
 func _update_hand(delta: float) -> void:
 	var move_dir = Vector2.ZERO
 
-	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W):
-		move_dir.y -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S):
-		move_dir.y += 1
-	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A):
-		move_dir.x -= 1
-	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
-		move_dir.x += 1
+	if player_number == 1:
+		if Input.is_action_pressed("move_up_p1"):
+			move_dir.y -= 1
+		if Input.is_action_pressed("move_down_p1"):
+			move_dir.y += 1
+		if Input.is_action_pressed("move_left_p1"):
+			move_dir.x -= 1
+		if Input.is_action_pressed("move_right_p1"):
+			move_dir.x += 1
+	else:
+		if Input.is_action_pressed("move_up_p2"):
+			move_dir.y -= 1
+		if Input.is_action_pressed("move_down_p2"):
+			move_dir.y += 1
+		if Input.is_action_pressed("move_left_p2"):
+			move_dir.x -= 1
+		if Input.is_action_pressed("move_right_p2"):
+			move_dir.x += 1
 
 	if move_dir.length_squared() > 0:
 		move_dir = move_dir.normalized()
@@ -201,7 +211,7 @@ func _update_hand(delta: float) -> void:
 	_hand_pos.y = clamp(_hand_pos.y, HAND_SIZE.y / 2, 720 - HAND_SIZE.y / 2)
 	_update_hand_position()
 
-	_is_pinching = Input.is_key_pressed(KEY_Q) or Input.is_key_pressed(KEY_SLASH)
+	_is_pinching = Input.is_action_pressed("grab_p%d" % player_number)
 	_hand.texture = _hand_tex_pinch if _is_pinching else _hand_tex_open
 
 func _update_hand_position() -> void:
@@ -291,14 +301,24 @@ func _update_arrow(delta: float) -> void:
 
 func _get_input_direction() -> Vector2:
 	var dir = Vector2.ZERO
-	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W):
-		dir.y -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S):
-		dir.y += 1
-	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A):
-		dir.x -= 1
-	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
-		dir.x += 1
+	if player_number == 1:
+		if Input.is_action_pressed("move_up_p1"):
+			dir.y -= 1
+		if Input.is_action_pressed("move_down_p1"):
+			dir.y += 1
+		if Input.is_action_pressed("move_left_p1"):
+			dir.x -= 1
+		if Input.is_action_pressed("move_right_p1"):
+			dir.x += 1
+	else:
+		if Input.is_action_pressed("move_up_p2"):
+			dir.y -= 1
+		if Input.is_action_pressed("move_down_p2"):
+			dir.y += 1
+		if Input.is_action_pressed("move_left_p2"):
+			dir.x -= 1
+		if Input.is_action_pressed("move_right_p2"):
+			dir.x += 1
 	if dir.length_squared() > 0:
 		return dir.normalized()
 	return Vector2.ZERO

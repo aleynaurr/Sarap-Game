@@ -2,6 +2,8 @@ extends Node2D
 
 const SMALL_DOOR_TRANSITION_SCENE := preload("res://scenes/SmallDoorTransition.tscn")
 
+@export var player_number: int = 1  # 1 or 2
+
 @onready var player: CharacterBody2D    = $Player
 @onready var hud: CanvasLayer           = $HUD
 @onready var minigame_host: CanvasLayer = $MinigameHost
@@ -14,10 +16,14 @@ const SMALL_DOOR_TRANSITION_SCENE := preload("res://scenes/SmallDoorTransition.t
 @onready var side_panel: TextureRect    = $HUD/SidePanel
 @onready var side_panel_label: Label    = $HUD/SidePanelLabel
 
+var _waiting_popup: CanvasLayer = null
+var _waiting_bob_tween: Tween = null
+var _waiting_popup_base_y: float = 0.0
+
 var _recipe: Dictionary = {}
 var _steps: Array = []
-var _global_timer: float = 0.0
 var _global_active: bool = true
+var _global_timer: float = 0.0
 var _step_labels: Array = []
 var _player_current_station: KitchenStation = null
 
@@ -28,7 +34,7 @@ var _pixelon_font: FontFile = null
 var _toggle_btn: Button = null
 var _tab_hint_lbl: Label = null
 
-# ── Station indicator ─────────────────────────────────────────────────────────
+# ─── Station indicator ─────────────────────────────────────────────────────────
 # These positions can be tweaked here to match where each station visually sits.
 # They are the world-space coordinates where the exclamation will appear.
 @export var indicator_positions: Dictionary = {
@@ -51,7 +57,7 @@ const INDICATOR_SCALE: Vector2 = Vector2(0.55, 0.55)
 func _ready() -> void:
 	_recipe = RecipeData.get_recipe(GameManager.current_recipe_id)
 	_steps  = _recipe.get("steps", [])
-	GameManager.game_active = true
+	GameManager.set_game_active(player_number, true)
 
 	AudioManager.play_music("kitchen", 1.5)
 
@@ -61,10 +67,13 @@ func _ready() -> void:
 	_setup_station_indicator()
 	_connect_stations()
 
+	player.player_number = player_number
 	player.interact_pressed.connect(_on_player_interact)
+	minigame_host.player_number = player_number
 	minigame_host.minigame_done.connect(_on_minigame_done)
 
 	_global_timer = GameManager.TOTAL_RECIPE_TIME
+	GameManager.set_time_remaining(player_number, _global_timer)
 	_update_step_list()
 	_update_station_indicator()
 
@@ -83,11 +92,11 @@ func _apply_pixelon(lbl: Label, size: int = 11) -> void:
 # ─── HUD ──────────────────────────────────────────────────────────────────────
 
 func _setup_hud() -> void:
-	recipe_lbl.text = "🍳 " + _recipe.get("display_name", "Recipe")
+	recipe_lbl.text = ("P%d " % player_number) + "🍳 " + _recipe.get("display_name", "Recipe")
 	score_lbl.text  = "Score: 0"
 	step_lbl.text   = "Next: " + _get_next_step_name()
-	_apply_pixelon(side_panel_label, 11)
-	_apply_pixelon(step_lbl, 11)
+	_apply_pixelon(side_panel_label, 25)
+	_apply_pixelon(step_lbl, 20)
 
 func _setup_sidebar_toggle() -> void:
 	_toggle_btn = Button.new()
@@ -120,7 +129,7 @@ func _refresh_sidebar_visibility() -> void:
 	_toggle_btn.text         = "«" if _sidebar_open else "»"
 	_toggle_btn.position.x   = _sidebar_width if _sidebar_open else 0
 
-# ─── Station indicator ────────────────────────────────────────────────────────
+# ─── Station indicator ─────────────────────────────────────────────────────────
 
 func _setup_station_indicator() -> void:
 	var tex = load("res://assets/sprites/ui/exclamation.png")
@@ -136,7 +145,7 @@ func _setup_station_indicator() -> void:
 func _update_station_indicator() -> void:
 	if _indicator == null:
 		return
-	var next_idx = GameManager.get_next_required_step()
+	var next_idx = GameManager.get_next_required_step(player_number)
 	if next_idx == -1:
 		_indicator.visible = false
 		return
@@ -148,7 +157,7 @@ func _update_station_indicator() -> void:
 	_bob_time = 0.0   # reset bob so it always starts from the same place
 	_indicator.visible = true
 
-# ─── Game loop ────────────────────────────────────────────────────────────────
+# ─── Game loop ─────────────────────────────────────────────────────────────────
 
 func _connect_stations() -> void:
 	var stations_node = get_node_or_null("Stations")
@@ -156,6 +165,7 @@ func _connect_stations() -> void:
 		return
 	for child in stations_node.get_children():
 		if child is KitchenStation:
+			child.player_number = player_number
 			child.player_entered.connect(_on_station_entered.bind(child))
 			child.player_exited.connect(_on_station_exited)
 
@@ -168,21 +178,16 @@ func _process(delta: float) -> void:
 	if not _global_active:
 		return
 
-	_global_timer -= delta
-	if _global_timer <= 0.0:
-		_global_timer = 0.0
-		_global_active = false
-		_on_time_up()
-
-	var secs = int(_global_timer)
+	var shared_timer = GameManager.get_shared_timer_remaining()
+	var secs = int(shared_timer)
 	timer_lbl.text = "%02d:%02d" % [secs / 60, secs % 60]
-	if _global_timer < 60.0:
+	if shared_timer < 60.0:
 		timer_lbl.add_theme_color_override("font_color", Color(1, 0.3, 0.2))
-	elif _global_timer < 120.0:
+	elif shared_timer < 120.0:
 		timer_lbl.add_theme_color_override("font_color", Color(1, 0.85, 0.2))
 
 func _get_current_station_id() -> String:
-	var next_idx = GameManager.get_next_required_step()
+	var next_idx = GameManager.get_next_required_step(player_number)
 	if next_idx == -1:
 		return ""
 	return _steps[next_idx].get("station", "")
@@ -199,7 +204,8 @@ func _on_station_entered(station: KitchenStation) -> void:
 	_player_current_station = station
 	if station.has_pending_step():
 		var step = station.get_current_step()
-		station_hint.text = "Press [E] — " + step.get("name", "Cook")
+		var interact_key = "E" if player_number == 1 else "Shift"
+		station_hint.text = "Press [%s] — " % interact_key + step.get("name", "Cook")
 		station_hint.visible = true
 	else:
 		station_hint.text = "Station: " + station.station_label
@@ -229,12 +235,12 @@ func _on_minigame_done(step_index: int, skill_ratio: float, time_ratio: float) -
 	var freeze_layer := _capture_freeze_layer()
 
 	var score = ScoreManager.calculate_step_score(skill_ratio, time_ratio)
-	GameManager.add_step_score(score, step_index)
-	GameManager.mark_step_done(step_index)
+	GameManager.add_step_score(player_number, score, step_index)
+	GameManager.mark_step_done(player_number, step_index)
 
-	var all_done := GameManager.all_steps_done()
+	var all_done := GameManager.all_steps_done(player_number)
 	var completed_station_id = _steps[step_index].get("station", "")
-	var next_idx = GameManager.get_next_required_step()
+	var next_idx = GameManager.get_next_required_step(player_number)
 
 	var chain_next := false
 	var next_step: Dictionary = {}
@@ -251,7 +257,7 @@ func _on_minigame_done(step_index: int, skill_ratio: float, time_ratio: float) -
 		freeze_layer.queue_free()
 		_refresh_hud_after_step()
 		await get_tree().create_timer(0.35).timeout
-		if not GameManager.game_active:
+		if not GameManager.get_game_active(player_number):
 			return
 		minigame_host.launch(next_step, next_idx)
 		return
@@ -261,8 +267,8 @@ func _on_minigame_done(step_index: int, skill_ratio: float, time_ratio: float) -
 		_refresh_hud_after_step()
 		player.enable()
 		_global_active = false
-		await get_tree().create_timer(1.2).timeout
-		GameManager.go_to_results()
+		GameManager.set_player_finished(player_number)
+		_show_waiting_popup()
 		return
 
 	# Returning to full kitchen control: the snapshot is already covering
@@ -298,9 +304,9 @@ func _capture_freeze_layer() -> CanvasLayer:
 	return layer
 
 func _refresh_hud_after_step() -> void:
-	score_lbl.text = "Score: %d" % GameManager.total_score
+	score_lbl.text = "Score: %d" % GameManager.get_total_score(player_number)
 	_update_step_list()
-	step_lbl.text  = "Next: " + _get_next_step_name()
+	step_lbl.text   = "Next: " + _get_next_step_name()
 	_update_station_indicator()
 
 func _play_small_door_transition(on_midpoint: Callable) -> void:
@@ -311,12 +317,12 @@ func _play_small_door_transition(on_midpoint: Callable) -> void:
 func _on_time_up() -> void:
 	player.disable()
 	await get_tree().create_timer(1.5).timeout
-	GameManager.go_to_results()
+	# Don't go to results yet
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 
 func _get_next_step_name() -> String:
-	var next_idx = GameManager.get_next_required_step()
+	var next_idx = GameManager.get_next_required_step(player_number)
 	if next_idx == -1:
 		return "All done! 🎉"
 	return _steps[next_idx].get("name", "???")
@@ -333,12 +339,12 @@ func _update_step_list() -> void:
 	_step_labels.clear()
 	for i in range(_steps.size()):
 		var step = _steps[i]
-		var done = GameManager.is_step_done(i)
+		var done = GameManager.is_step_done(player_number, i)
 		var lbl  = Label.new()
 		lbl.text = ("✅" if done else "⬜") + " " + step.get("name", "???")
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.custom_minimum_size.x = 120
-		_apply_pixelon(lbl, 10)
+		_apply_pixelon(lbl, 15)
 		lbl.add_theme_color_override("font_color", Color(0.5, 0.88, 0.5) if done else Color(0.88, 0.88, 0.88))
 		step_list.add_child(lbl)
 		_step_labels.append(lbl)
@@ -353,3 +359,44 @@ func _show_popup(msg: String) -> void:
 	add_child(popup)
 	await get_tree().create_timer(2.5).timeout
 	popup.queue_free()
+
+func _show_waiting_popup() -> void:
+	# Don't show popup if both players are already done
+	if GameManager.is_player_finished(1) and GameManager.is_player_finished(2):
+		return
+	_waiting_popup = CanvasLayer.new()
+	_waiting_popup.layer = 99
+	var bg_rect = ColorRect.new()
+	bg_rect.custom_minimum_size = Vector2(640, 720)
+	bg_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg_rect.color = Color(0,0,0,0.6)
+	_waiting_popup.add_child(bg_rect)
+
+	var waiting_lbl = Label.new()
+	waiting_lbl.text = "Waiting for other player..."
+	waiting_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	waiting_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	waiting_lbl.set_anchors_preset(Control.PRESET_CENTER)
+	waiting_lbl.add_theme_font_size_override("font_size", 32)
+	waiting_lbl.add_theme_color_override("font_color", Color(1,1,1,1))
+	if _pixelon_font:
+		waiting_lbl.add_theme_font_override("font", _pixelon_font)
+	_waiting_popup.add_child(waiting_lbl)
+	_waiting_popup_base_y = waiting_lbl.position.y
+
+	add_child(_waiting_popup)
+
+	# Pop-in animation
+	waiting_lbl.scale = Vector2(0.1, 0.1)
+	var pop_tween = create_tween()
+	pop_tween.tween_property(waiting_lbl, "scale", Vector2(1.2, 1.2), 0.2)
+	pop_tween.tween_property(waiting_lbl, "scale", Vector2(1, 1), 0.1)
+
+	# Bobbing animation
+	await pop_tween.finished
+	_waiting_bob_tween = create_tween()
+	_waiting_bob_tween.set_loops()
+	_waiting_bob_tween.tween_property(waiting_lbl, "position:y", _waiting_popup_base_y - 10, 0.6)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_waiting_bob_tween.tween_property(waiting_lbl, "position:y", _waiting_popup_base_y, 0.6)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
