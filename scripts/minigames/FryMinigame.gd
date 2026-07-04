@@ -323,7 +323,6 @@ func _finish_game() -> void:
 	stateB = clamp(stateB, 0, 4)
 	var scoreA = STATE_POINTS[stateA]
 	var scoreB = STATE_POINTS[stateB]
-	_result_label.text = "Cooking done!\nSide A: %d pts | Side B: %d pts" % [scoreA, scoreB]
 	_show_end_popup(true)
 
 func _finish_with_score() -> void:

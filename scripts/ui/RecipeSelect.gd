@@ -42,6 +42,8 @@ const IMG_DIR := "res://assets/sprites/ui/RecipeSelectImg/"
 const TEX_POINTER_NORMAL   := IMG_DIR + "map_pointer_normal.png"
 const TEX_POINTER_SELECTED := IMG_DIR + "map_pointer_selected.png"
 
+const DOOR_TRANSITION_SCENE := preload("res://scenes/DoorTransition.tscn")
+
 const HOVER_BRIGHTEN      := Color(1.35, 1.35, 1.35, 1.0)
 const NORMAL_MODULATE     := Color(1, 1, 1, 1)
 const VIDEO_HOVER_BRIGHT  := Color(1.18, 1.18, 1.18, 1.0)
@@ -98,7 +100,7 @@ var _video_shadow_panel: Panel
 
 
 func _ready() -> void:
-	back_button.pressed.connect(func(): GameManager.go_to_main_menu())
+	back_button.pressed.connect(_on_back_pressed)
 
 	_pointer_nodes = {
 		"luzon":    $LeftPage/MapContainer/PointerLuzon,
@@ -400,6 +402,17 @@ func _update_play_button_visibility() -> void:
 		)
 
 
+func _on_back_pressed() -> void:
+	AudioManager.play_sfx(AudioManager.SFX_CLICK)
+
+	# Prevent double-triggering the transition on a second click.
+	back_button.disabled = true
+
+	var door := DOOR_TRANSITION_SCENE.instantiate()
+	get_tree().root.add_child(door)
+	door.play_transition(func(): GameManager.go_to_main_menu())
+
+
 func _on_play_pressed() -> void:
 	if _selected_id == "":
 		return
@@ -408,7 +421,14 @@ func _on_play_pressed() -> void:
 	if recipe_id == "":
 		return
 	AudioManager.play_sfx(AudioManager.SFX_CLICK)
-	GameManager.start_recipe(recipe_id)
+	AudioManager.fade_out_music()
+
+	# Prevent double-triggering the transition on a second click.
+	play_button.disabled = true
+
+	var door := DOOR_TRANSITION_SCENE.instantiate()
+	get_tree().root.add_child(door)
+	door.play_transition(func(): GameManager.start_recipe(recipe_id))
 
 
 # ─── Locked-region popup ─────────────────────────────────────────────────────

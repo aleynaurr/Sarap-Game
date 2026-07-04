@@ -1,5 +1,7 @@
 extends Control
 
+const DOOR_TRANSITION_SCENE := preload("res://scenes/DoorTransition.tscn")
+
 @onready var btn_play: Button   = $MenuVBox/BtnPlay
 @onready var btn_howto: Button  = $MenuVBox/BtnHowTo
 @onready var btn_quit: Button   = $MenuVBox/BtnQuit
@@ -44,7 +46,13 @@ func _process(delta: float) -> void:
 
 func _on_play() -> void:
 	AudioManager.play_sfx(AudioManager.SFX_CLICK)
-	GameManager.go_to_recipe_select()
+
+	# Prevent double-triggering the transition on a second click.
+	btn_play.disabled = true
+
+	var door := DOOR_TRANSITION_SCENE.instantiate()
+	get_tree().root.add_child(door)
+	door.play_transition(func(): GameManager.go_to_recipe_select())
 
 func _on_howto() -> void:
 	AudioManager.play_sfx(AudioManager.SFX_CLICK)

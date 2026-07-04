@@ -1,5 +1,7 @@
 extends Node2D
 
+const SMALL_DOOR_TRANSITION_SCENE := preload("res://scenes/SmallDoorTransition.tscn")
+
 @onready var player: CharacterBody2D    = $Player
 @onready var hud: CanvasLayer           = $HUD
 @onready var minigame_host: CanvasLayer = $MinigameHost
@@ -50,6 +52,8 @@ func _ready() -> void:
 	_recipe = RecipeData.get_recipe(GameManager.current_recipe_id)
 	_steps  = _recipe.get("steps", [])
 	GameManager.game_active = true
+
+	AudioManager.play_music("kitchen", 1.5)
 
 	_load_pixelon_font()
 	_setup_hud()
@@ -185,6 +189,7 @@ func _get_current_station_id() -> String:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
+		AudioManager.fade_out_music(1.5)
 		GameManager.go_to_recipe_select()
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_TAB:
@@ -214,37 +219,94 @@ func _on_player_interact(station: KitchenStation) -> void:
 	if step_index == -1:
 		return
 	player.disable()
-	minigame_host.launch(step_dict, step_index)
+	_play_small_door_transition(func(): minigame_host.launch(step_dict, step_index))
 
 func _on_minigame_done(step_index: int, skill_ratio: float, time_ratio: float) -> void:
+	# Grab a snapshot of exactly what's on screen right now — still the
+	# minigame — before anything else (including minigame_host's own
+	# internal teardown) has a chance to change it visually. We'll show
+	# this in place of the real scene until the doors are fully closed.
+	var freeze_layer := _capture_freeze_layer()
+
 	var score = ScoreManager.calculate_step_score(skill_ratio, time_ratio)
 	GameManager.add_step_score(score, step_index)
 	GameManager.mark_step_done(step_index)
 
-	score_lbl.text = "Score: %d" % GameManager.total_score
-	_update_step_list()
-	step_lbl.text  = "Next: " + _get_next_step_name()
-	_update_station_indicator()
+	var all_done := GameManager.all_steps_done()
+	var completed_station_id = _steps[step_index].get("station", "")
+	var next_idx = GameManager.get_next_required_step()
 
-	if GameManager.all_steps_done():
+	var chain_next := false
+	var next_step: Dictionary = {}
+	if not all_done and next_idx != -1 and _player_current_station != null:
+		next_step = _steps[next_idx]
+		if next_step.get("station", "") == completed_station_id and _player_current_station.station_id == completed_station_id:
+			chain_next = true
+
+	if chain_next:
+		# Same-station chain: player never actually sees the kitchen in
+		# between, so there's nothing to hide behind a door for — discard
+		# the snapshot, refresh the HUD immediately, and go straight into
+		# the next minigame.
+		freeze_layer.queue_free()
+		_refresh_hud_after_step()
+		await get_tree().create_timer(0.35).timeout
+		if not GameManager.game_active:
+			return
+		minigame_host.launch(next_step, next_idx)
+		return
+
+	if all_done:
+		freeze_layer.queue_free()
+		_refresh_hud_after_step()
 		player.enable()
 		_global_active = false
 		await get_tree().create_timer(1.2).timeout
 		GameManager.go_to_results()
 		return
 
-	var completed_station_id = _steps[step_index].get("station", "")
-	var next_idx = GameManager.get_next_required_step()
-	if next_idx != -1 and _player_current_station != null:
-		var next_step = _steps[next_idx]
-		if next_step.get("station", "") == completed_station_id and _player_current_station.station_id == completed_station_id:
-			await get_tree().create_timer(0.35).timeout
-			if not GameManager.game_active:
-				return
-			minigame_host.launch(next_step, next_idx)
-			return
+	# Returning to full kitchen control: the snapshot is already covering
+	# the real view (which may have already flipped to "kitchen" underneath
+	# by now — doesn't matter, it's hidden), so from the player's
+	# perspective they're still looking at the finished minigame while the
+	# doors slide closed over it. Once fully closed, swap the visible HUD
+	# state, drop the snapshot, and open the doors to reveal the kitchen.
+	add_child(freeze_layer)
 
-	player.enable()
+	var door := SMALL_DOOR_TRANSITION_SCENE.instantiate()
+	add_child(door)
+	door.play_transition(func():
+		_refresh_hud_after_step()
+		player.enable()
+		freeze_layer.queue_free()
+	)
+
+func _capture_freeze_layer() -> CanvasLayer:
+	var img := get_viewport().get_texture().get_image()
+	var tex := ImageTexture.create_from_image(img)
+
+	var layer := CanvasLayer.new()
+	layer.layer = 90  # above the kitchen/HUD/minigame, below the doors (layer 100)
+
+	var rect := TextureRect.new()
+	rect.texture = tex
+	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	rect.stretch_mode = TextureRect.STRETCH_SCALE
+	layer.add_child(rect)
+
+	return layer
+
+func _refresh_hud_after_step() -> void:
+	score_lbl.text = "Score: %d" % GameManager.total_score
+	_update_step_list()
+	step_lbl.text  = "Next: " + _get_next_step_name()
+	_update_station_indicator()
+
+func _play_small_door_transition(on_midpoint: Callable) -> void:
+	var door := SMALL_DOOR_TRANSITION_SCENE.instantiate()
+	add_child(door)
+	door.play_transition(on_midpoint)
 
 func _on_time_up() -> void:
 	player.disable()

@@ -30,6 +30,11 @@ const STAR_THRESHOLDS := [0.35, 0.60, 0.85]
 
 const BUTTON_APPEAR_TIME := 29.0  # seconds into the video
 
+const DOOR_TRANSITION_SCENE := preload("res://scenes/DoorTransition.tscn")
+
+const HOVER_BRIGHTNESS := Color(1.25, 1.25, 1.25, 1.0)
+const HOVER_TWEEN_DURATION := 0.15
+
 # ---- State -------------------------------------------------------------
 
 var _button_shown := false
@@ -39,12 +44,20 @@ var _button_base_y: float
 # -------------------------------------------------------------------------
 
 func _ready() -> void:
+	AudioManager.fade_out_music(1.5)
+
 	menu_button.modulate.a = 0.0
 	_button_base_y = menu_button.position.y
+
+	# Ignore mouse input until the button has actually faded in, so it
+	# can't be hovered/clicked while invisible.
+	menu_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	_setup_video()
 
 	menu_button.pressed.connect(_on_menu_pressed)
+	menu_button.mouse_entered.connect(_on_button_hover)
+	menu_button.mouse_exited.connect(_on_button_unhover)
 	video_player.finished.connect(_on_video_finished)
 
 	set_process(true)
@@ -95,6 +108,7 @@ func _calculate_stars() -> int:
 
 func _show_menu_button() -> void:
 	_button_shown = true
+	menu_button.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	var fade_tween := create_tween()
 	fade_tween.tween_property(menu_button, "modulate:a", 1.0, 0.6)
@@ -110,6 +124,28 @@ func _start_bob() -> void:
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
+# ---- Hover feedback -----------------------------------------------------
+
+func _on_button_hover() -> void:
+	var t := create_tween()
+	t.tween_property(menu_button, "modulate", HOVER_BRIGHTNESS, HOVER_TWEEN_DURATION)
+
+
+func _on_button_unhover() -> void:
+	var t := create_tween()
+	t.tween_property(menu_button, "modulate", Color(1, 1, 1, 1), HOVER_TWEEN_DURATION)
+
+
+# ---- Menu transition ------------------------------------------------------
+
 func _on_menu_pressed() -> void:
 	AudioManager.play_sfx(AudioManager.SFX_CLICK)
-	GameManager.go_to_main_menu()
+
+	# Prevent double-triggering the transition on a second click.
+	menu_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if _bob_tween:
+		_bob_tween.kill()
+
+	var door := DOOR_TRANSITION_SCENE.instantiate()
+	get_tree().root.add_child(door)
+	door.play_transition(func(): GameManager.go_to_main_menu())

@@ -11,6 +11,7 @@ var game_active: bool = false
 # Kitchen session
 var recipe_steps_done: Array = []   # which steps the player has completed
 var completed_ingredients: Dictionary = {}  # ingredient_id -> bool washed/prepped
+var fanning_result_state: String = ""
 
 signal recipe_step_completed(step_index: int, score: int)
 signal recipe_finished(total_score: int, grade: String)
