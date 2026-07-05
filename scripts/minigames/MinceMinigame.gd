@@ -84,7 +84,7 @@ func _on_update(delta: float, _remaining: float) -> void:
 		_flash_t -= delta
 		_flash.color.a = _flash_t * 4.0
 
-	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("interact_p%d" % player_number):
 		_taps += 1
 		_flash.color.a = 0.5
 		_flash_t = 0.12

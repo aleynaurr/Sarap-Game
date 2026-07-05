@@ -1,8 +1,25 @@
-[gd_scene format=3 uid="uid://bmgplate01"]
+[gd_scene format=3 uid="uid://bu568l2757x0t"]
 
-[ext_resource type="Script" path="res://scripts/minigames/PlateMinigame.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://12j5qxpn8npw" path="res://scripts/minigames/AddIngredientsMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dj57iqpuitbys" path="res://assets/assets/working station.png" id="2_g6d7v"]
+[ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="3_esovw"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="4_weggr"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="5_quisa"]
+[ext_resource type="Texture2D" uid="uid://c8kybdrn1axw8" path="res://assets/assets/sprites/strain/coconut mixture strained alrdy.png" id="6_g2old"]
+[ext_resource type="Texture2D" uid="uid://cvomwqopym81d" path="res://assets/assets/plating/Chili.png" id="7_ohroa"]
+[ext_resource type="Texture2D" uid="uid://c4v4anlnfc0dl" path="res://assets/assets/plating/sliced ginger bowl.png" id="7_r35qe"]
+[ext_resource type="Texture2D" uid="uid://0t1ojcilt1hq" path="res://assets/assets/sprites/PrickandSeason/small bowls.png" id="7_slop0"]
+[ext_resource type="Texture2D" uid="uid://b7iwofv40cdmn" path="res://assets/assets/plating/sliced onion.png" id="8_ohroa"]
+[ext_resource type="Texture2D" uid="uid://k1wf68fftim7" path="res://assets/assets/plating/Garlic.png" id="8_xh61b"]
+[ext_resource type="Texture2D" uid="uid://dx4s5rrkt3s8v" path="res://assets/assets/plating/Ginger.png" id="9_l7poo"]
+[ext_resource type="Texture2D" uid="uid://bh2dokf5fqjaj" path="res://assets/assets/plating/minced garlic.png" id="9_xh61b"]
+[ext_resource type="Texture2D" uid="uid://dlbcfkiqe8fss" path="res://assets/assets/plating/sliced red chilis.png" id="10_l7poo"]
+[ext_resource type="Texture2D" uid="uid://bk8b8bbv6n8bi" path="res://assets/assets/plating/Onion.png" id="10_sknad"]
 
-[node name="PlateMinigame" type="Control"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd0c2"]
+load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
+
+[node name="AddIngredientsMinigame" type="Control" unique_id=1759408239]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +27,248 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+
+[node name="WorkingStation" type="TextureRect" parent="." unique_id=1117731948]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 642.0
+offset_bottom = 721.0
+texture = ExtResource("2_g6d7v")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=552325777]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 28.0
+offset_right = 622.0
+offset_bottom = 718.0
+texture = ExtResource("3_esovw")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=2147264398]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 52.0
+offset_right = 404.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("4_weggr")
+theme_override_font_sizes/font_size = 24
+text = "Put ingredients in order"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=964434553]
+z_index = 1
+layout_mode = 0
+offset_left = 461.0
+offset_top = 59.0
+offset_right = 573.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(1, 0.7058824, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("5_quisa")
+theme_override_font_sizes/font_size = 21
+text = "Time: 15.0"
+
+[node name="Banner" type="TextureRect" parent="." unique_id=1920051606]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 121.0
+offset_right = 544.0
+offset_bottom = 190.0
+texture = SubResource("CompressedTexture2D_vd0c2")
+expand_mode = 1
+
+[node name="StatusLabel" type="Label" parent="." unique_id=387338316]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 145.0
+offset_right = 500.0
+offset_bottom = 171.0
+rotation = -0.00066909706
+theme_override_fonts/font = ExtResource("5_quisa")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="Wrong" type="Label" parent="." unique_id=862115031]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 187.0
+offset_right = 480.0
+offset_bottom = 219.0
+theme_override_fonts/font = ExtResource("5_quisa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BigMixerBowl" type="TextureRect" parent="." unique_id=1990880244]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 254.0
+offset_right = 319.0
+offset_bottom = 382.0
+scale = Vector2(2.0546875, 1.6953125)
+texture = ExtResource("6_g2old")
+
+[node name="Chili" type="TextureRect" parent="." unique_id=648572351]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 254.0
+offset_right = 319.0
+offset_bottom = 382.0
+scale = Vector2(2.055, 1.695)
+texture = ExtResource("7_ohroa")
+
+[node name="Garlic" type="TextureRect" parent="." unique_id=2133213042]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 254.0
+offset_right = 319.0
+offset_bottom = 382.0
+scale = Vector2(2.055, 1.695)
+texture = ExtResource("8_xh61b")
+
+[node name="Ginger" type="TextureRect" parent="." unique_id=1309518958]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 254.0
+offset_right = 319.0
+offset_bottom = 382.0
+scale = Vector2(2.055, 1.695)
+texture = ExtResource("9_l7poo")
+
+[node name="Onion" type="TextureRect" parent="." unique_id=2123674473]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 254.0
+offset_right = 319.0
+offset_bottom = 382.0
+scale = Vector2(2.055, 1.695)
+texture = ExtResource("10_sknad")
+
+[node name="smallbowl1" type="TextureRect" parent="." unique_id=544987355]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 313.0
+offset_right = 203.0
+offset_bottom = 441.0
+texture = ExtResource("7_slop0")
+
+[node name="smallbowl2" type="TextureRect" parent="." unique_id=1768219432]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 431.0
+offset_right = 282.0
+offset_bottom = 559.0
+texture = ExtResource("7_slop0")
+
+[node name="smallbowl3" type="TextureRect" parent="." unique_id=233413912]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 429.0
+offset_right = 500.0
+offset_bottom = 557.0
+texture = ExtResource("7_slop0")
+
+[node name="smallbowl4" type="TextureRect" parent="." unique_id=894842756]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 312.0
+offset_right = 585.0
+offset_bottom = 440.0
+texture = ExtResource("7_slop0")
+
+[node name="SlicedGingerBowl" type="TextureRect" parent="." unique_id=2089424617]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 313.0
+offset_right = 203.0
+offset_bottom = 441.0
+texture = ExtResource("7_r35qe")
+
+[node name="Label" type="Label" parent="SlicedGingerBowl" unique_id=1000470355]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 132.0
+offset_right = 87.0
+offset_bottom = 148.0
+theme_override_fonts/font = ExtResource("5_quisa")
+text = "ginger"
+
+[node name="SlicedOnion" type="TextureRect" parent="." unique_id=2065208215]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 312.0
+offset_right = 585.0
+offset_bottom = 440.0
+texture = ExtResource("8_ohroa")
+
+[node name="Label2" type="Label" parent="SlicedOnion" unique_id=721971756]
+layout_mode = 0
+offset_left = -259.0
+offset_top = 259.0
+offset_right = -217.0
+offset_bottom = 275.0
+theme_override_fonts/font = ExtResource("5_quisa")
+text = "garlic"
+
+[node name="MincedGarlic" type="TextureRect" parent="." unique_id=459368097]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 431.0
+offset_right = 282.0
+offset_bottom = 559.0
+texture = ExtResource("9_xh61b")
+
+[node name="Label4" type="Label" parent="MincedGarlic" unique_id=1813485979]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 14.0
+offset_right = 389.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("5_quisa")
+text = "onion"
+
+[node name="SlicedRedChilis" type="TextureRect" parent="." unique_id=2131234612]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 429.0
+offset_right = 500.0
+offset_bottom = 557.0
+texture = ExtResource("10_l7poo")
+
+[node name="Label3" type="Label" parent="SlicedRedChilis" unique_id=1409238479]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 142.0
+offset_right = 96.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("5_quisa")
+text = "red chili"
+
+[node name="ChiliLabel" type="TextureRect" parent="." unique_id=473914374]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 457.0
+offset_right = 467.0
+offset_bottom = 492.0
+expand_mode = 1
+
+[node name="GarlicLabel" type="TextureRect" parent="." unique_id=1219028588]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 456.0
+offset_right = 251.0
+offset_bottom = 491.0
+expand_mode = 1
+
+[node name="OnionLabel" type="TextureRect" parent="." unique_id=96697097]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 341.0
+offset_right = 554.0
+offset_bottom = 376.0
+expand_mode = 1
+
+[node name="GingerLabel" type="TextureRect" parent="." unique_id=693620663]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 340.0
+offset_right = 175.0
+offset_bottom = 375.0
+expand_mode = 1

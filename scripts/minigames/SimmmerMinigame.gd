@@ -122,10 +122,16 @@ func _on_update(delta: float, _remaining: float) -> void:
 	_bubble_anim += delta
 
 	# Heat control
-	if Input.is_action_pressed("move_up"):
-		_heat = minf(1.0, _heat + HEAT_UP_RATE * delta)
-	if Input.is_action_pressed("move_down"):
-		_heat = maxf(0.0, _heat - HEAT_DOWN_RATE * delta)
+	if player_number == 1:
+		if Input.is_action_pressed("move_up_p1"):
+			_heat = minf(1.0, _heat + HEAT_UP_RATE * delta)
+		if Input.is_action_pressed("move_down_p1"):
+			_heat = maxf(0.0, _heat - HEAT_DOWN_RATE * delta)
+	else:
+		if Input.is_action_pressed("move_up_p2"):
+			_heat = minf(1.0, _heat + HEAT_UP_RATE * delta)
+		if Input.is_action_pressed("move_down_p2"):
+			_heat = maxf(0.0, _heat - HEAT_DOWN_RATE * delta)
 	_heat = maxf(0.0, _heat - HEAT_DRIFT * delta)
 
 	_heat_bar.value = _heat * 100.0

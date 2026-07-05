@@ -4,6 +4,7 @@ class_name KitchenStation
 @export var station_id: String = ""
 @export var station_label: String = "Station"
 @export var step_indices: Array = []   # which recipe step indices this station handles
+@export var player_number: int = 1
 
 var _player_inside: bool = false
 
@@ -30,7 +31,7 @@ func get_current_step() -> Dictionary:
 	# Only returns a step if it is the GLOBAL next required step AND belongs
 	# to this station. This enforces strict sequential ordering across the
 	# whole recipe, not just "any undone step at this station".
-	var next_idx = GameManager.get_next_required_step()
+	var next_idx = GameManager.get_next_required_step(player_number)
 	if next_idx == -1:
 		return {}
 	var recipe = RecipeData.get_recipe(GameManager.current_recipe_id)
@@ -47,5 +48,5 @@ func has_pending_step() -> bool:
 
 func get_current_step_index() -> int:
 	if has_pending_step():
-		return GameManager.get_next_required_step()
+		return GameManager.get_next_required_step(player_number)
 	return -1

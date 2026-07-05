@@ -23,7 +23,12 @@ var _flash_t: float = 0.0
 var _roll_width: float = 0.0
 
 const DIR_ICONS = {0: "↑", 1: "→", 2: "↓", 3: "←"}
-const ACTIONS   = {0: "move_up", 1: "move_right", 2: "move_down", 3: "move_left"}
+
+func _get_actions() -> Dictionary:
+	if player_number == 1:
+		return {0: "move_up_p1", 1: "move_right_p1", 2: "move_down_p1", 3: "move_left_p1"}
+	else:
+		return {0: "move_up_p2", 1: "move_right_p2", 2: "move_down_p2", 3: "move_left_p2"}
 
 func _on_init() -> void:
 	_current_idx = 0
@@ -125,8 +130,9 @@ func _on_update(delta: float, _remaining: float) -> void:
 		_update_arrow_display()
 
 	# Check input
+	var actions = _get_actions()
 	for dir in range(4):
-		if Input.is_action_just_pressed(ACTIONS[dir]):
+		if Input.is_action_just_pressed(actions[dir]):
 			if dir == _sequence[_current_idx]:
 				_correct_hits += 1
 				_lbl_status.text = "✅ " + DIR_ICONS[dir] + " !"

@@ -2,31 +2,29 @@
 
 [ext_resource type="Script" uid="uid://fysyibj8fu48" path="res://scripts/ui/RecipeSelect.gd" id="1_rs"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="2_it54i"]
+[ext_resource type="Texture2D" uid="uid://bekqkbyuam2o2" path="res://assets/sprites/ui/RecipeSelectImg/map-book.png" id="2_oa730"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="3_0umyy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bookbg"]
-bg_color = Color(0.52, 0.33, 0.14, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.35, 0.2, 0.08, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[ext_resource type="Texture2D" uid="uid://disk40nyu6x2r" path="res://assets/sprites/ui/RecipeSelectImg/back.png" id="3_ua7ls"]
+[ext_resource type="Texture2D" uid="uid://c2lm1ys1ppjth" path="res://assets/sprites/ui/RecipeSelectImg/map_placeholder.png" id="4_map"]
+[ext_resource type="Texture2D" uid="uid://tf35v82myfhj" path="res://assets/sprites/ui/RecipeSelectImg/map_pointer_normal.png" id="5_pointer"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/assets/fonts/Pixelon.ttf" id="6_730sr"]
+[ext_resource type="Texture2D" uid="uid://xsy60328txer" path="res://assets/sprites/ui/RecipeSelectImg/video_placeholder.png" id="6_video"]
+[ext_resource type="Texture2D" uid="uid://bdbieau0350gp" path="res://assets/sprites/ui/RecipeSelectImg/play_button.png" id="7_play"]
+[ext_resource type="VideoStream" uid="uid://c4uuw1ci77lml" path="res://assets/sprites/ui/RecipeSelectImg/talongpreviewnew.ogv" id="8_730sr"]
+[ext_resource type="Texture2D" uid="uid://dikxil61vmjjh" path="res://assets/sprites/ui/RecipeSelectImg/popup_bg.png" id="8_popup"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_page"]
-bg_color = Color(0.97, 0.93, 0.82, 1)
+bg_color = Color(0.96862745, 0.92941177, 0.81960785, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.72, 0.55, 0.3, 1)
+border_color = Color(0.72156864, 0.54901963, 0.3019608, 0)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+corner_detail = 1
 
 [node name="RecipeSelect" type="Control" unique_id=74842510]
 layout_mode = 3
@@ -46,57 +44,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.13, 0.08, 0.05, 1)
 
-[node name="CornerDot_TL" type="Label" parent="." unique_id=419247125]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=606058244]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
-theme_override_font_sizes/font_size = 16
-text = "✿"
-
-[node name="CornerDot_TR" type="Label" parent="." unique_id=1751286137]
-layout_mode = 0
-theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
-theme_override_font_sizes/font_size = 16
-text = "✿"
-
-[node name="CornerDot_BL" type="Label" parent="." unique_id=1002056553]
-layout_mode = 0
-theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
-theme_override_font_sizes/font_size = 16
-text = "✿"
-
-[node name="CornerDot_BR" type="Label" parent="." unique_id=913128729]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -18.0
-offset_top = -25.0
-offset_right = -3.0
-offset_bottom = -2.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.85, 0.72, 0.35, 0.55)
-theme_override_font_sizes/font_size = 16
-text = "✿"
-
-[node name="BookBacking" type="Panel" parent="." unique_id=801146097]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -619.0
-offset_top = -339.0
-offset_right = 622.0
-offset_bottom = 342.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bookbg")
+offset_right = 1277.0
+offset_bottom = 720.0
+texture = ExtResource("2_oa730")
 
 [node name="LeftPage" type="Panel" parent="." unique_id=1052442614]
 layout_mode = 0
@@ -108,174 +60,67 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_page")
 
 [node name="BackButton" type="Button" parent="LeftPage" unique_id=452406244]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 574.0
-offset_right = 106.0
-offset_bottom = 621.0
+offset_left = -14.0
+offset_top = 554.0
+offset_right = 154.0
+offset_bottom = 617.0
+theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 15
-text = "◀ Back"
+icon = ExtResource("3_ua7ls")
+icon_alignment = 1
+expand_icon = true
 
-[node name="MapTitle" type="Label" parent="LeftPage" unique_id=613080042]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 50.0
-offset_right = 515.0
-offset_bottom = 107.0
-theme_override_colors/font_color = Color(0.35, 0.2, 0.08, 1)
-theme_override_fonts/font = ExtResource("2_it54i")
-theme_override_font_sizes/font_size = 45
-text = "CHOOSE YOUR REGION"
-horizontal_alignment = 1
+[node name="MapContainer" type="Control" parent="LeftPage" unique_id=874199315]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 483.0
+offset_bottom = 560.0
 
-[node name="Subtitle" type="Label" parent="LeftPage" unique_id=408080473]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 124.0
-offset_right = 490.0
-offset_bottom = 144.0
-theme_override_colors/font_color = Color(0.45, 0.3, 0.14, 1)
-theme_override_fonts/font = ExtResource("3_0umyy")
-theme_override_font_sizes/font_size = 20
-text = "Cook the delicacies of your  favorite regions!"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPage" unique_id=1153976272]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 168.0
-offset_right = 451.0
-offset_bottom = 189.0
-
-[node name="MapLine0" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=1399828059]
-custom_minimum_size = Vector2(200, 1)
-layout_mode = 2
-color = Color(0.72, 0.58, 0.32, 0.25)
-
-[node name="MapLine1" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=1104873455]
-custom_minimum_size = Vector2(200, 1)
-layout_mode = 2
-color = Color(0.72, 0.58, 0.32, 0.25)
-
-[node name="MapLine2" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=571314342]
-custom_minimum_size = Vector2(200, 1)
-layout_mode = 2
-color = Color(0.72, 0.58, 0.32, 0.25)
-
-[node name="MapLine3" type="ColorRect" parent="LeftPage/VBoxContainer" unique_id=455163334]
-custom_minimum_size = Vector2(200, 1)
-layout_mode = 2
-color = Color(0.72, 0.58, 0.32, 0.25)
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="LeftPage" unique_id=1296981088]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 200.0
-offset_right = 451.0
-offset_bottom = 346.0
-theme_override_constants/separation = 50
-
-[node name="BtnLuzon" type="Button" parent="LeftPage/VBoxContainer2" unique_id=2071810831]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
-theme_override_fonts/font = ExtResource("2_it54i")
-theme_override_font_sizes/font_size = 50
-text = "LUZON"
-
-[node name="BtnVisayas" type="Button" parent="LeftPage/VBoxContainer2" unique_id=994160699]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
-theme_override_fonts/font = ExtResource("2_it54i")
-theme_override_font_sizes/font_size = 50
-text = "VISAYAS"
-
-[node name="BtnMindanao" type="Button" parent="LeftPage/VBoxContainer2" unique_id=1192009512]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.97, 0.88, 1)
-theme_override_fonts/font = ExtResource("2_it54i")
-theme_override_font_sizes/font_size = 50
-text = "MINDANAO"
-
-[node name="Spine" type="ColorRect" parent="LeftPage" unique_id=1903053768]
+[node name="MapImage" type="TextureRect" parent="LeftPage/MapContainer" unique_id=437737157]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 287.0
-offset_top = -316.0
-offset_right = 338.5
-offset_bottom = 322.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.38, 0.22, 0.09, 1)
+mouse_filter = 2
+texture = ExtResource("4_map")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="ring" type="VBoxContainer" parent="." unique_id=2080547312]
+[node name="PointerLuzon" type="TextureButton" parent="LeftPage/MapContainer" unique_id=1549693898]
 layout_mode = 0
-offset_left = 626.0
-offset_top = 55.0
-offset_right = 664.0
-offset_bottom = 605.0
-theme_override_constants/separation = 100
+offset_left = 164.0
+offset_top = 107.0
+offset_right = 228.0
+offset_bottom = 187.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_pointer")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Ring0" type="ColorRect" parent="ring" unique_id=510661163]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-color = Color(0.65, 0.48, 0.22, 1)
-
-[node name="Ring1" type="ColorRect" parent="ring" unique_id=1295635705]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-color = Color(0.65, 0.48, 0.22, 1)
-
-[node name="Ring2" type="ColorRect" parent="ring" unique_id=1137503339]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-color = Color(0.65, 0.48, 0.22, 1)
-
-[node name="Ring3" type="ColorRect" parent="ring" unique_id=901615091]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-color = Color(0.65, 0.48, 0.22, 1)
-
-[node name="Ring4" type="ColorRect" parent="ring" unique_id=986430625]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-color = Color(0.65, 0.48, 0.22, 1)
-
-[node name="hole" type="VBoxContainer" parent="." unique_id=605036528]
-custom_minimum_size = Vector2(15, 15)
+[node name="PointerVisayas" type="TextureButton" parent="LeftPage/MapContainer" unique_id=1431510681]
 layout_mode = 0
-offset_left = 634.0
-offset_top = 66.0
-offset_right = 659.0
-offset_bottom = 645.0
-theme_override_constants/separation = 126
+offset_left = 262.0
+offset_top = 251.0
+offset_right = 326.0
+offset_bottom = 331.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_pointer")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Hole0" type="ColorRect" parent="hole" unique_id=864821943]
-custom_minimum_size = Vector2(5, 15)
-layout_mode = 2
-color = Color(0.2, 0.12, 0.06, 1)
-
-[node name="Hole1" type="ColorRect" parent="hole" unique_id=898390386]
-custom_minimum_size = Vector2(5, 15)
-layout_mode = 2
-color = Color(0.2, 0.12, 0.06, 1)
-
-[node name="Hole2" type="ColorRect" parent="hole" unique_id=1315124445]
-custom_minimum_size = Vector2(5, 15)
-layout_mode = 2
-color = Color(0.2, 0.12, 0.06, 1)
-
-[node name="Hole3" type="ColorRect" parent="hole" unique_id=86239411]
-custom_minimum_size = Vector2(5, 15)
-layout_mode = 2
-color = Color(0.2, 0.12, 0.06, 1)
-
-[node name="Hole4" type="ColorRect" parent="hole" unique_id=466891101]
-custom_minimum_size = Vector2(5, 15)
-layout_mode = 2
-color = Color(0.2, 0.12, 0.06, 1)
+[node name="PointerMindanao" type="TextureButton" parent="LeftPage/MapContainer" unique_id=1726504]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 362.0
+offset_right = 374.0
+offset_bottom = 442.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_pointer")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="RightPage" type="Panel" parent="." unique_id=832816580]
 layout_mode = 0
@@ -291,4 +136,165 @@ offset_left = 12.0
 offset_top = 12.0
 offset_right = 513.0
 offset_bottom = 624.0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 12
+
+[node name="DefaultLabel" type="Label" parent="RightPage/RightContent" unique_id=1040345546]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.45, 0.32, 0.18, 1)
+theme_override_fonts/font = ExtResource("3_0umyy")
+theme_override_font_sizes/font_size = 29
+text = "Select a location by clicking on a pointer."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DishNameLabel" type="Label" parent="RightPage/RightContent" unique_id=1442007506]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.18535355, 0.11524395, 0.030023457, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = ExtResource("6_730sr")
+theme_override_font_sizes/font_size = 47
+text = "Kulawong Talong"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VideoBox" type="Control" parent="RightPage/RightContent" unique_id=2006615337]
+custom_minimum_size = Vector2(460, 258)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+
+[node name="VideoPlaceholderBG" type="TextureRect" parent="RightPage/RightContent/VideoBox" unique_id=2089122847]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_video")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="RightPage/RightContent/VideoBox" unique_id=316930943]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.999996
+offset_top = 24.0
+offset_right = 67.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+stream = ExtResource("8_730sr")
+autoplay = true
+loop = true
+
+[node name="PlayButton" type="TextureButton" parent="RightPage/RightContent/VideoBox" unique_id=1076967281]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_play")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RegionLabel" type="Label" parent="RightPage/RightContent" unique_id=1864207886]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.16, 0.06, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7607843)
+theme_override_constants/paragraph_spacing = 1
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("3_0umyy")
+theme_override_font_sizes/font_size = 28
+text = "Luzon"
+horizontal_alignment = 1
+
+[node name="LocationLabel" type="Label" parent="RightPage/RightContent" unique_id=760503430]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2719909, 0.18725842, 0.09447973, 1)
+theme_override_fonts/font = ExtResource("3_0umyy")
+theme_override_font_sizes/font_size = 15
+text = "Laguna, Philippines"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="RightPage/RightContent" unique_id=66705422]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.25, 0.14, 1)
+theme_override_fonts/font = ExtResource("3_0umyy")
+theme_override_font_sizes/font_size = 19
+text = "Kulawong Talong is a traditional Filipino dish featuring char-grilled eggplants in a creamy, smoky dressing made from grated coconut meat toasted over hot embers. Originating as a pre-colonial delicacy in the provinces of Laguna and Quezon, it remains a celebrated regional treasure crafted by ancestral households."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopupLocked" type="Control" parent="." unique_id=948949037]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -65.0
+offset_right = 220.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PopupBG" type="TextureRect" parent="PopupLocked" unique_id=1796419601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_popup")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PopupLabel" type="Label" parent="PopupLocked/PopupBG" unique_id=846718692]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.35, 0.2, 0.08, 1)
+theme_override_fonts/font = ExtResource("2_it54i")
+theme_override_font_sizes/font_size = 22
+text = "Location locked. Coming soon."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
