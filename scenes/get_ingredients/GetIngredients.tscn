@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dytu6vc2shhd5"]
 
 [ext_resource type="Script" uid="uid://dyw237c6j0wc0" path="res://scripts/get_ingredients/GetIngredients.gd" id="1_r74a8"]
-[ext_resource type="PackedScene" uid="uid://bq7q0dhq48nj" path="res://scenes/get_ingredients/Background.tscn" id="2_ts8tg"]
+[ext_resource type="PackedScene" uid="uid://k21cjept8fte" path="res://scenes/get_ingredients/Background.tscn" id="2_ts8tg"]
+[ext_resource type="PackedScene" uid="uid://56itgfx1mmf8" path="res://scenes/get_ingredients/hide_roof.tscn" id="3_hi4ca"]
 [ext_resource type="PackedScene" uid="uid://soowdmcgk02o" path="res://scenes/get_ingredients/Player1.tscn" id="3_rgvng"]
 [ext_resource type="PackedScene" uid="uid://c1peqlpyxscto" path="res://scenes/get_ingredients/Player2.tscn" id="4_6o6xh"]
 [ext_resource type="PackedScene" uid="uid://dqrblofd7dvgb" path="res://scenes/get_ingredients/game_screen.tscn" id="5_4htga"]
@@ -26,6 +27,8 @@ size = Vector2i(640, 720)
 render_target_update_mode = 4
 
 [node name="Get_Ingredients_BG" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=1709072483 instance=ExtResource("2_ts8tg")]
+
+[node name="HideRoof" parent="HBoxContainer/SubViewportContainer/SubViewport/Get_Ingredients_BG" unique_id=357724191 instance=ExtResource("3_hi4ca")]
 
 [node name="Player1" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=389535339 instance=ExtResource("3_rgvng")]
 position = Vector2(270, 295.99997)
