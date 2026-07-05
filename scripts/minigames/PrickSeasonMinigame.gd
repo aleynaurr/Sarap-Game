@@ -80,7 +80,7 @@ func _on_update(delta: float, remaining: float) -> void:
 		return
 
 	if _phase == Phase.PRICK:
-		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("interact_p%d" % player_number):
 			_pricks += 1
 			_shake_eggplant_effect()
 			
@@ -117,21 +117,28 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
 		return
 	
-	if event.is_action_pressed("ui_up") or (event is InputEventKey and event.keycode == KEY_W):
-		if _current_area > 0:
-			_current_area -= 1
-			_update_salt_shaker_position()
-		get_viewport().set_input_as_handled()
-		
-	elif event.is_action_pressed("ui_down") or (event is InputEventKey and event.keycode == KEY_S):
-		if _current_area < 3:
-			_current_area += 1
-			_update_salt_shaker_position()
-		get_viewport().set_input_as_handled() 
-		
-	elif event.is_action_pressed("player1interact2") or event.is_action_pressed("ui_left"):
-		_pour_salt_in_area()
-		get_viewport().set_input_as_handled()
+	if player_number == 1:
+		if Input.is_action_just_pressed("move_up_p1"):
+			if _current_area > 0:
+				_current_area -= 1
+				_update_salt_shaker_position()
+		elif Input.is_action_just_pressed("move_down_p1"):
+			if _current_area < 3:
+				_current_area += 1
+				_update_salt_shaker_position()
+		elif Input.is_action_just_pressed("grab_p1"):
+			_pour_salt_in_area()
+	else:
+		if Input.is_action_just_pressed("move_up_p2"):
+			if _current_area > 0:
+				_current_area -= 1
+				_update_salt_shaker_position()
+		elif Input.is_action_just_pressed("move_down_p2"):
+			if _current_area < 3:
+				_current_area += 1
+				_update_salt_shaker_position()
+		elif Input.is_action_just_pressed("grab_p2"):
+			_pour_salt_in_area()
 
 func _shake_eggplant_effect() -> void:
 	if not _eggplant_sprite: return

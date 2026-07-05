@@ -130,7 +130,7 @@ func _on_update(delta: float, _remaining: float) -> void:
 	_pendulum_indicator.position.x = 110 + int(track_w * t)
 
 	# Check crack input
-	if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("interact_p%d" % player_number):
 		_crack_egg()
 
 func _crack_egg() -> void:

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bxbks36rxroc4" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_garlic_small.png" id="10_qs_garlic"]
 [ext_resource type="Texture2D" uid="uid://bhivx7ark0mxp" path="res://assets/sprites/minigames/Dish1WashMinigame/veggie_chili_large.png" id="11_vl_chili"]
 [ext_resource type="Texture2D" uid="uid://c33jneaaew4m8" path="res://assets/sprites/minigames/Dish1WashMinigame/bowl_00.png" id="15_bowl0"]
+[ext_resource type="Texture2D" uid="uid://cp88ipixwrbmf" path="res://assets/sprites/minigames/Dish1WashMinigame/popup_start.png" id="20_popup_start"]
 
 [node name="WashMinigame" type="Control" unique_id=1481078982]
 layout_mode = 3
@@ -299,3 +300,52 @@ theme_override_fonts/font = ExtResource("5_p5b04")
 theme_override_font_sizes/font_size = 17
 text = "WASD/Arrows move veggie  |  Q/÷ toggle faucet  |  E/Shift next veggie"
 horizontal_alignment = 1
+
+[node name="StartPopup" type="Control" parent="."]
+visible = false
+z_index = 6
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -60.0
+offset_right = 260.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartPopupBg" type="TextureRect" parent="StartPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_popup_start")
+stretch_mode = 5
+
+[node name="EndPopup" type="Control" parent="."]
+visible = false
+z_index = 6
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -80.0
+offset_right = 260.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndPopupBg" type="TextureRect" parent="EndPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5

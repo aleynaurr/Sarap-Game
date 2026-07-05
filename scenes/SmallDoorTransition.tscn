@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dq7x2j5wlamto"]
+
+[ext_resource type="Script" uid="uid://b05f8o35ft28b" path="res://scripts/ui/SmallDoorTransition.gd" id="1_small_door_transition"]
+[ext_resource type="Texture2D" uid="uid://1cmavu7wwyj7" path="res://assets/sprites/ui/smalldoor_left.png" id="2_smalldoor_left_tex"]
+[ext_resource type="Texture2D" uid="uid://b8sxa5tkqxvbc" path="res://assets/sprites/ui/smalldoor_right.png" id="3_smalldoor_right_tex"]
+[ext_resource type="AudioStream" uid="uid://dstm0ohwnpfaa" path="res://sfx/door_closing.mp3" id="4_door_closing_sfx"]
+[ext_resource type="AudioStream" uid="uid://cbqooctgsgmpd" path="res://sfx/door_opening.mp3" id="5_door_opening_sfx"]
+
+[node name="SmallDoorTransition" type="CanvasLayer"]
+script = ExtResource("1_small_door_transition")
+
+[node name="DoorLeft" type="TextureRect" parent="."]
+offset_left = -320.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 720.0
+texture = ExtResource("2_smalldoor_left_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DoorRight" type="TextureRect" parent="."]
+offset_left = 640.0
+offset_top = 0.0
+offset_right = 960.0
+offset_bottom = 720.0
+texture = ExtResource("3_smalldoor_right_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DoorClosingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_door_closing_sfx")
+
+[node name="DoorOpeningSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_door_opening_sfx")

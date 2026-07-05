@@ -8,6 +8,8 @@ const FRAME_W   := 64
 const FRAME_H   := 128
 const ANIM_FPS  := 8.0
 
+@export var player_number: int = 1  # 1 or 2
+
 var _facing: int = 0   # 0=down 1=up 2=left 3=right
 var _frame: int = 0
 var _anim_timer: float = 0.0
@@ -28,14 +30,15 @@ func _ready() -> void:
 		prompt_node.visible = false
 
 func _physics_process(delta: float) -> void:
-	if not GameManager.game_active:
+	# Check game active for this player
+	if not GameManager.get_game_active(player_number):
 		return
 
 	var dir := Vector2.ZERO
-	if Input.is_action_pressed("move_up"):    dir.y -= 1
-	if Input.is_action_pressed("move_down"):  dir.y += 1
-	if Input.is_action_pressed("move_left"):  dir.x -= 1
-	if Input.is_action_pressed("move_right"): dir.x += 1
+	if Input.is_action_pressed("move_up_p%d" % player_number):    dir.y -= 1
+	if Input.is_action_pressed("move_down_p%d" % player_number):  dir.y += 1
+	if Input.is_action_pressed("move_left_p%d" % player_number):  dir.x -= 1
+	if Input.is_action_pressed("move_right_p%d" % player_number): dir.x += 1
 
 	_moving = dir.length_squared() > 0.0
 
@@ -62,8 +65,8 @@ func _physics_process(delta: float) -> void:
 			_frame = 0
 	_update_frame()
 
-	# E to interact
-	if Input.is_action_just_pressed("interact") and _nearby_station != null:
+	# Interact key
+	if Input.is_action_just_pressed("interact_p%d" % player_number) and _nearby_station != null:
 		interact_pressed.emit(_nearby_station)
 
 func _update_frame() -> void:

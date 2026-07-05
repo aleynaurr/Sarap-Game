@@ -74,19 +74,34 @@ func _on_update(_delta: float, remaining: float) -> void:
 	var expected_dir = _dir_seq[_seq_pos]
 	var held = -1
 	
-	if expected_dir == 0 and (Input.is_action_pressed("move_up") or Input.is_key_pressed(KEY_W)):
-		held = 0
-	elif expected_dir == 1 and (Input.is_action_pressed("move_right") or Input.is_key_pressed(KEY_D)):
-		held = 1
-	elif expected_dir == 2 and (Input.is_action_pressed("move_down") or Input.is_key_pressed(KEY_S)):
-		held = 2
-	elif expected_dir == 3 and (Input.is_action_pressed("move_left") or Input.is_key_pressed(KEY_A)):
-		held = 3
+	if player_number == 1:
+		if expected_dir == 0 and Input.is_action_pressed("move_up_p1"):
+			held = 0
+		elif expected_dir == 1 and Input.is_action_pressed("move_right_p1"):
+			held = 1
+		elif expected_dir == 2 and Input.is_action_pressed("move_down_p1"):
+			held = 2
+		elif expected_dir == 3 and Input.is_action_pressed("move_left_p1"):
+			held = 3
+		else:
+			if Input.is_action_pressed("move_up_p1"): held = 0
+			elif Input.is_action_pressed("move_right_p1"): held = 1
+			elif Input.is_action_pressed("move_down_p1"): held = 2
+			elif Input.is_action_pressed("move_left_p1"): held = 3
 	else:
-		if Input.is_action_pressed("move_up") or Input.is_key_pressed(KEY_W):       held = 0
-		elif Input.is_action_pressed("move_right") or Input.is_key_pressed(KEY_D): held = 1
-		elif Input.is_action_pressed("move_down") or Input.is_key_pressed(KEY_S):   held = 2
-		elif Input.is_action_pressed("move_left") or Input.is_key_pressed(KEY_A):   held = 3
+		if expected_dir == 0 and Input.is_action_pressed("move_up_p2"):
+			held = 0
+		elif expected_dir == 1 and Input.is_action_pressed("move_right_p2"):
+			held = 1
+		elif expected_dir == 2 and Input.is_action_pressed("move_down_p2"):
+			held = 2
+		elif expected_dir == 3 and Input.is_action_pressed("move_left_p2"):
+			held = 3
+		else:
+			if Input.is_action_pressed("move_up_p2"): held = 0
+			elif Input.is_action_pressed("move_right_p2"): held = 1
+			elif Input.is_action_pressed("move_down_p2"): held = 2
+			elif Input.is_action_pressed("move_left_p2"): held = 3
 
 	if held != _holding:
 		_holding = held

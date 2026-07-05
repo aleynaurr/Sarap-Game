@@ -77,12 +77,21 @@ func _on_init() -> void:
 func _randomize_key_assignments() -> void:
 	randomize()
 	
-	var available_keys = [
-		{"code": KEY_W, "tex": TEX_W},
-		{"code": KEY_A, "tex": TEX_A},
-		{"code": KEY_S, "tex": TEX_S},
-		{"code": KEY_D, "tex": TEX_D}
-	]
+	var available_keys = []
+	if player_number == 1:
+		available_keys = [
+			{"code": KEY_W, "tex": TEX_W},
+			{"code": KEY_A, "tex": TEX_A},
+			{"code": KEY_S, "tex": TEX_S},
+			{"code": KEY_D, "tex": TEX_D}
+		]
+	else:
+		available_keys = [
+			{"code": KEY_UP, "tex": TEX_W},
+			{"code": KEY_LEFT, "tex": TEX_A},
+			{"code": KEY_DOWN, "tex": TEX_S},
+			{"code": KEY_RIGHT, "tex": TEX_D}
+		]
 	available_keys.shuffle()
 	
 	_ingredient_key_map["ginger"] = available_keys[0]
@@ -109,7 +118,12 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == correct_key_code:
 			_animate_and_pour_ingredient(target_ingredient)
 		else:
-			if event.keycode in [KEY_W, KEY_A, KEY_S, KEY_D]:
+			var valid_keys = []
+			if player_number == 1:
+				valid_keys = [KEY_W, KEY_A, KEY_S, KEY_D]
+			else:
+				valid_keys = [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]
+			if event.keycode in valid_keys:
 				_trigger_wrong_input_penalty()
 
 func _animate_and_pour_ingredient(ingredient: String) -> void:
