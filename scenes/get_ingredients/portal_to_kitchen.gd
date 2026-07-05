@@ -4,7 +4,7 @@ var player1_inside := false
 var player2_inside := false
 
 func _ready() -> void:
-	# Enforce correct structural connections dynamically
+
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
@@ -28,7 +28,7 @@ func _on_body_exited(body):
 		print("P1 Inside: ", player1_inside, " | P2 Inside: ", player2_inside)
 
 func ingredients_complete() -> bool:
-	# Add any extra item validation requirements here if desired
+	
 	return true
 	
 func check_finish():

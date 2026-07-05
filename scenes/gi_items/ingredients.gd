@@ -60,7 +60,6 @@ func harvest_crop() -> void:
 
 	crop.play("dropped")
 
-	# Enable pickup area
 	collect_area.monitoring = true
 	collect_collision.set_deferred("disabled", false)
 

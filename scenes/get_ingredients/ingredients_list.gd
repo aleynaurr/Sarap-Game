@@ -11,7 +11,7 @@ extends PanelContainer
 @export var player_id := 1
 
 func _ready():
-	# Safely disconnect any ghost connections before binding to prevent double firing
+
 	if InventoryManager.inventory_changed.is_connected(on_inventory_change):
 		InventoryManager.inventory_changed.disconnect(on_inventory_change)
 		
