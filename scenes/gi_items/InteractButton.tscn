@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cfxjmm4yyrus4"]
 
-[ext_resource type="Texture2D" uid="uid://b4wi1088ixhev" path="res://assets/letter e.png" id="1_3yk3w"]
+[ext_resource type="Texture2D" uid="uid://bjgpp34jwak2d" path="res://assets/interactkey.png" id="1_2bus7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yk3w"]
+atlas = ExtResource("1_2bus7")
 
 [node name="interact_button" type="Control" unique_id=1572369525]
 layout_mode = 3
@@ -11,6 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="E" type="Sprite2D" parent="." unique_id=1904012851]
-position = Vector2(4, -56)
-scale = Vector2(0.7962963, 0.7918919)
-texture = ExtResource("1_3yk3w")
+position = Vector2(-1, -25)
+scale = Vector2(2.308449, 2.2448475)
+texture = SubResource("AtlasTexture_3yk3w")

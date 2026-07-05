@@ -772,7 +772,7 @@ position = Vector2(401, 121)
 position = Vector2(402, 90)
 
 [node name="crops2" type="Node2D" parent="." unique_id=664339563]
-position = Vector2(1, 385)
+position = Vector2(0, 385)
 
 [node name="chili_crop1" parent="crops2" unique_id=640753919 instance=ExtResource("6_0amts")]
 position = Vector2(337, 183)
@@ -882,4 +882,12 @@ scale = Vector2(0.35129884, 0.31732953)
 
 [node name="coconutmilk6" parent="market" unique_id=839106088 instance=ExtResource("11_gojsm")]
 position = Vector2(1961.9999, 240.00002)
+scale = Vector2(0.35502547, 0.3061416)
+
+[node name="coconutmilk7" parent="market" unique_id=1419336763 instance=ExtResource("11_gojsm")]
+position = Vector2(1977, 240)
+scale = Vector2(0.35129884, 0.31732953)
+
+[node name="coconutmilk8" parent="market" unique_id=1145015352 instance=ExtResource("11_gojsm")]
+position = Vector2(1993.9999, 240.00003)
 scale = Vector2(0.35502547, 0.3061416)
