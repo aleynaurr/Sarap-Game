@@ -40,9 +40,9 @@ margin = Rect2(-1, -2, 0, 0)
 
 [node name="CollectedPanel" type="PanelContainer" unique_id=103354895]
 offset_right = 70.0
-offset_bottom = 430.0
+offset_bottom = 433.5
 size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource("1_mmu6m")
 theme_type_variation = &"GIPanel"
 
