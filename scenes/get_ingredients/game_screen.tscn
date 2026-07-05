@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cbsdkm2ueynsk" path="res://scenes/get_ingredients/IngredientsList.tscn" id="1_yjc8d"]
 [ext_resource type="Script" uid="uid://cqtykdc67osh4" path="res://scenes/get_ingredients/ingredients_list.gd" id="2_c3vjw"]
+[ext_resource type="PackedScene" uid="uid://cl5raloqvfny7" path="res://scenes/get_ingredients/TimerPanel.tscn" id="3_m7465"]
 
 [node name="GameScreen" type="CanvasLayer" unique_id=245156146]
 
@@ -25,3 +26,12 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 script = ExtResource("2_c3vjw")
 player_id = 2
+
+[node name="TimerPanel" parent="." unique_id=1695591266 instance=ExtResource("3_m7465")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -78.0
+offset_right = -78.0
+grow_vertical = 1

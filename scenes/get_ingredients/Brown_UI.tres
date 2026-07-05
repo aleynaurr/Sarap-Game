@@ -1,0 +1,58 @@
+[gd_resource type="Theme" format=3 uid="uid://dmry7o1pbb4a2"]
+
+[ext_resource type="Texture2D" uid="uid://qmsqhq73blm3" path="res://assets/classets2/buttons.png" id="1_llexl"]
+[ext_resource type="FontFile" uid="uid://bnj8ive52dx03" path="res://assets/fonts/Ithaca-LVB75.ttf" id="2_a30vu"]
+[ext_resource type="Texture2D" uid="uid://dwwkg3bad4uya" path="res://assets/classets2/old.png" id="3_1pesx"]
+[ext_resource type="Texture2D" uid="uid://b5vsxcgy6dwc5" path="res://assets/classets2/buttons (1).png" id="4_a30vu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a30vu"]
+atlas = ExtResource("1_llexl")
+region = Rect2(0, 352, 32, 31)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wa5qu"]
+texture = SubResource("AtlasTexture_a30vu")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 7.0
+region_rect = Rect2(0, 0, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1py4"]
+atlas = ExtResource("3_1pesx")
+region = Rect2(1, 321, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_28n0w"]
+texture = SubResource("AtlasTexture_i1py4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa5qu"]
+atlas = ExtResource("4_a30vu")
+region = Rect2(32, 352, 32, 31)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gecaf"]
+texture = SubResource("AtlasTexture_wa5qu")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 31)
+
+[resource]
+GIPanel/base_type = &"PanelContainer"
+GIPanel/styles/panel = SubResource("StyleBoxTexture_wa5qu")
+ItemNumber/base_type = &"Label"
+ItemNumber/colors/font_color = Color(0.79607844, 0.47843137, 0.21568628, 1)
+ItemNumber/colors/font_outline_color = Color(0, 0, 0, 1)
+ItemNumber/font_sizes/font_size = 12
+ItemNumber/fonts/font = ExtResource("2_a30vu")
+ItemPanel/base_type = &"PanelContainer"
+ItemPanel/styles/panel = SubResource("StyleBoxTexture_28n0w")
+TimerLabel/base_type = &"Label"
+TimerLabel/font_sizes/font_size = 70
+TimerLabel/fonts/font = ExtResource("2_a30vu")
+TimerPanel/base_type = &"PanelContainer"
+TimerPanel/styles/panel = SubResource("StyleBoxTexture_gecaf")

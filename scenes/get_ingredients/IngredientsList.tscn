@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cbsdkm2ueynsk"]
 
-[ext_resource type="Theme" uid="uid://dmry7o1pbb4a2" path="res://scenes/get_ingredients/inventory_ui_theme.tres" id="1_mmu6m"]
+[ext_resource type="Theme" uid="uid://dmry7o1pbb4a2" path="res://scenes/get_ingredients/Brown_UI.tres" id="1_mmu6m"]
 [ext_resource type="Texture2D" uid="uid://dbslmr1psmyjm" path="res://assets/classets2/crops.png" id="2_ou2g4"]
 [ext_resource type="Texture2D" uid="uid://dj8knq8ggkwjm" path="res://assets/classets2/market.png" id="3_dvgp5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvgp5"]
 atlas = ExtResource("2_ou2g4")
 region = Rect2(240, 0, 48, 48)
+margin = Rect2(-1, -1, 0, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4t0yw"]
 atlas = ExtResource("2_ou2g4")
