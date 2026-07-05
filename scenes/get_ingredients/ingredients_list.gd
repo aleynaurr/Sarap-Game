@@ -10,24 +10,25 @@ extends PanelContainer
 
 @export var player_id := 1
 
-
 func _ready():
+	# Safely disconnect any ghost connections before binding to prevent double firing
+	if InventoryManager.inventory_changed.is_connected(on_inventory_change):
+		InventoryManager.inventory_changed.disconnect(on_inventory_change)
+		
 	InventoryManager.inventory_changed.connect(on_inventory_change)
 	on_inventory_change(player_id)
-
 
 func on_inventory_change(changed_player: int):
 	if changed_player != player_id:
 		return
 		
 	var inventory = InventoryManager.inventories[player_id]
+	var goal = InventoryManager.INGREDIENT_GOAL
 
-	eggplant_label.text = str(inventory.get("eggplant", 0))
-	chili_label.text = str(inventory.get("chili", 0))
-	shallots_label.text = str(inventory.get("shallots", 0))
-	springonions_label.text = str(inventory.get("springonions", 0))
-	garlic_label.text = str(inventory.get("garlic", 0))
-	desiccatedcoconut_label.text = str(inventory.get("desiccatedcoconut", 0))
-	coconutmilk_label.text = str(inventory.get("coconutmilk", 0))
-	
-	
+	eggplant_label.text = str(inventory.get("eggplant", 0)) + "/" + str(goal)
+	chili_label.text = str(inventory.get("chili", 0)) + "/" + str(goal)
+	shallots_label.text = str(inventory.get("shallots", 0)) + "/" + str(goal)
+	springonions_label.text = str(inventory.get("springonions", 0)) + "/" + str(goal)
+	garlic_label.text = str(inventory.get("garlic", 0)) + "/" + str(goal)
+	desiccatedcoconut_label.text = str(inventory.get("desiccatedcoconut", 0)) + "/" + str(goal)
+	coconutmilk_label.text = str(inventory.get("coconutmilk", 0)) + "/" + str(goal)

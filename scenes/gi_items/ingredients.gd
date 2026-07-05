@@ -9,7 +9,7 @@ extends Node2D
 @onready var collect_area: Area2D = $Collect
 @onready var collect_collision: CollisionShape2D = $Collect/CollisionShape2D
 
-
+var is_already_collected: bool = false
 
 var players_in_range: Array[Player] = []
 var is_dropped: bool = false
@@ -21,6 +21,7 @@ func _ready() -> void:
 	
 	collect_area.monitoring = false
 	collect_collision.disabled = true
+	
 
 func on_activated(player: Player):
 	if !players_in_range.has(player):

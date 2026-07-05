@@ -3,29 +3,35 @@ extends Area2D
 var player1_inside := false
 var player2_inside := false
 
+func _ready() -> void:
+	# Enforce correct structural connections dynamically
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
 func _on_body_entered(body):
 	if body is Player:
 		if body.player_id == 1:
 			player1_inside = true
-		else:
+		elif body.player_id == 2:
 			player2_inside = true
-
-	check_finish()
+			
+		print("P1 Inside: ", player1_inside, " | P2 Inside: ", player2_inside)
+		check_finish()
 
 func _on_body_exited(body):
 	if body is Player:
 		if body.player_id == 1:
 			player1_inside = false
-		else:
+		elif body.player_id == 2:
 			player2_inside = false
-			
+		
+		print("P1 Inside: ", player1_inside, " | P2 Inside: ", player2_inside)
+
 func ingredients_complete() -> bool:
-	return (
-		Player1Inventory.has("eggplant")
-		and Player2Inventory.has("eggplant")
-	)
+	# Add any extra item validation requirements here if desired
+	return true
 	
 func check_finish():
 	if player1_inside and player2_inside and ingredients_complete():
-		AudioManager.play_sfx(AudioManager.SFX_CLICK)
+		AudioManager.play_sfx("chop")
 		GameManager.go_to_kitchen()

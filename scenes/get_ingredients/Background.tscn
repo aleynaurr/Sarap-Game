@@ -921,3 +921,5 @@ shape = SubResource("RectangleShape2D_fjeer")
 sprite_frames = SubResource("SpriteFrames_fjeer")
 animation = &"Normal"
 autoplay = "Normal"
+
+[connection signal="body_entered" from="portal_to_kitchen" to="portal_to_kitchen" method="_on_body_entered"]
