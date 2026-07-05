@@ -1,5 +1,7 @@
 extends Area2D
 
+const DOOR_TRANSITION_SCENE := preload("res://scenes/DoorTransition.tscn")
+
 var player1_inside := false
 var player2_inside := false
 
@@ -28,10 +30,11 @@ func _on_body_exited(body):
 		print("P1 Inside: ", player1_inside, " | P2 Inside: ", player2_inside)
 
 func ingredients_complete() -> bool:
-	
 	return true
 	
 func check_finish():
 	if player1_inside and player2_inside and ingredients_complete():
-		AudioManager.play_sfx("chop")
-		GameManager.go_to_kitchen()
+		await get_tree().create_timer(0.5).timeout
+		var door := DOOR_TRANSITION_SCENE.instantiate()
+		get_tree().root.add_child(door)
+		door.play_transition(func(): get_tree().change_scene_to_file("res://scenes/SplitScreen.tscn"))

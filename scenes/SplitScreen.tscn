@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cha652eh1ra53"]
 
-[ext_resource type="Script" uid="uid://splitscreen" path="res://scripts/SplitScreen.gd" id="0_script"]
+[ext_resource type="Script" uid="uid://bw4jysve0fim5" path="res://scripts/SplitScreen.gd" id="0_script"]
 [ext_resource type="PackedScene" uid="uid://kitchen" path="res://scenes/Kitchen.tscn" id="1_kitchen"]
 [ext_resource type="Texture2D" uid="uid://drr15des4dnic" path="res://assets/sprites/ui/splitscreenBORDER.png" id="2_ojifk"]
 

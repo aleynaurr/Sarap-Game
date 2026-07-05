@@ -19,6 +19,7 @@ const SFX_STEP     = "step"
 const MUSIC_DIR := "res://bgm/"
 const MUSIC_TRACKS := {
 	"menu": MUSIC_DIR + "menuselect.mp3",
+	"getingredients": MUSIC_DIR + "getingredients.mp3",
 	"kitchen": MUSIC_DIR + "kitchen.mp3",
 }
 
