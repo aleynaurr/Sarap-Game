@@ -12,7 +12,7 @@ extends MinigameBase
 @onready var _lbl_timer: Label        = $TimerLabel
 @onready var _lbl_action_name: Label  = $ActionNameLabel
 @onready var _result_label: Label     = $ResultLabel
-@onready var _lbl_title: Label        = $TitleLabel
+@onready var _lbl_title: Label        = $Banner/TitleLabel
 
 var tex_w = preload("res://assets/assets/sprites/wasd/w (1).png")
 var tex_a = preload("res://assets/assets/sprites/wasd/A (1).png")

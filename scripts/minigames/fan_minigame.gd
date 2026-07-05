@@ -14,15 +14,15 @@ var _finished_fanning: bool = false
 
 # UI Nodes
 @onready var _lbl_timer: Label        = $TimerLabel
-@onready var _result_label: Label     = $ResultLabel
+#@onready var _result_label: Label     = $ResultLabel
 @onready var _lbl_title: Label        = $TitleLabel
 @onready var _lbl_status: Label       = $StatusLabel
 
 # Fanning Progressive Stage Sprites
 @onready var fanning_0 = $Fanning1# Starting / Raw
-@onready var fanning_1 = $Fanning2Welldone # Lightly cooked
+@onready var fanning_1 = $Fanning2 # Lightly cooked
 @onready var fanning_2 = $Fanning3 # PERFECT STAGE!
-@onready var fanning_3 = $Fanning4Fannedtoomuch 
+@onready var fanning_3 = $Fanning4
 
 # Action Moving Sprites
 @onready var up = $up
@@ -52,11 +52,7 @@ func _on_init() -> void:
 	if _lbl_title:
 		_lbl_title.text = "🔥 PAYPAYAN"
 		
-	# 🛠️ SHOW SPRITE BASED ON LAST RESULT (If re-entering/initializing based on a previous state)
-	if "fanning_result_state" in GameManager:
-		_apply_sprites_from_state(GameManager.get("fanning_result_state"))
-	else:
-		_update_fanning_sprites()
+	_apply_sprites_from_state(GameManager.fanning_result_state)
 
 	_update_action_sprites(0)
 	_highlight_step()
@@ -64,8 +60,7 @@ func _on_init() -> void:
 func _on_update(_delta: float, remaining: float) -> void:
 	if not _finished_fanning:
 		_update_timer_display(remaining)
-
-# 🛠️ FIX: Using _unhandled_input prevents holding a key down from auto-firing mistake penalties!
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if _finished_fanning or not event.is_pressed() or event.is_echo(): 
 		return
@@ -93,16 +88,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			_mistakes_count += 1
 			if _lbl_status:
 				_lbl_status.text = "Wrong rhythm! Alternate keys!"
+				_lbl_status.modulate = Color.BLACK
 
 func _check_game_status() -> void:
 	if _fans_done < _target_fans:
 		_lbl_status.text = "Fan more!"
+		_lbl_status.modulate = Color.BLACK
 	elif _fans_done <= _target_fans + 5:
 		_lbl_status.text = "Perfect!"
+		_lbl_status.modulate = Color.GREEN
 	elif _fans_done <= _target_fans + 10:
 		_lbl_status.text = "Too much!"
+		_lbl_status.modulate = Color.CRIMSON
 	else:
 		_lbl_status.text = "Burnt!"
+		_lbl_status.modulate = Color.RED
 
 func _update_action_sprites(current_dir: int) -> void:
 	if current_dir == 0:
@@ -124,8 +124,10 @@ func _update_fanning_sprites() -> void:
 		fanning_1.visible = true
 	elif _fans_done <= _target_fans + 5:
 		fanning_2.visible = true   # Perfect state
+	elif _fans_done <= _target_fans + 10:
+		fanning_3.visible = true   # Too much state
 	else:
-		fanning_3.visible = true   # Too much
+		fanning_3.visible = true
 
 func _apply_sprites_from_state(state: String) -> void:
 	_hide_all_fanning_sprites()
@@ -170,32 +172,20 @@ func _calculate_and_complete() -> void:
 	if _fans_done == 0:
 		base_score = 0.0
 		state_result = "raw"
-		if _result_label: _result_label.text = "Raw! Need more heat!"
-
 	elif _fans_done < _target_fans:
 		base_score = (float(_fans_done) / float(_target_fans)) * 0.7
 		state_result = "under"
-		if _result_label: _result_label.text = "Raw! Need more heat!"
-
 	elif _fans_done <= _target_fans + 5:
 		base_score = 1.0 
 		state_result = "perfect"
-		if _result_label: _result_label.text = "✨ Perfect! ✨"
-
 	elif _fans_done <= _target_fans + 10:
 		base_score = 0.5 
 		state_result = "toomuch"
-		if _result_label: _result_label.text = "💨 Too much!"
-
 	else:
 		base_score = 0.1 
-		state_result = "burnt"
-		if _result_label: _result_label.text = "💀 Burnt!"
+		state_result = "burnt" # This will now successfully pass to Straining!
 
-	if _result_label: _result_label.visible = true
-
-	if "fanning_result_state" in GameManager:
-		GameManager.set("fanning_result_state", state_result)
+	GameManager.fanning_result_state = state_result
 
 	var total_penalty := _mistakes_count * PENALTY_PER_MISTAKE
 	var final_score := clampf(base_score - total_penalty, 0.0, 1.0)

@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://d7c2j3ori5xu" path="res://assets/assets/eggplant/two_pokes.png" id="9_jln2u"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="9_xo2qt"]
 [ext_resource type="Texture2D" uid="uid://dxoq4wbni3oc7" path="res://assets/assets/eggplant/two_salt.png" id="10_1mmn2"]
-[ext_resource type="Texture2D" uid="uid://cf7niimfavo1i" path="res://assets/sprites/ui/progress_frame.png" id="10_at2a4"]
 [ext_resource type="Texture2D" uid="uid://vy8yysq05g10" path="res://assets/assets/sprites/PrickandSeason/fully poked eggplant look.png" id="12_xo2qt"]
 
 [node name="PrickSeasonMinigame" type="Control" unique_id=449731014]
@@ -205,16 +204,6 @@ theme_override_font_sizes/font_size = 26
 text = " Handa na! (Ready to grill!)"
 horizontal_alignment = 1
 
-[node name="ProgressBarBg" type="TextureRect" parent="." unique_id=1076030765]
-visible = false
-layout_mode = 0
-offset_left = 134.0
-offset_top = 619.0
-offset_right = 374.0
-offset_bottom = 647.0
-scale = Vector2(1.575, 1.3571428)
-texture = ExtResource("10_at2a4")
-
 [node name="ProgressLabel" type="Label" parent="." unique_id=1697994386]
 layout_mode = 0
 offset_left = 134.0
@@ -234,15 +223,16 @@ offset_bottom = 377.0
 scale = Vector2(2.4975586, 2.234375)
 texture = ExtResource("12_xo2qt")
 
-[node name="Phase2Label" type="Label" parent="." unique_id=1592516467]
+[node name="Phase2Label" type="RichTextLabel" parent="." unique_id=1489792057]
 visible = false
 layout_mode = 0
 offset_left = 39.0
 offset_top = 611.0
 offset_right = 613.0
 offset_bottom = 716.0
-theme_override_fonts/font = ExtResource("8_at2a4")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/normal_font = ExtResource("8_at2a4")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
 text = "Area 
 Area
 Area
