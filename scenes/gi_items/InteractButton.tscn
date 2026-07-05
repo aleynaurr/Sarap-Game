@@ -14,6 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="E" type="Sprite2D" parent="." unique_id=1904012851]
-position = Vector2(-1, -25)
-scale = Vector2(2.308449, 2.2448475)
+position = Vector2(-57, -70)
+scale = Vector2(3.9647856, 4.25863)
 texture = SubResource("AtlasTexture_3yk3w")

@@ -79,7 +79,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ba26k"]
-radius = 22.090721
+radius = 36.0
 
 [sub_resource type="GDScript" id="GDScript_blh6e"]
 script/source = "extends Control

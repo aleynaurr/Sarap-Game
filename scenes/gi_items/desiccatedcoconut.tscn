@@ -58,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ba26k"]
-radius = 22.090721
+radius = 100.2447
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_blh6e"]
 radius = 10.198039
@@ -84,13 +84,13 @@ shape = SubResource("CircleShape2D_ba26k")
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -25.0
-offset_top = -13.0
-offset_right = -24.99997
-offset_bottom = -13.0
+offset_left = -44.0
+offset_top = -38.0
+offset_right = -43.99997
+offset_bottom = -38.0
 grow_horizontal = 1
 grow_vertical = 1
-scale = Vector2(0.1323824, 0.13872533)
+scale = Vector2(0.3171946, 0.35800073)
 
 [node name="Collect" parent="." unique_id=725571798 instance=ExtResource("5_hrrvn")]
 item_name = "desiccatedcoconut"

@@ -79,7 +79,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ba26k"]
-radius = 22.090721
+radius = 33.06055
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_blh6e"]
 radius = 10.198039
@@ -98,7 +98,7 @@ autoplay = "growing"
 collision_layer = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2026886204]
-position = Vector2(0, -12)
+position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_ba26k")
 
 [node name="PressE" parent="Interactable" unique_id=1572369525 instance=ExtResource("4_mdgt4")]
