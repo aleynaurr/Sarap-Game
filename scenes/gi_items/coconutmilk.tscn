@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://cyiht0tpgl5ri"]
+
+[ext_resource type="Script" uid="uid://dxrqy0wliwjlm" path="res://scenes/gi_items/ingredients.gd" id="1_efo1u"]
+[ext_resource type="Texture2D" uid="uid://p1ayhcv2lpva" path="res://assets/classets/32px market.png" id="2_efo1u"]
+[ext_resource type="PackedScene" uid="uid://bkmtox2whvmwm" path="res://scenes/gi_items/Interactable.tscn" id="3_pm8pb"]
+[ext_resource type="PackedScene" uid="uid://cfxjmm4yyrus4" path="res://scenes/gi_items/InteractButton.tscn" id="4_jqnjg"]
+[ext_resource type="PackedScene" uid="uid://cbhp07jedg7ff" path="res://scenes/gi_items/Collectable.tscn" id="5_mm3q2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuinw"]
+atlas = ExtResource("2_efo1u")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm8pb"]
+atlas = ExtResource("2_efo1u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqnjg"]
+atlas = ExtResource("2_efo1u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm3q2"]
+atlas = ExtResource("2_efo1u")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnsv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuinw")
+}],
+"loop": false,
+"name": &"dropped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm8pb")
+}],
+"loop": false,
+"name": &"growing",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqnjg")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm3q2")
+}],
+"loop": false,
+"name": &"interact",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ba26k"]
+radius = 97.128784
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_blh6e"]
+radius = 10.198039
+
+[node name="coconutmilk" type="Node2D" unique_id=90497118]
+script = ExtResource("1_efo1u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1320775730]
+position = Vector2(0, -10)
+scale = Vector2(1.34375, 1.40625)
+sprite_frames = SubResource("SpriteFrames_hnsv2")
+animation = &"interact"
+autoplay = "growing"
+
+[node name="Interactable" parent="." unique_id=578706608 instance=ExtResource("3_pm8pb")]
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2026886204]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_ba26k")
+
+[node name="PressE" parent="Interactable" unique_id=1572369525 instance=ExtResource("4_jqnjg")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -34.0
+offset_top = -31.999998
+offset_right = -33.99997
+offset_bottom = -31.999998
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.3277387, 0.3854886)
+
+[node name="Collect" parent="." unique_id=725571798 instance=ExtResource("5_mm3q2")]
+item_name = "coconutmilk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collect" unique_id=489675670]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_blh6e")
+
+[connection signal="body_entered" from="Collect" to="." method="_on_collect_body_entered"]

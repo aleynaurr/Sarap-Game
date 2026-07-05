@@ -87,6 +87,9 @@ func go_to_main_menu() -> void:
 func go_to_recipe_select() -> void:
 	get_tree().change_scene_to_file("res://scenes/RecipeSelect.tscn")
 
+func go_to_kitchen() -> void:
+	get_tree().change_scene_to_file("res://scenes/SplitScreen.tscn")
+
 func go_to_results() -> void:
 	get_tree().change_scene_to_file("res://scenes/SplitScreenResults.tscn")
 

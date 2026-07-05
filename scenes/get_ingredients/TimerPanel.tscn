@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cl5raloqvfny7"]
+
+[ext_resource type="Theme" uid="uid://dmry7o1pbb4a2" path="res://scenes/get_ingredients/Brown_UI.tres" id="1_kunqf"]
+[ext_resource type="Script" uid="uid://cypq3md7g4543" path="res://scenes/get_ingredients/counter.gd" id="2_lkkdl"]
+
+[node name="TimerPanel" type="Control" unique_id=1695591266]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_kunqf")
+theme_type_variation = &"TimerPanel"
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1960043198]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 73.0
+theme = ExtResource("1_kunqf")
+theme_type_variation = &"TimerPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2005184044]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Counter" type="Label" parent="Panel/MarginContainer" unique_id=353742835]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_kunqf")
+theme_type_variation = &"TimerLabel"
+text = "2:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_lkkdl")
