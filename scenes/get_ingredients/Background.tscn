@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b0hnfk8okssok" path="res://scenes/gi_items/garlic_crop.tscn" id="9_u44wp"]
 [ext_resource type="PackedScene" uid="uid://kihcy46v8vgk" path="res://scenes/gi_items/desiccatedcoconut.tscn" id="10_u44wp"]
 [ext_resource type="PackedScene" uid="uid://cyiht0tpgl5ri" path="res://scenes/gi_items/coconutmilk.tscn" id="11_gojsm"]
+[ext_resource type="Script" uid="uid://wji40ghhfvdy" path="res://scenes/get_ingredients/portal_to_kitchen.gd" id="12_uqbte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_430f3"]
 texture = ExtResource("1_pdswc")
@@ -662,6 +663,23 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_pkmx3")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjeer"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqbte"]
+atlas = ExtResource("3_rrhs8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjeer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqbte")
+}],
+"loop": true,
+"name": &"Normal",
+"speed": 5.0
+}]
+
 [node name="Get_Ingredients_BG" type="Node2D" unique_id=1709072483]
 
 [node name="Outside" type="StaticBody2D" parent="." unique_id=806610603]
@@ -891,3 +909,15 @@ scale = Vector2(0.35129884, 0.31732953)
 [node name="coconutmilk8" parent="market" unique_id=1145015352 instance=ExtResource("11_gojsm")]
 position = Vector2(1993.9999, 240.00003)
 scale = Vector2(0.35502547, 0.3061416)
+
+[node name="portal_to_kitchen" type="Area2D" parent="." unique_id=1609776496]
+position = Vector2(592, 176)
+script = ExtResource("12_uqbte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal_to_kitchen" unique_id=848635539]
+shape = SubResource("RectangleShape2D_fjeer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="portal_to_kitchen" unique_id=1595606572]
+sprite_frames = SubResource("SpriteFrames_fjeer")
+animation = &"Normal"
+autoplay = "Normal"
