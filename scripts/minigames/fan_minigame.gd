@@ -52,7 +52,7 @@ func _on_init() -> void:
 	if _lbl_title:
 		_lbl_title.text = "🔥 PAYPAYAN"
 		
-	_apply_sprites_from_state(GameManager.fanning_result_state)
+	_apply_sprites_from_state(GameManager.get_fanning_result_state(player_number))
 
 	_update_action_sprites(0)
 	_highlight_step()
@@ -185,7 +185,7 @@ func _calculate_and_complete() -> void:
 		base_score = 0.1 
 		state_result = "burnt" # This will now successfully pass to Straining!
 
-	GameManager.fanning_result_state = state_result
+	GameManager.set_fanning_result_state(player_number, state_result)
 
 	var total_penalty := _mistakes_count * PENALTY_PER_MISTAKE
 	var final_score := clampf(base_score - total_penalty, 0.0, 1.0)
