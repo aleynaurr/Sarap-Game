@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://bb7wlm35eh3fv"]
+
+[ext_resource type="Script" uid="uid://6cf0vc7gm1f8" path="res://scripts/minigames/fan_minigame.gd" id="1_1uxxs"]
+[ext_resource type="Texture2D" uid="uid://dj57iqpuitbys" path="res://assets/assets/working station.png" id="1_6ri1k"]
+[ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="2_1qiki"]
+[ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="3_8m4cl"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_56ims"]
+[ext_resource type="Texture2D" uid="uid://b7fuuxutvcqdn" path="res://assets/assets/sprites/ui/banner2.png" id="6_jvjrx"]
+[ext_resource type="Texture2D" uid="uid://dx0yuho2ihhxq" path="res://assets/assets/mix/fanning0.png" id="6_om144"]
+[ext_resource type="Texture2D" uid="uid://lf7axdxkwv64" path="res://assets/assets/mix/fanning1.png" id="7_026lu"]
+[ext_resource type="Texture2D" uid="uid://cu10awp7osiar" path="res://assets/assets/mix/fanning2-welldone.png" id="8_kmqoa"]
+[ext_resource type="Texture2D" uid="uid://u4lexrntnod8" path="res://assets/assets/mix/fanning3.png" id="9_aikgs"]
+[ext_resource type="Texture2D" uid="uid://k2t3bggn04xi" path="res://assets/assets/mix/fanning4-fannedtoomuch.png" id="10_1dg4b"]
+[ext_resource type="Texture2D" uid="uid://bai7k5stf6m2y" path="res://assets/assets/mix/Up.png" id="11_gghdk"]
+[ext_resource type="Texture2D" uid="uid://doikuph6fvumu" path="res://assets/assets/mix/Down.png" id="12_jvjrx"]
+[ext_resource type="Texture2D" uid="uid://duyoao8h875be" path="res://assets/assets/sprites/wasd/w_glow.png" id="13_gghdk"]
+[ext_resource type="Texture2D" uid="uid://8m438hk6iv5n" path="res://assets/assets/sprites/wasd/s_glow.png" id="14_jvjrx"]
+[ext_resource type="Texture2D" uid="uid://be1427r1vvnfn" path="res://assets/assets/sprites/wasd/down_glow.png" id="15_c2lqm"]
+[ext_resource type="Texture2D" uid="uid://bb0wn5c15pesq" path="res://assets/assets/sprites/wasd/up_glow.png" id="16_2hsa8"]
+[ext_resource type="Texture2D" uid="uid://bpmif4mlxxwux" path="res://assets/assets/mix/smoke 1.png" id="17_gghdk"]
+[ext_resource type="Texture2D" uid="uid://bxxncxsl5d4xb" path="res://assets/assets/mix/smoke 2.png" id="18_jvjrx"]
+
+[node name="FanMinigame" type="Control" unique_id=418201941]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1uxxs")
+
+[node name="WorkingStation" type="TextureRect" parent="." unique_id=110227280]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 620.0
+offset_bottom = 721.0
+texture = ExtResource("1_6ri1k")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1729175480]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 28.0
+offset_right = 622.0
+offset_bottom = 718.0
+texture = ExtResource("2_1qiki")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1174552414]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 52.0
+offset_right = 404.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("3_8m4cl")
+theme_override_font_sizes/font_size = 24
+
+[node name="TimerLabel" type="Label" parent="." unique_id=510989699]
+z_index = 1
+layout_mode = 0
+offset_left = 461.0
+offset_top = 59.0
+offset_right = 573.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(1, 0.7058824, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("4_56ims")
+theme_override_font_sizes/font_size = 21
+text = "Time: 15.0"
+
+[node name="Banner" type="TextureRect" parent="." unique_id=123847942]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 112.0
+offset_right = 605.0
+offset_bottom = 212.0
+texture = ExtResource("6_jvjrx")
+expand_mode = 1
+
+[node name="StatusLabel" type="Label" parent="." unique_id=85724733]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 149.0
+offset_right = 504.0
+offset_bottom = 175.0
+rotation = -0.00066909706
+theme_override_fonts/font = ExtResource("4_56ims")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1504631328]
+visible = false
+layout_mode = 0
+offset_left = 133.0
+offset_top = 145.0
+offset_right = 500.0
+offset_bottom = 171.0
+rotation = -0.00066909706
+theme_override_fonts/font = ExtResource("4_56ims")
+theme_override_font_sizes/font_size = 25
+text = "Wrong rhythm! Alternate keys!"
+horizontal_alignment = 1
+
+[node name="Fanning0" type="TextureRect" parent="." unique_id=1226805065]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 270.0
+offset_right = 176.0
+offset_bottom = 398.0
+scale = Vector2(2.3359375, 1.984375)
+texture = ExtResource("6_om144")
+expand_mode = 1
+
+[node name="Fanning1" type="TextureRect" parent="." unique_id=1165957270]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 271.0
+offset_right = 177.0
+offset_bottom = 399.0
+scale = Vector2(2.336, 1.984)
+texture = ExtResource("7_026lu")
+
+[node name="Fanning2" type="TextureRect" parent="." unique_id=293988038]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 271.0
+offset_right = 173.0
+offset_bottom = 399.0
+scale = Vector2(2.336, 1.984)
+texture = ExtResource("8_kmqoa")
+
+[node name="Fanning3" type="TextureRect" parent="." unique_id=714376805]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 271.0
+offset_right = 173.0
+offset_bottom = 399.0
+scale = Vector2(2.336, 1.984)
+texture = ExtResource("9_aikgs")
+
+[node name="Fanning4" type="TextureRect" parent="." unique_id=1395719304]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 271.0
+offset_right = 173.0
+offset_bottom = 399.0
+scale = Vector2(2.336, 1.984)
+texture = ExtResource("10_1dg4b")
+
+[node name="up" type="TextureRect" parent="." unique_id=2113882366]
+visible = false
+layout_mode = 0
+offset_left = 164.0
+offset_top = 103.0
+offset_right = 713.0
+offset_bottom = 607.0
+texture = ExtResource("11_gghdk")
+expand_mode = 1
+
+[node name="down" type="TextureRect" parent="." unique_id=1497881807]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 106.0
+offset_right = 775.0
+offset_bottom = 602.0
+texture = ExtResource("12_jvjrx")
+expand_mode = 1
+
+[node name="wGlow" type="TextureRect" parent="." unique_id=2123875885]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 555.0
+offset_right = 287.0
+offset_bottom = 790.0
+texture = ExtResource("13_gghdk")
+expand_mode = 1
+
+[node name="sGlow" type="TextureRect" parent="." unique_id=2013487744]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 555.0
+offset_right = 287.0
+offset_bottom = 790.0
+texture = ExtResource("14_jvjrx")
+expand_mode = 1
+
+[node name="downGlow" type="TextureRect" parent="." unique_id=1688389611]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 556.0
+offset_right = 590.0
+offset_bottom = 791.0
+texture = ExtResource("15_c2lqm")
+expand_mode = 1
+
+[node name="upGlow" type="TextureRect" parent="." unique_id=1166570684]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 556.0
+offset_right = 588.0
+offset_bottom = 791.0
+texture = ExtResource("16_2hsa8")
+expand_mode = 1
+
+[node name="smoke1" type="TextureRect" parent="." unique_id=1422488080]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 198.0
+offset_right = 278.0
+offset_bottom = 358.0
+texture = ExtResource("17_gghdk")
+
+[node name="smoke2" type="TextureRect" parent="." unique_id=1598395317]
+visible = false
+layout_mode = 0
+offset_left = 112.0
+offset_top = 204.0
+offset_right = 277.0
+offset_bottom = 364.0
+texture = ExtResource("18_jvjrx")

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" format=3 uid="uid://1gy16v70wlcg"]
+
+[ext_resource type="FontFile" uid="uid://bnj8ive52dx03" path="res://assets/fonts/Ithaca-LVB75.ttf" id="1_h4yej"]
+
+[resource]
+base_font = ExtResource("1_h4yej")
