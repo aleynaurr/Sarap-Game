@@ -71,6 +71,22 @@ func _ready() -> void:
 	player.interact_pressed.connect(_on_player_interact)
 	minigame_host.player_number = player_number
 	minigame_host.minigame_done.connect(_on_minigame_done)
+	
+	# Set player sprite sheet based on player number
+	var player_sprite = $Player/Sprite2D
+	if player_sprite:
+		if player_number == 1:
+			player_sprite.texture = load("res://assets/player_sheet.png")
+		else:
+			player_sprite.texture = load("res://assets/player_sheet2.png")
+	
+	# Set interact prompt sprite based on player number
+	var prompt_sprite = $Player/InteractPrompt/PromptSprite
+	if prompt_sprite:
+		if player_number == 1:
+			prompt_sprite.texture = load("res://assets/sprites/ui/key_prompt_e.png")
+		else:
+			prompt_sprite.texture = load("res://assets/sprites/ui/key_prompt_shift.png")
 
 	_global_timer = GameManager.TOTAL_RECIPE_TIME
 	GameManager.set_time_remaining(player_number, _global_timer)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6gqpws06nd3y"
-path="res://.godot/imported/popup_bg.png-e0d3e4eb7c8fcb7a1ba5834fec896207.ctex"
+uid="uid://cbkxvpy6p4c8q"
+path="res://.godot/imported/key_prompt_shift.png-d77b9499aeb16026a417b92cdc99790b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png"
-dest_files=["res://.godot/imported/popup_bg.png-e0d3e4eb7c8fcb7a1ba5834fec896207.ctex"]
+source_file="res://assets/sprites/ui/key_prompt_shift.png"
+dest_files=["res://.godot/imported/key_prompt_shift.png-d77b9499aeb16026a417b92cdc99790b.ctex"]
 
 [params]
 

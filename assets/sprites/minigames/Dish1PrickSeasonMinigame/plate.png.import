@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6gqpws06nd3y"
-path="res://.godot/imported/popup_bg.png-e0d3e4eb7c8fcb7a1ba5834fec896207.ctex"
+uid="uid://dlv4sw54kg5m0"
+path="res://.godot/imported/plate.png-3a1df8c054ba14d1d7629fd5a324cf04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png"
-dest_files=["res://.godot/imported/popup_bg.png-e0d3e4eb7c8fcb7a1ba5834fec896207.ctex"]
+source_file="res://assets/sprites/minigames/Dish1PrickSeasonMinigame/plate.png"
+dest_files=["res://.godot/imported/plate.png-3a1df8c054ba14d1d7629fd5a324cf04.ctex"]
 
 [params]
 
