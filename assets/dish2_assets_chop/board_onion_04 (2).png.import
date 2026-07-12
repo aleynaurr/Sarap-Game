@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b617db7b22roe"
-path="res://.godot/imported/board_onion_04.png-9b3905836bd35691d287f1bf263af1e5.ctex"
+path="res://.godot/imported/board_onion_04 (2).png-161d4dd0e52bc2ee59efda81b5080153.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/minigames/Dish1ChopMinigame/board_onion_04.png"
-dest_files=["res://.godot/imported/board_onion_04.png-9b3905836bd35691d287f1bf263af1e5.ctex"]
+source_file="res://assets/dish2_assets_chop/board_onion_04 (2).png"
+dest_files=["res://.godot/imported/board_onion_04 (2).png-161d4dd0e52bc2ee59efda81b5080153.ctex"]
 
 [params]
 

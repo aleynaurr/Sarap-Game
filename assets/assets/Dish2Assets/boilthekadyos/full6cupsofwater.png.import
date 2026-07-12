@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0cna3xae55dk"
-path="res://.godot/imported/board_onion_01 (2).png-60b0ad638883fe68a644fd0f02fe18ec.ctex"
+uid="uid://ohrv8mcg1kfx"
+path="res://.godot/imported/full6cupsofwater.png-ee482a4c151ec3e484de35a742653609.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dish2_assets_chop/board_onion_01 (2).png"
-dest_files=["res://.godot/imported/board_onion_01 (2).png-60b0ad638883fe68a644fd0f02fe18ec.ctex"]
+source_file="res://assets/assets/Dish2Assets/boilthekadyos/full6cupsofwater.png"
+dest_files=["res://.godot/imported/full6cupsofwater.png-ee482a4c151ec3e484de35a742653609.ctex"]
 
 [params]
 

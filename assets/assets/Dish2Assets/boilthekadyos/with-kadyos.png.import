@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0cna3xae55dk"
-path="res://.godot/imported/board_onion_01 (2).png-60b0ad638883fe68a644fd0f02fe18ec.ctex"
+uid="uid://c3c8gux486ksn"
+path="res://.godot/imported/with-kadyos.png-eb16bf2d029cc72a1abf0b355d8339b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dish2_assets_chop/board_onion_01 (2).png"
-dest_files=["res://.godot/imported/board_onion_01 (2).png-60b0ad638883fe68a644fd0f02fe18ec.ctex"]
+source_file="res://assets/assets/Dish2Assets/boilthekadyos/with-kadyos.png"
+dest_files=["res://.godot/imported/with-kadyos.png-eb16bf2d029cc72a1abf0b355d8339b6.ctex"]
 
 [params]
 

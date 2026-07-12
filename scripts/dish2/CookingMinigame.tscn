@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://7d50jcsayatr"]
+[gd_scene format=3 uid="uid://7d50jcsayatr"]
 
 [ext_resource type="Script" uid="uid://c5dadt2mtorgd" path="res://scripts/dish2/boilingminigame.gd" id="1_ikbx7"]
 [ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="2_tjxoh"]
@@ -7,16 +7,22 @@
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="5_m518y"]
 [ext_resource type="Texture2D" uid="uid://ct20xbfjij5rp" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/pail_water.png" id="6_3mb7l"]
 [ext_resource type="Texture2D" uid="uid://6ueankpyxgl" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/ricecooker_closed.png" id="7_ak2fs"]
+[ext_resource type="Texture2D" uid="uid://vt5ik3pjvvrv" path="res://assets/assets/Dish2Assets/boilthekadyos/kadyos-smallbowl.png" id="8_ak2fs"]
 [ext_resource type="Texture2D" uid="uid://swf8wpekmkhb" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/arrow_up.png" id="8_dblxf"]
+[ext_resource type="Texture2D" uid="uid://c3c8gux486ksn" path="res://assets/assets/Dish2Assets/boilthekadyos/with-kadyos.png" id="9_dblxf"]
 [ext_resource type="Texture2D" uid="uid://b2she6407ekud" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cup_empty.png" id="9_ljbue"]
 [ext_resource type="Texture2D" uid="uid://d0kdk1pg72rng" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/hand_point.png" id="10_68utb"]
 [ext_resource type="Texture2D" uid="uid://vmett4cmfdo1" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png" id="11_ifi1k"]
+[ext_resource type="Texture2D" uid="uid://chlfkkthdcj8y" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/hand_pinch.png" id="11_tjxoh"]
+[ext_resource type="Texture2D" uid="uid://cfvty6ts1giq6" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cup_water.png" id="12_m518y"]
 [ext_resource type="Texture2D" uid="uid://wde6sk1j6ypu" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_start.png" id="12_t41s6"]
+[ext_resource type="Texture2D" uid="uid://c1fhbh548g8dg" path="res://assets/assets/Dish2Assets/boilthekadyos/first3cupsofwater.png" id="13_3mb7l"]
 [ext_resource type="Texture2D" uid="uid://bi81lednwatup" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_awesome.png" id="13_a15uh"]
+[ext_resource type="Texture2D" uid="uid://ohrv8mcg1kfx" path="res://assets/assets/Dish2Assets/boilthekadyos/full6cupsofwater.png" id="14_ak2fs"]
 [ext_resource type="Texture2D" uid="uid://bwwn0vw5kc7c2" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_great.png" id="14_vlfkb"]
 [ext_resource type="Texture2D" uid="uid://bcahx0i4kyq5s" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_timebetter.png" id="15_0gk18"]
 
-[node name="CookingMinigame" type="Control"]
+[node name="CookingMinigame" type="Control" unique_id=1106610871]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,27 +31,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ikbx7")
 
-[node name="TopHUD" type="TextureRect" parent="."]
+[node name="TopHUD" type="TextureRect" parent="." unique_id=1796564986]
 z_index = 1
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 736.0
 texture = ExtResource("2_tjxoh")
 
-[node name="BackgroundTop" type="ColorRect" parent="."]
+[node name="BackgroundTop" type="ColorRect" parent="." unique_id=348245797]
 visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 400.0
 color = Color(0.42352942, 0.28627452, 0.21176471, 1)
 
-[node name="background" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="." unique_id=1892499616]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 720.0
 texture = ExtResource("3_3adjf")
 
-[node name="BackgroundBottom" type="ColorRect" parent="."]
+[node name="BackgroundBottom" type="ColorRect" parent="." unique_id=909789112]
 visible = false
 layout_mode = 0
 offset_top = 400.0
@@ -53,7 +59,7 @@ offset_right = 640.0
 offset_bottom = 720.0
 color = Color(0.7921569, 0.654902, 0.16862746, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=239942476]
 z_index = 2
 layout_mode = 0
 offset_left = 61.0
@@ -65,7 +71,7 @@ theme_override_fonts/font = ExtResource("4_igsn8")
 theme_override_font_sizes/font_size = 29
 text = "Boil the Kadyos"
 
-[node name="TimerLabel" type="Label" parent="."]
+[node name="TimerLabel" type="Label" parent="." unique_id=728862690]
 z_index = 2
 layout_mode = 0
 offset_left = 417.0
@@ -78,7 +84,7 @@ theme_override_font_sizes/font_size = 25
 text = "Time: 60.0"
 horizontal_alignment = 2
 
-[node name="PailWater" type="TextureRect" parent="."]
+[node name="PailWater" type="TextureRect" parent="." unique_id=552618981]
 z_index = 1
 layout_mode = 0
 offset_left = 430.0
@@ -88,7 +94,7 @@ offset_bottom = 167.0
 scale = Vector2(2, 2)
 texture = ExtResource("6_3mb7l")
 
-[node name="RiceCookerSprite" type="TextureRect" parent="."]
+[node name="RiceCookerSprite" type="TextureRect" parent="." unique_id=1063273434]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -99,7 +105,24 @@ offset_bottom = 537.41455
 texture = ExtResource("7_ak2fs")
 stretch_mode = 5
 
-[node name="ArrowSprite" type="TextureRect" parent="."]
+[node name="kadyos" type="TextureRect" parent="." unique_id=657210840]
+visible = false
+layout_mode = 0
+offset_left = 358.0
+offset_top = -56.0
+offset_right = 720.0
+offset_bottom = 269.0
+texture = ExtResource("8_ak2fs")
+
+[node name="withkadyos" type="TextureRect" parent="." unique_id=528221149]
+visible = false
+layout_mode = 0
+offset_top = -1.0
+offset_right = 641.0
+offset_bottom = 717.0
+texture = ExtResource("9_dblxf")
+
+[node name="ArrowSprite" type="TextureRect" parent="." unique_id=1931174605]
 visible = false
 z_index = 3
 layout_mode = 0
@@ -110,27 +133,27 @@ offset_bottom = 266.0
 texture = ExtResource("8_dblxf")
 stretch_mode = 5
 
-[node name="CupSprite" type="TextureRect" parent="."]
-z_index = 2
+[node name="threecups" type="TextureRect" parent="." unique_id=1873360488]
+visible = false
 layout_mode = 0
-offset_left = 341.0
-offset_top = 482.0
-offset_right = 401.0
-offset_bottom = 572.0
-texture = ExtResource("9_ljbue")
-stretch_mode = 5
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 639.0
+offset_bottom = 718.0
+mouse_filter = 2
+texture = ExtResource("13_3mb7l")
 
-[node name="HandSprite" type="TextureRect" parent="."]
-z_index = 4
+[node name="sixcups" type="TextureRect" parent="." unique_id=1556387675]
+visible = false
 layout_mode = 0
-offset_left = 300.0
-offset_top = 470.0
-offset_right = 356.0
-offset_bottom = 526.0
-texture = ExtResource("10_68utb")
-stretch_mode = 5
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 638.0
+offset_bottom = 721.0
+mouse_filter = 2
+texture = ExtResource("14_ak2fs")
 
-[node name="PopupBox" type="Control" parent="."]
+[node name="PopupBox" type="Control" parent="." unique_id=702100738]
 visible = false
 z_index = 5
 anchors_preset = 0
@@ -140,14 +163,14 @@ offset_right = 580.0
 offset_bottom = 500.0
 pivot_offset = Vector2(260, 50)
 
-[node name="PopupBg" type="TextureRect" parent="PopupBox"]
+[node name="PopupBg" type="TextureRect" parent="PopupBox" unique_id=1341395322]
 layout_mode = 0
 offset_right = 520.0
 offset_bottom = 100.0
 texture = ExtResource("11_ifi1k")
 stretch_mode = 5
 
-[node name="PopupLabel" type="Label" parent="PopupBox"]
+[node name="PopupLabel" type="Label" parent="PopupBox" unique_id=2037449253]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 8.0
@@ -160,7 +183,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="StartPopup" type="Control" parent="."]
+[node name="StartPopup" type="Control" parent="." unique_id=1957540038]
 visible = false
 z_index = 6
 layout_mode = 1
@@ -176,7 +199,7 @@ offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartPopupBg" type="TextureRect" parent="StartPopup"]
+[node name="StartPopupBg" type="TextureRect" parent="StartPopup" unique_id=1566958903]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,7 +208,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_t41s6")
 
-[node name="StartPopupLabel" type="Label" parent="StartPopup"]
+[node name="StartPopupLabel" type="Label" parent="StartPopup" unique_id=1131571728]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,14 +226,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="CookingMeter" type="Control" parent="."]
+[node name="CookingMeter" type="Control" parent="." unique_id=46928595]
 visible = false
 z_index = 2
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 720.0
 
-[node name="MeterBg" type="ColorRect" parent="CookingMeter"]
+[node name="MeterBg" type="ColorRect" parent="CookingMeter" unique_id=1346324146]
 layout_mode = 0
 offset_left = 35.0
 offset_top = 585.0
@@ -218,7 +241,7 @@ offset_right = 405.0
 offset_bottom = 617.0
 color = Color(0.1, 0.1, 0.1, 1)
 
-[node name="MeterCaption" type="Label" parent="CookingMeter"]
+[node name="MeterCaption" type="Label" parent="CookingMeter" unique_id=1964685233]
 layout_mode = 0
 offset_left = 180.0
 offset_top = 620.0
@@ -231,7 +254,7 @@ theme_override_font_sizes/font_size = 21
 text = "COOKING METER"
 horizontal_alignment = 2
 
-[node name="Track" type="ColorRect" parent="CookingMeter"]
+[node name="Track" type="ColorRect" parent="CookingMeter" unique_id=781116149]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 590.0
@@ -239,7 +262,7 @@ offset_right = 400.0
 offset_bottom = 612.0
 color = Color(0.22, 0.15, 0.08, 1)
 
-[node name="ZoneYellow" type="ColorRect" parent="CookingMeter"]
+[node name="ZoneYellow" type="ColorRect" parent="CookingMeter" unique_id=687023938]
 layout_mode = 0
 offset_left = 175.0
 offset_top = 590.0
@@ -247,7 +270,7 @@ offset_right = 225.0
 offset_bottom = 612.0
 color = Color(0.95, 0.82, 0.2, 1)
 
-[node name="ZoneGreen" type="ColorRect" parent="CookingMeter"]
+[node name="ZoneGreen" type="ColorRect" parent="CookingMeter" unique_id=252322884]
 layout_mode = 0
 offset_left = 190.0
 offset_top = 590.0
@@ -255,21 +278,21 @@ offset_right = 210.0
 offset_bottom = 612.0
 color = Color(0.25, 0.8, 0.3, 1)
 
-[node name="ZoneWhiteLeft" type="ColorRect" parent="CookingMeter"]
+[node name="ZoneWhiteLeft" type="ColorRect" parent="CookingMeter" unique_id=2024709097]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 590.0
 offset_right = 175.0
 offset_bottom = 612.0
 
-[node name="ZoneWhiteRight" type="ColorRect" parent="CookingMeter"]
+[node name="ZoneWhiteRight" type="ColorRect" parent="CookingMeter" unique_id=22492875]
 layout_mode = 0
 offset_left = 225.0
 offset_top = 590.0
 offset_right = 400.0
 offset_bottom = 612.0
 
-[node name="MarkerCircle" type="ColorRect" parent="CookingMeter"]
+[node name="MarkerCircle" type="ColorRect" parent="CookingMeter" unique_id=1443571363]
 z_index = 1
 layout_mode = 0
 offset_left = 29.0
@@ -278,7 +301,7 @@ offset_right = 51.0
 offset_bottom = 612.0
 color = Color(0, 0, 0, 1)
 
-[node name="MarkerInner" type="ColorRect" parent="CookingMeter"]
+[node name="MarkerInner" type="ColorRect" parent="CookingMeter" unique_id=894982094]
 z_index = 2
 layout_mode = 0
 offset_left = 31.0
@@ -287,7 +310,7 @@ offset_right = 49.0
 offset_bottom = 610.0
 color = Color(0.85, 0.15, 0.1, 1)
 
-[node name="CookTimerBg" type="ColorRect" parent="CookingMeter"]
+[node name="CookTimerBg" type="ColorRect" parent="CookingMeter" unique_id=721644113]
 z_index = -1
 layout_mode = 0
 offset_left = 25.0
@@ -296,7 +319,7 @@ offset_right = 415.0
 offset_bottom = 652.0
 color = Color(0.16127142, 0.042006046, 0, 1)
 
-[node name="CookTimerLabel" type="Label" parent="."]
+[node name="CookTimerLabel" type="Label" parent="." unique_id=124385783]
 z_index = 2
 layout_mode = 0
 offset_left = 40.0
@@ -308,7 +331,7 @@ theme_override_fonts/font = ExtResource("4_igsn8")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
-[node name="CookFeedback" type="Control" parent="."]
+[node name="CookFeedback" type="Control" parent="." unique_id=455933895]
 visible = false
 z_index = 2
 anchors_preset = 0
@@ -317,7 +340,7 @@ offset_top = 585.0
 offset_right = 540.0
 offset_bottom = 620.0
 
-[node name="CookFeedbackAwesome" type="TextureRect" parent="CookFeedback"]
+[node name="CookFeedbackAwesome" type="TextureRect" parent="CookFeedback" unique_id=459744272]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -333,7 +356,7 @@ texture = ExtResource("13_a15uh")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CookFeedbackGreat" type="TextureRect" parent="CookFeedback"]
+[node name="CookFeedbackGreat" type="TextureRect" parent="CookFeedback" unique_id=12444058]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -349,7 +372,7 @@ texture = ExtResource("14_vlfkb")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CookFeedbackTimeBetter" type="TextureRect" parent="CookFeedback"]
+[node name="CookFeedbackTimeBetter" type="TextureRect" parent="CookFeedback" unique_id=82694594]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -365,12 +388,12 @@ texture = ExtResource("15_0gk18")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HintLabel" type="Label" parent="."]
+[node name="HintLabel" type="Label" parent="." unique_id=1437522960]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 662.0
-offset_right = 617.0
-offset_bottom = 711.0
+offset_left = 23.0
+offset_top = 626.0
+offset_right = 620.0
+offset_bottom = 701.0
 theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
 theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -384,3 +407,43 @@ text = "WASD/Arrows move hand  |  Hold Q/÷ to grab / open
 A/D or Left/Right to steer the cooking marker!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CupSprite" type="TextureRect" parent="." unique_id=446118761]
+z_index = 10
+layout_mode = 0
+offset_left = 341.0
+offset_top = 482.0
+offset_right = 469.0
+offset_bottom = 610.0
+texture = ExtResource("9_ljbue")
+stretch_mode = 5
+
+[node name="CupwithWater" type="TextureRect" parent="." unique_id=1869131271]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 342.0
+offset_top = 482.0
+offset_right = 470.0
+offset_bottom = 610.0
+texture = ExtResource("12_m518y")
+
+[node name="HandSprite" type="TextureRect" parent="." unique_id=754830213]
+z_index = 10
+layout_mode = 0
+offset_left = 300.0
+offset_top = 470.0
+offset_right = 428.0
+offset_bottom = 598.0
+texture = ExtResource("10_68utb")
+stretch_mode = 5
+
+[node name="HandPinch" type="TextureRect" parent="." unique_id=2059159327]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 295.0
+offset_top = 469.0
+offset_right = 423.0
+offset_bottom = 597.0
+texture = ExtResource("11_tjxoh")

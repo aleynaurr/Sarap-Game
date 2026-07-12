@@ -9,7 +9,7 @@ var player_number: int = 1
 
 var _skill_score: float = 0.0   # 0..1
 var _start_time: float = 0.0
-var _time_limit: float = 20.0
+var _time_limit: float = 120.0
 var _finished: bool = false
 
 signal minigame_completed(skill_ratio: float, time_ratio: float)
@@ -19,7 +19,7 @@ func set_player_number(num: int) -> void:
 
 func init_step(step: Dictionary) -> void:
 	step_data = step
-	_time_limit = step.get("time_limit", 20.0)
+	_time_limit = step.get("time_limit", 120.0)
 	_start_time = Time.get_ticks_msec() / 1000.0
 	_finished = false
 	_skill_score = 0.0

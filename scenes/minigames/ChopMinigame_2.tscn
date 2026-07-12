@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://nfqnfdf61sc5"]
+[gd_scene format=3 uid="uid://nfqnfdf61sc5"]
 
 [ext_resource type="Script" uid="uid://q4dr3cpoqwe5" path="res://scenes/minigames/chop_minigame_2.gd" id="1_a6n3k"]
 [ext_resource type="Texture2D" uid="uid://q2qoa6uleml8" path="res://assets/sprites/minigames/Dish1ChopMinigame/countertop.png" id="2_xoedg"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dufqb3uqgrjq3" path="res://assets/sprites/minigames/Dish1ChopMinigame/popup_done.png" id="20_qiobt"]
 [ext_resource type="Texture2D" uid="uid://c2eh3b5i1lfa3" path="res://assets/sprites/minigames/Dish1ChopMinigame/hand_open.png" id="21_eankn"]
 
-[node name="ChopMinigame" type="Control"]
+[node name="ChopMinigame" type="Control" unique_id=843034456]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a6n3k")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1682037172]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 2.0
@@ -38,14 +38,14 @@ offset_bottom = 716.0
 texture = ExtResource("2_xoedg")
 stretch_mode = 1
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1792197374]
 visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 720.0
 color = Color(0.85, 0.65, 0.25, 1)
 
-[node name="Plates" type="TextureRect" parent="."]
+[node name="Plates" type="TextureRect" parent="." unique_id=1540264392]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 120.0
@@ -54,7 +54,7 @@ offset_bottom = 207.0
 texture = ExtResource("3_ky5re")
 expand_mode = 1
 
-[node name="Plates2" type="TextureRect" parent="."]
+[node name="Plates2" type="TextureRect" parent="." unique_id=193575998]
 layout_mode = 0
 offset_left = 244.0
 offset_top = 120.0
@@ -63,7 +63,7 @@ offset_bottom = 207.0
 texture = ExtResource("3_ky5re")
 expand_mode = 1
 
-[node name="Plates3" type="TextureRect" parent="."]
+[node name="Plates3" type="TextureRect" parent="." unique_id=663309442]
 layout_mode = 0
 offset_left = 385.0
 offset_top = 121.0
@@ -72,7 +72,7 @@ offset_bottom = 208.0
 texture = ExtResource("3_ky5re")
 expand_mode = 1
 
-[node name="Plates4" type="TextureRect" parent="."]
+[node name="Plates4" type="TextureRect" parent="." unique_id=880335276]
 visible = false
 layout_mode = 0
 offset_left = 422.0
@@ -82,7 +82,7 @@ offset_bottom = 184.0
 texture = ExtResource("3_ky5re")
 expand_mode = 1
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=1448364976]
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -94,7 +94,7 @@ theme_override_fonts/font = ExtResource("4_h144t")
 theme_override_font_sizes/font_size = 24
 text = "Chop Ingredients"
 
-[node name="TimerLabel" type="Label" parent="."]
+[node name="TimerLabel" type="Label" parent="." unique_id=1791274442]
 z_index = 1
 layout_mode = 0
 offset_left = 370.0
@@ -106,7 +106,7 @@ theme_override_fonts/font = ExtResource("5_v42iq")
 theme_override_font_sizes/font_size = 21
 text = "Time: 25.0"
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=991151524]
 layout_mode = 0
 offset_left = -2.0
 offset_top = -1.0
@@ -114,7 +114,7 @@ offset_right = 533.0
 offset_bottom = 725.0
 texture = ExtResource("6_4qr7h")
 
-[node name="TopRow" type="HBoxContainer" parent="."]
+[node name="TopRow" type="HBoxContainer" parent="." unique_id=448146601]
 layout_mode = 0
 offset_left = -32.0
 offset_top = 42.0
@@ -124,25 +124,25 @@ scale = Vector2(1.2, 1.2)
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="IconBatwan" type="TextureRect" parent="TopRow"]
+[node name="IconBatwan" type="TextureRect" parent="TopRow" unique_id=1378567075]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("7_0ytqb")
 stretch_mode = 5
 
-[node name="IconJackfruit" type="TextureRect" parent="TopRow"]
+[node name="IconJackfruit" type="TextureRect" parent="TopRow" unique_id=451776601]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("8_7n063")
 stretch_mode = 5
 
-[node name="IconOnion" type="TextureRect" parent="TopRow"]
+[node name="IconOnion" type="TextureRect" parent="TopRow" unique_id=370795370]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("9_vpl4j")
 stretch_mode = 5
 
-[node name="VegNameLabel" type="Label" parent="."]
+[node name="VegNameLabel" type="Label" parent="." unique_id=602893327]
 z_index = 1
 layout_mode = 0
 offset_left = 365.0
@@ -155,7 +155,7 @@ theme_override_font_sizes/font_size = 24
 text = "Chili"
 horizontal_alignment = 2
 
-[node name="CuttingBoard" type="ColorRect" parent="."]
+[node name="CuttingBoard" type="ColorRect" parent="." unique_id=1859986227]
 z_index = 2
 layout_mode = 0
 offset_left = 41.0
@@ -164,7 +164,7 @@ offset_right = 589.0
 offset_bottom = 551.0
 color = Color(0.25882354, 0.16078432, 0.07058824, 0)
 
-[node name="BoardImage" type="TextureRect" parent="CuttingBoard"]
+[node name="BoardImage" type="TextureRect" parent="CuttingBoard" unique_id=2017455145]
 z_index = 2
 layout_mode = 0
 offset_left = 111.0
@@ -175,7 +175,7 @@ texture = ExtResource("11_3ppwv")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TotalCutCount" type="Label" parent="CuttingBoard"]
+[node name="TotalCutCount" type="Label" parent="CuttingBoard" unique_id=1388115609]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 255.0
@@ -195,7 +195,7 @@ theme_override_fonts/font = ExtResource("5_v42iq")
 theme_override_font_sizes/font_size = 22
 text = "TOTAL  CUT  COUNT"
 
-[node name="CutForEach" type="Label" parent="CuttingBoard"]
+[node name="CutForEach" type="Label" parent="CuttingBoard" unique_id=227204823]
 layout_mode = 0
 offset_left = 527.0
 offset_top = 71.0
@@ -215,7 +215,7 @@ theme_override_fonts/font = ExtResource("5_v42iq")
 theme_override_font_sizes/font_size = 22
 text = "CUT  %  FOR  EACH"
 
-[node name="CuttingBoardGraphic" type="TextureRect" parent="CuttingBoard"]
+[node name="CuttingBoardGraphic" type="TextureRect" parent="CuttingBoard" unique_id=1525016406]
 z_index = 1
 layout_mode = 0
 offset_left = 127.0
@@ -227,7 +227,7 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("12_v372q")
 expand_mode = 1
 
-[node name="ChopFlash" type="ColorRect" parent="CuttingBoard"]
+[node name="ChopFlash" type="ColorRect" parent="CuttingBoard" unique_id=1109737284]
 z_index = 4
 layout_mode = 0
 offset_left = -4.0
@@ -236,7 +236,7 @@ offset_right = 557.0
 offset_bottom = 373.0
 color = Color(1, 1, 1, 0)
 
-[node name="ProgressFill" type="ColorRect" parent="CuttingBoard"]
+[node name="ProgressFill" type="ColorRect" parent="CuttingBoard" unique_id=1893067238]
 z_index = 2
 layout_mode = 0
 offset_left = 63.0
@@ -245,7 +245,7 @@ offset_right = 93.0
 offset_bottom = 308.0
 color = Color(0.95, 0.85, 0.3, 1)
 
-[node name="ProgressBarBg" type="ColorRect" parent="CuttingBoard"]
+[node name="ProgressBarBg" type="ColorRect" parent="CuttingBoard" unique_id=587087462]
 z_index = 1
 layout_mode = 0
 offset_left = 61.0
@@ -254,7 +254,7 @@ offset_right = 95.0
 offset_bottom = 308.0
 color = Color(0.3, 0.2, 0.1, 1)
 
-[node name="ProgressBarBg2" type="ColorRect" parent="CuttingBoard"]
+[node name="ProgressBarBg2" type="ColorRect" parent="CuttingBoard" unique_id=686537900]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 31.0
@@ -262,7 +262,7 @@ offset_right = 101.0
 offset_bottom = 314.0
 color = Color(0.09365951, 0.05122091, 0.014231475, 1)
 
-[node name="HoldBarBg" type="ColorRect" parent="CuttingBoard"]
+[node name="HoldBarBg" type="ColorRect" parent="CuttingBoard" unique_id=2065413308]
 z_index = 1
 layout_mode = 0
 offset_left = 458.0
@@ -271,7 +271,7 @@ offset_right = 492.0
 offset_bottom = 305.0
 color = Color(0.3, 0.2, 0.1, 1)
 
-[node name="HoldBarFill" type="ColorRect" parent="CuttingBoard"]
+[node name="HoldBarFill" type="ColorRect" parent="CuttingBoard" unique_id=519009324]
 z_index = 2
 layout_mode = 0
 offset_left = 460.0
@@ -280,7 +280,7 @@ offset_right = 490.0
 offset_bottom = 305.0
 color = Color(0.3, 0.9, 0.35, 1)
 
-[node name="ProgressBarBg3" type="ColorRect" parent="CuttingBoard"]
+[node name="ProgressBarBg3" type="ColorRect" parent="CuttingBoard" unique_id=1643407907]
 layout_mode = 0
 offset_left = 452.0
 offset_top = 26.0
@@ -288,7 +288,7 @@ offset_right = 498.0
 offset_bottom = 314.0
 color = Color(0.09365951, 0.05122091, 0.014231475, 1)
 
-[node name="ArrowContainer" type="Control" parent="CuttingBoard"]
+[node name="ArrowContainer" type="Control" parent="CuttingBoard" unique_id=1109394511]
 visible = false
 z_index = 5
 anchors_preset = 0
@@ -298,7 +298,7 @@ offset_right = 330.5
 offset_bottom = 216.0
 pivot_offset = Vector2(64, 64)
 
-[node name="ArrowImage" type="TextureRect" parent="CuttingBoard/ArrowContainer"]
+[node name="ArrowImage" type="TextureRect" parent="CuttingBoard/ArrowContainer" unique_id=1779285022]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -309,7 +309,7 @@ texture = ExtResource("13_gehs8")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ArrowFlash" type="ColorRect" parent="CuttingBoard/ArrowContainer"]
+[node name="ArrowFlash" type="ColorRect" parent="CuttingBoard/ArrowContainer" unique_id=1236553461]
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -319,7 +319,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1670868501]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -330,7 +330,7 @@ offset_bottom = 542.0
 texture = ExtResource("14_76cg0")
 expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=415035337]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 213.0
@@ -338,7 +338,7 @@ offset_right = 599.0
 offset_bottom = 585.0
 color = Color(0.19571076, 0.110913925, 0.043233663, 1)
 
-[node name="CutCountLabel" type="Label" parent="."]
+[node name="CutCountLabel" type="Label" parent="." unique_id=816440352]
 layout_mode = 0
 offset_left = 49.0
 offset_top = 553.0
@@ -350,7 +350,7 @@ theme_override_fonts/font = ExtResource("5_v42iq")
 theme_override_font_sizes/font_size = 23
 text = "Cut Count: 0 / 5"
 
-[node name="BowlRow" type="HBoxContainer" parent="."]
+[node name="BowlRow" type="HBoxContainer" parent="." unique_id=380669070]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 588.0
@@ -359,25 +359,25 @@ offset_bottom = 672.0
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="BowlBatwan" type="TextureRect" parent="BowlRow"]
+[node name="BowlBatwan" type="TextureRect" parent="BowlRow" unique_id=245178888]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture = ExtResource("15_gvedx")
 stretch_mode = 5
 
-[node name="BowlJackfruit" type="TextureRect" parent="BowlRow"]
+[node name="BowlJackfruit" type="TextureRect" parent="BowlRow" unique_id=775243061]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture = ExtResource("16_8cggu")
 stretch_mode = 5
 
-[node name="BowlOnion" type="TextureRect" parent="BowlRow"]
+[node name="BowlOnion" type="TextureRect" parent="BowlRow" unique_id=797662670]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture = ExtResource("17_nha8f")
 stretch_mode = 5
 
-[node name="ResultLabel" type="Label" parent="."]
+[node name="ResultLabel" type="Label" parent="." unique_id=477706896]
 visible = false
 layout_mode = 0
 offset_left = 80.0
@@ -388,7 +388,7 @@ theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
-[node name="StartPopup" type="Control" parent="."]
+[node name="StartPopup" type="Control" parent="." unique_id=1096540185]
 visible = false
 z_index = 20
 anchors_preset = 0
@@ -404,7 +404,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(240, 70)
 
-[node name="StartPopupImage" type="TextureRect" parent="StartPopup"]
+[node name="StartPopupImage" type="TextureRect" parent="StartPopup" unique_id=2047655119]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -415,7 +415,7 @@ texture = ExtResource("19_erjqr")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EndPopup" type="Control" parent="."]
+[node name="EndPopup" type="Control" parent="." unique_id=66918749]
 visible = false
 z_index = 20
 anchors_preset = 0
@@ -431,7 +431,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(240, 70)
 
-[node name="EndPopupImage" type="TextureRect" parent="EndPopup"]
+[node name="EndPopupImage" type="TextureRect" parent="EndPopup" unique_id=246833543]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -442,7 +442,7 @@ texture = ExtResource("20_qiobt")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HintLabel" type="Label" parent="."]
+[node name="HintLabel" type="Label" parent="." unique_id=385789222]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 686.0
@@ -458,7 +458,7 @@ theme_override_font_sizes/font_size = 21
 text = "Hold Q or '/' while navigating to the direction of the arrow!"
 horizontal_alignment = 1
 
-[node name="Hand" type="TextureRect" parent="."]
+[node name="Hand" type="TextureRect" parent="." unique_id=1326549050]
 z_index = 10
 layout_mode = 0
 offset_left = 280.0
