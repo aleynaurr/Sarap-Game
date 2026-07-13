@@ -1,5 +1,8 @@
 extends Node2D
 
+var players_in_door := {}
+
+
 func _ready() -> void:
 
 	for child in get_children():
@@ -11,12 +14,22 @@ func _ready() -> void:
 func _on_door_body_entered(body: Node2D, door: Area2D) -> void:
 
 	if body is Player:
+		if !players_in_door.has(door):
+			players_in_door[door] = []
+
+		if !players_in_door[door].has(body):
+			players_in_door[door].append(body)
+
 		determine_roof_visibility(door, false)
 
 
 func _on_door_body_exited(body: Node2D, door: Area2D) -> void:
-	if body is Player:
-		determine_roof_visibility(door, true)
+	if body is Player and players_in_door.has(door):
+		players_in_door[door].erase(body)
+
+		if players_in_door[door].is_empty():
+			players_in_door.erase(door)
+			determine_roof_visibility(door, true)
 
 
 
@@ -25,6 +38,7 @@ func determine_roof_visibility(door: Area2D, make_visible: bool) -> void:
 		fade_node($House_Roof, make_visible)
 		fade_node($wallunderhouse, make_visible)
 		fade_node($HouseDoor/Sprite2D, make_visible)
+		fade_node($HouseDoor/Sprite2D2, make_visible)
 
 	elif door.name == "SMDoor1" or door.name == "SMDoor2":
 		fade_node($SM_Roof, make_visible)
