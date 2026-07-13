@@ -82,6 +82,7 @@ func start_recipe(recipe_id: String) -> void:
 	_player_state[1]["game_active"] = true
 	_player_state[2]["game_active"] = true
 	start_shared_timer()
+	print("Changing scene...")
 	get_tree().change_scene_to_file("res://scenes/get_ingredients/GetIngredients.tscn")
 
 func go_to_main_menu() -> void:
