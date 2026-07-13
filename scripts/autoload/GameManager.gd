@@ -2,6 +2,7 @@ extends Node
 
 # ─── Global state per player ─────────────────────────────────────────────────
 var current_recipe_id: String = ""
+var versus_video_playing: bool = false  # Track if versus video is playing
 
 # Player-specific state
 var _player_state: Dictionary = {}

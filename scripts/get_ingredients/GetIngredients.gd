@@ -15,19 +15,29 @@ extends Node2D
 	}
 }
 
+var music_playing := false
+
 
 func _ready() -> void:
-	AudioManager.play_music("getingredients")
+	if not GameManager.versus_video_playing:
+		AudioManager.play_music("getingredients")
+		music_playing = true
 	players["2"].subviewport.world_2d = players["1"].subviewport.world_2d
 	
 	await get_tree().process_frame
 
-	TextManager.start_dialog([
-		"For Movement, Player 1: WASD, Player 2: Arrow Keys", 
-		"For Interact, Player 1: E, Player 2: RShift",
-		"🌱 Race to collect all the ingredients!",
-		"🥬 Harvest the crops in the garden.", 
-		"🧺 Explore the map to find the remaining ingredients.",
-		"🏠 Return to the house when you're done.",
-		"⭐ The first player to enter the house earns bonus points!"
-	])
+	if not GameManager.versus_video_playing:
+		TextManager.start_dialog([
+			"For Movement, Player 1: WASD, Player 2: Arrow Keys", 
+			"For Interact, Player 1: E, Player 2: RShift",
+			"🌱 Race to collect all the ingredients!",
+			"🥬 Harvest the crops in the garden.", 
+			"🧺 Explore the map to find the remaining ingredients.",
+			"🏠 Return to the house when you're done.",
+			"⭐ The first player to enter the house earns bonus points!"
+		])
+
+func _process(delta):
+	if GameManager.versus_video_playing and music_playing:
+		AudioManager.stop_music()
+		music_playing = false

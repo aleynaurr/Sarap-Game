@@ -1,6 +1,15 @@
 extends Node2D
 
 const SMALL_DOOR_TRANSITION_SCENE := preload("res://scenes/SmallDoorTransition.tscn")
+const DOOR_TRANSITION_SCENE := preload("res://scenes/DoorTransition.tscn")
+const VERSUS_VIDEO_PATH := "res://assets/versus.ogv"
+
+static var _versus_video_played_global := false  # Shared between both players!
+var _versus_video: VideoStreamPlayer = null
+var _versus_backdrop: ColorRect = null
+var _versus_transition_started := false
+var _versus_start_time := 0.0
+var _versus_stream_length := 0.0
 
 @export var player_number: int = 1  # 1 or 2
 
@@ -55,6 +64,89 @@ const INDICATOR_SCALE: Vector2 = Vector2(0.55, 0.55)
 # ─────────────────────────────────────────────────────────────────────────────
 
 func _ready() -> void:
+	_play_versus_video()
+
+func _play_versus_video() -> void:
+	# Only Player 1 should handle the versus video (or if already played globally)
+	if player_number != 1 or _versus_video_played_global:
+		# Wait a tiny bit to make sure P1's video is done before initializing?
+		# Or just initialize right away if video is already played
+		if _versus_video_played_global:
+			_initialize_kitchen()
+		else:
+			# Wait for P1 to finish
+			await get_tree().process_frame
+			while not _versus_video_played_global:
+				await get_tree().process_frame
+			_initialize_kitchen()
+		return
+	
+	# Set global flag that video is playing FIRST THING!
+	GameManager.versus_video_playing = true
+	
+	var stream = load(VERSUS_VIDEO_PATH)
+	if stream == null:
+		_versus_video_played_global = true
+		GameManager.versus_video_playing = false
+		_initialize_kitchen()
+		# Also let P2 know it's done
+		return
+	
+	# Try to get stream length—if not available, we'll just use finished signal
+	if stream.has_method("get_length"):
+		_versus_stream_length = stream.get_length()
+	else:
+		_versus_stream_length = 0.0  # Fallback: use finished signal
+	
+	_versus_backdrop = ColorRect.new()
+	_versus_backdrop.color = Color.BLACK
+	_versus_backdrop.set_anchors_preset(Control.PRESET_FULL_RECT)
+	get_tree().root.add_child(_versus_backdrop)
+	
+	_versus_video = VideoStreamPlayer.new()
+	_versus_video.stream = stream
+	_versus_video.expand = true
+	_versus_video.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_versus_video.finished.connect(_on_versus_video_finished)
+	get_tree().root.add_child(_versus_video)
+	
+	_versus_start_time = Time.get_ticks_msec() / 1000.0
+	_versus_video.play()
+
+func _on_versus_video_finished() -> void:
+	if not _versus_transition_started:
+		_start_versus_transition()
+
+func _start_versus_transition() -> void:
+	_versus_transition_started = true
+	var door := DOOR_TRANSITION_SCENE.instantiate()
+	get_tree().root.add_child(door)
+	await door._close_doors()
+	# Now initialize the kitchens!
+	_versus_video_played_global = true
+	_initialize_kitchen()
+	# Keep video playing until the end, then clean up
+	var elapsed = Time.get_ticks_msec() / 1000.0 - _versus_start_time
+	var remaining = max(0.0, _versus_stream_length - elapsed) if _versus_stream_length > 0 else 0.0
+	if remaining > 0:
+		await get_tree().create_timer(remaining).timeout
+	else:
+		# If we couldn't get stream length, just wait a tiny bit
+		await get_tree().create_timer(0.5).timeout
+	# Now clean up
+	GameManager.versus_video_playing = false
+	if _versus_backdrop and is_instance_valid(_versus_backdrop):
+		_versus_backdrop.queue_free()
+	if _versus_video and is_instance_valid(_versus_video):
+		_versus_video.queue_free()
+	_versus_backdrop = null
+	_versus_video = null
+	# Continue door transition
+	await get_tree().create_timer(0.4)  # Hold duration (like DoorTransition)
+	await door._open_doors()
+	door.queue_free()
+
+func _initialize_kitchen() -> void:
 	_recipe = RecipeData.get_recipe(GameManager.current_recipe_id)
 	_steps  = _recipe.get("steps", [])
 	GameManager.set_game_active(player_number, true)
@@ -186,6 +278,11 @@ func _connect_stations() -> void:
 			child.player_exited.connect(_on_station_exited)
 
 func _process(delta: float) -> void:
+	if player_number == 1 and _versus_video and not _versus_transition_started and _versus_stream_length > 0:
+		var elapsed = Time.get_ticks_msec() / 1000.0 - _versus_start_time
+		if elapsed >= _versus_stream_length - 1.2:
+			_start_versus_transition()
+
 	if _indicator != null and _indicator.visible:
 		_bob_time += delta * BOB_SPEED
 		_indicator.position.y = indicator_positions.get(
