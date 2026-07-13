@@ -38,7 +38,7 @@ const TEX_D = preload("res://assets/assets/sprites/wasd/D (1).png")
 @onready var mixer_ginger = $Ginger
 @onready var mixer_onion = $Onion
 
-@onready var finish_sprite = $finish
+var finish_sprite: TextureRect = null
 
 func _ready() -> void:
 	if ginger_bowl: _original_textures[ginger_bowl] = ginger_bowl.texture

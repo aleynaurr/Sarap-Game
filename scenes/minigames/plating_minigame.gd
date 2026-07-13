@@ -13,7 +13,7 @@ var _big_mixer_bowl_height_y: float = 310.0
 
 @onready var _lbl_timer: Label = $TimerLabel
 @onready var _lbl_status: Label = $StatusLabel
-@onready var _lbl_wrong: Label = $Wrong
+var _lbl_wrong: Label = null
 
 @onready var plate_target: Control = $TargetZone 
 @onready var shadow_sprite: TextureRect = $PlatingShadow 

@@ -187,8 +187,9 @@ color = Color(0.35, 0.78, 0.35, 1)
 
 [node name="PlateArea" type="Control" parent="." unique_id=1682679070]
 anchors_preset = 0
+offset_top = 1.0
 offset_right = 640.0
-offset_bottom = 720.0
+offset_bottom = 721.0
 
 [node name="Plate" type="TextureRect" parent="PlateArea" unique_id=900083687]
 layout_mode = 0

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5hjntte2d753" path="res://scripts/ui/MainMenu.gd" id="1_mainmenu"]
 [ext_resource type="Texture2D" uid="uid://berjqlk7vpuu0" path="res://assets/sarapmainmenu.png" id="2_2wh52"]
+[ext_resource type="Texture2D" uid="uid://cx2wcn8rs0ir3" path="res://assets/sprites/ui/rays-mainmenu.png" id="3_l72w3"]
 [ext_resource type="Texture2D" uid="uid://gnoui4j4cqen" path="res://assets/star-sarap.png" id="3_ow34m"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_ow34m"]
 
@@ -14,12 +15,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mainmenu")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=630823516]
+[node name="Background" type="TextureRect" parent="." unique_id=630823516]
 layout_mode = 1
 anchors_preset = -1
 offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("2_2wh52")
+
+[node name="Rays" type="TextureRect" parent="." unique_id=431726603]
+visible = false
+layout_mode = 0
+offset_right = 1277.0
+offset_bottom = 718.0
+texture = ExtResource("3_l72w3")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1641485523]
 layout_mode = 0

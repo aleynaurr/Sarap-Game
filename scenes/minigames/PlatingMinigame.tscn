@@ -4,13 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://csmxrgse0xon1" path="res://assets/assets/plating/plating bg.png" id="1_hjiy4"]
 [ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="2_7e1j1"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="3_8in14"]
+[ext_resource type="Texture2D" uid="uid://orwchp11dn7i" path="res://assets/sprites/minigames/Dish1FryMinigame/eggplant_sideA_medium.png" id="4_aqq3f"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_pwn8o"]
 [ext_resource type="Texture2D" uid="uid://jm3g2ph1re8o" path="res://assets/assets/plating/plating-veggies on mixture.png" id="5_1cc7q"]
+[ext_resource type="Texture2D" uid="uid://bhwm7wxnekhbe" path="res://assets/sprites/ui/banner.png" id="6_1cc7q"]
 [ext_resource type="Texture2D" uid="uid://vgo5dmwtkdi7" path="res://assets/assets/plating/plating-mixture on the eggplant.png" id="7_pwn8o"]
 [ext_resource type="Texture2D" uid="uid://crpop5134sv55" path="res://assets/assets/sprites/addToBowl/big mixer  bowl.png" id="8_pwn8o"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aqq3f"]
-load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
 
 [node name="PlatingMinigame" type="Control" unique_id=855327024]
 layout_mode = 3
@@ -34,6 +33,16 @@ offset_top = 28.0
 offset_right = 622.0
 offset_bottom = 718.0
 texture = ExtResource("2_7e1j1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1570507353]
+layout_mode = 0
+offset_left = 330.99997
+offset_top = 248.99997
+offset_right = 638.1472
+offset_bottom = 515.53687
+rotation = 1.0716321
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_aqq3f")
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1298675167]
 layout_mode = 0
@@ -59,11 +68,11 @@ text = "Time: 15.0"
 
 [node name="Banner" type="TextureRect" parent="." unique_id=1857903128]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 121.0
-offset_right = 631.0
-offset_bottom = 190.0
-texture = SubResource("CompressedTexture2D_aqq3f")
+offset_left = 15.0
+offset_top = 128.0
+offset_right = 621.0
+offset_bottom = 197.0
+texture = ExtResource("6_1cc7q")
 expand_mode = 1
 
 [node name="StatusLabel" type="Label" parent="." unique_id=1512122993]

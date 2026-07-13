@@ -7,6 +7,9 @@ const ASSET_DIR := "res://assets/sprites/minigames/Dish1CookRiceMinigame/"
 # --- Exported Inspector Properties ---
 @export var move_speed: float = 220.0
 
+
+
+
 # Timer settings
 @export var time_1_cup: float = 70.0
 @export var time_2_cups: float = 85.0
@@ -108,8 +111,16 @@ var _arrow_bob_time: float = 0.0
 var _cook_feedback_mode: String = "timebetter"
 var _cook_feedback_tween: Tween
 
+# Marker movement variables
+var _marker_velocity: float = 0.0
+const MARKER_ACCELERATION: float = 600.0
+const MARKER_MAX_SPEED: float = 150.0
+const MARKER_FRICTION: float = 4.0
+
 @onready var _lbl_timer: Label = $TimerLabel
 @onready var _lbl_cook_timer: Label = $CookTimerLabel
+@onready var _top_hud_2: Control = $TopHUD2  # TopHUD2 added by user
+@onready var _lbl_rice_water: Label = $TopHUD2/RiceWaterLabel  # New label added by user
 
 @onready var _hand_img: TextureRect = $HandSprite
 @onready var _cooker_img: TextureRect = $RiceCookerSprite
@@ -156,9 +167,63 @@ func _load_tex() -> void:
 	_tex["arrow_up"] = load(ASSET_DIR + "arrow_up.png")
 	_tex["arrow_down"] = load(ASSET_DIR + "arrow_down.png")
 	_tex["popup_bg"] = load(ASSET_DIR + "popup_bg.png")
+	# Load popup textures
+	_tex["popup_start"] = load(ASSET_DIR + "popup_start.png")
+	_tex["popup_startaddingrice"] = load(ASSET_DIR + "popup_startaddingrice.png")
+	_tex["popup_startaddingwater"] = load(ASSET_DIR + "popup_startaddingwater.png")
+	_tex["popup_addingrice_1"] = load(ASSET_DIR + "popup_addingrice_1.png")
+	_tex["popup_addingrice_2"] = load(ASSET_DIR + "popup_addingrice_2.png")
+	_tex["popup_addingrice_3"] = load(ASSET_DIR + "popup_addingrice_3.png")
+	_tex["popup_addingrice_4"] = load(ASSET_DIR + "popup_addingrice_4.png")
+	_tex["popup_rice_added"] = load(ASSET_DIR + "popup_rice_added.png")
+	_tex["popup_all_rice"] = load(ASSET_DIR + "popup_all_rice.png")
+	_tex["popup_water_added"] = load(ASSET_DIR + "popup_water_added.png")
+	_tex["popup_all_water"] = load(ASSET_DIR + "popup_all_water.png")
+	_tex["popup_cooking"] = load(ASSET_DIR + "popup_cooking.png")
+	_tex["popup_done"] = load(ASSET_DIR + "popup_done.png")
+	_tex["popup_fail"] = load(ASSET_DIR + "popup_fail.png")
+	_tex["cookfeedback_awesome"] = load(ASSET_DIR + "cookfeedback_awesome.png")
+	_tex["cookfeedback_great"] = load(ASSET_DIR + "cookfeedback_great.png")
+	_tex["cookfeedback_timebetter"] = load(ASSET_DIR + "cookfeedback_timebetter.png")
 
 func _is_grab_pressed() -> bool:
 	return Input.is_action_pressed("grab_p%d" % player_number)
+
+func _slide_top_hud_2_in() -> void:
+	if not is_instance_valid(_top_hud_2):
+		return
+	_top_hud_2.visible = true
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(_top_hud_2, "position:x", _top_hud_2.position.x - _top_hud_2.size.x, 1.0)
+
+func _slide_top_hud_2_out() -> void:
+	if not is_instance_valid(_top_hud_2):
+		return
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(_top_hud_2, "position:x", _top_hud_2.position.x + _top_hud_2.size.x, 1.0)
+	tween.finished.connect(func(): _top_hud_2.visible = false)
+
+func _update_rice_water_label() -> void:
+	if not is_instance_valid(_lbl_rice_water):
+		return
+	if _state == State.FILL_RICE:
+		var remaining = _target_rice - _rice_added
+		if remaining > 0:
+			_lbl_rice_water.text = "%d cup%s of rice needed" % [remaining, "s" if remaining != 1 else ""]
+		else:
+			_lbl_rice_water.text = "All rice added!"
+	elif _state == State.FILL_WATER:
+		var remaining = _target_water - _water_added
+		if remaining > 0:
+			_lbl_rice_water.text = "%d cup%s of water needed" % [remaining, "s" if remaining != 1 else ""]
+		else:
+			_lbl_rice_water.text = "All water added!"
+	else:
+		_lbl_rice_water.text = ""
 
 func _on_init() -> void:
 	_load_tex()
@@ -178,8 +243,17 @@ func _on_init() -> void:
 	_arrow_bob_time = 0.0
 	_cook_feedback_mode = "timebetter"
 
-	randomize()
-	_target_rice = randi_range(1, 4)
+	# Initialize TopHUD2 off-screen to the right
+	if is_instance_valid(_top_hud_2):
+		_top_hud_2.visible = false
+		_top_hud_2.position.x += _top_hud_2.size.x  # Move off-screen right
+
+	# Use shared target, only set once by first player
+	if not GameManager.cook_rice_target_set:
+		randomize()
+		GameManager.cook_rice_target_cups = randi_range(1, 3)  # Only 1-3 cups now
+		GameManager.cook_rice_target_set = true
+	_target_rice = GameManager.cook_rice_target_cups
 	_target_water = _target_rice * 2
 
 	# Set overall time based on rice cups
@@ -187,9 +261,10 @@ func _on_init() -> void:
 		1: _overall_remaining = time_1_cup
 		2: _overall_remaining = time_2_cups
 		3: _overall_remaining = time_3_cups
-		4: _overall_remaining = time_4_cups
 
 	_cook_timer = cook_time
+
+	_update_rice_water_label()  # Initialize the label
 
 	# _time_limit is MinigameBase's own hard safety-net timer
 	_time_limit = _overall_remaining + cook_time + 15.0
@@ -262,6 +337,7 @@ func _hide_cup() -> void:
 	tw.tween_callback(func(): _cup_img.visible = false)
 
 func _pop_animation() -> void:
+
 	var tw1 := create_tween()
 	tw1.tween_property(_cup_img, "scale", Vector2(1.25, 1.25), 0.08).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	var tw2 := create_tween()
@@ -388,15 +464,16 @@ func _update_cover_qte(delta: float) -> void:
 		# Queue the correct adding rice popup based on _target_rice
 		var adding_rice_tex: Texture2D
 		match _target_rice:
-			1: adding_rice_tex = popup_addingrice_1
-			2: adding_rice_tex = popup_addingrice_2
-			3: adding_rice_tex = popup_addingrice_3
-			4: adding_rice_tex = popup_addingrice_4
+			1: adding_rice_tex = _tex["popup_addingrice_1"]
+			2: adding_rice_tex = _tex["popup_addingrice_2"]
+			3: adding_rice_tex = _tex["popup_addingrice_3"]
 		
-		_queue_popup_then("startaddingrice", popup_startaddingrice, func():
+		_queue_popup_then("startaddingrice", _tex["popup_startaddingrice"], func():
 			_queue_popup("addingrice", adding_rice_tex)
 		)
 		_state = State.FILL_RICE
+		_slide_top_hud_2_in()  # Slide in TopHUD2
+		_update_rice_water_label()  # Update label for rice phase
 
 func _update_cup_drag(delta: float) -> void:
 	var grab := _is_grab_pressed()
@@ -421,13 +498,15 @@ func _update_cup_drag(delta: float) -> void:
 				_cooker_img.texture = _tex["open_%d" % _rice_added]
 				_cup_content = "empty"
 				_cup_img.texture = _tex["cup_empty"]
+				_update_rice_water_label()  # Update after adding rice
 				if _rice_added >= _target_rice:
 					# Don't switch to water yet! Wait for first water added.
-					_queue_popup("all_rice", popup_all_rice)
+					_queue_popup("all_rice", _tex["popup_all_rice"])
 					_state = State.FILL_WATER
-					_queue_popup("startaddingwater", popup_startaddingwater)
+					_update_rice_water_label()  # Update for water phase
+					_queue_popup("startaddingwater", _tex["popup_startaddingwater"])
 				else:
-					_queue_popup("rice_added", popup_rice_added)
+					_queue_popup("rice_added", _tex["popup_rice_added"])
 			elif _state == State.FILL_WATER and _cup_content == "water":
 				_water_added += 1
 				if _water_added == 1:
@@ -435,13 +514,15 @@ func _update_cup_drag(delta: float) -> void:
 					_cooker_img.texture = _tex["water_%d" % _target_rice]
 				_cup_content = "empty"
 				_cup_img.texture = _tex["cup_empty"]
+				_update_rice_water_label()  # Update after adding water
 				if _water_added >= _target_water:
-					_queue_popup_then("all_water", popup_all_water, func(): 
+					_queue_popup_then("all_water", _tex["popup_all_water"], func(): 
 						_hide_cup()
+						_slide_top_hud_2_out()  # Slide out TopHUD2
 						_start_arrow_down()
 					)
 				else:
-					_queue_popup("water_added", popup_water_added)
+					_queue_popup("water_added", _tex["popup_water_added"])
 
 func _start_arrow_down() -> void:
 	_state = State.ARROW_DOWN
@@ -468,7 +549,7 @@ func _update_arrow_down_qte(delta: float) -> void:
 		_hide_arrow()
 		_cooker_img.texture = _tex["closed"]
 		_cooker_img.modulate = Color(1,1,1)
-		_queue_popup_then("cooking", popup_cooking, func(): _start_cooking())
+		_queue_popup_then("cooking", _tex["popup_cooking"], func(): _start_cooking())
 
 func _start_cooking() -> void:
 	_state = State.PRE_COOK
@@ -482,6 +563,7 @@ func _start_cooking() -> void:
 	_zone_speed = (zone_min_speed + zone_max_speed) / 2.0
 	_zone_retime = 2.0
 	_marker_pos = _zone_center
+	_marker_velocity = 0.0  # Reset marker velocity
 	_cook_score_accum = 0.0
 	_cook_score_max = 0.0
 	_cook_timer = cook_time
@@ -514,7 +596,22 @@ func _update_cooking(delta: float) -> void:
 	else:
 		if Input.is_action_pressed("move_left_p2"): mdir -= 1.0
 		if Input.is_action_pressed("move_right_p2"): mdir += 1.0
-	_marker_pos = clampf(_marker_pos + mdir * move_speed * delta, 0.0, track_w)
+
+	# Apply acceleration
+	if mdir != 0.0:
+		_marker_velocity += mdir * MARKER_ACCELERATION * delta
+	else:
+		# Apply friction when no input
+		if abs(_marker_velocity) < 0.1:
+			_marker_velocity = 0.0
+		else:
+			_marker_velocity -= sign(_marker_velocity) * MARKER_FRICTION * MARKER_MAX_SPEED * delta
+
+	# Clamp velocity to max speed
+	_marker_velocity = clampf(_marker_velocity, -MARKER_MAX_SPEED, MARKER_MAX_SPEED)
+
+	# Update position based on velocity
+	_marker_pos = clampf(_marker_pos + _marker_velocity * delta, 0.0, track_w)
 
 	_cook_score_max += green_rate * delta
 	var dist := absf(_marker_pos - _zone_center)
@@ -542,7 +639,7 @@ func _update_cooking(delta: float) -> void:
 		_meter_group.visible = false
 		_cook_feedback.visible = false
 		_lbl_cook_timer.visible = false
-		_queue_popup("done", popup_done)
+		_queue_popup("done", _tex["popup_done"])
 		
 		_done = true
 		_finish_timer = 1.6
@@ -646,7 +743,7 @@ func _fail_out_of_time() -> void:
 	_meter_group.visible = false
 	_arrow_img.visible = false
 	_cook_feedback.visible = false
-	_queue_popup("fail", popup_fail)
+	_queue_popup("fail", _tex["popup_fail"])
 	_done = true
 	_finish_timer = 1.6
 

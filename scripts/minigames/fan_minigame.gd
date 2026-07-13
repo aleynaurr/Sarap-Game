@@ -66,9 +66,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	var input_pressed = -1
-	if event.is_action_pressed("move_up") or (event is InputEventKey and event.keycode == KEY_W):
+	if event.is_action_pressed("move_up_p%d" % player_number):
 		input_pressed = 0
-	elif event.is_action_pressed("move_down") or (event is InputEventKey and event.keycode == KEY_S):
+	elif event.is_action_pressed("move_down_p%d" % player_number):
 		input_pressed = 2
 
 	if input_pressed != -1:

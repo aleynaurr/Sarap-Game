@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="4_n85eq"]
 [ext_resource type="Texture2D" uid="uid://bp7hwtklv5bge" path="res://assets/assets/sprites/strain/strainer w mix3.png" id="4_qd4vu"]
 [ext_resource type="Texture2D" uid="uid://m2g68e6ub4pk" path="res://assets/assets/sprites/strain/strainer.png" id="5_iuu5h"]
+[ext_resource type="Texture2D" uid="uid://bhwm7wxnekhbe" path="res://assets/sprites/ui/banner.png" id="6_n85eq"]
 [ext_resource type="Texture2D" uid="uid://lf7axdxkwv64" path="res://assets/assets/mix/fanning1.png" id="6_voeag"]
 [ext_resource type="Texture2D" uid="uid://cu10awp7osiar" path="res://assets/assets/mix/fanning2-welldone.png" id="7_n85eq"]
 [ext_resource type="Texture2D" uid="uid://u4lexrntnod8" path="res://assets/assets/mix/fanning3.png" id="8_bya5p"]
@@ -19,9 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://elsut52alu50" path="res://assets/assets/sprites/strain/strainer w mix4.png" id="13_a5t23"]
 [ext_resource type="Texture2D" uid="uid://dcumv7y6shvj3" path="res://assets/assets/sprites/strain/strained mixture.png" id="14_h5rf1"]
 [ext_resource type="Texture2D" uid="uid://bdi3bnp65qrkv" path="res://assets/assets/sprites/strain/strained mixture2.png" id="15_d6w47"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bya5p"]
-load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
 
 [node name="StrainMinigame" type="Control" unique_id=979816633]
 layout_mode = 3
@@ -72,18 +70,19 @@ text = "Time: 15.0"
 
 [node name="Banner" type="TextureRect" parent="." unique_id=1393263442]
 layout_mode = 0
-offset_left = 87.0
+offset_left = 64.0
 offset_top = 121.0
-offset_right = 544.0
+offset_right = 521.0
 offset_bottom = 190.0
-texture = SubResource("CompressedTexture2D_bya5p")
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("6_n85eq")
 expand_mode = 1
 
 [node name="StatusLabel" type="Label" parent="." unique_id=438625504]
 layout_mode = 0
-offset_left = 103.0
+offset_left = 98.00001
 offset_top = 145.0
-offset_right = 532.0
+offset_right = 527.0
 offset_bottom = 171.0
 rotation = -0.00066909706
 theme_override_fonts/font = ExtResource("4_n85eq")
@@ -92,9 +91,9 @@ horizontal_alignment = 1
 
 [node name="BigMixerBowl2" type="TextureRect" parent="." unique_id=1700068621]
 layout_mode = 0
-offset_left = 399.5
+offset_left = 400.0
 offset_top = 346.0
-offset_right = 527.5
+offset_right = 528.0
 offset_bottom = 474.0
 scale = Vector2(1.844, 1.625)
 texture = ExtResource("3_6qive")

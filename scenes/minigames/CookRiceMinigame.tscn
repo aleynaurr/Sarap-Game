@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3f1432mx7mk3"]
 
 [ext_resource type="Script" uid="uid://bajs1tkflsk2x" path="res://scripts/minigames/CookRiceMinigame.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://74bcu786fh1o" path="res://sfx/pop.mp3" id="2_khxtn"]
 [ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="2_s2d2d"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="2_title"]
 [ext_resource type="Texture2D" uid="uid://clbi1djoxscps" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookricebg.png" id="2_x4612"]
@@ -25,6 +26,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+move_speed = null
+time_1_cup = null
+time_2_cups = null
+time_3_cups = null
+time_4_cups = null
+cook_time = null
+cooker_pos = null
+cooker_size = null
+cup_home = null
+cup_size = null
+sack_pos = null
+pail_pos = null
+ingredient_size = null
+arrow_pos = null
+arrow_size = null
+hand_size = null
+hand_start = null
+hand_move_min = null
+hand_move_max = null
+meter_left = null
+meter_right = null
+meter_y = null
+meter_h = null
+zone_half_yellow = null
+zone_half_green = null
+green_rate = null
+yellow_rate = null
+zone_min_speed = null
+zone_max_speed = null
+zone_retime_min = null
+zone_retime_max = null
+popup_start = null
+popup_startaddingrice = null
+popup_startaddingwater = null
+popup_addingrice_1 = null
+popup_addingrice_2 = null
+popup_addingrice_3 = null
+popup_addingrice_4 = null
+popup_rice_added = null
+popup_all_rice = null
+popup_water_added = null
+popup_all_water = null
+popup_cooking = null
+popup_done = null
+popup_fail = null
+cookfeedback_awesome = null
+cookfeedback_great = null
+cookfeedback_timebetter = null
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=563621260]
+position = Vector2(393, 109)
+stream = ExtResource("2_khxtn")
+volume_db = 3.493
 
 [node name="TopHUD" type="TextureRect" parent="." unique_id=1048147589]
 z_index = 1
@@ -32,6 +86,27 @@ layout_mode = 0
 offset_right = 640.0
 offset_bottom = 736.0
 texture = ExtResource("2_s2d2d")
+
+[node name="TopHUD2" type="TextureRect" parent="." unique_id=1773177557]
+z_index = 1
+layout_mode = 0
+offset_left = 341.0
+offset_top = 87.0
+offset_right = 641.0
+offset_bottom = 645.0
+texture = ExtResource("2_s2d2d")
+flip_h = true
+
+[node name="RiceWaterLabel" type="Label" parent="TopHUD2" unique_id=920021098]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 22.0
+offset_right = 266.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("3_body")
+theme_override_font_sizes/font_size = 18
+text = "__ Cups of Rice Needed"
+horizontal_alignment = 1
 
 [node name="BackgroundTop" type="ColorRect" parent="." unique_id=1847633677]
 visible = false

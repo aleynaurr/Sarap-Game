@@ -46,7 +46,7 @@ func _on_init() -> void:
 
 	if $Strainer: $Strainer.visible = true
 
-	_fanning_result = GameManager.fanning_result_state
+	_fanning_result = GameManager.get_fanning_result_state(player_number)
 
 	if _fanning_result == "":
 		_fanning_result = "perfect"
@@ -69,12 +69,12 @@ func _on_update(_delta: float, remaining: float) -> void:
 		return
 
 	if not _has_poured:
-		if Input.is_action_just_pressed("move_up"):
+		if Input.is_action_just_pressed("move_up_p%d" % player_number):
 			_pour_mixture()
 		return
 
 	# Second step: Strain (S or Down Arrow repeatedly)
-	if Input.is_action_just_pressed("move_down"):
+	if Input.is_action_just_pressed("move_down_p%d" % player_number):
 		_taps_done += 1
 		_update_straining_progression()
 

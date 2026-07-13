@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmn85yy7h4d7m"]
 
 [ext_resource type="Script" uid="uid://c8nepvarlxwhu" path="res://scripts/minigames/PrickSeasonMinigame.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dlv4sw54kg5m0" path="res://assets/sprites/minigames/Dish1PrickSeasonMinigame/plate.png" id="2_8eo7q"]
 [ext_resource type="Texture2D" uid="uid://dj57iqpuitbys" path="res://assets/assets/working station.png" id="2_c7hpa"]
 [ext_resource type="Texture2D" uid="uid://dlaanyvxl7xn3" path="res://assets/assets/sprites/PrickandSeason/full eggplant.png" id="3_f4yun"]
 [ext_resource type="Texture2D" uid="uid://dchbu0cxp4re2" path="res://assets/assets/sprites/PrickandSeason/poked eggplant.png" id="4_8eo7q"]
@@ -11,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="6_acbtd"]
 [ext_resource type="Texture2D" uid="uid://caxla4bebymh2" path="res://assets/assets/sprites/PrickandSeason/salted sprite.png" id="6_xo2qt"]
 [ext_resource type="Texture2D" uid="uid://c86gxx02c83jd" path="res://assets/assets/eggplant/one_salt.png" id="6_yvaam"]
-[ext_resource type="Texture2D" uid="uid://bi8ydyfcaxm5c" path="res://assets/assets/sprites/ui/banner.png" id="7_3xkho"]
 [ext_resource type="Texture2D" uid="uid://bygkub6s5vo1a" path="res://assets/assets/eggplant/three_pokes.png" id="7_6ox8g"]
 [ext_resource type="Texture2D" uid="uid://c4cy7x0ss3qtc" path="res://assets/assets/eggplant/three_salt.png" id="8_1kteu"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="8_at2a4"]
@@ -19,6 +19,7 @@
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="9_xo2qt"]
 [ext_resource type="Texture2D" uid="uid://dxoq4wbni3oc7" path="res://assets/assets/eggplant/two_salt.png" id="10_1mmn2"]
 [ext_resource type="Texture2D" uid="uid://vy8yysq05g10" path="res://assets/assets/sprites/PrickandSeason/fully poked eggplant look.png" id="12_xo2qt"]
+[ext_resource type="Texture2D" uid="uid://bhwm7wxnekhbe" path="res://assets/sprites/ui/banner.png" id="17_8eo7q"]
 
 [node name="PrickSeasonMinigame" type="Control" unique_id=449731014]
 layout_mode = 3
@@ -29,7 +30,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=615661458]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 390.0
+offset_right = 482.0
+offset_bottom = 598.0
+texture = ExtResource("2_8eo7q")
+
 [node name="WorkingStation" type="TextureRect" parent="." unique_id=875154069]
+z_index = -1
 layout_mode = 0
 offset_left = 3.0
 offset_top = 1.0
@@ -156,7 +166,7 @@ offset_left = 89.0
 offset_top = 124.0
 offset_right = 557.0
 offset_bottom = 204.0
-texture = ExtResource("7_3xkho")
+texture = ExtResource("17_8eo7q")
 
 [node name="StatusLabel" type="Label" parent="." unique_id=1610566494]
 layout_mode = 0
