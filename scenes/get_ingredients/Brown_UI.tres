@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://qmsqhq73blm3" path="res://assets/classets2/buttons.png" id="1_llexl"]
 [ext_resource type="FontFile" uid="uid://bnj8ive52dx03" path="res://assets/fonts/Ithaca-LVB75.ttf" id="2_a30vu"]
+[ext_resource type="Texture2D" uid="uid://bkl1ydcq72mtu" path="res://assets/classets/newpanels.png" id="2_wa5qu"]
 [ext_resource type="Texture2D" uid="uid://dwwkg3bad4uya" path="res://assets/classets2/old.png" id="3_1pesx"]
 [ext_resource type="Texture2D" uid="uid://b5vsxcgy6dwc5" path="res://assets/classets2/buttons (1).png" id="4_a30vu"]
 
@@ -16,6 +17,14 @@ texture_margin_top = 6.0
 texture_margin_right = 5.0
 texture_margin_bottom = 7.0
 region_rect = Rect2(0, 0, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gecaf"]
+atlas = ExtResource("2_wa5qu")
+region = Rect2(0, 416, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_luxng"]
+texture = SubResource("AtlasTexture_gecaf")
+region_rect = Rect2(5, 6, 22, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1py4"]
 atlas = ExtResource("3_1pesx")
@@ -44,6 +53,8 @@ region_rect = Rect2(0, 0, 32, 31)
 [resource]
 GIPanel/base_type = &"PanelContainer"
 GIPanel/styles/panel = SubResource("StyleBoxTexture_wa5qu")
+InstructionBox/base_type = &"PanelContainer"
+InstructionBox/styles/panel = SubResource("StyleBoxTexture_luxng")
 ItemNumber/base_type = &"Label"
 ItemNumber/colors/font_color = Color(0.79607844, 0.47843137, 0.21568628, 1)
 ItemNumber/colors/font_outline_color = Color(0, 0, 0, 1)

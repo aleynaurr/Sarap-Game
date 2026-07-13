@@ -17,7 +17,8 @@ func _ready():
 		
 	InventoryManager.inventory_changed.connect(on_inventory_change)
 	on_inventory_change(player_id)
-
+	
+	
 func on_inventory_change(changed_player: int):
 	if changed_player != player_id:
 		return

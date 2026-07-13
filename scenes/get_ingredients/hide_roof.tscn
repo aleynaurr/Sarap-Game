@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://48kvqdm50yop" path="res://assets/classets/sm roof.png" id="3_jko05"]
 [ext_resource type="Texture2D" uid="uid://nj23tmquoxx" path="res://assets/classets/houseaddwall.png" id="4_4wp5j"]
 [ext_resource type="Texture2D" uid="uid://cvrjhm1doimjq" path="res://assets/classets/house roof uwu.png" id="5_nenh6"]
+[ext_resource type="Texture2D" uid="uid://g8sncxmlivje" path="res://assets/classets/door_floormat.png" id="6_f4s6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ntrjo"]
 texture = ExtResource("2_f4s6f")
@@ -2205,8 +2206,8 @@ atlas = ExtResource("4_4wp5j")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ia7pp"]
-atlas = ExtResource("2_f4s6f")
-region = Rect2(128, 64, 32, 32)
+atlas = ExtResource("6_f4s6f")
+region = Rect2(192, 64, 64, 32)
 
 [node name="HideRoof" type="Node2D" unique_id=357724191]
 script = ExtResource("1_avkta")
@@ -2241,16 +2242,18 @@ polygon = PackedVector2Array(-733, -195, -719, -194, -719, -232, -580, -229, -57
 position = Vector2(1328, 432)
 
 [node name="Sprite2D" type="Sprite2D" parent="SMDoor1" unique_id=1322810286]
+position = Vector2(16, 0)
 texture = SubResource("AtlasTexture_ia7pp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SMDoor1" unique_id=19125456]
-polygon = PackedVector2Array(-15, 33, 16, 34, 16, 15, 207, 16, 208, -35, 219, -34, 220, -79, 241, -81, 241, -110, 942, -107, 944, -79, 961, -77, 961, -67, 974, -65, 978, -18, 1014, -15, 1426, -16, 1428, -398, -82, -394, -81, 14, -16, 16)
+polygon = PackedVector2Array(-26, 37, 60, 37, 60, 16, 207, 16, 208, -35, 219, -34, 220, -79, 241, -81, 241, -110, 942, -107, 944, -79, 961, -77, 961, -67, 974, -65, 978, -18, 1014, -15, 1426, -16, 1428, -398, -82, -394, -81, 14, -28, 15)
 
 [node name="SMDoor2" type="Area2D" parent="." unique_id=1253836403]
 position = Vector2(1456, 432)
 
 [node name="Sprite2D" type="Sprite2D" parent="SMDoor2" unique_id=1344670366]
+position = Vector2(-16, 0)
 texture = SubResource("AtlasTexture_ia7pp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SMDoor2" unique_id=1001036090]
-polygon = PackedVector2Array(-14, 34, 18, 36, 16, 17, 78, 17, 79, -33, 88, -36, 89, -83, 112, -84, 112, -108, 816, -111, 816, -82, 835, -78, 837, -63, 848, -64, 849, -18, 882, -17, 1297, -16, 1296, -397, -215, -393, -213, -38, -207, -33, -208, 12, -175, 16, -26, 19)
+polygon = PackedVector2Array(-53, 43, 29, 45, 31, 18, 78, 17, 79, -33, 88, -36, 89, -83, 112, -84, 112, -108, 816, -111, 816, -82, 835, -78, 837, -63, 848, -64, 849, -18, 882, -17, 1297, -16, 1296, -397, -215, -393, -213, -38, -207, -33, -208, 12, -175, 16, -57, 18)

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cl4i78llmo8r4"]
+
+[ext_resource type="Script" uid="uid://gmvmvgq8ppqb" path="res://scenes/get_ingredients/dialog_box.gd" id="1_2r17o"]
+[ext_resource type="Texture2D" uid="uid://nld1hjwlfwi3" path="res://assets/classets/dialogbox.png" id="1_q3rpj"]
+[ext_resource type="FontFile" uid="uid://bnj8ive52dx03" path="res://assets/fonts/Ithaca-LVB75.ttf" id="3_0deip"]
+
+[node name="DialogBox" type="MarginContainer" unique_id=1367774769]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -720.0
+offset_right = -640.0
+offset_bottom = -600.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_2r17o")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=238607053]
+layout_mode = 2
+texture = ExtResource("1_q3rpj")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=876439204]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=778433743]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.9411765, 0.8980392, 1)
+theme_override_colors/font_outline_color = Color(0.52156866, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_0deip")
+theme_override_font_sizes/font_size = 32
+text = "example"
+
+[node name="DisplayTimer" type="Timer" parent="." unique_id=517443796]
+one_shot = true
+
+[connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
