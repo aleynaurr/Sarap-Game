@@ -23,6 +23,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 
 	TextManager.start_dialog([
+		"For Movement, Player 1: WASD, Player 2: Arrow Keys", 
+		"For Interact, Player 1: E, Player 2: RShift",
 		"🌱 Race to collect all the ingredients!",
 		"🥬 Harvest the crops in the garden.", 
 		"🧺 Explore the map to find the remaining ingredients.",

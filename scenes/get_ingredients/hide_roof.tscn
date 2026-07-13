@@ -2234,9 +2234,14 @@ position = Vector2(592, 208)
 [node name="Sprite2D" type="Sprite2D" parent="HouseDoor" unique_id=134511030]
 texture = SubResource("AtlasTexture_t1cka")
 
+[node name="Sprite2D2" type="Sprite2D" parent="HouseDoor" unique_id=1554838644]
+position = Vector2(32, 0)
+texture = SubResource("AtlasTexture_t1cka")
+flip_h = true
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HouseDoor" unique_id=227321110]
 position = Vector2(736, 224)
-polygon = PackedVector2Array(-733, -195, -719, -194, -719, -232, -580, -229, -577, -402, -686, -440, -709, -442, -828, -402, -826, -226, -753, -233, -752, -194)
+polygon = PackedVector2Array(-721, -182, -688, -183, -688, -231, -580, -229, -577, -402, -686, -440, -709, -442, -828, -402, -826, -226, -753, -233, -753, -183)
 
 [node name="SMDoor1" type="Area2D" parent="." unique_id=41905192]
 position = Vector2(1328, 432)
