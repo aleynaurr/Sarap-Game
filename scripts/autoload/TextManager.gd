@@ -9,8 +9,17 @@ var dialog_box
 
 var is_dialog_active = false
 
+func _process(delta):
+	if GameManager.versus_video_playing and is_dialog_active:
+		if dialog_box and is_instance_valid(dialog_box):
+			dialog_box.queue_free()
+		dialog_box = null
+		is_dialog_active = false
+		current_index = 0
+		lines.clear()
+
 func start_dialog(dialog_lines: Array[String]):
-	if is_dialog_active:
+	if is_dialog_active or GameManager.versus_video_playing:
 		return
 
 	lines = dialog_lines
@@ -39,7 +48,9 @@ func _show_text_box():
 func _on_dialog_box_finished_displaying():
 	await get_tree().create_timer(2.0).timeout
 
-	dialog_box.queue_free()
+	if dialog_box and is_instance_valid(dialog_box):
+		dialog_box.queue_free()
+	dialog_box = null
 
 	current_index += 1
 

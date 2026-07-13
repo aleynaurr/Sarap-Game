@@ -54,8 +54,7 @@ player_number = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1312310537]
 layout_mode = 0
-offset_left = 382.0
-offset_top = 2.0
+offset_left = 378.0
 offset_right = 891.0
 offset_bottom = 724.0
 texture = ExtResource("2_ojifk")

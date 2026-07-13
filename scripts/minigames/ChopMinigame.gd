@@ -335,12 +335,15 @@ func _do_chop() -> void:
 	if _done: return
 	_hide_start_popup_now()
 	var cuts_needed: int = VEGGIES[_veg_idx][2] - 1
+	
+	AudioManager.play_sfx(AudioManager.SFX_CHOP)
+	AudioManager.play_sfx_from_path("res://sfx/nice.mp3")
+	AudioManager.play_sfx_from_path("res://sfx/knife.mp3")
 
 	_frame += 1
 	_total_cuts += 1
 	_chop_flash.color.a = 0.55
 	_chop_flash_timer = 0.18
-	AudioManager.play_sfx(AudioManager.SFX_CHOP)
 	_refresh_board()
 	_update_overall_progress()
 

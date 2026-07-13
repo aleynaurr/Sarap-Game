@@ -2,11 +2,14 @@ extends Node
 
 # ─── Global state per player ─────────────────────────────────────────────────
 var current_recipe_id: String = ""
+var versus_video_playing: bool = false  # Track if versus video is playing
 
 # Player-specific state
 var _player_state: Dictionary = {}
 var _shared_timer: float = 0.0
 var _shared_timer_active: bool = false
+var cook_rice_target_cups: int = 0  # Shared target for both players
+var cook_rice_target_set: bool = false  # Whether the target has been set
 
 signal recipe_step_completed(player: int, step_index: int, score: int)
 signal recipe_finished(player: int, total_score: int, grade: String)
@@ -15,7 +18,7 @@ signal minigame_exited()
 signal all_players_finished()
 signal shared_timer_up()
 
-const TOTAL_RECIPE_TIME := 300.0   # 5 minutes per recipe
+const TOTAL_RECIPE_TIME := 600.0   # 10 minutes per recipe
 
 # ─── Init player states ──────────────────────────────────────────────────────
 func _ready() -> void:
@@ -74,6 +77,8 @@ func start_recipe(recipe_id: String) -> void:
 	current_recipe_id = recipe_id
 	_reset_player(1)
 	_reset_player(2)
+	cook_rice_target_cups = 0  # Reset cook rice target
+	cook_rice_target_set = false  # Reset target set flag
 	_player_state[1]["game_active"] = true
 	_player_state[2]["game_active"] = true
 	start_shared_timer()

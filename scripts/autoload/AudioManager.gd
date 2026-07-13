@@ -2,7 +2,7 @@ extends Node
 # AudioManager — plays SFX and background music.
 
 var _music_player: AudioStreamPlayer
-var _sfx_player: AudioStreamPlayer
+var _sfx_players: Array[AudioStreamPlayer] = []
 var _music_fade_tween: Tween
 var _current_music_track: String = ""
 
@@ -28,12 +28,18 @@ const MUSIC_SILENT_DB      := -80.0  # effectively inaudible, used as the fade-i
 const MUSIC_FADE_IN_TIME   := 1.0
 const MUSIC_FADE_OUT_TIME  := 1.75
 
+const MAX_SFX_PLAYERS := 5  # Max concurrent SFX
+
 
 func _ready() -> void:
 	_music_player = AudioStreamPlayer.new()
 	add_child(_music_player)
-	_sfx_player = AudioStreamPlayer.new()
-	add_child(_sfx_player)
+	# Create multiple SFX players for concurrent sounds
+	for i in range(MAX_SFX_PLAYERS):
+		var player := AudioStreamPlayer.new()
+		player.name = "SfxPlayer_%d" % i
+		add_child(player)
+		_sfx_players.append(player)
 
 
 ## Fades in and plays a named music track. If this track is already the
@@ -98,3 +104,22 @@ func _fade_music_to(target_db: float, duration: float, stop_after: bool = false)
 func play_sfx(_sfx_name: String) -> void:
 	# Hook: play a named sound effect
 	pass
+
+
+func play_sfx_from_path(path: String) -> void:
+	var stream := load(path)
+	if stream == null:
+		push_warning("AudioManager: could not load SFX '%s'" % path)
+		return
+
+	# Find an available player (not playing)
+	for player in _sfx_players:
+		if not player.playing:
+			player.stream = stream
+			player.play()
+			return
+
+	# If all are busy, use the first one anyway (it will cut off the oldest sound)
+	_sfx_players[0].stream = stream
+	_sfx_players[0].play()
+
