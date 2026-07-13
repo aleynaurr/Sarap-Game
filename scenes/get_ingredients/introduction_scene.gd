@@ -14,6 +14,7 @@ extends Control
 var p1_last_key := "w"
 var p2_last_key := "up"
 
+
 func _ready() -> void:
 	get_tree().paused = true
 	var tween = create_tween()
