@@ -22,16 +22,19 @@ func _on_door_body_exited(body: Node2D, door: Area2D) -> void:
 
 func determine_roof_visibility(door: Area2D, make_visible: bool) -> void:
 	if door.name == "HouseDoor":
+		fade_node($House_Roof, make_visible)
+		fade_node($wallunderhouse, make_visible)
+		fade_node($HouseDoor/Sprite2D, make_visible)
 
-		fade_roof($House_Roof, make_visible)
-		
 	elif door.name == "SMDoor1" or door.name == "SMDoor2":
+		fade_node($SM_Roof, make_visible)
+		fade_node($wallundersm, make_visible)
+		fade_node($SMDoor1/Sprite2D, make_visible)
+		fade_node($SMDoor2/Sprite2D, make_visible)
 
-		fade_roof($SM_Roof,make_visible)
 
-
-func fade_roof(roof_node: TileMapLayer, make_visible: bool) -> void:
-	if roof_node:
-		var target_alpha = 1.0 if make_visible else 0.0
-		var tween = create_tween()
-		tween.tween_property(roof_node, "modulate:a", target_alpha, 0.25)
+func fade_node(node: CanvasItem, make_visible: bool) -> void:
+	if node:
+		var target_alpha := 1.0 if make_visible else 0.0
+		var tween := create_tween()
+		tween.tween_property(node, "modulate:a", target_alpha, 0.25)

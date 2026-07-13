@@ -19,3 +19,13 @@ extends Node2D
 func _ready() -> void:
 	AudioManager.play_music("getingredients")
 	players["2"].subviewport.world_2d = players["1"].subviewport.world_2d
+	
+	await get_tree().process_frame
+
+	TextManager.start_dialog([
+		"🌱 Race to collect all the ingredients!",
+		"🥬 Harvest the crops in the garden.", 
+		"🧺 Explore the map to find the remaining ingredients.",
+		"🏠 Return to the house when you're done.",
+		"⭐ The first player to enter the house earns bonus points!"
+	])

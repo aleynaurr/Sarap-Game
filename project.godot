@@ -29,6 +29,7 @@ AudioManager="*res://scripts/autoload/AudioManager.gd"
 ScoreManager="*res://scripts/autoload/ScoreManager.gd"
 InventoryManager="*uid://cuc4wp7fanjah"
 TimeManager="*uid://cfyxaf7erbkhr"
+TextManager="*uid://cvfo4oc03dx8s"
 
 [display]
 
