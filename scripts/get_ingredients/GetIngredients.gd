@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@onready var intro_scene = preload("res://scenes/get_ingredients/IntroductionScene.tscn")
 
 @onready var players := {
 	"1": {
@@ -20,11 +20,13 @@ func _ready() -> void:
 	AudioManager.play_music("getingredients")
 	players["2"].subviewport.world_2d = players["1"].subviewport.world_2d
 	
+
+	var intro = intro_scene.instantiate()
+	add_child(intro)
+	
 	await get_tree().process_frame
 
 	TextManager.start_dialog([
-		"For Movement, Player 1: WASD, Player 2: Arrow Keys", 
-		"For Interact, Player 1: E, Player 2: RShift",
 		"🌱 Race to collect all the ingredients!",
 		"🥬 Harvest the crops in the garden.", 
 		"🧺 Explore the map to find the remaining ingredients.",

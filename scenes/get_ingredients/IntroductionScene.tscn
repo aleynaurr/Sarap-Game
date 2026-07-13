@@ -1,35 +1,226 @@
 [gd_scene format=3 uid="uid://cavm5eywwqvp1"]
 
-[node name="IntroductionScene" type="Control" unique_id=93137815]
+[ext_resource type="Script" uid="uid://3oyyteb36x6" path="res://scenes/get_ingredients/introduction_scene.gd" id="1_5w6wc"]
+[ext_resource type="Texture2D" uid="uid://duyoao8h875be" path="res://assets/assets/sprites/wasd/w_glow.png" id="1_134o4"]
+[ext_resource type="Theme" uid="uid://dmry7o1pbb4a2" path="res://scenes/get_ingredients/Brown_UI.tres" id="2_d8lcq"]
+[ext_resource type="Texture2D" uid="uid://8m438hk6iv5n" path="res://assets/assets/sprites/wasd/s_glow.png" id="2_hx36g"]
+[ext_resource type="Texture2D" uid="uid://brcy0kjbxblqy" path="res://assets/assets/sprites/wasd/a_glow.png" id="3_dam3r"]
+[ext_resource type="FontFile" uid="uid://bnj8ive52dx03" path="res://assets/fonts/Ithaca-LVB75.ttf" id="3_omdot"]
+[ext_resource type="Texture2D" uid="uid://ctjwjdheaey4h" path="res://assets/assets/sprites/wasd/d_glow.png" id="4_yo4bm"]
+[ext_resource type="Texture2D" uid="uid://b4wi1088ixhev" path="res://assets/letter e.png" id="5_5w6wc"]
+[ext_resource type="Texture2D" uid="uid://bb0wn5c15pesq" path="res://assets/assets/sprites/wasd/up_glow.png" id="6_d8lcq"]
+[ext_resource type="Texture2D" uid="uid://be1427r1vvnfn" path="res://assets/assets/sprites/wasd/down_glow.png" id="7_omdot"]
+[ext_resource type="Texture2D" uid="uid://be374fprud3x8" path="res://assets/assets/sprites/wasd/left_glow.png" id="8_ms3h1"]
+[ext_resource type="Texture2D" uid="uid://c3v5pny22eo4a" path="res://assets/assets/sprites/wasd/right_glow.png" id="9_w8cnm"]
+[ext_resource type="Texture2D" uid="uid://00fbnb5bi8de" path="res://assets/shiftkey.png" id="13_ms3h1"]
+[ext_resource type="Texture2D" uid="uid://bdbieau0350gp" path="res://assets/sprites/ui/RecipeSelectImg/play_button.png" id="14_d8lcq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8lcq"]
+
+[node name="IntroductionScene" type="CanvasLayer" unique_id=1296900525]
+process_mode = 2
+
+[node name="Control" type="Control" parent="." unique_id=934035586]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5w6wc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1160171385]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -181.5
+offset_right = 202.0
+offset_bottom = 181.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=671568863]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1899225937]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=729021630]
 layout_mode = 2
 
-[node name="Player1" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=955688991]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=377636362]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Player1" unique_id=82454743]
-layout_mode = 2
-text = "Player 1
-Movement: WASD
-Interact: E"
-
-[node name="Player2" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1448507300]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1899225937]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Player2" unique_id=1767526313]
+[node name="PanelContainer2" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=75996771]
 layout_mode = 2
-text = "Player 2
-Movement: Arrow Keys
-Interact: RShift"
+theme = ExtResource("2_d8lcq")
+theme_type_variation = &"ItemPanel"
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer2" unique_id=82454743]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.56078434, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_omdot")
+theme_override_font_sizes/font_size = 30
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1029414608]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("2_d8lcq")
+theme_type_variation = &"ItemPanel"
+
+[node name="wGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=1783810285]
+layout_mode = 2
+texture = ExtResource("1_134o4")
+expand_mode = 1
+
+[node name="sGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=1964648012]
+layout_mode = 2
+texture = ExtResource("2_hx36g")
+expand_mode = 1
+
+[node name="aGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=2089572049]
+layout_mode = 2
+texture = ExtResource("3_dam3r")
+expand_mode = 1
+
+[node name="dGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=198839063]
+layout_mode = 2
+texture = ExtResource("4_yo4bm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=1906993133]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0.56078434, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_omdot")
+theme_override_font_sizes/font_size = 30
+text = "Movement"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1507547816]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+theme = ExtResource("2_d8lcq")
+theme_type_variation = &"ItemPanel"
+
+[node name="E" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer3" unique_id=168207107]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_5w6wc")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer3" unique_id=1629638486]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0.56078434, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_omdot")
+theme_override_font_sizes/font_size = 30
+text = "Interact"
+vertical_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2093213602]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1012932455]
+layout_mode = 2
+theme = ExtResource("2_d8lcq")
+theme_type_variation = &"ItemPanel"
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1767526313]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.56078434, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_omdot")
+theme_override_font_sizes/font_size = 30
+text = "Player 2"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=218024845]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("2_d8lcq")
+theme_type_variation = &"ItemPanel"
+
+[node name="upGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=1663042]
+layout_mode = 2
+texture = ExtResource("6_d8lcq")
+expand_mode = 1
+
+[node name="downGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=51711939]
+layout_mode = 2
+texture = ExtResource("7_omdot")
+expand_mode = 1
+
+[node name="leftGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=843921708]
+layout_mode = 2
+texture = ExtResource("8_ms3h1")
+expand_mode = 1
+
+[node name="rightGlow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=1617792579]
+layout_mode = 2
+texture = ExtResource("9_w8cnm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=234648373]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0.56078434, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_omdot")
+theme_override_font_sizes/font_size = 30
+text = "Movement"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1264111676]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+theme = ExtResource("2_d8lcq")
+theme_type_variation = &"ItemPanel"
+
+[node name="Rshift" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer3" unique_id=1735705313]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_ms3h1")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer3" unique_id=964849327]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0.56078434, 0.38431373, 0.36078432, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_omdot")
+theme_override_font_sizes/font_size = 30
+text = "Interact"
+vertical_alignment = 2
+
+[node name="Panel" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=1837019160]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_d8lcq")
+
+[node name="PlayButton" type="Button" parent="Control/MarginContainer/VBoxContainer/Panel" unique_id=853002713]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 15
+icon = ExtResource("14_d8lcq")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="mouse_entered" from="Control/MarginContainer/VBoxContainer/Panel/PlayButton" to="Control" method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="Control/MarginContainer/VBoxContainer/Panel/PlayButton" to="Control" method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Panel/PlayButton" to="Control" method="_on_play_button_pressed"]

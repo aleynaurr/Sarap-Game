@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cbqooctgsgmpd" path="res://sfx/door_opening.mp3" id="5_door_opening_sfx"]
 
 [node name="DoorTransition" type="CanvasLayer" unique_id=2022641151]
+process_mode = 3
 script = ExtResource("1_door_transition")
 
 [node name="DoorLeft" type="TextureRect" parent="." unique_id=246959573]
