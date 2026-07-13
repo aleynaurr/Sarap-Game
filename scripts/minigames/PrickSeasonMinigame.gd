@@ -161,7 +161,7 @@ func _start_season_phase() -> void:
 		_update_salt_shaker_position()
 		
 	if _lbl_status:
-		_lbl_status.text = "Press 'A' or '←' to season salt"
+		_lbl_status.text = "Press 'Q' or '←' to season salt"
 		_lbl_status.visible = true
 		
 	if _lbl_progress: _lbl_progress.visible = true

@@ -182,7 +182,7 @@ func _connect_stations() -> void:
 	for child in stations_node.get_children():
 		if child is KitchenStation:
 			child.player_number = player_number
-			child.player_entered.connect(_on_station_entered.bind(child))
+			child.player_entered.connect(_on_station_entered)
 			child.player_exited.connect(_on_station_exited)
 
 func _process(delta: float) -> void:
@@ -255,28 +255,6 @@ func _on_minigame_done(step_index: int, skill_ratio: float, time_ratio: float) -
 	GameManager.mark_step_done(player_number, step_index)
 
 	var all_done := GameManager.all_steps_done(player_number)
-	var completed_station_id = _steps[step_index].get("station", "")
-	var next_idx = GameManager.get_next_required_step(player_number)
-
-	var chain_next := false
-	var next_step: Dictionary = {}
-	if not all_done and next_idx != -1 and _player_current_station != null:
-		next_step = _steps[next_idx]
-		if next_step.get("station", "") == completed_station_id and _player_current_station.station_id == completed_station_id:
-			chain_next = true
-
-	if chain_next:
-		# Same-station chain: player never actually sees the kitchen in
-		# between, so there's nothing to hide behind a door for — discard
-		# the snapshot, refresh the HUD immediately, and go straight into
-		# the next minigame.
-		freeze_layer.queue_free()
-		_refresh_hud_after_step()
-		await get_tree().create_timer(0.35).timeout
-		if not GameManager.get_game_active(player_number):
-			return
-		minigame_host.launch(next_step, next_idx)
-		return
 
 	if all_done:
 		freeze_layer.queue_free()
@@ -287,12 +265,7 @@ func _on_minigame_done(step_index: int, skill_ratio: float, time_ratio: float) -
 		_show_waiting_popup()
 		return
 
-	# Returning to full kitchen control: the snapshot is already covering
-	# the real view (which may have already flipped to "kitchen" underneath
-	# by now — doesn't matter, it's hidden), so from the player's
-	# perspective they're still looking at the finished minigame while the
-	# doors slide closed over it. Once fully closed, swap the visible HUD
-	# state, drop the snapshot, and open the doors to reveal the kitchen.
+	# Returning to full kitchen control for ALL cases now!
 	add_child(freeze_layer)
 
 	var door := SMALL_DOOR_TRANSITION_SCENE.instantiate()
@@ -383,8 +356,10 @@ func _show_waiting_popup() -> void:
 	_waiting_popup = CanvasLayer.new()
 	_waiting_popup.layer = 99
 	var bg_rect = ColorRect.new()
-	bg_rect.custom_minimum_size = Vector2(640, 720)
-	bg_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg_rect.offset_left = 0
+	bg_rect.offset_top = 0
+	bg_rect.offset_right = 640
+	bg_rect.offset_bottom = 720
 	bg_rect.color = Color(0,0,0,0.6)
 	_waiting_popup.add_child(bg_rect)
 
@@ -392,7 +367,10 @@ func _show_waiting_popup() -> void:
 	waiting_lbl.text = "Waiting for other player..."
 	waiting_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	waiting_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	waiting_lbl.set_anchors_preset(Control.PRESET_CENTER)
+	waiting_lbl.offset_left = 0
+	waiting_lbl.offset_top = 320  # 720/2 - some offset
+	waiting_lbl.offset_right = 640
+	waiting_lbl.offset_bottom = 400
 	waiting_lbl.add_theme_font_size_override("font_size", 32)
 	waiting_lbl.add_theme_color_override("font_color", Color(1,1,1,1))
 	if _pixelon_font:

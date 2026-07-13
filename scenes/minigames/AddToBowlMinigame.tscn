@@ -11,14 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://bgwri5eew78ld" path="res://assets/assets/sprites/addToBowl/grated coconut in small bowl.png" id="6_oubsu"]
 [ext_resource type="Texture2D" uid="uid://bp00cfw2l6ggd" path="res://assets/assets/sprites/addToBowl/charcoal in small bowl.png" id="7_2hkgx"]
 [ext_resource type="Texture2D" uid="uid://cg8c8qv17nl8l" path="res://assets/sprites/minigames/Dish1ChopMinigame/topHUD.png" id="8_yjuht"]
-[ext_resource type="Texture2D" uid="uid://bi8ydyfcaxm5c" path="res://assets/assets/sprites/ui/banner.png" id="9_npy5g"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="10_y7i2x"]
+[ext_resource type="Texture2D" uid="uid://bhwm7wxnekhbe" path="res://assets/sprites/ui/banner.png" id="13_yjuht"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="14_oubsu"]
 [ext_resource type="Texture2D" uid="uid://bl45ol0yo7dpn" path="res://assets/assets/sprites/wasd/A (1).png" id="15_yjuht"]
 [ext_resource type="Texture2D" uid="uid://br8vcqgie2x5l" path="res://assets/assets/sprites/wasd/w (1).png" id="16_npy5g"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y7i2x"]
-load_path = "res://.godot/imported/D (1).png-768c057b437f656b82d0bf570c1d1537.ctex"
 
 [node name="AddToBowlMinigame" type="Control" unique_id=674200316]
 layout_mode = 3
@@ -208,14 +207,14 @@ offset_left = 81.0
 offset_top = 125.0
 offset_right = 566.0
 offset_bottom = 205.0
-texture = ExtResource("9_npy5g")
+texture = ExtResource("13_yjuht")
 
 [node name="TitleLabel" type="Label" parent="Banner" unique_id=1774377545]
 layout_mode = 0
 offset_left = 36.0
-offset_top = 26.0
+offset_top = 23.0
 offset_right = 448.0
-offset_bottom = 56.0
+offset_bottom = 53.0
 theme_override_fonts/font = ExtResource("14_oubsu")
 theme_override_font_sizes/font_size = 24
 text = "Put grated coconut"

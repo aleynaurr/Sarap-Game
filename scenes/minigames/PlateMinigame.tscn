@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="4_weggr"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="5_quisa"]
 [ext_resource type="Texture2D" uid="uid://c8kybdrn1axw8" path="res://assets/assets/sprites/strain/coconut mixture strained alrdy.png" id="6_g2old"]
+[ext_resource type="Texture2D" uid="uid://bhwm7wxnekhbe" path="res://assets/sprites/ui/banner.png" id="6_ohroa"]
 [ext_resource type="Texture2D" uid="uid://cvomwqopym81d" path="res://assets/assets/plating/Chili.png" id="7_ohroa"]
 [ext_resource type="Texture2D" uid="uid://c4v4anlnfc0dl" path="res://assets/assets/plating/sliced ginger bowl.png" id="7_r35qe"]
 [ext_resource type="Texture2D" uid="uid://0t1ojcilt1hq" path="res://assets/assets/sprites/PrickandSeason/small bowls.png" id="7_slop0"]
@@ -15,9 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bh2dokf5fqjaj" path="res://assets/assets/plating/minced garlic.png" id="9_xh61b"]
 [ext_resource type="Texture2D" uid="uid://dlbcfkiqe8fss" path="res://assets/assets/plating/sliced red chilis.png" id="10_l7poo"]
 [ext_resource type="Texture2D" uid="uid://bk8b8bbv6n8bi" path="res://assets/assets/plating/Onion.png" id="10_sknad"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd0c2"]
-load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
 
 [node name="AddIngredientsMinigame" type="Control" unique_id=1759408239]
 layout_mode = 3
@@ -68,11 +66,12 @@ text = "Time: 15.0"
 
 [node name="Banner" type="TextureRect" parent="." unique_id=1920051606]
 layout_mode = 0
-offset_left = 87.0
-offset_top = 121.0
-offset_right = 544.0
-offset_bottom = 190.0
-texture = SubResource("CompressedTexture2D_vd0c2")
+offset_left = 63.0
+offset_top = 118.99999
+offset_right = 520.0
+offset_bottom = 188.0
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("6_ohroa")
 expand_mode = 1
 
 [node name="StatusLabel" type="Label" parent="." unique_id=387338316]

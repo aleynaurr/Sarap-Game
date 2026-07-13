@@ -18,9 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c3v5pny22eo4a" path="res://assets/assets/sprites/wasd/right_glow.png" id="16_njqwe"]
 [ext_resource type="Texture2D" uid="uid://bb0wn5c15pesq" path="res://assets/assets/sprites/wasd/up_glow.png" id="17_5jaut"]
 [ext_resource type="Texture2D" uid="uid://be374fprud3x8" path="res://assets/assets/sprites/wasd/left_glow.png" id="18_rixu6"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7ny6r"]
-load_path = "res://.godot/imported/banner.png-f3396399d3aa461dcc4d6b25a28e8833.ctex"
+[ext_resource type="Texture2D" uid="uid://bhwm7wxnekhbe" path="res://assets/sprites/ui/banner.png" id="19_2qebu"]
 
 [node name="MixMinigame" type="Control" unique_id=220373830]
 layout_mode = 3
@@ -185,11 +183,12 @@ expand_mode = 1
 
 [node name="Banner" type="TextureRect" parent="." unique_id=368968241]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 121.0
-offset_right = 475.0
-offset_bottom = 190.0
-texture = SubResource("CompressedTexture2D_7ny6r")
+offset_left = 129.0
+offset_top = 119.0
+offset_right = 436.0
+offset_bottom = 188.0
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("19_2qebu")
 expand_mode = 1
 
 [node name="CirclesLabel" type="Label" parent="." unique_id=1828672472]
