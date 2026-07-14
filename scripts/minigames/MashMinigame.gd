@@ -127,8 +127,7 @@ var _eggplant_tex: Array = []
 var _popup_tex: Dictionary = {}
 var _popup_done_tex: Texture2D = null
 var _popup_start_tex: Texture2D = null
-var _popup_fail_tex: Texture2D = null
-
+var _popup_fail_tex: Texture2D = null                       
 
 func _on_init() -> void:
 	_fork_picked_up  = false
@@ -314,9 +313,11 @@ func _update_hover_state() -> void:
 	if _current_line >= LINE_COUNT:
 		_is_hovering = false
 		return
-	var fork_center := _fork_pos + _fork_base_size * 0.5
+	
+	var fork_tip := _fork_pos + Vector2(0.0, _fork_base_size.y * 0.5)
+	
 	var circle_center: Vector2 = _circle_centers[_current_line]
-	_is_hovering = fork_center.distance_to(circle_center) <= CIRCLE_HOVER_RADIUS
+	_is_hovering = fork_tip.distance_to(circle_center) <= CIRCLE_HOVER_RADIUS
 
 
 # ──────────────────────────────────────────────────────────────────────────

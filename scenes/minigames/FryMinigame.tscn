@@ -270,10 +270,10 @@ stretch_mode = 5
 
 [node name="HintLabel" type="Label" parent="." unique_id=520007107]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 628.0
-offset_right = 623.0
-offset_bottom = 706.0
+offset_left = 15.0
+offset_top = 609.0
+offset_right = 615.0
+offset_bottom = 721.0
 theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
 theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -282,8 +282,8 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 13
 theme_override_fonts/font = ExtResource("6_pixelon")
-theme_override_font_sizes/font_size = 23
-text = "Q or '/' - Pick up Eggplant
+theme_override_font_sizes/font_size = 19
+text = "Q or '/' - Pick up or Drop Eggplant
 WSAD or Arrow Keys - Navigate
 E or Shift - Flip Eggplant"
 horizontal_alignment = 1

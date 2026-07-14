@@ -80,10 +80,10 @@ horizontal_alignment = 2
 
 [node name="HintLabel" type="Label" parent="." unique_id=448203553]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 615.0
-offset_right = 619.0
-offset_bottom = 705.0
+offset_left = 22.0
+offset_top = 603.0
+offset_right = 622.0
+offset_bottom = 715.0
 theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
 theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -92,7 +92,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 13
 theme_override_fonts/font = ExtResource("9_uifont")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 19
 text = "Q / ÷ pick up fork 
 WASD/Arrows move
 Hold E / Shift to mash"
