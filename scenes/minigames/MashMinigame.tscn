@@ -80,9 +80,9 @@ horizontal_alignment = 2
 
 [node name="HintLabel" type="Label" parent="." unique_id=448203553]
 layout_mode = 0
-offset_left = 21.0
+offset_left = 22.0
 offset_top = 603.0
-offset_right = 621.0
+offset_right = 622.0
 offset_bottom = 715.0
 theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
 theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
