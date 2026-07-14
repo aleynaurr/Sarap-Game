@@ -423,14 +423,18 @@ func _update_step_list() -> void:
 	for lbl in _step_labels:
 		lbl.queue_free()
 	_step_labels.clear()
+	var step_scores = GameManager.get_step_scores(player_number)
 	for i in range(_steps.size()):
 		var step = _steps[i]
 		var done = GameManager.is_step_done(player_number, i)
 		var lbl  = Label.new()
-		lbl.text = ("✅" if done else "⬜") + " " + step.get("name", "???")
+		var step_text = ("✅" if done else "⬜") + " " + step.get("name", "???")
+		if done and i < step_scores.size():
+			step_text += " | %d pts" % step_scores[i]
+		lbl.text = step_text
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.custom_minimum_size.x = 120
-		_apply_pixelon(lbl, 15)
+		_apply_pixelon(lbl, 14)
 		lbl.add_theme_color_override("font_color", Color(0.5, 0.88, 0.5) if done else Color(0.88, 0.88, 0.88))
 		step_list.add_child(lbl)
 		_step_labels.append(lbl)

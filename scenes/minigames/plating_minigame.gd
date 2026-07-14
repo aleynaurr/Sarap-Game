@@ -31,7 +31,8 @@ func _on_init() -> void:
 	_has_dropped = false
 	
 	if _lbl_wrong: _lbl_wrong.text = ""
-	if _lbl_status: _lbl_status.text = "Move with A/D or ← →, press S or ↓  to Pour!"
+	var interact_key = "E" if player_number == 1 else "Shift"
+	if _lbl_status: _lbl_status.text = "Move with your movement keys, press %s to Pour!" % interact_key
 	
 	if pouring_bowl:
 		pouring_bowl.visible = true
@@ -56,15 +57,24 @@ func _process(delta: float) -> void:
 	if _has_dropped: return
 	
 	var input_dir := 0.0
-	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):
-		input_dir -= 1.0
-	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
-		input_dir += 1.0
+	if player_number == 1:
+		if Input.is_action_pressed("move_left_p1"):
+			input_dir -= 1.0
+		if Input.is_action_pressed("move_right_p1"):
+			input_dir += 1.0
+	else:
+		if Input.is_action_pressed("move_left_p2"):
+			input_dir -= 1.0
+		if Input.is_action_pressed("move_right_p2"):
+			input_dir += 1.0
 		
 	if input_dir != 0.0 and pouring_bowl:
 		var next_x = pouring_bowl.global_position.x + (input_dir * _move_speed * delta)
 		pouring_bowl.global_position.x = clampf(next_x, _min_x, _max_x)
 		_update_shadow_position()
+	
+	if Input.is_action_just_pressed("interact_p%d" % player_number):
+		_execute_plating_drop()
 
 func _update_shadow_position() -> void:
 	if pouring_bowl and shadow_sprite and plate_target:
@@ -75,13 +85,6 @@ func _update_shadow_position() -> void:
 			bowl_center_x - (shadow_sprite.size.x / 2.0),
 			target_center_y - (shadow_sprite.size.y / 2.0)
 		)
-
-func _input(event: InputEvent) -> void:
-	if _finished or _has_dropped: return
-	
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode in [KEY_S, KEY_DOWN]:
-			_execute_plating_drop()
 
 func _execute_plating_drop() -> void:
 	_has_dropped = true

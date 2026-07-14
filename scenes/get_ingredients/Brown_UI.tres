@@ -26,6 +26,14 @@ region = Rect2(0, 416, 32, 32)
 texture = SubResource("AtlasTexture_gecaf")
 region_rect = Rect2(5, 6, 22, 18)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_luxng"]
+atlas = ExtResource("2_wa5qu")
+region = Rect2(1, 385, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_he10m"]
+texture = SubResource("AtlasTexture_luxng")
+region_rect = Rect2(6, 6, 18, 18)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1py4"]
 atlas = ExtResource("3_1pesx")
 region = Rect2(1, 321, 30, 30)
@@ -55,6 +63,8 @@ GIPanel/base_type = &"PanelContainer"
 GIPanel/styles/panel = SubResource("StyleBoxTexture_wa5qu")
 InstructionBox/base_type = &"PanelContainer"
 InstructionBox/styles/panel = SubResource("StyleBoxTexture_luxng")
+InstructionPanel/base_type = &"PanelContainer"
+InstructionPanel/styles/panel = SubResource("StyleBoxTexture_he10m")
 ItemNumber/base_type = &"Label"
 ItemNumber/colors/font_color = Color(0.79607844, 0.47843137, 0.21568628, 1)
 ItemNumber/colors/font_outline_color = Color(0, 0, 0, 1)

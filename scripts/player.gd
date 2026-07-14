@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 120.0
+const SPEED := 160.0
 
 # Sprite sheet layout: 4 cols × 4 rows (frames × directions)
 # Row 0 = down, Row 1 = up, Row 2 = left, Row 3 = right
