@@ -9,10 +9,7 @@ const STARTUP_VIDEO_PATH := "res://assets/startvid.ogv"
 const CUTSCENE_VIDEO_PATH := "res://assets/cutscene.ogv"
 
 @onready var btn_play: Button   = $MenuVBox/BtnPlay
-@onready var btn_howto: Button  = $MenuVBox/BtnHowTo
 @onready var btn_quit: Button   = $MenuVBox/BtnQuit
-@onready var howto_panel: Panel = $HowToPanel
-@onready var howto_close: Button = $HowToPanel/HowToClose
 @onready var bg_pattern: ColorRect = $BgPattern
 @onready var texture_rect: TextureRect = $Background
 @onready var texture_rect_2: TextureRect = $TextureRect2
@@ -43,9 +40,7 @@ static var _has_played_startup_video: bool = false
 func _ready() -> void:
 	# Hide all main menu elements initially (with null checks)
 	if btn_play: btn_play.visible = false
-	if btn_howto: btn_howto.visible = false
 	if btn_quit: btn_quit.visible = false
-	if howto_panel: howto_panel.visible = false
 	if bg_pattern: bg_pattern.visible = false
 	if texture_rect: texture_rect.visible = false
 	if texture_rect_2: texture_rect_2.visible = false
@@ -198,7 +193,6 @@ func _start_cutscene_transition(is_skip: bool):
 # ─── Everything that used to run in _ready() now waits for the video ──────
 func _start_main_menu() -> void:
 	if btn_play: btn_play.visible = true
-	if btn_howto: btn_howto.visible = true
 	if btn_quit: btn_quit.visible = true
 	if bg_pattern: bg_pattern.visible = true
 	if texture_rect: texture_rect.visible = true
@@ -223,17 +217,12 @@ func _start_main_menu() -> void:
 	if btn_play: 
 		btn_play.modulate.a = 0.0
 		fade_tween.parallel().tween_property(btn_play, "modulate:a", 1.0, 0.5)
-	if btn_howto: 
-		btn_howto.modulate.a = 0.0
-		fade_tween.parallel().tween_property(btn_howto, "modulate:a", 1.0, 0.5)
 	if btn_quit: 
 		btn_quit.modulate.a = 0.0
 		fade_tween.parallel().tween_property(btn_quit, "modulate:a", 1.0, 0.5)
 	
 	if btn_play: btn_play.pressed.connect(_on_play)
-	if btn_howto: btn_howto.pressed.connect(_on_howto)
 	if btn_quit: btn_quit.pressed.connect(_on_quit)
-	if howto_close: howto_close.pressed.connect(func(): if howto_panel: howto_panel.visible = false)
 	AudioManager.play_music("menu")
 	_style_buttons()
 	_start_bg_pulse()
@@ -315,7 +304,6 @@ func _style_buttons() -> void:
 	brown_style.corner_radius_top_right = 4
 	brown_style.corner_radius_bottom_right = 4
 	brown_style.corner_radius_bottom_left = 4
-	if btn_howto: btn_howto.add_theme_stylebox_override("normal", brown_style)
 	if btn_quit: btn_quit.add_theme_stylebox_override("normal", brown_style)
 
 func _on_play() -> void:
@@ -328,9 +316,6 @@ func _on_play() -> void:
 	get_tree().root.add_child(door)
 	door.play_transition(func(): GameManager.go_to_recipe_select())
 
-func _on_howto() -> void:
-	AudioManager.play_sfx(AudioManager.SFX_CLICK)
-	howto_panel.visible = true
 
 func _on_quit() -> void:
 	get_tree().quit()

@@ -9,8 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cvxpvc0b37meo" path="res://assets/player_sheet.png" id="5_4fgkg"]
 [ext_resource type="Texture2D" uid="uid://cknsuxw216h27" path="res://assets/kitchen_tiles/cabinets.png" id="5_ssrmk"]
 [ext_resource type="Texture2D" uid="uid://3ir6rgfr2pww" path="res://assets/kitchen_tiles/table.png" id="6_4mwfy"]
+[ext_resource type="Texture2D" uid="uid://w2mn5k5g7e5y" path="res://assets/kitchen_tiles/window1.png" id="7_4mwfy"]
+[ext_resource type="Texture2D" uid="uid://c3tjfg2vw1h86" path="res://assets/kitchen_tiles/window2.png" id="8_fyksq"]
 [ext_resource type="Texture2D" uid="uid://diny6m36uxpln" path="res://assets/HUD/topHUD.png" id="8_jmce5"]
 [ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/fonts/Pixelon.ttf" id="9_20l34"]
+[ext_resource type="Texture2D" uid="uid://dd1gcqtros87y" path="res://assets/kitchen_tiles/window3.png" id="9_q2p2q"]
 [ext_resource type="FontFile" uid="uid://5ywnnfdr2o2k" path="res://assets/fonts/PIXELYA Trial.otf" id="10_4fgkg"]
 [ext_resource type="Texture2D" uid="uid://cviwytu3na6ml" path="res://assets/HUD/sideHUD.png" id="11_4fgkg"]
 [ext_resource type="Texture2D" uid="uid://ym7hx1ikigw8" path="res://assets/sprites/ui/key_prompt_e.png" id="11_eprompt"]
@@ -99,6 +102,23 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_cleeo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwgv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_4mwfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fyksq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q2p2q")
 }],
 "loop": true,
 "name": &"default",
@@ -282,7 +302,7 @@ script = ExtResource("1_kitchen")
 z_index = 3
 tile_set = SubResource("TileSet_p2cec")
 format = 2
-layer_0/tile_data = PackedInt32Array(131073, 0, 5, 524290, 0, 7, 458760, 131072, 65541, 524292, 0, 4, 524293, 65536, 4, 327681, 196608, 1, -65531, 393216, 4, -65530, 458752, 4, 5, 393216, 5, 6, 458752, 5, -65534, 65536, 0, -65533, 131072, 0)
+layer_0/tile_data = PackedInt32Array(131073, 0, 5, 524290, 0, 7, 458760, 131072, 65541, 524292, 0, 4, 524293, 65536, 4, 327681, 196608, 1, -65531, 393216, 4, -65530, 458752, 4, 5, 393216, 5, 6, 458752, 5, -65534, 131072, 0, -65533, 65536, 2, -65535, 65536, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FloorLayer" unique_id=1862442274]
 z_index = 2
@@ -305,6 +325,12 @@ texture = ExtResource("6_4mwfy")
 [node name="Sprite2D" type="Sprite2D" parent="FloorLayer/AnimatedSprite2D" unique_id=1160377436]
 position = Vector2(-357.64706, -399.99994)
 texture = ExtResource("6_4mwfy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FloorLayer/AnimatedSprite2D" unique_id=321896707]
+z_index = 1
+position = Vector2(-357.64703, -478.8235)
+sprite_frames = SubResource("SpriteFrames_jwgv8")
+autoplay = "default"
 
 [node name="WallsLayer" type="Node2D" parent="." unique_id=1406528994]
 
@@ -497,6 +523,7 @@ script = ExtResource("4_mghost")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1155934345]
 layer = 5
+visible = false
 
 [node name="HUDBackground" type="ColorRect" parent="HUD" unique_id=774359807]
 offset_right = 641.0

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://kihcy46v8vgk" path="res://scenes/gi_items/desiccatedcoconut.tscn" id="10_u44wp"]
 [ext_resource type="PackedScene" uid="uid://cyiht0tpgl5ri" path="res://scenes/gi_items/coconutmilk.tscn" id="11_gojsm"]
 [ext_resource type="Script" uid="uid://wji40ghhfvdy" path="res://scenes/get_ingredients/portal_to_kitchen.gd" id="12_uqbte"]
+[ext_resource type="Texture2D" uid="uid://dsr21nrhaikbn" path="res://assets/classets/market-sign.png" id="14_3qech"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_430f3"]
 texture = ExtResource("1_pdswc")
@@ -728,6 +729,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cnpo"]
+size = Vector2(86, 16)
+
 [node name="Get_Ingredients_BG" type="Node2D" unique_id=1709072483]
 
 [node name="Outside" type="StaticBody2D" parent="." unique_id=806610603]
@@ -978,5 +982,15 @@ shape = SubResource("RectangleShape2D_fjeer")
 sprite_frames = SubResource("SpriteFrames_fjeer")
 animation = &"Normal"
 autoplay = "Normal"
+
+[node name="Sign" type="Area2D" parent="." unique_id=902517939]
+position = Vector2(812, 246)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sign" unique_id=1965114823]
+texture = ExtResource("14_3qech")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign" unique_id=2056559279]
+position = Vector2(3, -17)
+shape = SubResource("RectangleShape2D_8cnpo")
 
 [connection signal="body_entered" from="portal_to_kitchen" to="portal_to_kitchen" method="_on_body_entered"]
