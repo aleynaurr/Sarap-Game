@@ -34,7 +34,7 @@ func ingredients_complete() -> bool:
 	
 func check_finish():
 	if player1_inside and player2_inside and ingredients_complete():
-		GameManager.versus_video_playing = true  # Set early!
+		GameManager.versus_video_playing = true
 		await get_tree().create_timer(0.5).timeout
 		var door := DOOR_TRANSITION_SCENE.instantiate()
 		get_tree().root.add_child(door)
