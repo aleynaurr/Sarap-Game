@@ -121,7 +121,7 @@ func _on_init() -> void:
 	_end_popup.scale   = Vector2(0, 0)
 
 	# Override time limit to 30 seconds
-	_time_limit = 30.0
+	_time_limit = 120.0
 	_lbl_timer.text = "Time: %.1f" % _time_limit
 
 	_lbl_current.text     = "Press E / Shift to start!"
@@ -160,7 +160,7 @@ func _show_start_popup() -> void:
 	tw.tween_property(_start_popup, "scale", Vector2(1.0, 1.0), 0.1)
 
 	var hide_tw := create_tween()
-	hide_tw.tween_interval(3.0)
+	hide_tw.tween_interval(15.0)
 	hide_tw.tween_property(_start_popup, "scale", Vector2(0, 0), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	hide_tw.tween_callback(func(): _start_popup.visible = false)
 

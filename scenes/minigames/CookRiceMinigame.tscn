@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://swf8wpekmkhb" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/arrow_up.png" id="15_arrow_up"]
 [ext_resource type="Texture2D" uid="uid://b2she6407ekud" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cup_empty.png" id="16_cup_empty"]
 [ext_resource type="Texture2D" uid="uid://d0kdk1pg72rng" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/hand_point.png" id="17_hand_point"]
-[ext_resource type="Texture2D" uid="uid://vmett4cmfdo1" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png" id="18_popup_bg"]
+[ext_resource type="Texture2D" uid="uid://c6gqpws06nd3y" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png" id="18_popup_bg"]
 [ext_resource type="Texture2D" uid="uid://bi81lednwatup" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_awesome.png" id="20_cookfeedback_awesome"]
 [ext_resource type="Texture2D" uid="uid://bwwn0vw5kc7c2" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_great.png" id="21_cookfeedback_great"]
 [ext_resource type="Texture2D" uid="uid://bcahx0i4kyq5s" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_timebetter.png" id="22_cookfeedback_timebetter"]
@@ -26,54 +26,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
-move_speed = null
-time_1_cup = null
-time_2_cups = null
-time_3_cups = null
-time_4_cups = null
-cook_time = null
-cooker_pos = null
-cooker_size = null
-cup_home = null
-cup_size = null
-sack_pos = null
-pail_pos = null
-ingredient_size = null
-arrow_pos = null
-arrow_size = null
-hand_size = null
-hand_start = null
-hand_move_min = null
-hand_move_max = null
-meter_left = null
-meter_right = null
-meter_y = null
-meter_h = null
-zone_half_yellow = null
-zone_half_green = null
-green_rate = null
-yellow_rate = null
-zone_min_speed = null
-zone_max_speed = null
-zone_retime_min = null
-zone_retime_max = null
-popup_start = null
-popup_startaddingrice = null
-popup_startaddingwater = null
-popup_addingrice_1 = null
-popup_addingrice_2 = null
-popup_addingrice_3 = null
-popup_addingrice_4 = null
-popup_rice_added = null
-popup_all_rice = null
-popup_water_added = null
-popup_all_water = null
-popup_cooking = null
-popup_done = null
-popup_fail = null
-cookfeedback_awesome = null
-cookfeedback_great = null
-cookfeedback_timebetter = null
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=563621260]
 position = Vector2(393, 109)

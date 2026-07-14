@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://soowdmcgk02o" path="res://scenes/get_ingredients/Player1.tscn" id="3_rgvng"]
 [ext_resource type="PackedScene" uid="uid://c1peqlpyxscto" path="res://scenes/get_ingredients/Player2.tscn" id="4_6o6xh"]
 [ext_resource type="PackedScene" uid="uid://dqrblofd7dvgb" path="res://scenes/get_ingredients/game_screen.tscn" id="5_4htga"]
+[ext_resource type="Texture2D" uid="uid://b3ni8xtybwjny" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_fail.png" id="5_wnwwv"]
 
 [node name="GetIngredients" type="Node2D" unique_id=408628167]
 script = ExtResource("1_r74a8")
@@ -63,3 +64,35 @@ limit_right = 2784
 limit_bottom = 700
 
 [node name="GameScreen" parent="." unique_id=245156146 instance=ExtResource("5_4htga")]
+
+[node name="Control" type="Control" parent="GameScreen" unique_id=687931305]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -318.0
+offset_top = 90.0
+offset_right = -278.0
+offset_bottom = 130.0
+
+[node name="TextureRect" type="TextureRect" parent="GameScreen/Control" unique_id=1249788610]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 371.0
+offset_right = 917.0
+offset_bottom = 471.0
+texture = ExtResource("5_wnwwv")
+
+[node name="Control2" type="Control" parent="GameScreen" unique_id=1014958821]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 278.0
+offset_top = 90.0
+offset_right = 278.0
+offset_bottom = 90.0
+
+[node name="TextureRect" type="TextureRect" parent="GameScreen/Control2" unique_id=1502550080]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 371.0
+offset_right = 917.0
+offset_bottom = 471.0
+texture = ExtResource("5_wnwwv")

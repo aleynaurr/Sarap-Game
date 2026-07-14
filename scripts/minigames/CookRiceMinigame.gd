@@ -11,11 +11,11 @@ const ASSET_DIR := "res://assets/sprites/minigames/Dish1CookRiceMinigame/"
 
 
 # Timer settings
-@export var time_1_cup: float = 70.0
-@export var time_2_cups: float = 85.0
-@export var time_3_cups: float = 100.0
-@export var time_4_cups: float = 115.0
-@export var cook_time: float = 25.0
+@export var time_1_cup: float = 120.0
+@export var time_2_cups: float = 150.0
+@export var time_3_cups: float = 200.0
+@export var time_4_cups: float = 225.0
+@export var cook_time: float = 20.0
 
 # Rice cooker
 @export var cooker_pos: Vector2 = Vector2(9, 108)
@@ -303,7 +303,7 @@ func _on_init() -> void:
 
 	# Auto-hide after 3 seconds
 	var hide_tw := create_tween()
-	hide_tw.tween_interval(3.0)
+	hide_tw.tween_interval(10.0)
 	hide_tw.tween_property(_start_popup, "scale", Vector2(0, 0), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	hide_tw.tween_callback(func(): 
 		_start_popup.visible = false
@@ -727,7 +727,7 @@ func _show_popup(type: String, tex: Texture2D, cb: Callable) -> void:
 	var tw := create_tween()
 	tw.tween_property(_popup_box, "scale", Vector2(1.25, 1.25), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tw.tween_property(_popup_box, "scale", Vector2(1.15, 1.15), 0.1)
-	tw.tween_interval(1.5)
+	tw.tween_interval(15.0)
 	tw.tween_property(_popup_box, "scale", Vector2(0.0, 0.0), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tw.tween_callback(func():
 		_popup_box.visible = false

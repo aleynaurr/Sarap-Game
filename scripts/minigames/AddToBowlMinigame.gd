@@ -162,11 +162,11 @@ func _animate_ingredient_drop(keyword: String) -> void:
 	
 func get_key_texture(key_name: String) -> Texture2D:
 	match key_name:
-		"KEY_W":
+		"KEY_W", "KEY_UP":
 			return tex_w
-		"KEY_A":
+		"KEY_A", "KEY_LEFT":
 			return tex_a
-		"KEY_D":
+		"KEY_D", "KEY_RIGHT":
 			return tex_d
 
 	return null

@@ -297,8 +297,13 @@ position = Vector2(-49.411755, -468.23523)
 scale = Vector2(1.0000001, 1.0000001)
 texture = ExtResource("5_ssrmk")
 
+[node name="Sprite2D3" type="Sprite2D" parent="FloorLayer/AnimatedSprite2D" unique_id=11691932]
+position = Vector2(-48.23535, -399.99997)
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("6_4mwfy")
+
 [node name="Sprite2D" type="Sprite2D" parent="FloorLayer/AnimatedSprite2D" unique_id=1160377436]
-position = Vector2(-350.58823, -412.94113)
+position = Vector2(-357.64706, -399.99994)
 texture = ExtResource("6_4mwfy")
 
 [node name="WallsLayer" type="Node2D" parent="." unique_id=1406528994]

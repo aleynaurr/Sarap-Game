@@ -10,6 +10,9 @@ extends Control
 @onready var menu_button: TextureButton    = $MenuButton
 @export var player_number: int = 1
 
+@onready var ingredients_score = $ScorePanel/VBoxContainer/PanelContainer2/IngredientsScore
+@onready var kitchen_score = $ScorePanel/VBoxContainer/PanelContainer3/KitchenScore
+@onready var total_score = $ScorePanel/VBoxContainer/PanelContainer4/TotalScore
 # ---- Config ----------------------------------------------------------
 
 const VIDEO_DIR := "res://assets/resultvideos/"
@@ -45,8 +48,20 @@ var _button_base_y: float
 # -------------------------------------------------------------------------
 
 func _ready() -> void:
+	print(ingredients_score)
+	print(kitchen_score)
+	print(total_score)
 	AudioManager.fade_out_music(1.5)
+	
+	var ingredient := GameManager.get_ingredient_score(player_number)
+	var kitchen := GameManager.get_total_score(player_number)
+	var total := GameManager.get_final_score(player_number)
 
+	ingredients_score.text = str(ingredient)
+	kitchen_score.text = str(kitchen)
+	total_score.text = str(total)
+	
+	
 	menu_button.modulate.a = 0.0
 	_button_base_y = menu_button.position.y
 
@@ -55,7 +70,8 @@ func _ready() -> void:
 	menu_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	_setup_video()
-
+	_update_score_panel()
+	
 	menu_button.pressed.connect(_on_menu_pressed)
 	menu_button.mouse_entered.connect(_on_button_hover)
 	menu_button.mouse_exited.connect(_on_button_unhover)
@@ -63,7 +79,15 @@ func _ready() -> void:
 
 	set_process(true)
 
+func _update_score_panel() -> void:
+	var ingredient = GameManager.get_ingredient_score(player_number)
+	var kitchen = GameManager.get_total_score(player_number)
+	var total = GameManager.get_final_score(player_number)
 
+	ingredients_score.text = str(ingredient)
+	kitchen_score.text = str(kitchen)
+	total_score.text = str(total)
+	
 func _process(_delta: float) -> void:
 	if not _button_shown and video_player.is_playing() and video_player.stream_position >= BUTTON_APPEAR_TIME:
 		_show_menu_button()
@@ -93,8 +117,8 @@ func _on_video_finished() -> void:
 func _calculate_stars() -> int:
 	var recipe := RecipeData.get_recipe(GameManager.current_recipe_id)
 	var steps: Array = recipe.get("steps", [])
-	var max_sc: int = steps.size() * 100
-	var total: int = GameManager.get_total_score(player_number)
+	var max_sc: int = (steps.size() * 100) + 100
+	var total: int = GameManager.get_final_score(player_number)
 	var pct: float = float(total) / float(max(1, max_sc))
 
 	var stars := 0

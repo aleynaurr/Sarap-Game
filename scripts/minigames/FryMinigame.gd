@@ -140,7 +140,7 @@ func _on_init() -> void:
 	_apply_eggplant_pos()
 	_update_progress_bars()
 	
-	_time_limit = 60.0
+	_time_limit = 100.0
 	_lbl_timer.text = "Time: %.1f" % _time_limit
 
 	_show_start_popup()

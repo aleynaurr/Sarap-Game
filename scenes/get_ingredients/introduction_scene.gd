@@ -14,6 +14,7 @@ extends Control
 var p1_last_key := "w"
 var p2_last_key := "up"
 
+
 func _ready() -> void:
 	get_tree().paused = true
 	var tween = create_tween()
@@ -69,9 +70,9 @@ func _process(delta: float) -> void:
 
 
 func _on_play_button_pressed() -> void:
+	TimeManager.running = true
 	get_tree().paused = false
 	queue_free()
-	
 
 func _on_play_button_mouse_entered() -> void:
 	create_tween().tween_property($PlayButton, "scale", Vector2(1.1, 1.1), 0.15)
