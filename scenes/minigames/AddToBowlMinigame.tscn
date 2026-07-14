@@ -81,16 +81,6 @@ offset_bottom = 337.0
 scale = Vector2(1.7109373, 1.7070311)
 texture = ExtResource("5_6wvej")
 
-[node name="Label" type="Label" parent="VinegarInSmallBowl" unique_id=1691781996]
-layout_mode = 0
-offset_left = 100.52969
-offset_top = 86.114426
-offset_right = 143.5297
-offset_bottom = 98.114426
-theme_override_fonts/font = ExtResource("10_y7i2x")
-theme_override_font_sizes/font_size = 12
-text = "vinegar"
-
 [node name="VinegarLabel" type="TextureRect" parent="VinegarInSmallBowl" unique_id=1114224366]
 layout_mode = 0
 offset_left = 40.328773
@@ -98,6 +88,19 @@ offset_top = 31.048058
 offset_right = 93.328766
 offset_bottom = 61.048058
 expand_mode = 1
+
+[node name="Label2" type="Label" parent="VinegarInSmallBowl" unique_id=622468130]
+layout_mode = 0
+offset_left = 102.730606
+offset_top = 90.03204
+offset_right = 160.7306
+offset_bottom = 106.03204
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("10_y7i2x")
+theme_override_font_sizes/font_size = 16
+text = "vinegar"
 
 [node name="SmallBowls" type="TextureRect" parent="." unique_id=14033884]
 layout_mode = 0
@@ -117,16 +120,6 @@ offset_bottom = 469.375
 scale = Vector2(1.7656249, 1.705078)
 texture = ExtResource("6_oubsu")
 
-[node name="Label2" type="Label" parent="GratedCoconutInSmallBowl" unique_id=2004616086]
-layout_mode = 0
-offset_left = 26.761066
-offset_top = 131.15236
-offset_right = 102.76106
-offset_bottom = 143.15236
-theme_override_fonts/font = ExtResource("10_y7i2x")
-theme_override_font_sizes/font_size = 10
-text = "grated coconut"
-
 [node name="CoconutLabel" type="TextureRect" parent="GratedCoconutInSmallBowl" unique_id=2056249393]
 layout_mode = 0
 offset_left = 35.823013
@@ -134,6 +127,19 @@ offset_top = 32.036655
 offset_right = 88.82301
 offset_bottom = 62.036655
 expand_mode = 1
+
+[node name="Label3" type="Label" parent="GratedCoconutInSmallBowl" unique_id=603465979]
+layout_mode = 0
+offset_left = 0.14157867
+offset_top = 129.22794
+offset_right = 122.14158
+offset_bottom = 145.22794
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("10_y7i2x")
+theme_override_font_sizes/font_size = 16
+text = "grated coconut"
 
 [node name="SmallBowls3" type="TextureRect" parent="." unique_id=1965556227]
 layout_mode = 0
@@ -153,16 +159,6 @@ offset_bottom = 470.0
 scale = Vector2(1.7343749, 1.6992186)
 texture = ExtResource("7_2hkgx")
 
-[node name="Label3" type="Label" parent="CharcoalInSmallBowl" unique_id=879072223]
-layout_mode = 0
-offset_left = 43.24327
-offset_top = 131.82532
-offset_right = 85.90996
-offset_bottom = 142.82532
-theme_override_fonts/font = ExtResource("10_y7i2x")
-theme_override_font_sizes/font_size = 10
-text = "charcoal"
-
 [node name="CharcoalLabel" type="TextureRect" parent="CharcoalInSmallBowl" unique_id=616123489]
 layout_mode = 0
 offset_left = 39.20721
@@ -170,6 +166,19 @@ offset_top = 35.31035
 offset_right = 92.207214
 offset_bottom = 65.31035
 expand_mode = 1
+
+[node name="Label2" type="Label" parent="CharcoalInSmallBowl" unique_id=440436675]
+layout_mode = 0
+offset_left = 35.17119
+offset_top = 128.88278
+offset_right = 102.17119
+offset_bottom = 144.88278
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("10_y7i2x")
+theme_override_font_sizes/font_size = 16
+text = "charcoal"
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1551817546]
 layout_mode = 0
