@@ -3,6 +3,7 @@ extends Node
 
 const INGREDIENT_GOAL := 4
 
+var total_needed = InventoryManager.INGREDIENT_GOAL * 7
 
 var inventories := {
 	1: {

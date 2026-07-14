@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ce2ropkops084" path="res://scripts/ui/Results.gd" id="1_results"]
 [ext_resource type="Texture2D" uid="uid://cfsl8ollji0ml" path="res://assets/sprites/ui/btn_main_menu_placeholder.png" id="2_btn_placeholder"]
+[ext_resource type="PackedScene" uid="uid://docnv5lkq1dv" path="res://scenes/ScorePanel.tscn" id="2_ufxfl"]
 
 [node name="Results" type="Control" unique_id=419200434]
 clip_contents = true
@@ -21,12 +22,24 @@ grow_horizontal = 2
 grow_vertical = 2
 expand = true
 
+[node name="ScorePanel" parent="." unique_id=1481999776 instance=ExtResource("2_ufxfl")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 197.0
+offset_top = 449.0
+offset_right = 367.0
+offset_bottom = 449.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="MenuButton" type="TextureButton" parent="." unique_id=920452303]
 layout_mode = 0
-offset_left = 180.0
-offset_top = 498.0
-offset_right = 460.0
-offset_bottom = 582.0
+offset_left = 182.0
+offset_top = 604.0
+offset_right = 462.0
+offset_bottom = 688.0
 mouse_filter = 1
 texture_normal = ExtResource("2_btn_placeholder")
 ignore_texture_size = true
