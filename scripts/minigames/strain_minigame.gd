@@ -124,6 +124,7 @@ func _hide_all_sprites() -> void:
 func _pour_mixture() -> void:
 	_is_pouring = true
 	_lbl_status.text = "Pouring..."
+	if big_mixer_bowl_2: big_mixer_bowl_2.visible = false
 
 	var pouring_sprite = _get_current_fanning_sprite()
 

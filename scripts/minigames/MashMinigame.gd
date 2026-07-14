@@ -127,7 +127,7 @@ var _eggplant_tex: Array = []
 var _popup_tex: Dictionary = {}
 var _popup_done_tex: Texture2D = null
 var _popup_start_tex: Texture2D = null
-var _popup_fail_tex: Texture2D = null
+var _popup_fail_tex: Texture2D = null                       
 
 func _on_init() -> void:
 	_fork_picked_up  = false
