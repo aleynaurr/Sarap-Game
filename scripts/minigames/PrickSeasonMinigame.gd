@@ -105,7 +105,7 @@ func _on_update(delta: float, remaining: float) -> void:
 				_: if tex_fully_poked: tex_fully_poked.visible = true
 				
 			if _lbl_status:
-				_lbl_status.text = "Press 'E' or Space to poke (%d/%d)" % [_pricks, POKES_NEEDED]
+				_lbl_status.text = "Press 'E' or 'SHIFT' to poke (%d/%d)" % [_pricks, POKES_NEEDED]
 				
 			if _pricks >= POKES_NEEDED:
 				_start_season_phase()
@@ -161,7 +161,7 @@ func _start_season_phase() -> void:
 		_update_salt_shaker_position()
 		
 	if _lbl_status:
-		_lbl_status.text = "Press 'Q' or '←' to season salt"
+		_lbl_status.text = "Press 'Q' or '/' to season salt"
 		_lbl_status.visible = true
 		
 	if _lbl_progress: _lbl_progress.visible = true

@@ -65,6 +65,9 @@ func _on_init() -> void:
 			if fanning_4_fannedtoomuch: fanning_4_fannedtoomuch.visible = true
 
 func _on_update(_delta: float, remaining: float) -> void:
+	if _lbl_timer:
+		_lbl_timer.text = "Time: %.1f" % remaining
+	
 	if _is_pouring:
 		return
 

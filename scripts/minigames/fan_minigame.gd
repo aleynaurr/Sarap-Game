@@ -91,9 +91,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				_lbl_status.modulate = Color.BLACK
 
 func _check_game_status() -> void:
+	if _lbl_status:
+		_lbl_status.add_theme_constant_override("outline_size", 6)
+		
 	if _fans_done < _target_fans:
 		_lbl_status.text = "Fan more!"
-		_lbl_status.modulate = Color.BLACK
+		_lbl_status.modulate = Color.WHITE
 	elif _fans_done <= _target_fans + 5:
 		_lbl_status.text = "Perfect!"
 		_lbl_status.modulate = Color.GREEN

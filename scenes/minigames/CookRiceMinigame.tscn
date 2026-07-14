@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://swf8wpekmkhb" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/arrow_up.png" id="15_arrow_up"]
 [ext_resource type="Texture2D" uid="uid://b2she6407ekud" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cup_empty.png" id="16_cup_empty"]
 [ext_resource type="Texture2D" uid="uid://d0kdk1pg72rng" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/hand_point.png" id="17_hand_point"]
-[ext_resource type="Texture2D" uid="uid://vmett4cmfdo1" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png" id="18_popup_bg"]
+[ext_resource type="Texture2D" uid="uid://c6gqpws06nd3y" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/popup_bg.png" id="18_popup_bg"]
 [ext_resource type="Texture2D" uid="uid://bi81lednwatup" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_awesome.png" id="20_cookfeedback_awesome"]
 [ext_resource type="Texture2D" uid="uid://bwwn0vw5kc7c2" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_great.png" id="21_cookfeedback_great"]
 [ext_resource type="Texture2D" uid="uid://bcahx0i4kyq5s" path="res://assets/sprites/minigames/Dish1CookRiceMinigame/cookfeedback_timebetter.png" id="22_cookfeedback_timebetter"]
@@ -291,8 +291,10 @@ autowrap_mode = 2
 [node name="CookingMeter" type="Control" parent="." unique_id=1606696996]
 z_index = 2
 anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 720.0
+offset_left = 1.0
+offset_top = -28.0
+offset_right = 641.0
+offset_bottom = 692.0
 
 [node name="MeterBg" type="ColorRect" parent="CookingMeter" unique_id=520637559]
 layout_mode = 0
@@ -451,9 +453,9 @@ stretch_mode = 5
 
 [node name="HintLabel" type="Label" parent="." unique_id=793470659]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 662.0
-offset_right = 617.0
+offset_left = 24.0
+offset_top = 636.0
+offset_right = 621.0
 offset_bottom = 711.0
 theme_override_colors/font_color = Color(0.98902076, 0.9332128, 0.88691455, 1)
 theme_override_colors/font_shadow_color = Color(0.24104092, 0.06104824, 3.6098065e-08, 1)
