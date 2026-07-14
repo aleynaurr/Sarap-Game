@@ -10,20 +10,21 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -365.71436
+offset_bottom = -205.7143
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.4, 1.4)
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="p1" parent="MarginContainer" unique_id=103354895 instance=ExtResource("1_yjc8d")]
 layout_mode = 2
-size_flags_vertical = 4
 script = ExtResource("2_c3vjw")
 
 [node name="p2" parent="MarginContainer" unique_id=88784736 instance=ExtResource("1_yjc8d")]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 4
 script = ExtResource("2_c3vjw")
 player_id = 2
 

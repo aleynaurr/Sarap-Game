@@ -6,6 +6,14 @@ var versus_video_playing: bool = false  # Track if versus video is playing
 
 # Player-specific state
 var _player_state: Dictionary = {}
+
+var ingredient_scores := {
+	1: 0,
+	2: 0
+}
+
+var first_player_home := -1
+
 var _shared_timer: float = 0.0
 var _shared_timer_active: bool = false
 var cook_rice_target_cups: int = 0  # Shared target for both players
@@ -18,7 +26,7 @@ signal minigame_exited()
 signal all_players_finished()
 signal shared_timer_up()
 
-const TOTAL_RECIPE_TIME := 600.0   # 10 minutes per recipe
+const TOTAL_RECIPE_TIME := 620   # 10 minutes per recipe + 20s (cutscene)
 
 # ─── Init player states ──────────────────────────────────────────────────────
 func _ready() -> void:
@@ -81,7 +89,7 @@ func start_recipe(recipe_id: String) -> void:
 	cook_rice_target_set = false  # Reset target set flag
 	_player_state[1]["game_active"] = true
 	_player_state[2]["game_active"] = true
-	start_shared_timer()
+	
 	print("Changing scene...")
 	get_tree().change_scene_to_file("res://scenes/get_ingredients/GetIngredients.tscn")
 
@@ -159,6 +167,46 @@ func get_grade(player: int) -> String:
 		return "C"
 	else:
 		return "D"
+
+func set_ingredient_score(player: int, score: int) -> void:
+	ingredient_scores[player] = score
+
+func get_ingredient_score(player: int) -> int:
+	return ingredient_scores[player]
+
+func get_final_score(player: int) -> int:
+	return get_total_score(player) + get_ingredient_score(player)
+
+func calculate_ingredient_score(
+	player: int,
+	collected: int,
+	total_needed: int,
+	time_left: float
+) -> void:
+
+	var score := 0
+
+	#Ingredient score (70 pts)
+	var ingredient_ratio := float(collected) / float(total_needed)
+	score += roundi(ingredient_ratio * 70.0)
+
+	#Time bonus (20 pts)
+	score += roundi((time_left / 120.0) * 20.0)
+
+	#First home bonus (10 pts)
+	if first_player_home == player:
+		score += 10
+
+	ingredient_scores[player] = score
+
+func get_collected_ingredients(player: int) -> int:
+	var total := 0
+
+	for amount in InventoryManager.inventories[player].values():
+		total += amount
+
+	return total
+
 
 # ─── Step tracking ───────────────────────────────────────────────────────────
 func mark_step_done(player: int, step_idx: int) -> void:

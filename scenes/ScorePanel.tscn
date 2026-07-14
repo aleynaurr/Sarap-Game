@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://docnv5lkq1dv"]
+
+[ext_resource type="Theme" uid="uid://dmry7o1pbb4a2" path="res://scenes/get_ingredients/Brown_UI.tres" id="1_538d3"]
+[ext_resource type="FontFile" uid="uid://hyjak13anwnm" path="res://assets/assets/fonts/Pixelon.ttf" id="2_2y052"]
+
+[node name="ScorePanel" type="Control" unique_id=1481999776]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1290674314]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 142.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1928304325]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme = ExtResource("1_538d3")
+theme_type_variation = &"ItemPanel"
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1464531525]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_2y052")
+theme_override_font_sizes/font_size = 23
+text = "Final Score"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer" unique_id=574293880]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_538d3")
+theme_type_variation = &"ItemPanel"
+
+[node name="Ingredients" type="Label" parent="VBoxContainer/PanelContainer2" unique_id=267076801]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_2y052")
+text = "Ingredients"
+
+[node name="IngredientsScore" type="Label" parent="VBoxContainer/PanelContainer2" unique_id=1860280417]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_2y052")
+text = "0"
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer" unique_id=968103459]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_538d3")
+theme_type_variation = &"ItemPanel"
+
+[node name="Kitchen" type="Label" parent="VBoxContainer/PanelContainer3" unique_id=1159846059]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_2y052")
+text = "Kitchen"
+
+[node name="KitchenScore" type="Label" parent="VBoxContainer/PanelContainer3" unique_id=114844338]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_2y052")
+text = "0"
+
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer" unique_id=1969303562]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_538d3")
+theme_type_variation = &"ItemPanel"
+
+[node name="Total" type="Label" parent="VBoxContainer/PanelContainer4" unique_id=311666087]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_2y052")
+text = "Total"
+
+[node name="TotalScore" type="Label" parent="VBoxContainer/PanelContainer4" unique_id=1701670234]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_2y052")
+text = "0"

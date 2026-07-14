@@ -6,7 +6,7 @@ signal time_up()
 const START_TIME := 120.0
 
 var time_left := START_TIME
-var running := true
+var running := false
 
 func _process(delta: float) -> void:
 	if !running:
@@ -22,4 +22,14 @@ func _process(delta: float) -> void:
 	var minutes := int(time_left) / 60
 	var seconds := int(time_left) % 60
 
+	time_changed.emit(minutes, seconds)
+
+
+
+func reset_timer():
+	time_left = START_TIME
+	running = true
+
+	var minutes := int(time_left) / 60
+	var seconds := int(time_left) % 60
 	time_changed.emit(minutes, seconds)

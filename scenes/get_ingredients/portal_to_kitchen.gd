@@ -11,12 +11,17 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
+	
 	if body is Player:
+
+		if GameManager.first_player_home == -1:
+			GameManager.first_player_home = body.player_id
+
 		if body.player_id == 1:
 			player1_inside = true
 		elif body.player_id == 2:
 			player2_inside = true
-			
+
 		print("P1 Inside: ", player1_inside, " | P2 Inside: ", player2_inside)
 		check_finish()
 
@@ -34,7 +39,22 @@ func ingredients_complete() -> bool:
 	
 func check_finish():
 	if player1_inside and player2_inside and ingredients_complete():
-		GameManager.versus_video_playing = true  # Set early!
+		var total_needed = InventoryManager.INGREDIENT_GOAL * 7
+		GameManager.calculate_ingredient_score(
+		1,
+		GameManager.get_collected_ingredients(1),
+		total_needed,
+		TimeManager.time_left
+		)
+
+		GameManager.calculate_ingredient_score(
+		2,
+		GameManager.get_collected_ingredients(2),
+		total_needed,
+		TimeManager.time_left
+		)
+		
+		GameManager.versus_video_playing = true
 		await get_tree().create_timer(0.5).timeout
 		var door := DOOR_TRANSITION_SCENE.instantiate()
 		get_tree().root.add_child(door)
