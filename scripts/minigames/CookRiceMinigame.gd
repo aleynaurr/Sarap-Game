@@ -727,7 +727,7 @@ func _show_popup(type: String, tex: Texture2D, cb: Callable) -> void:
 	var tw := create_tween()
 	tw.tween_property(_popup_box, "scale", Vector2(1.25, 1.25), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tw.tween_property(_popup_box, "scale", Vector2(1.15, 1.15), 0.1)
-	tw.tween_interval(15.0)
+	tw.tween_interval(2.0)
 	tw.tween_property(_popup_box, "scale", Vector2(0.0, 0.0), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tw.tween_callback(func():
 		_popup_box.visible = false

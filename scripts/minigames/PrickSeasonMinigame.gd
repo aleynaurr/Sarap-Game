@@ -66,7 +66,7 @@ func _on_init() -> void:
 
 	if _lbl_progress: _lbl_progress.visible = false
 	if _lbl_phase: _lbl_phase.text = "Poke the Eggplant!"
-	if _lbl_status: _lbl_status.text = "Press 'E' or Space to poke (%d/%d)" % [_pricks, POKES_NEEDED]
+	if _lbl_status: _lbl_status.text = "Press 'E' or 'Shift' to poke (%d/%d)" % [_pricks, POKES_NEEDED]
 
 func _on_update(delta: float, remaining: float) -> void:
 	if _lbl_timer:
