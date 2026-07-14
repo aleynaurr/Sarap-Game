@@ -37,6 +37,23 @@ offset_right = 639.0
 offset_bottom = 652.0
 texture = ExtResource("2_lh37s")
 
+[node name="ColorRect" type="ColorRect" parent="TopHUD" unique_id=714200527]
+z_index = 2
+layout_mode = 0
+offset_left = 492.0
+offset_top = 85.0
+offset_right = 574.0
+offset_bottom = 103.0
+color = Color(1, 1, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="TopHUD/ColorRect" unique_id=1847769467]
+z_index = 2
+layout_mode = 0
+offset_top = 28.0
+offset_right = 82.0
+offset_bottom = 46.0
+color = Color(1, 1, 0, 1)
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1964947364]
 layout_mode = 0
 offset_left = 3.0
