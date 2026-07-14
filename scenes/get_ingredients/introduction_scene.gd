@@ -70,9 +70,9 @@ func _process(delta: float) -> void:
 
 
 func _on_play_button_pressed() -> void:
+	TimeManager.running = true
 	get_tree().paused = false
 	queue_free()
-	
 
 func _on_play_button_mouse_entered() -> void:
 	create_tween().tween_property($PlayButton, "scale", Vector2(1.1, 1.1), 0.15)

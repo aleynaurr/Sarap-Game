@@ -26,6 +26,7 @@ var music_playing := false
 
 
 func _ready() -> void:
+	TimeManager.reset_timer()
 	p1_banner.visible = false
 	p2_banner.visible = false
 	
@@ -45,6 +46,7 @@ func _ready() -> void:
 			"🌱 Race to collect all the ingredients!",
 			"🥬 Harvest the crops in the garden.", 
 			"🧺 Explore the map to find the remaining ingredients.",
+			"🧺 Failing to collect the required ingredients results in a score penalty.",
 			"🏠 Return to the house when you're done.",
 			"⭐ The first player to enter the house earns bonus points!"
 		])

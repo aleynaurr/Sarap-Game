@@ -18,7 +18,7 @@ signal minigame_exited()
 signal all_players_finished()
 signal shared_timer_up()
 
-const TOTAL_RECIPE_TIME := 600.0   # 10 minutes per recipe
+const TOTAL_RECIPE_TIME := 620   # 10 minutes per recipe + 20s (cutscene)
 
 # ─── Init player states ──────────────────────────────────────────────────────
 func _ready() -> void:
@@ -81,7 +81,7 @@ func start_recipe(recipe_id: String) -> void:
 	cook_rice_target_set = false  # Reset target set flag
 	_player_state[1]["game_active"] = true
 	_player_state[2]["game_active"] = true
-	start_shared_timer()
+	
 	print("Changing scene...")
 	get_tree().change_scene_to_file("res://scenes/get_ingredients/GetIngredients.tscn")
 
